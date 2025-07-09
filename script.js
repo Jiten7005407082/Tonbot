@@ -76,11 +76,16 @@ function processSpeech(transcript) {
   console.log("Heard:", spoken);
   userText.innerText = "You: " + spoken;
 
+  // Wake trigger
   if (!isListening && spoken.includes("ton")) {
     isListening = true;
-    statusText.innerText = "👂 Listening for questions...";
+    statusText.innerText = "✅ TonBot is awake!";
     speak("Let us chat. Say 'start quiz' to begin.");
-  } else if (isListening) {
+    return;
+  }
+
+  // If already awake
+  if (isListening) {
     if (isQuizMode) {
       checkQuizAnswer(spoken);
     } else {
@@ -112,7 +117,7 @@ function startSpeechRecognition() {
   };
 
   recognition.onend = () => {
-    setTimeout(startSpeechRecognition, 800); // Restart after short delay
+    setTimeout(startSpeechRecognition, 800);
   };
 
   recognition.start();
@@ -121,8 +126,8 @@ function startSpeechRecognition() {
 wakeButton.addEventListener("click", () => {
   if (!isListening) {
     isListening = true;
+    statusText.innerText = "✅ Listening after button click";
     speak("Let us chat. Say 'start quiz' to begin.");
-    statusText.innerText = "👂 Listening after button click...";
   }
 });
 
