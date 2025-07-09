@@ -11,15 +11,63 @@ const chatResponses = {
   "bye": "Goodbye! See you soon."
 };
 
+// ✅ 50 quiz questions on electricity
 const quiz = [
   { question: "What is electricity?", answer: "Electricity is the flow of electric charge through a conductor." },
   { question: "What is the unit of electric current?", answer: "The unit of electric current is the ampere." },
-  { question: "What is Ohm's Law?", answer: "Ohm's Law states that voltage is equal to current times resistance." }
+  { question: "What is Ohm's Law?", answer: "Ohm's Law states that voltage is equal to current times resistance." },
+  { question: "What is the unit of resistance?", answer: "The unit of resistance is the ohm." },
+  { question: "Who discovered electricity?", answer: "Benjamin Franklin is credited with discovering electricity." },
+  { question: "What is a conductor?", answer: "A conductor is a material that allows the flow of electric current." },
+  { question: "What is an insulator?", answer: "An insulator is a material that resists the flow of electric current." },
+  { question: "What is voltage?", answer: "Voltage is the electric potential difference between two points." },
+  { question: "What is the SI unit of voltage?", answer: "The SI unit of voltage is the volt." },
+  { question: "What is the device used to measure current?", answer: "An ammeter is used to measure current." },
+  { question: "What is the device used to measure voltage?", answer: "A voltmeter is used to measure voltage." },
+  { question: "What is the device used to measure resistance?", answer: "An ohmmeter is used to measure resistance." },
+  { question: "What is a circuit?", answer: "A circuit is a closed loop that allows current to flow." },
+  { question: "What is a short circuit?", answer: "A short circuit is an unintended low-resistance path in a circuit." },
+  { question: "What is alternating current?", answer: "Alternating current changes direction periodically." },
+  { question: "What is direct current?", answer: "Direct current flows in one direction only." },
+  { question: "What is a fuse?", answer: "A fuse is a safety device that protects circuits from overcurrent." },
+  { question: "What is a capacitor?", answer: "A capacitor stores electrical energy in an electric field." },
+  { question: "What is an inductor?", answer: "An inductor stores energy in a magnetic field." },
+  { question: "What is electric power?", answer: "Electric power is the rate at which electrical energy is transferred." },
+  { question: "What is the unit of electric power?", answer: "The unit of electric power is the watt." },
+  { question: "What is an electric motor?", answer: "An electric motor converts electrical energy into mechanical energy." },
+  { question: "What is an electric generator?", answer: "An electric generator converts mechanical energy into electrical energy." },
+  { question: "What is a transformer?", answer: "A transformer changes the voltage level in an AC circuit." },
+  { question: "What is grounding?", answer: "Grounding connects electrical circuits to the earth for safety." },
+  { question: "What is a semiconductor?", answer: "A semiconductor conducts electricity under certain conditions." },
+  { question: "What is an LED?", answer: "An LED is a light-emitting diode." },
+  { question: "What is resistance?", answer: "Resistance is the opposition to the flow of electric current." },
+  { question: "What affects resistance in a wire?", answer: "Length, thickness, and material affect resistance in a wire." },
+  { question: "What is a diode?", answer: "A diode allows current to flow in only one direction." },
+  { question: "What is the function of a switch?", answer: "A switch opens or closes an electric circuit." },
+  { question: "What is a battery?", answer: "A battery stores and provides electrical energy." },
+  { question: "What is the function of a resistor?", answer: "A resistor reduces current flow and lowers voltage in a circuit." },
+  { question: "What is a multimeter?", answer: "A multimeter measures voltage, current, and resistance." },
+  { question: "What is a volt?", answer: "A volt is the unit of electric potential difference." },
+  { question: "What is an ampere?", answer: "An ampere is the unit of electric current." },
+  { question: "What is an ohm?", answer: "An ohm is the unit of electrical resistance." },
+  { question: "What is the symbol for resistance?", answer: "The symbol for resistance is omega (Ω)." },
+  { question: "What is the formula for electric power?", answer: "Electric power equals voltage times current." },
+  { question: "What does a circuit breaker do?", answer: "A circuit breaker protects circuits by interrupting flow during overload." },
+  { question: "What is electromagnetism?", answer: "Electromagnetism is the interaction of electric and magnetic fields." },
+  { question: "What is static electricity?", answer: "Static electricity is the build-up of electric charge on a surface." },
+  { question: "What is a conductor made of?", answer: "A conductor is usually made of copper or aluminum." },
+  { question: "Why are insulators important?", answer: "Insulators prevent electric shocks and protect circuits." },
+  { question: "What does AC stand for?", answer: "AC stands for alternating current." },
+  { question: "What does DC stand for?", answer: "DC stands for direct current." },
+  { question: "What is a load in a circuit?", answer: "A load uses electrical energy to do work." },
+  { question: "What is energy consumption measured in?", answer: "Energy consumption is measured in kilowatt-hours." },
+  { question: "What is an electric field?", answer: "An electric field is the area around a charged particle where force is felt." }
 ];
 
 let currentQuestion = 0;
 let isQuizMode = false;
 let isListening = false;
+let score = 0;
 
 function speak(text) {
   if ('speechSynthesis' in window) {
@@ -31,7 +79,7 @@ function speak(text) {
 
     utter.onerror = (e) => {
       console.error("Speech error:", e.error);
-      alert("⚠️ TonBot tried to speak but failed.\nPlease check your volume, browser, or try another device.");
+      alert("⚠️ TonBot tried to speak but failed. Check your volume or browser.");
     };
 
     try {
@@ -39,7 +87,7 @@ function speak(text) {
       window.speechSynthesis.speak(utter);
     } catch (err) {
       console.error("Speak error:", err);
-      alert("⚠️ Speech synthesis failed. Try reloading the page or using Chrome.");
+      alert("⚠️ Speech synthesis failed.");
     }
   } else {
     alert("⚠️ Your browser does not support speech output.");
@@ -53,8 +101,10 @@ function askQuizQuestion() {
     speak(q);
   } else {
     isQuizMode = false;
-    botResponse.innerText = "Bot: Quiz over! You can now chat with me.";
-    speak("Quiz over! You can now chat with me.");
+    const message = `Quiz over! Your score is ${score} out of ${quiz.length}.`;
+    botResponse.innerText = "Bot: " + message;
+    speak(message);
+    score = 0; // Reset for next time
   }
 }
 
@@ -63,14 +113,16 @@ function checkQuizAnswer(answer) {
   const userAns = answer.toLowerCase().trim();
 
   if (userAns === correct) {
+    score++;
     speak("Correct!");
     botResponse.innerText = "Bot: Correct!";
-    currentQuestion++;
-    setTimeout(askQuizQuestion, 1500);
   } else {
-    speak("Wrong answer. Try again.");
-    botResponse.innerText = "Bot: Wrong. Try again.";
+    const correctAnswer = quiz[currentQuestion].answer;
+    speak("Wrong. The correct answer is: " + correctAnswer);
+    botResponse.innerText = "Bot: Wrong. The correct answer is: " + correctAnswer;
   }
+  currentQuestion++;
+  setTimeout(askQuizQuestion, 4000); // Wait 4s before next question
 }
 
 function handleChat(input) {
@@ -79,6 +131,7 @@ function handleChat(input) {
   if (cleaned === "start quiz") {
     isQuizMode = true;
     currentQuestion = 0;
+    score = 0;
     speak("Starting quiz.");
     askQuizQuestion();
     return;
