@@ -16,10 +16,24 @@ h1 {
   margin: auto;
 }
 
+#wakeButton {
+  padding: 15px 25px;
+  font-size: 1.2em;
+  background-color: #00adb5;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+#wakeButton:hover {
+  background-color: #008b94;
+}
+
 #status {
   font-size: 1.2em;
-  margin-bottom: 30px;
-  color: #cfcfcf;
+  margin-bottom: 20px;
 }
 
 #userText, #botResponse {
