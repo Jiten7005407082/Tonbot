@@ -22,10 +22,28 @@ let isQuizMode = false;
 let isListening = false;
 
 function speak(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "en-US";
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utter);
+  if ('speechSynthesis' in window) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.pitch = 1;
+    utter.rate = 1;
+    utter.volume = 1;
+
+    utter.onerror = (e) => {
+      console.error("Speech error:", e.error);
+      alert("⚠️ TonBot tried to speak but failed.\nPlease check your volume, browser, or try another device.");
+    };
+
+    try {
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    } catch (err) {
+      console.error("Speak error:", err);
+      alert("⚠️ Speech synthesis failed. Try reloading the page or using Chrome.");
+    }
+  } else {
+    alert("⚠️ Your browser does not support speech output.");
+  }
 }
 
 function askQuizQuestion() {
@@ -76,7 +94,6 @@ function processSpeech(transcript) {
   console.log("Heard:", spoken);
   userText.innerText = "You: " + spoken;
 
-  // Wake trigger
   if (!isListening && spoken.includes("ton")) {
     isListening = true;
     statusText.innerText = "✅ TonBot is awake!";
@@ -84,7 +101,6 @@ function processSpeech(transcript) {
     return;
   }
 
-  // If already awake
   if (isListening) {
     if (isQuizMode) {
       checkQuizAnswer(spoken);
@@ -97,7 +113,7 @@ function processSpeech(transcript) {
 function startSpeechRecognition() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
-    alert("Speech recognition not supported in this browser.");
+    alert("⚠️ Speech recognition not supported in this browser.");
     return;
   }
 
