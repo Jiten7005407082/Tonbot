@@ -1,7 +1,7 @@
 const userText = document.getElementById("userText");
 const botResponse = document.getElementById("botResponse");
+const statusText = document.getElementById("status");
 
-// Chat answers
 const chatResponses = {
   "hello": "Hi there!",
   "what is your name": "I am TonBot, your smart voice assistant.",
@@ -10,7 +10,6 @@ const chatResponses = {
   "bye": "Goodbye! See you soon."
 };
 
-// Quiz questions (shortened for demo – you can add all 50 later)
 const quiz = [
   { question: "What is electricity?", answer: "Electricity is the flow of electric charge through a conductor." },
   { question: "What is the unit of electric current?", answer: "The unit of electric current is the ampere." },
@@ -26,13 +25,10 @@ function speak(text) {
     const synth = window.speechSynthesis;
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "en-US";
-    utter.pitch = 1;
-    utter.rate = 1;
-    utter.volume = 1;
-    synth.cancel(); // stop previous
+    synth.cancel();
     synth.speak(utter);
   } else {
-    console.log("Speech Synthesis not supported.");
+    console.log("Speech not supported.");
   }
 }
 
@@ -48,28 +44,25 @@ function askQuizQuestion() {
   }
 }
 
-function checkQuizAnswer(userAnswer) {
+function checkQuizAnswer(answer) {
   const correct = quiz[currentQuestion].answer.toLowerCase().trim();
-  const response = userAnswer.toLowerCase().trim();
-
-  if (response === correct) {
-    botResponse.innerText = "Bot: Correct!";
+  if (answer.toLowerCase().trim() === correct) {
     speak("Correct!");
+    botResponse.innerText = "Bot: Correct!";
     currentQuestion++;
     setTimeout(askQuizQuestion, 1500);
   } else {
-    botResponse.innerText = "Bot: Wrong. Try again.";
     speak("Wrong answer. Try again.");
+    botResponse.innerText = "Bot: Wrong. Try again.";
   }
 }
 
 function handleChat(input) {
   const cleaned = input.toLowerCase().trim();
-
   if (cleaned === "start quiz") {
     isQuizMode = true;
     currentQuestion = 0;
-    speak("Starting the quiz.");
+    speak("Starting quiz.");
     askQuizQuestion();
     return;
   }
@@ -86,6 +79,7 @@ function processSpeech(transcript) {
   if (!isListening && spoken.includes("ton")) {
     isListening = true;
     speak("Let us chat. Say 'start quiz' to begin the quiz.");
+    statusText.innerText = "Listening...";
   } else if (isListening) {
     if (isQuizMode) {
       checkQuizAnswer(spoken);
@@ -96,29 +90,28 @@ function processSpeech(transcript) {
 }
 
 function startWakeListener() {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
-    alert("Speech recognition not supported in this browser.");
+    alert("Speech Recognition not supported in your browser.");
     return;
   }
 
   const recognition = new SpeechRecognition();
   recognition.lang = "en-US";
-  recognition.continuous = false;
   recognition.interimResults = false;
+  recognition.continuous = false;
 
   recognition.onresult = (event) => {
     const transcript = event.results[0][0].transcript;
     processSpeech(transcript);
   };
 
-  recognition.onerror = (event) => {
-    console.error("Recognition error:", event.error);
+  recognition.onerror = (e) => {
+    console.error("Recognition error:", e.error);
   };
 
   recognition.onend = () => {
-    setTimeout(startWakeListener, 500);
+    setTimeout(startWakeListener, 500); // Restart listening
   };
 
   recognition.start();
@@ -126,7 +119,7 @@ function startWakeListener() {
 
 window.onload = () => {
   setTimeout(() => {
-    speak("Say 'Ton' to activate me.");
+    speak("Say Ton to activate me.");
+    startWakeListener();
   }, 1000);
-  startWakeListener();
 };
