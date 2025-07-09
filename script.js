@@ -1,6 +1,7 @@
 const userText = document.getElementById("userText");
 const botResponse = document.getElementById("botResponse");
 const statusText = document.getElementById("status");
+const wakeButton = document.getElementById("wakeButton");
 
 const chatResponses = {
   "hello": "Hi there!",
@@ -21,15 +22,10 @@ let isQuizMode = false;
 let isListening = false;
 
 function speak(text) {
-  if ("speechSynthesis" in window) {
-    const synth = window.speechSynthesis;
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-US";
-    synth.cancel();
-    synth.speak(utter);
-  } else {
-    console.log("Speech not supported.");
-  }
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "en-US";
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utter);
 }
 
 function askQuizQuestion() {
@@ -46,7 +42,9 @@ function askQuizQuestion() {
 
 function checkQuizAnswer(answer) {
   const correct = quiz[currentQuestion].answer.toLowerCase().trim();
-  if (answer.toLowerCase().trim() === correct) {
+  const userAns = answer.toLowerCase().trim();
+
+  if (userAns === correct) {
     speak("Correct!");
     botResponse.innerText = "Bot: Correct!";
     currentQuestion++;
@@ -59,6 +57,7 @@ function checkQuizAnswer(answer) {
 
 function handleChat(input) {
   const cleaned = input.toLowerCase().trim();
+
   if (cleaned === "start quiz") {
     isQuizMode = true;
     currentQuestion = 0;
@@ -74,12 +73,13 @@ function handleChat(input) {
 
 function processSpeech(transcript) {
   const spoken = transcript.toLowerCase().trim();
+  console.log("Heard:", spoken);
   userText.innerText = "You: " + spoken;
 
   if (!isListening && spoken.includes("ton")) {
     isListening = true;
-    speak("Let us chat. Say 'start quiz' to begin the quiz.");
-    statusText.innerText = "Listening...";
+    statusText.innerText = "👂 Listening for questions...";
+    speak("Let us chat. Say 'start quiz' to begin.");
   } else if (isListening) {
     if (isQuizMode) {
       checkQuizAnswer(spoken);
@@ -89,10 +89,10 @@ function processSpeech(transcript) {
   }
 }
 
-function startWakeListener() {
+function startSpeechRecognition() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
-    alert("Speech Recognition not supported in your browser.");
+    alert("Speech recognition not supported in this browser.");
     return;
   }
 
@@ -106,20 +106,27 @@ function startWakeListener() {
     processSpeech(transcript);
   };
 
-  recognition.onerror = (e) => {
-    console.error("Recognition error:", e.error);
+  recognition.onerror = (event) => {
+    console.error("Recognition error:", event.error);
+    statusText.innerText = "Error: " + event.error;
   };
 
   recognition.onend = () => {
-    setTimeout(startWakeListener, 500); // Restart listening
+    setTimeout(startSpeechRecognition, 800); // Restart after short delay
   };
 
   recognition.start();
 }
 
+wakeButton.addEventListener("click", () => {
+  if (!isListening) {
+    isListening = true;
+    speak("Let us chat. Say 'start quiz' to begin.");
+    statusText.innerText = "👂 Listening after button click...";
+  }
+});
+
 window.onload = () => {
-  setTimeout(() => {
-    speak("Say Ton to activate me.");
-    startWakeListener();
-  }, 1000);
+  speak("Say Ton to activate me, or click the button.");
+  startSpeechRecognition();
 };
