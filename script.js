@@ -5,8 +5,9 @@ const botResponse = document.getElementById('botResponse');
 // Define your custom Q&A
 const responses = {
   "hello": "Hi there!",
-  "what is your name": "I am your custom voice bot.",
+  "what is your name": "I am your custom voice bot thongam ton aliza thongam lamnganba.",
   "how are you": "I'm doing great. How about you?",
+" who is your mother: "thongam rabita",
   "who created you": "I was created by Jiten!",
   "bye": "Goodbye! Talk to you soon."
 };
