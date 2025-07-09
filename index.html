@@ -1,16 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>TonBot – Voice Quiz & Chat</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TonBot - Voice Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #00adb5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    #status {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #cfcfcf;
+    }
+
+    #userText, #botResponse {
+      font-size: 1.3em;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #1e1e1e;
+    }
+
+    #userText {
+      color: #ff9800;
+    }
+
+    #botResponse {
+      color: #4caf50;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>TonBot 🤖</h1>
-    <p id="status">Say <strong>"Ton"</strong> to start</p>
-    <p id="userText"></p>
-    <p id="botResponse"></p>
+    <h1>TonBot</h1>
+    <div id="status">Say "Ton" to begin</div>
+    <div id="userText">You: </div>
+    <div id="botResponse">Bot: </div>
   </div>
+
+  <!-- Link to JS logic -->
   <script src="script.js"></script>
 </body>
 </html>
