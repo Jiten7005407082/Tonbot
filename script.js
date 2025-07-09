@@ -5,9 +5,10 @@ const wakeButton = document.getElementById("wakeButton");
 
 const chatResponses = {
   "hello": "Hi there!",
-  "what is your name": "I am TonBot, your smart voice assistant.",
+  "what is your name": "I am RobotTon, your smart voice assistant.",
   "how are you": "I'm doing great. How about you?",
-  "who created you": "I was created by Jiten!",
+  "741 ": "I'm doing great. How about you?",
+  "who created you": "I was created by Thongam jiten!",
   "bye": "Goodbye! See you soon."
 };
 
