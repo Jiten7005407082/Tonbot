@@ -1,27 +1,72 @@
+/* === General Styles === */
 body {
   font-family: Arial, sans-serif;
   background-color: #121212;
   color: #ffffff;
   text-align: center;
   padding: 40px;
+  margin: 0;
 }
 
+/* === Heading === */
 h1 {
   font-size: 2.5em;
   color: #00adb5;
+  margin-bottom: 10px;
 }
 
+/* === Container Box === */
 .container {
   max-width: 600px;
   margin: auto;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 173, 181, 0.4);
 }
 
+/* === Status Text === */
 #status {
   font-size: 1.2em;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  color: #cccccc;
 }
 
+/* === User and Bot Text === */
 #userText, #botResponse {
   font-size: 1.3em;
-  margin: 10px 0;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* === User Speech Bubble === */
+#userText {
+  background-color: #2c2c2c;
+  color: #00ffcc;
+}
+
+/* === Bot Speech Bubble === */
+#botResponse {
+  background-color: #2a2a2a;
+  color: #00adb5;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  #userText, #botResponse {
+    font-size: 1.1em;
+  }
 }
