@@ -11,7 +11,7 @@ const chatResponses = {
   "bye": "Goodbye! See you soon."
 };
 
-// ✅ 50 quiz questions on electricity
+// ✅ 50 electricity quiz questions
 const quiz = [
   { question: "What is electricity?", answer: "Electricity is the flow of electric charge through a conductor." },
   { question: "What is the unit of electric current?", answer: "The unit of electric current is the ampere." },
@@ -79,7 +79,7 @@ function speak(text) {
 
     utter.onerror = (e) => {
       console.error("Speech error:", e.error);
-      alert("⚠️ TonBot tried to speak but failed. Check your volume or browser.");
+      alert("⚠️ TonBot tried to speak but failed.\nCheck your volume or browser.");
     };
 
     try {
@@ -104,7 +104,7 @@ function askQuizQuestion() {
     const message = `Quiz over! Your score is ${score} out of ${quiz.length}.`;
     botResponse.innerText = "Bot: " + message;
     speak(message);
-    score = 0; // Reset for next time
+    score = 0;
   }
 }
 
@@ -122,7 +122,7 @@ function checkQuizAnswer(answer) {
     botResponse.innerText = "Bot: Wrong. The correct answer is: " + correctAnswer;
   }
   currentQuestion++;
-  setTimeout(askQuizQuestion, 4000); // Wait 4s before next question
+  setTimeout(askQuizQuestion, 4000);
 }
 
 function handleChat(input) {
@@ -175,17 +175,28 @@ function startSpeechRecognition() {
   recognition.interimResults = false;
   recognition.continuous = false;
 
+  let recognitionTimeout;
+
+  recognition.onstart = () => {
+    recognitionTimeout = setTimeout(() => {
+      recognition.stop(); // Stop after 10 seconds of silence
+    }, 10000);
+  };
+
   recognition.onresult = (event) => {
+    clearTimeout(recognitionTimeout);
     const transcript = event.results[0][0].transcript;
     processSpeech(transcript);
   };
 
   recognition.onerror = (event) => {
+    clearTimeout(recognitionTimeout);
     console.error("Recognition error:", event.error);
     statusText.innerText = "Error: " + event.error;
   };
 
   recognition.onend = () => {
+    clearTimeout(recognitionTimeout);
     setTimeout(startSpeechRecognition, 800);
   };
 
