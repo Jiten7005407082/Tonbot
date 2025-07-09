@@ -1,7 +1,7 @@
 const userText = document.getElementById('userText');
 const botResponse = document.getElementById('botResponse');
 
-// 🧠 Chat responses (customizable)
+// Chat responses
 const chatResponses = {
   "hello": "Hi there!",
   "what is your name": "I am TonBot, your smart voice assistant.",
@@ -10,7 +10,7 @@ const chatResponses = {
   "bye": "Goodbye! See you soon."
 };
 
-// ⚡️ 50 Electricity Quiz Questions
+// Quiz questions
 const quiz = [
   { question: "What is electricity?", answer: "Electricity is the flow of electric charge through a conductor." },
   { question: "What is the unit of electric current?", answer: "The unit of electric current is the ampere." },
@@ -64,7 +64,7 @@ const quiz = [
 ];
 
 let currentQuestion = 0;
-let isQuizMode = true;
+let isQuizMode = false;
 let isListening = false;
 
 function speak(text) {
@@ -102,6 +102,15 @@ function checkQuizAnswer(userAnswer) {
 
 function handleChat(input) {
   const cleaned = input.toLowerCase().trim();
+
+  if (cleaned === "start quiz") {
+    isQuizMode = true;
+    currentQuestion = 0;
+    speak("Starting the quiz.");
+    askQuizQuestion();
+    return;
+  }
+
   const reply = chatResponses[cleaned] || "Sorry, I don't understand that yet.";
   botResponse.innerText = "Bot: " + reply;
   speak(reply);
@@ -113,10 +122,7 @@ function processSpeech(transcript) {
 
   if (!isListening && spoken.includes("ton")) {
     isListening = true;
-    speak("Hi! I'm listening.");
-    if (isQuizMode && currentQuestion === 0) {
-      askQuizQuestion();
-    }
+    speak("Let us chat. Say 'start quiz' to begin the quiz.");
   } else if (isListening) {
     if (isQuizMode) {
       checkQuizAnswer(spoken);
@@ -142,14 +148,13 @@ function startWakeListener() {
   };
 
   recognition.onend = () => {
-    setTimeout(startWakeListener, 500); // restart listening
+    setTimeout(startWakeListener, 500);
   };
 
   recognition.start();
 }
 
-// 🔊 Start everything
 window.onload = () => {
-  speak("Say 'Ton' to wake me up.");
+  speak("Say 'Ton' to activate me.");
   startWakeListener();
 };
