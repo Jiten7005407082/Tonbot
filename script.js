@@ -11,16 +11,16 @@ const knowledgeBase = {
 
     // About the bot
     "what is your name": [
-        "I'm your custom audio chatbot!", 
+        "I'm your custom audio chatbot thongam ton!", 
         "Call me ChatBot 3000",
         "I'm your personal assistant bot"
     ],
     "who created you": [
-        "I was created by you using JavaScript!", 
+        "I was created by thongam jiten singh!", 
         "You built me with the Web Speech API",
-        "A brilliant developer (you!) made me"
-    ],
-
+        "A brilliant developer (you!) made me"    ],
+     ], "who is your father": ["thongam jiten singh is my father!","he built me with the Web Speech API","A brilliant developer (you!) made me"    ],
+], "who is your mother": ["thongam rabita devi is my mother!","her husband built me with the Web Speech API","A brilliant developer (you!) made me"    ],
     // Fun responses
     "tell me a joke": [
         "Why don't scientists trust atoms? Because they make up everything!",
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let recognition;
     
     // Initial greeting
-    addBotMessage("Hello! I'm your custom audio chatbot. Ask me anything or click the microphone to speak.");
+    addBotMessage("Hello! I'm your custom audio chatbot thongam ton. Ask me anything or click the microphone to speak.");
     
     // Event listeners
     sendBtn.addEventListener('click', processTextInput);
