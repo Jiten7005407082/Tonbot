@@ -1,82 +1,96 @@
-// ======================
-// CUSTOM Q&A AUDIO CHATBOT
-// ======================
-
-// 1. KNOWLEDGE BASE - EDIT THIS SECTION
-const knowledgeBase = {
-    // Basic greetings
-    "hello": ["Hi there!", "Hello!", "Greetings!"],
-    "hi": ["Hey!", "Hi!", "Hello there!"],
-    "hey": ["What's up?", "Hey there!", "Hi!"],
-
-    // About the bot
-    "what is your name": [
-        "I'm your custom audio chatbot thongam ton!", 
-       
-    ],
-    "who created you": [
-        "I was created by thongam jiten singh!", 
-        ],
-     ], "who is your father": ["thongam jiten singh is my father!","he built me with the Web Speech API","A brilliant developer (you!) made me"    ],
-], "who is your mother": ["thongam rabita devi is my mother!","her husband built me with the Web Speech API","A brilliant developer (you!) made me"    ],
-    // Fun responses
-    "tell me a joke": [
-        "Why don't scientists trust atoms? Because they make up everything!",
-        "What do you call fake spaghetti? An impasta!",
-        "Why did the scarecrow win an award? Because he was outstanding in his field!"
-    ],
-    "sing a song": [
-        "I'm a chatbot, not a singer! But here's a rhyme: Roses are red, violets are blue, I'm a chatbot, and I'm talking to you!",
-        "Beep boop bop - that's my song!"
-    ],
-
-    // Custom knowledge - ADD YOUR OWN HERE
-    "what can you do": [
-        "I can answer questions, tell jokes, and have simple conversations",
-        "I respond to voice and text input with my knowledge base"
-    ],
-    "how does this work": [
-        "I use speech recognition to hear you and speech synthesis to respond",
-        "It's magic! Just kidding - it's the Web Speech API in your browser"
-    ]
-    // Add more custom Q&A pairs below...
-};
-
-// 2. CHATBOT CORE FUNCTIONALITY
+// QUIZ CHATBOT WITH VOICE CONTROL
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM elements
     const chatbox = document.getElementById('chatbox');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
     const voiceBtn = document.getElementById('voiceBtn');
     
-    // Speech recognition object
     let recognition;
-    
-    // Initial greeting
-    addBotMessage("Hello! I'm your custom audio chatbot thongam ton. Ask me anything or click the microphone to speak.");
+    let quizState = {
+        inQuiz: false,
+        currentSubject: null,
+        currentChapter: null,
+        currentQuestion: 0,
+        score: 0
+    };
+
+    // QUIZ DATABASE - EDIT THIS TO ADD MORE QUESTIONS
+    const quizDatabase = {
+        "science": {
+            "biology": [
+                {
+                    question: "What is the powerhouse of the cell?",
+                    options: ["Nucleus", "Mitochondria", "Ribosome", "Cell membrane"],
+                    answer: 1
+                },
+                {
+                    question: "Which gas do plants absorb during photosynthesis?",
+                    options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+                    answer: 1
+                }
+            ],
+            "chemistry": [
+                {
+                    question: "What is the chemical symbol for water?",
+                    options: ["H2O", "CO2", "NaCl", "O2"],
+                    answer: 0
+                }
+            ]
+        },
+        "math": {
+            "algebra": [
+                {
+                    question: "What is the solution for x in: 2x + 5 = 15?",
+                    options: ["5", "10", "7.5", "2"],
+                    answer: 0
+                }
+            ],
+            "geometry": [
+                {
+                    question: "How many degrees are in a right angle?",
+                    options: ["90", "180", "360", "45"],
+                    answer: 0
+                }
+            ]
+        },
+        "english": {
+            "grammar": [
+                {
+                    question: "Which of these is a proper noun?",
+                    options: ["dog", "London", "run", "beautiful"],
+                    answer: 1
+                }
+            ],
+            "vocabulary": [
+                {
+                    question: "What does 'benevolent' mean?",
+                    options: ["Kind", "Angry", "Confused", "Intelligent"],
+                    answer: 0
+                }
+            ]
+        }
+    };
+
+    // Initialize chatbot
+    addBotMessage("Welcome to the Quiz Bot! Say or type 'start quiz' to begin.");
     
     // Event listeners
-    sendBtn.addEventListener('click', processTextInput);
-    userInput.addEventListener('keypress', (e) => e.key === 'Enter' && processTextInput());
+    sendBtn.addEventListener('click', processInput);
+    userInput.addEventListener('keypress', (e) => e.key === 'Enter' && processInput());
     voiceBtn.addEventListener('click', toggleVoiceInput);
 
-    // ======================
-    // CORE FUNCTIONS
-    // ======================
-
-    function processTextInput() {
-        const question = userInput.value.trim();
-        if (question) {
-            addUserMessage(question);
+    function processInput() {
+        const input = userInput.value.trim();
+        if (input) {
+            addUserMessage(input);
             userInput.value = '';
-            processQuestion(question.toLowerCase());
+            handleInput(input.toLowerCase());
         }
     }
 
     function toggleVoiceInput() {
         if (!('webkitSpeechRecognition' in window)) {
-            addBotMessage("Sorry, voice input isn't supported in your browser. Try Chrome or Edge.");
+            addBotMessage("Voice input not supported in your browser. Try Chrome or Edge.");
             return;
         }
 
@@ -88,84 +102,176 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startVoiceRecognition() {
-        recognition = new webkitSpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'en-US';
+        recognition.interimResults = false;
 
         recognition.onstart = () => {
             voiceBtn.classList.add('listening');
             voiceBtn.innerHTML = '🛑 Stop';
-            addBotMessage("<i>Listening... Speak now</i>");
+            addBotMessage("<i>Listening...</i>");
         };
 
         recognition.onresult = (e) => {
-            const question = e.results[0][0].transcript;
-            addUserMessage(question);
-            processQuestion(question.toLowerCase());
+            const input = e.results[0][0].transcript;
+            addUserMessage(input);
+            handleInput(input.toLowerCase());
         };
 
         recognition.onerror = (e) => {
-            let errorMsg = "Error: ";
-            switch(e.error) {
-                case 'no-speech': errorMsg += "No speech detected"; break;
-                case 'audio-capture': errorMsg += "No microphone found"; break;
-                case 'not-allowed': errorMsg += "Microphone access denied"; break;
-                default: errorMsg += e.error;
-            }
-            addBotMessage(errorMsg);
+            addBotMessage(`Error: ${e.error}`);
             stopVoiceRecognition();
         };
 
         recognition.onend = stopVoiceRecognition;
-
         recognition.start();
     }
 
     function stopVoiceRecognition() {
-        if (recognition) {
-            recognition.stop();
-        }
+        if (recognition) recognition.stop();
         voiceBtn.classList.remove('listening');
         voiceBtn.innerHTML = '🎤 Speak';
     }
 
-    function processQuestion(question) {
-        // Find the best matching response
-        let response = findBestResponse(question);
-        
-        // Simulate thinking delay
-        setTimeout(() => {
-            addBotMessage(response);
-            speak(response);
-        }, 800);
+    function handleInput(input) {
+        if (!quizState.inQuiz) {
+            if (input.includes('start quiz') || input.includes('begin quiz')) {
+                startQuiz();
+            } else {
+                addBotMessage("Say 'start quiz' to begin a quiz session.");
+            }
+            return;
+        }
+
+        // Quiz state handling
+        if (!quizState.currentSubject) {
+            selectSubject(input);
+        } else if (!quizState.currentChapter) {
+            selectChapter(input);
+        } else {
+            answerQuestion(input);
+        }
     }
 
-    function findBestResponse(question) {
-        // 1. Check for exact match
-        if (knowledgeBase[question]) {
-            return getRandomResponse(knowledgeBase[question]);
-        }
+    function startQuiz() {
+        quizState = {
+            inQuiz: true,
+            currentSubject: null,
+            currentChapter: null,
+            currentQuestion: 0,
+            score: 0
+        };
         
-        // 2. Check for partial matches (question contains a key phrase)
-        for (const key in knowledgeBase) {
-            if (question.includes(key)) {
-                return getRandomResponse(knowledgeBase[key]);
+        const subjects = Object.keys(quizDatabase).join(", ");
+        addBotMessage(`Great! Choose a subject: ${subjects}`);
+    }
+
+    function selectSubject(input) {
+        const subject = Object.keys(quizDatabase).find(sub => 
+            input.includes(sub.toLowerCase())
+        );
+
+        if (subject) {
+            quizState.currentSubject = subject;
+            const chapters = Object.keys(quizDatabase[subject]).join(", ");
+            addBotMessage(`You chose ${subject}. Now select a chapter: ${chapters}`);
+        } else {
+            const subjects = Object.keys(quizDatabase).join(", ");
+            addBotMessage(`Please choose one of these subjects: ${subjects}`);
+        }
+    }
+
+    function selectChapter(input) {
+        const chapters = Object.keys(quizDatabase[quizState.currentSubject]);
+        const chapter = chapters.find(chap => 
+            input.includes(chap.toLowerCase())
+        );
+
+        if (chapter) {
+            quizState.currentChapter = chapter;
+            quizState.currentQuestion = 0;
+            quizState.score = 0;
+            askQuestion();
+        } else {
+            addBotMessage(`Please choose one of these chapters: ${chapters.join(", ")}`);
+        }
+    }
+
+    function askQuestion() {
+        const questions = quizDatabase[quizState.currentSubject][quizState.currentChapter];
+        
+        if (quizState.currentQuestion >= questions.length) {
+            endQuiz();
+            return;
+        }
+
+        const questionObj = questions[quizState.currentQuestion];
+        let message = `Question ${quizState.currentQuestion + 1}: ${questionObj.question}\n`;
+        
+        questionObj.options.forEach((option, index) => {
+            message += `\n${index + 1}. ${option}`;
+        });
+
+        addBotMessage(message);
+    }
+
+    function answerQuestion(input) {
+        const questions = quizDatabase[quizState.currentSubject][quizState.currentChapter];
+        const currentQ = questions[quizState.currentQuestion];
+        
+        // Check if input contains a number (option selection)
+        const numberMatch = input.match(/\d+/);
+        if (numberMatch) {
+            const selectedOption = parseInt(numberMatch[0]) - 1;
+            
+            if (selectedOption >= 0 && selectedOption < currentQ.options.length) {
+                if (selectedOption === currentQ.answer) {
+                    quizState.score++;
+                    addBotMessage(`✅ Correct! ${currentQ.options[currentQ.answer]} is the right answer.`);
+                } else {
+                    addBotMessage(`❌ Incorrect. The correct answer is: ${currentQ.options[currentQ.answer]}`);
+                }
+                
+                quizState.currentQuestion++;
+                setTimeout(askQuestion, 1500);
+            } else {
+                addBotMessage(`Please choose a number between 1 and ${currentQ.options.length}`);
+            }
+        } else {
+            // Check if they said the answer text
+            const optionIndex = currentQ.options.findIndex(opt => 
+                input.includes(opt.toLowerCase())
+            );
+            
+            if (optionIndex !== -1) {
+                if (optionIndex === currentQ.answer) {
+                    quizState.score++;
+                    addBotMessage(`✅ Correct! ${currentQ.options[currentQ.answer]} is the right answer.`);
+                } else {
+                    addBotMessage(`❌ Incorrect. The correct answer is: ${currentQ.options[currentQ.answer]}`);
+                }
+                
+                quizState.currentQuestion++;
+                setTimeout(askQuestion, 1500);
+            } else {
+                addBotMessage(`Please respond with the option number (1-${currentQ.options.length}) or say the answer`);
             }
         }
+    }
+
+    function endQuiz() {
+        const totalQuestions = quizDatabase[quizState.currentSubject][quizState.currentChapter].length;
+        const percentage = Math.round((quizState.score / totalQuestions) * 100);
         
-        // 3. Default response if no matches found
-        return "I'm not sure how to answer that. Try asking something else!";
+        addBotMessage(
+            `Quiz completed! Your score: ${quizState.score}/${totalQuestions} (${percentage}%)\n\n` +
+            `Say 'start quiz' to begin a new quiz.`
+        );
+        
+        quizState.inQuiz = false;
     }
 
-    // ======================
-    // HELPER FUNCTIONS
-    // ======================
-
-    function getRandomResponse(responses) {
-        return responses[Math.floor(Math.random() * responses.length)];
-    }
-
+    // Helper functions
     function addUserMessage(message) {
         addMessage(message, 'user');
     }
@@ -177,27 +283,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(message, sender) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', `${sender}-message`);
-        messageElement.textContent = message;
+        
+        // Preserve newlines in the message
+        messageElement.innerHTML = message.replace(/\n/g, '<br>');
+        
         chatbox.appendChild(messageElement);
         chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    function speak(text) {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            // Configure voice
-            const voices = window.speechSynthesis.getVoices();
-            utterance.voice = voices.find(v => v.lang.includes('en')) || voices[0];
-            utterance.rate = 0.9;
-            utterance.pitch = 1;
+        
+        // Speak bot messages
+        if (sender === 'bot' && 'speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(message.replace(/\n/g, ', '));
             window.speechSynthesis.speak(utterance);
         }
-    }
-
-    // Initialize speech synthesis voices
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.onvoiceschanged = () => {
-            // Voices are now loaded
-        };
     }
 });
