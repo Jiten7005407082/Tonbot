@@ -12,13 +12,11 @@ const knowledgeBase = {
     // About the bot
     "what is your name": [
         "I'm your custom audio chatbot thongam ton!", 
-        "Call me ChatBot 3000",
-        "I'm your personal assistant bot"
+       
     ],
     "who created you": [
         "I was created by thongam jiten singh!", 
-        "You built me with the Web Speech API",
-        "A brilliant developer (you!) made me"    ],
+        ],
      ], "who is your father": ["thongam jiten singh is my father!","he built me with the Web Speech API","A brilliant developer (you!) made me"    ],
 ], "who is your mother": ["thongam rabita devi is my mother!","her husband built me with the Web Speech API","A brilliant developer (you!) made me"    ],
     // Fun responses
