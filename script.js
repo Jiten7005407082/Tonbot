@@ -1,3 +1,15 @@
+let progressInterval;
+function animateProgressBar(duration = 10000) {
+  const bar = document.getElementById('progressBar');
+  let startTime = Date.now();
+  clearInterval(progressInterval);
+  progressInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    const percent = Math.min((elapsed / duration) * 100, 100);
+    bar.style.width = percent + '%';
+    if (percent >= 100) clearInterval(progressInterval);
+  }, 100);
+}
 const userText = document.getElementById("userText");
 const botResponse = document.getElementById("botResponse");
 const statusText = document.getElementById("status");
