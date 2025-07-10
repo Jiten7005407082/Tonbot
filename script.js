@@ -1,53 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // ... [Keep all your existing DOM and mic setup code] ...
+// Simple text-based chatbot logic
+function sendTextMessage() {
+    const userInput = document.getElementById('userInput');
+    const chatbox = document.getElementById('chatbox');
+    
+    // Add user message to chat
+    chatbox.innerHTML += `<p><strong>You:</strong> ${userInput.value}</p>`;
+    
+    // Simple bot response
+    const responses = [
+        "I'm a simple chatbot!",
+        "Thanks for your message!",
+        "How can I help you today?",
+        "Interesting point!",
+        "I'm still learning!"
+    ];
+    const response = responses[Math.floor(Math.random() * responses.length)];
+    
+    // Add bot response to chat
+    setTimeout(() => {
+        chatbox.innerHTML += `<p><strong>Bot:</strong> ${response}</p>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }, 500);
+    
+    userInput.value = '';
+}
 
-    async function generateResponse(input) {
-        // ===== 1. FIRST CHECK CUSTOM RESPONSES =====
-        if (/(what('s| is)? your name|who are you)/i.test(input)) {
-            return "My name is Thongam Lamnganba (but you can call me Ton).";
-        }
-        if (/(who('s| is)? your (father|dad)|father('s| is)? name)/i.test(input)) {
-            return "Thongam Jiten is my father.";
-        }
-
-        // ===== 2. FOR OTHER QUESTIONS - SEARCH GOOGLE =====
-        try {
-            const response = await fetchGoogleResults(input);
-            
-            // Format the response
-            if (response.answer_box?.answer) {
-                return `Google says: ${response.answer_box.answer}`;
-            } else if (response.organic_results?.[0]?.snippet) {
-                return `According to web sources: ${response.organic_results[0].snippet}`;
-            } else {
-                return "I couldn't find a clear answer to that.";
-            }
-        } catch (error) {
-            console.error("Search failed:", error);
-            return "Sorry, I couldn't search for that right now.";
-        }
+// Voice input functionality
+function startVoiceInput() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        alert("Speech recognition not supported in your browser");
+        return;
     }
+    
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    
+    recognition.onresult = (event) => {
+        const speechResult = event.results[0][0].transcript;
+        document.getElementById('userInput').value = speechResult;
+        sendTextMessage();
+    };
+    
+    recognition.start();
+    alert("Speak now...");
+}
 
-    // ===== 3. GOOGLE SEARCH HELPER =====
-    async function fetchGoogleResults(query) {
-        // In production, replace this with your backend endpoint
-        const mockResponse = {
-            answer_box: { answer: "42 (mock answer)" },
-            organic_results: [{
-                snippet: "This is a mock search result snippet."
-            }]
-        };
-        
-        // Uncomment for real searches (requires backend):
-        // const response = await fetch('/api/search', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ query })
-        // });
-        // return await response.json();
-        
-        return mockResponse; // Remove this line when using real backend
-    }
-
-    // ... [Keep all your existing display/speech functions] ...
-});
+// Optional: Text-to-speech for bot responses
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+}
