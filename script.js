@@ -1,4 +1,23 @@
+// Add this at the start of your script.js
+function checkSupport() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        addBotMessage("Sorry, your browser doesn't support speech recognition. Try Chrome or Edge.");
+        return false;
+    }
+    
+    if (!('speechSynthesis' in window)) {
+        addBotMessage("Note: Text-to-speech isn't supported in your browser.");
+    }
+    
+    return true;
+}
+
+// Call this when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    if (checkSupport()) {
+        addBotMessage("Voice input is supported! Click the microphone button to speak.");
+    }
+});document.addEventListener('DOMContentLoaded', () => {
     const chatbox = document.getElementById('chatbox');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
