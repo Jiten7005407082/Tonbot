@@ -1,116 +1,205 @@
-// Add this at the start of your script.js
-function checkSupport() {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        addBotMessage("Sorry, your browser doesn't support speech recognition. Try Chrome or Edge.");
-        return false;
-    }
-    
-    if (!('speechSynthesis' in window)) {
-        addBotMessage("Note: Text-to-speech isn't supported in your browser.");
-    }
-    
-    return true;
-}
+// ======================
+// CUSTOM Q&A AUDIO CHATBOT
+// ======================
 
-// Call this when the page loads
+// 1. KNOWLEDGE BASE - EDIT THIS SECTION
+const knowledgeBase = {
+    // Basic greetings
+    "hello": ["Hi there!", "Hello!", "Greetings!"],
+    "hi": ["Hey!", "Hi!", "Hello there!"],
+    "hey": ["What's up?", "Hey there!", "Hi!"],
+
+    // About the bot
+    "what is your name": [
+        "I'm your custom audio chatbot!", 
+        "Call me ChatBot 3000",
+        "I'm your personal assistant bot"
+    ],
+    "who created you": [
+        "I was created by you using JavaScript!", 
+        "You built me with the Web Speech API",
+        "A brilliant developer (you!) made me"
+    ],
+
+    // Fun responses
+    "tell me a joke": [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "What do you call fake spaghetti? An impasta!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!"
+    ],
+    "sing a song": [
+        "I'm a chatbot, not a singer! But here's a rhyme: Roses are red, violets are blue, I'm a chatbot, and I'm talking to you!",
+        "Beep boop bop - that's my song!"
+    ],
+
+    // Custom knowledge - ADD YOUR OWN HERE
+    "what can you do": [
+        "I can answer questions, tell jokes, and have simple conversations",
+        "I respond to voice and text input with my knowledge base"
+    ],
+    "how does this work": [
+        "I use speech recognition to hear you and speech synthesis to respond",
+        "It's magic! Just kidding - it's the Web Speech API in your browser"
+    ]
+    // Add more custom Q&A pairs below...
+};
+
+// 2. CHATBOT CORE FUNCTIONALITY
 document.addEventListener('DOMContentLoaded', () => {
-    if (checkSupport()) {
-        addBotMessage("Voice input is supported! Click the microphone button to speak.");
-    }
-});document.addEventListener('DOMContentLoaded', () => {
+    // DOM elements
     const chatbox = document.getElementById('chatbox');
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
     const voiceBtn = document.getElementById('voiceBtn');
     
-    // Add initial bot message
-    addBotMessage("Hello! I'm your audio chatbot. You can type or speak to me.");
+    // Speech recognition object
+    let recognition;
     
-    // Send message on button click
-    sendBtn.addEventListener('click', sendMessage);
+    // Initial greeting
+    addBotMessage("Hello! I'm your custom audio chatbot. Ask me anything or click the microphone to speak.");
     
-    // Send message on Enter key
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-    
-    // Voice input functionality
-    voiceBtn.addEventListener('click', startVoiceInput);
-    
-    function sendMessage() {
-        const message = userInput.value.trim();
-        if (message) {
-            addUserMessage(message);
+    // Event listeners
+    sendBtn.addEventListener('click', processTextInput);
+    userInput.addEventListener('keypress', (e) => e.key === 'Enter' && processTextInput());
+    voiceBtn.addEventListener('click', toggleVoiceInput);
+
+    // ======================
+    // CORE FUNCTIONS
+    // ======================
+
+    function processTextInput() {
+        const question = userInput.value.trim();
+        if (question) {
+            addUserMessage(question);
             userInput.value = '';
-            
-            // Simulate bot thinking
-            setTimeout(() => {
-                const responses = [
-                    "I heard you say: " + message,
-                    "Interesting point about " + message,
-                    "Let me think about " + message,
-                    "Thanks for sharing that!",
-                    "I'm a simple bot, but I appreciate your message!"
-                ];
-                const response = responses[Math.floor(Math.random() * responses.length)];
-                addBotMessage(response);
-                
-                // Optional: Speak the response
-                speak(response);
-            }, 1000);
+            processQuestion(question.toLowerCase());
         }
     }
-    
-    function addUserMessage(message) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', 'user-message');
-        messageElement.textContent = message;
-        chatbox.appendChild(messageElement);
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }
-    
-    function addBotMessage(message) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', 'bot-message');
-        messageElement.textContent = message;
-        chatbox.appendChild(messageElement);
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }
-    
-    function startVoiceInput() {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            addBotMessage("Sorry, speech recognition isn't supported in your browser.");
+
+    function toggleVoiceInput() {
+        if (!('webkitSpeechRecognition' in window)) {
+            addBotMessage("Sorry, voice input isn't supported in your browser. Try Chrome or Edge.");
             return;
         }
-        
-        const recognition = new SpeechRecognition();
-        recognition.lang = 'en-US';
+
+        if (voiceBtn.classList.contains('listening')) {
+            stopVoiceRecognition();
+        } else {
+            startVoiceRecognition();
+        }
+    }
+
+    function startVoiceRecognition() {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
         recognition.interimResults = false;
-        
+        recognition.lang = 'en-US';
+
         recognition.onstart = () => {
-            addBotMessage("Listening... Speak now.");
+            voiceBtn.classList.add('listening');
+            voiceBtn.innerHTML = '🛑 Stop';
+            addBotMessage("<i>Listening... Speak now</i>");
         };
-        
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            userInput.value = transcript;
-            sendMessage();
+
+        recognition.onresult = (e) => {
+            const question = e.results[0][0].transcript;
+            addUserMessage(question);
+            processQuestion(question.toLowerCase());
         };
-        
-        recognition.onerror = (event) => {
-            addBotMessage("Error occurred in recognition: " + event.error);
+
+        recognition.onerror = (e) => {
+            let errorMsg = "Error: ";
+            switch(e.error) {
+                case 'no-speech': errorMsg += "No speech detected"; break;
+                case 'audio-capture': errorMsg += "No microphone found"; break;
+                case 'not-allowed': errorMsg += "Microphone access denied"; break;
+                default: errorMsg += e.error;
+            }
+            addBotMessage(errorMsg);
+            stopVoiceRecognition();
         };
-        
+
+        recognition.onend = stopVoiceRecognition;
+
         recognition.start();
     }
-    
+
+    function stopVoiceRecognition() {
+        if (recognition) {
+            recognition.stop();
+        }
+        voiceBtn.classList.remove('listening');
+        voiceBtn.innerHTML = '🎤 Speak';
+    }
+
+    function processQuestion(question) {
+        // Find the best matching response
+        let response = findBestResponse(question);
+        
+        // Simulate thinking delay
+        setTimeout(() => {
+            addBotMessage(response);
+            speak(response);
+        }, 800);
+    }
+
+    function findBestResponse(question) {
+        // 1. Check for exact match
+        if (knowledgeBase[question]) {
+            return getRandomResponse(knowledgeBase[question]);
+        }
+        
+        // 2. Check for partial matches (question contains a key phrase)
+        for (const key in knowledgeBase) {
+            if (question.includes(key)) {
+                return getRandomResponse(knowledgeBase[key]);
+            }
+        }
+        
+        // 3. Default response if no matches found
+        return "I'm not sure how to answer that. Try asking something else!";
+    }
+
+    // ======================
+    // HELPER FUNCTIONS
+    // ======================
+
+    function getRandomResponse(responses) {
+        return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    function addUserMessage(message) {
+        addMessage(message, 'user');
+    }
+
+    function addBotMessage(message) {
+        addMessage(message, 'bot');
+    }
+
+    function addMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', `${sender}-message`);
+        messageElement.textContent = message;
+        chatbox.appendChild(messageElement);
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
     function speak(text) {
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
+            // Configure voice
+            const voices = window.speechSynthesis.getVoices();
+            utterance.voice = voices.find(v => v.lang.includes('en')) || voices[0];
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
             window.speechSynthesis.speak(utterance);
         }
+    }
+
+    // Initialize speech synthesis voices
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+            // Voices are now loaded
+        };
     }
 });
