@@ -104,6 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateResponse(input) {
         input = input.toLowerCase();
         
+        // ===== CUSTOM Q&A ===== (Your personal responses)
+        if (input.includes('your name') || input.includes('who are you')) {
+            return "My name is Thongam Lamnganba (or Ton).";
+        }
+        
+        if (input.includes('your father') || input.includes('who is your father')) {
+            return "Thongam Jiten is my father.";
+        }
+        // ===== END CUSTOM Q&A =====
+
         // Greetings
         if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
             return getRandomResponse([
