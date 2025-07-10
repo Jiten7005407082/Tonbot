@@ -100,6 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (/(who('s| is)? your (father|dad)|father('s| is)? name|your (father|dad)(\?|$))/i.test(input)) {
             return "Thongam Jiten is my father.";
         }
+        // 2. FATHER QUESTION (Priority 2)
+        if (/(who('s| is)? your (mother|mom)|mother('s| is)? name|your (mother|mom)(\?|$))/i.test(input)) {
+            return "Thongam Rabita is my mother.";
 
         // 3. GREETINGS
         if (/^(hello|hi|hey|greetings)/i.test(input)) {
