@@ -1,230 +1,173 @@
-let progressInterval;
-function animateProgressBar(duration = 10000) {
-  const bar = document.getElementById('progressBar');
-  let startTime = Date.now();
-  clearInterval(progressInterval);
-  progressInterval = setInterval(() => {
-    const elapsed = Date.now() - startTime;
-    const percent = Math.min((elapsed / duration) * 100, 100);
-    bar.style.width = percent + '%';
-    if (percent >= 100) clearInterval(progressInterval);
-  }, 100);
-}
-const userText = document.getElementById("userText");
-const botResponse = document.getElementById("botResponse");
-const statusText = document.getElementById("status");
-const wakeButton = document.getElementById("wakeButton");
+document.addEventListener('DOMContentLoaded', function() {
+    const micButton = document.getElementById('mic-button');
+    const sendButton = document.getElementById('send-button');
+    const chatOutput = document.getElementById('chat-output');
+    const userInput = document.getElementById('user-input');
+    const status = document.getElementById('status');
 
-const chatResponses = {
-  "hello": "Hi there!",
-  "what is your name": "I am RobotTon, your smart voice assistant.",
-  "how are you": "I'm doing great. How about you?",
-  "741 ": "I'm doing great. How about you?",
-  "who created you": "I was created by Thongam jiten!",
-  "bye": "Goodbye! See you soon."
-};
-
-// ✅ 50 electricity quiz questions
-const quiz = [
-  { question: "What is electricity?", answer: "Electricity is the flow of electric charge through a conductor." },
-  { question: "What is the unit of electric current?", answer: "The unit of electric current is the ampere." },
-  { question: "What is Ohm's Law?", answer: "Ohm's Law states that voltage is equal to current times resistance." },
-  { question: "What is the unit of resistance?", answer: "The unit of resistance is the ohm." },
-  { question: "Who discovered electricity?", answer: "Benjamin Franklin is credited with discovering electricity." },
-  { question: "What is a conductor?", answer: "A conductor is a material that allows the flow of electric current." },
-  { question: "What is an insulator?", answer: "An insulator is a material that resists the flow of electric current." },
-  { question: "What is voltage?", answer: "Voltage is the electric potential difference between two points." },
-  { question: "What is the SI unit of voltage?", answer: "The SI unit of voltage is the volt." },
-  { question: "What is the device used to measure current?", answer: "An ammeter is used to measure current." },
-  { question: "What is the device used to measure voltage?", answer: "A voltmeter is used to measure voltage." },
-  { question: "What is the device used to measure resistance?", answer: "An ohmmeter is used to measure resistance." },
-  { question: "What is a circuit?", answer: "A circuit is a closed loop that allows current to flow." },
-  { question: "What is a short circuit?", answer: "A short circuit is an unintended low-resistance path in a circuit." },
-  { question: "What is alternating current?", answer: "Alternating current changes direction periodically." },
-  { question: "What is direct current?", answer: "Direct current flows in one direction only." },
-  { question: "What is a fuse?", answer: "A fuse is a safety device that protects circuits from overcurrent." },
-  { question: "What is a capacitor?", answer: "A capacitor stores electrical energy in an electric field." },
-  { question: "What is an inductor?", answer: "An inductor stores energy in a magnetic field." },
-  { question: "What is electric power?", answer: "Electric power is the rate at which electrical energy is transferred." },
-  { question: "What is the unit of electric power?", answer: "The unit of electric power is the watt." },
-  { question: "What is an electric motor?", answer: "An electric motor converts electrical energy into mechanical energy." },
-  { question: "What is an electric generator?", answer: "An electric generator converts mechanical energy into electrical energy." },
-  { question: "What is a transformer?", answer: "A transformer changes the voltage level in an AC circuit." },
-  { question: "What is grounding?", answer: "Grounding connects electrical circuits to the earth for safety." },
-  { question: "What is a semiconductor?", answer: "A semiconductor conducts electricity under certain conditions." },
-  { question: "What is an LED?", answer: "An LED is a light-emitting diode." },
-  { question: "What is resistance?", answer: "Resistance is the opposition to the flow of electric current." },
-  { question: "What affects resistance in a wire?", answer: "Length, thickness, and material affect resistance in a wire." },
-  { question: "What is a diode?", answer: "A diode allows current to flow in only one direction." },
-  { question: "What is the function of a switch?", answer: "A switch opens or closes an electric circuit." },
-  { question: "What is a battery?", answer: "A battery stores and provides electrical energy." },
-  { question: "What is the function of a resistor?", answer: "A resistor reduces current flow and lowers voltage in a circuit." },
-  { question: "What is a multimeter?", answer: "A multimeter measures voltage, current, and resistance." },
-  { question: "What is a volt?", answer: "A volt is the unit of electric potential difference." },
-  { question: "What is an ampere?", answer: "An ampere is the unit of electric current." },
-  { question: "What is an ohm?", answer: "An ohm is the unit of electrical resistance." },
-  { question: "What is the symbol for resistance?", answer: "The symbol for resistance is omega (Ω)." },
-  { question: "What is the formula for electric power?", answer: "Electric power equals voltage times current." },
-  { question: "What does a circuit breaker do?", answer: "A circuit breaker protects circuits by interrupting flow during overload." },
-  { question: "What is electromagnetism?", answer: "Electromagnetism is the interaction of electric and magnetic fields." },
-  { question: "What is static electricity?", answer: "Static electricity is the build-up of electric charge on a surface." },
-  { question: "What is a conductor made of?", answer: "A conductor is usually made of copper or aluminum." },
-  { question: "Why are insulators important?", answer: "Insulators prevent electric shocks and protect circuits." },
-  { question: "What does AC stand for?", answer: "AC stands for alternating current." },
-  { question: "What does DC stand for?", answer: "DC stands for direct current." },
-  { question: "What is a load in a circuit?", answer: "A load uses electrical energy to do work." },
-  { question: "What is energy consumption measured in?", answer: "Energy consumption is measured in kilowatt-hours." },
-  { question: "What is an electric field?", answer: "An electric field is the area around a charged particle where force is felt." }
-];
-
-let currentQuestion = 0;
-let isQuizMode = false;
-let isListening = false;
-let score = 0;
-
-function speak(text) {
-  if ('speechSynthesis' in window) {
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'en-US';
-    utter.pitch = 1;
-    utter.rate = 1;
-    utter.volume = 1;
-
-    utter.onerror = (e) => {
-      console.error("Speech error:", e.error);
-      alert("⚠️ TonBot tried to speak but failed.\nCheck your volume or browser.");
-    };
-
-    try {
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(utter);
-    } catch (err) {
-      console.error("Speak error:", err);
-      alert("⚠️ Speech synthesis failed.");
-    }
-  } else {
-    alert("⚠️ Your browser does not support speech output.");
-  }
-}
-
-function askQuizQuestion() {
-  if (currentQuestion < quiz.length) {
-    const q = quiz[currentQuestion].question;
-    botResponse.innerText = "Bot (Quiz): " + q;
-    speak(q);
-  } else {
-    isQuizMode = false;
-    const message = `Quiz over! Your score is ${score} out of ${quiz.length}.`;
-    botResponse.innerText = "Bot: " + message;
-    speak(message);
-    score = 0;
-  }
-}
-
-function checkQuizAnswer(answer) {
-  const correct = quiz[currentQuestion].answer.toLowerCase().trim();
-  const userAns = answer.toLowerCase().trim();
-
-  if (userAns === correct) {
-    score++;
-    speak("Correct!");
-    botResponse.innerText = "Bot: Correct!";
-  } else {
-    const correctAnswer = quiz[currentQuestion].answer;
-    speak("Wrong. The correct answer is: " + correctAnswer);
-    botResponse.innerText = "Bot: Wrong. The correct answer is: " + correctAnswer;
-  }
-  currentQuestion++;
-  setTimeout(askQuizQuestion, 4000);
-}
-
-function handleChat(input) {
-  const cleaned = input.toLowerCase().trim();
-
-  if (cleaned === "start quiz") {
-    isQuizMode = true;
-    currentQuestion = 0;
-    score = 0;
-    speak("Starting quiz.");
-    askQuizQuestion();
-    return;
-  }
-
-  const reply = chatResponses[cleaned] || "Sorry, I don't understand that yet.";
-  botResponse.innerText = "Bot: " + reply;
-  speak(reply);
-}
-
-function processSpeech(transcript) {
-  const spoken = transcript.toLowerCase().trim();
-  console.log("Heard:", spoken);
-  userText.innerText = "You: " + spoken;
-
-  if (!isListening && spoken.includes("ton")) {
-    isListening = true;
-    statusText.innerText = "✅ TonBot is awake!";
-    speak("Let us chat. Say 'start quiz' to begin.");
-    return;
-  }
-
-  if (isListening) {
-    if (isQuizMode) {
-      checkQuizAnswer(spoken);
+    // Check if browser supports speech recognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        status.innerHTML = '<p style="color:red">Speech recognition not supported in your browser</p>';
+        micButton.disabled = true;
     } else {
-      handleChat(spoken);
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        micButton.addEventListener('click', () => {
+            if (micButton.classList.contains('listening')) {
+                recognition.stop();
+                micButton.classList.remove('listening');
+                status.textContent = 'Assistant is ready';
+            } else {
+                recognition.start();
+                micButton.classList.add('listening');
+                status.textContent = 'Listening...';
+            }
+        });
+
+        recognition.onresult = (event) => {
+            const speechResult = event.results[0][0].transcript;
+            userInput.value = speechResult;
+            processInput(speechResult);
+            micButton.classList.remove('listening');
+            status.textContent = 'Processing...';
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error', event.error);
+            micButton.classList.remove('listening');
+            status.textContent = 'Error: ' + event.error;
+            setTimeout(() => {
+                status.textContent = 'Assistant is ready';
+            }, 3000);
+        };
+
+        recognition.onend = () => {
+            if (micButton.classList.contains('listening')) {
+                micButton.classList.remove('listening');
+                status.textContent = 'Assistant is ready';
+            }
+        };
     }
-  }
-}
 
-function startSpeechRecognition() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) {
-    alert("⚠️ Speech recognition not supported in this browser.");
-    return;
-  }
+    // Text input handling
+    sendButton.addEventListener('click', () => {
+        const text = userInput.value.trim();
+        if (text) {
+            processInput(text);
+            userInput.value = '';
+        }
+    });
 
-  const recognition = new SpeechRecognition();
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.continuous = false;
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const text = userInput.value.trim();
+            if (text) {
+                processInput(text);
+                userInput.value = '';
+            }
+        }
+    });
 
-  let recognitionTimeout;
+    function processInput(input) {
+        displayMessage(input, 'user');
+        status.textContent = 'Thinking...';
+        
+        // Simulate processing delay
+        setTimeout(() => {
+            const response = generateResponse(input);
+            displayMessage(response, 'bot');
+            speakResponse(response);
+            status.textContent = 'Assistant is ready';
+        }, 800);
+    }
 
-  recognition.onstart = () => {
-    recognitionTimeout = setTimeout(() => {
-      recognition.stop(); // Stop after 10 seconds of silence
-    }, 10000);
-  };
+    function displayMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add(`${sender}-message`);
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('message-content');
+        contentDiv.innerHTML = `<p>${text}</p>`;
+        
+        messageDiv.appendChild(contentDiv);
+        chatOutput.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+    }
 
-  recognition.onresult = (event) => {
-    clearTimeout(recognitionTimeout);
-    const transcript = event.results[0][0].transcript;
-    processSpeech(transcript);
-  };
-
-  recognition.onerror = (event) => {
-    clearTimeout(recognitionTimeout);
-    console.error("Recognition error:", event.error);
-    statusText.innerText = "Error: " + event.error;
-  };
-
-  recognition.onend = () => {
-    clearTimeout(recognitionTimeout);
-    setTimeout(startSpeechRecognition, 800);
-  };
-
-  recognition.start();
-}
-
-wakeButton.addEventListener("click", () => {
-  if (!isListening) {
-    isListening = true;
-    statusText.innerText = "✅ Listening after button click";
-    speak("Let us chat. Say 'start quiz' to begin.");
-  }
+    function generateResponse(input) {
+        input = input.toLowerCase();
+        
+        // Greetings
+        if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
+            return getRandomResponse([
+                "Hello there! How can I help you today?",
+                "Hi! What can I do for you?",
+                "Hey! Nice to talk to you. What's on your mind?"
+            ]);
+        }
+        
+        // Time
+        if (input.includes('time')) {
+            const now = new Date();
+            return `The current time is ${now.toLocaleTimeString()}.`;
+        }
+        
+        // Date
+        if (input.includes('date') || input.includes('today')) {
+            const now = new Date();
+            return `Today is ${now.toLocaleDateString()}.`;
+        }
+        
+        // Weather
+        if (input.includes('weather')) {
+            return "I'm sorry, I can't check the weather right now. I'm just a simple demo chatbot.";
+        }
+        
+        // Jokes
+        if (input.includes('joke') || input.includes('funny')) {
+            return getRandomResponse([
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "Why did the scarecrow win an award? Because he was outstanding in his field!",
+                "What do you call fake spaghetti? An impasta!"
+            ]);
+        }
+        
+        // Goodbye
+        if (input.includes('bye') || input.includes('goodbye')) {
+            return getRandomResponse([
+                "Goodbye! Have a great day!",
+                "See you later!",
+                "Bye! Come back soon!"
+            ]);
+        }
+        
+        // Default responses
+        return getRandomResponse([
+            "I'm not sure I understand. Can you try asking differently?",
+            "Interesting! Tell me more.",
+            "I'm still learning. Could you rephrase that?",
+            "I didn't catch that. Could you repeat?",
+            "That's a good point. What else would you like to know?"
+        ]);
+    }
+    
+    function getRandomResponse(responses) {
+        return responses[Math.floor(Math.random() * responses.length)];
+    }
+    
+    function speakResponse(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1;
+            utterance.pitch = 1;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
 });
-
-window.onload = () => {
-  speak("Say Ton to activate me, or click the button.");
-  startSpeechRecognition();
-};
