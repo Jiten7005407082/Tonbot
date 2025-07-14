@@ -11,8 +11,8 @@ let wakeWord = "ton";
 let context = "";
 let listenTimeout;
 
-// 🔗 REPLACE THIS WITH YOUR Google Apps Script Web App URL
-const SHEET_API_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // Example: https://script.google.com/macros/s/AKfycb.../exec
+// ✅ Your Google Sheet Web App URL
+const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbwgZ3aUIsyxWOqjTxgukEsok3o4xUf6tnxMoHeeBxEFXllI4IGkkjCDeRfd2lko68kOmA/exec';
 
 function initRecognition() {
   recognition = new SpeechRecognition();
@@ -27,7 +27,7 @@ function initRecognition() {
     if (!listening && transcript.includes(wakeWord)) {
       listening = true;
       showIndicator(true);
-      respond("Yes, I'm listening.");
+      respond("Yes, I'm listening...");
 
       clearTimeout(listenTimeout);
       listenTimeout = setTimeout(() => {
@@ -72,7 +72,7 @@ function respond(text, silent = false) {
   }
 }
 
-// 🔎 Fetch answer from Google Sheet
+// 🔎 Fetch answer from your Google Sheet
 async function fetchAnswerFromSheet(message) {
   try {
     const res = await fetch(SHEET_API_URL);
@@ -88,15 +88,15 @@ async function fetchAnswerFromSheet(message) {
     return "Sorry, I don't know the answer to that.";
   } catch (e) {
     console.error("Fetch error:", e);
-    return "Error accessing my memory.";
+    return "Error accessing memory.";
   }
 }
 
-// 🖱 Manual Wake
+// 🖱 Click-to-Wake
 wakeButton.onclick = () => {
   listening = true;
   showIndicator(true);
-  respond("Yes, I'm listening.");
+  respond("Yes, I'm listening...");
   clearTimeout(listenTimeout);
   listenTimeout = setTimeout(() => {
     listening = false;
