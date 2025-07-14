@@ -9,6 +9,8 @@ let recognition;
 let listening = false;
 let wakeWord = "ton";
 let context = "";
+let listenTimeout;
+const OPENAI_API_KEY = 'your-openai-api-key-here';  // ⛔ Replace with your real key
 
 function initRecognition() {
   recognition = new SpeechRecognition();
@@ -16,11 +18,7 @@ function initRecognition() {
   recognition.lang = "en-US";
   recognition.interimResults = false;
 
-  recognition.onstart = () => {
-    console.log("🎙️ Recognition started");
-  };
-
-  recognition.onresult = (event) => {
+  recognition.onresult = async (event) => {
     const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
     console.log("Heard:", transcript);
 
@@ -28,69 +26,74 @@ function initRecognition() {
       listening = true;
       showIndicator(true);
       respond("Yes, I'm listening.");
+
+      // Timeout after 10 seconds
+      clearTimeout(listenTimeout);
+      listenTimeout = setTimeout(() => {
+        if (listening) {
+          listening = false;
+          showIndicator(false);
+          respond("Timeout. Going back to sleep.");
+        }
+      }, 10000); // 10 seconds
       return;
     }
 
     if (listening) {
-      handleCommand(transcript);
+      clearTimeout(listenTimeout);
       listening = false;
       showIndicator(false);
+      context = transcript;
+
+      respond("Let me think...", true);
+      const gptReply = await fetchGPTResponse(transcript);
+      respond(gptReply);
     }
   };
 
-  recognition.onend = () => recognition.start();
   recognition.onerror = (e) => {
     console.error("Speech error:", e);
     showIndicator(false);
   };
 
+  recognition.onend = () => recognition.start();
   recognition.start();
 }
 
-function handleCommand(message) {
-  context = message;
-  let response = "";
-
-  if (message.includes("your name")) {
-    response = "I am Ton, your voice assistant.";
-  } else if (message.includes("time")) {
-    response = "The time is " + new Date().toLocaleTimeString();
-  } else if (message.includes("date")) {
-    response = "Today is " + new Date().toLocaleDateString();
-  } else if (message.includes("how are you")) {
-    response = "I'm doing great! Thanks for asking.";
-  } else if (message.includes("who made you")) {
-    response = "I was created by Jiten.";
-  } else if (message.includes("open google")) {
-    response = "Opening Google.";
-    window.open("https://www.google.com", "_blank");
-  } else if (message.includes("joke")) {
-    response = "Why don't robots panic? Because they keep their circuits together!";
-  } else if (message.includes("weather")) {
-    response = "Sorry, I cannot fetch weather right now.";
-  } else if (message.includes("bye") || message.includes("goodbye")) {
-    response = "Goodbye! Have a great day.";
-  } else if (message.includes("repeat")) {
-    response = "You said: " + context;
-  } else {
-    response = "You said: " + message;
-  }
-
-  respond(response);
-}
-
-function respond(text) {
-  chatDisplay.innerHTML = `<p><strong>You:</strong> ${context}</p><p><strong>Ton:</strong> ${text}</p>`;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  synth.speak(utterance);
-}
-
 function showIndicator(active) {
-  if (active) {
-    indicator.classList.add("blink");
-  } else {
-    indicator.classList.remove("blink");
+  indicator.classList.toggle("blink", active);
+}
+
+function respond(text, silent = false) {
+  chatDisplay.innerHTML = `<p><strong>You:</strong> ${context}</p><p><strong>Ton:</strong> ${text}</p>`;
+  if (!silent) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    synth.speak(utterance);
+  }
+}
+
+// GPT-4 API Call
+async function fetchGPTResponse(prompt) {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo", // or "gpt-4" if you have access
+        messages: [{ role: "user", content: prompt }],
+        max_tokens: 100
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "Sorry, I couldn't understand that.";
+  } catch (err) {
+    console.error(err);
+    return "Error reaching GPT service.";
   }
 }
 
@@ -99,6 +102,14 @@ wakeButton.onclick = () => {
   listening = true;
   showIndicator(true);
   respond("Yes, I'm listening.");
+  clearTimeout(listenTimeout);
+  listenTimeout = setTimeout(() => {
+    if (listening) {
+      listening = false;
+      showIndicator(false);
+      respond("Timeout. Going back to sleep.");
+    }
+  }, 10000);
 };
 
 initRecognition();
