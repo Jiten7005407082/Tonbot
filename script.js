@@ -10,7 +10,9 @@ let listening = false;
 let wakeWord = "ton";
 let context = "";
 let listenTimeout;
-const OPENAI_API_KEY = 'your-openai-api-key-here';  // ⛔ Replace with your real key
+
+// 🔗 REPLACE THIS WITH YOUR Google Apps Script Web App URL
+const SHEET_API_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // Example: https://script.google.com/macros/s/AKfycb.../exec
 
 function initRecognition() {
   recognition = new SpeechRecognition();
@@ -27,15 +29,12 @@ function initRecognition() {
       showIndicator(true);
       respond("Yes, I'm listening.");
 
-      // Timeout after 10 seconds
       clearTimeout(listenTimeout);
       listenTimeout = setTimeout(() => {
-        if (listening) {
-          listening = false;
-          showIndicator(false);
-          respond("Timeout. Going back to sleep.");
-        }
-      }, 10000); // 10 seconds
+        listening = false;
+        showIndicator(false);
+        respond("Timeout. Going back to sleep.");
+      }, 10000);
       return;
     }
 
@@ -45,9 +44,9 @@ function initRecognition() {
       showIndicator(false);
       context = transcript;
 
-      respond("Let me think...", true);
-      const gptReply = await fetchGPTResponse(transcript);
-      respond(gptReply);
+      respond("Let me check...", true);
+      const reply = await fetchAnswerFromSheet(transcript);
+      respond(reply);
     }
   };
 
@@ -73,42 +72,36 @@ function respond(text, silent = false) {
   }
 }
 
-// GPT-4 API Call
-async function fetchGPTResponse(prompt) {
+// 🔎 Fetch answer from Google Sheet
+async function fetchAnswerFromSheet(message) {
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo", // or "gpt-4" if you have access
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 100
-      })
-    });
+    const res = await fetch(SHEET_API_URL);
+    const data = await res.json();
+    const question = message.toLowerCase().trim();
 
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content || "Sorry, I couldn't understand that.";
-  } catch (err) {
-    console.error(err);
-    return "Error reaching GPT service.";
+    for (let key in data) {
+      if (question.includes(key)) {
+        return data[key];
+      }
+    }
+
+    return "Sorry, I don't know the answer to that.";
+  } catch (e) {
+    console.error("Fetch error:", e);
+    return "Error accessing my memory.";
   }
 }
 
-// Manual wake
+// 🖱 Manual Wake
 wakeButton.onclick = () => {
   listening = true;
   showIndicator(true);
   respond("Yes, I'm listening.");
   clearTimeout(listenTimeout);
   listenTimeout = setTimeout(() => {
-    if (listening) {
-      listening = false;
-      showIndicator(false);
-      respond("Timeout. Going back to sleep.");
-    }
+    listening = false;
+    showIndicator(false);
+    respond("Timeout. Going back to sleep.");
   }, 10000);
 };
 
