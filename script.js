@@ -1,10 +1,9 @@
-// DOM Elements
-const chatbox = document.getElementById('chatbox');
+// Elements
 const voiceBtn = document.getElementById('voiceBtn');
-const languageSelect = document.getElementById('language');
 const botAvatar = document.getElementById('botAvatar');
+const languageSelect = document.getElementById('language');
 
-// Speech Recognition Setup
+// Speech Setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const synth = window.speechSynthesis;
 let recognition;
@@ -13,8 +12,8 @@ let isListening = false;
 // Initialize
 function init() {
     if (!SpeechRecognition) {
-        voiceBtn.disabled = true;
-        displaySystemMessage("Your browser doesn't support speech recognition");
+        voiceBtn.textContent = "Browser Not Supported";
+        voiceBtn.style.background = "#9E9E9E";
         return;
     }
 
@@ -29,97 +28,53 @@ function init() {
         botAvatar.classList.add('talking');
     };
 
-    recognition.onend = () => {
-        if (isListening) {
-            recognition.start(); // Continue listening
-        }
-    };
-
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         processVoiceInput(transcript);
     };
 
-    recognition.onerror = (event) => {
-        displaySystemMessage("Error: " + event.error);
-        stopListening();
-    };
+    recognition.onerror = () => stopListening();
+    recognition.onend = () => isListening && recognition.start();
 }
 
-// Process voice input
+// Process Voice Input
 function processVoiceInput(transcript) {
-    displayMessage(transcript, 'user');
-    
-    // Get response based on selected language
     const response = getBotResponse(transcript, languageSelect.value);
-    
-    setTimeout(() => {
-        displayMessage(response, 'bot');
-        speakResponse(response);
-    }, 500);
+    speakResponse(response);
 }
 
-// Get bot response
+// Get Bot Response
 function getBotResponse(message, lang) {
     message = message.toLowerCase();
     
     if (lang === 'mni') {
-        // Manipuri responses
-        if (message.includes('khurumjari') || message.includes('hello')) {
-            return "Khurumjari! Einai thokning amukta tambiram?";
-        } else if (message.includes('thouri') || message.includes('how are you')) {
-            return "Nungshi thouroi, yengbira!";
-        } else {
-            return "Einai khangdana: " + message;
-        }
+        if (message.includes('khurumjari')) return "Khurumjari! Einai thokning amukta tambiram?";
+        if (message.includes('thouri')) return "Nungshi thouroi, yengbira!";
+        return "Einai khangdana: " + message;
     } else {
-        // English responses
-        if (message.includes('hello') || message.includes('hi')) {
-            return "Hello! How can I help you today?";
-        } else if (message.includes('how are you')) {
-            return "I'm doing well, thank you!";
-        } else {
-            return "I heard you say: " + message;
-        }
+        if (message.includes('hello')) return "Hello! How can I help?";
+        if (message.includes('how are you')) return "I'm doing well!";
+        return "I heard: " + message;
     }
 }
 
-// Speak the response
+// Speak Response
 function speakResponse(text) {
-    if (synth.speaking) {
-        synth.cancel();
-    }
-
+    if (synth.speaking) synth.cancel();
+    
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = languageSelect.value === 'mni' ? 'en-IN' : 'en-US';
     
-    botAvatar.classList.add('talking');
+    utterance.onstart = () => botAvatar.classList.add('talking');
     utterance.onend = () => {
         botAvatar.classList.remove('talking');
-        recognition.start(); // Continue listening after speaking
+        if (isListening) recognition.start();
     };
     
     synth.speak(utterance);
 }
 
-// Display messages
-function displayMessage(message, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add(sender + '-message');
-    messageDiv.textContent = message;
-    chatbox.appendChild(messageDiv);
-    chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-function displaySystemMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('system-message');
-    messageDiv.textContent = message;
-    chatbox.appendChild(messageDiv);
-    chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-// Voice button handler
+// Toggle Listening
 voiceBtn.addEventListener('click', () => {
     if (isListening) {
         stopListening();
@@ -136,10 +91,10 @@ function startListening() {
 function stopListening() {
     isListening = false;
     recognition.stop();
-    voiceBtn.textContent = "🎤 Start Speaking";
+    voiceBtn.textContent = "Start Talking";
     voiceBtn.classList.remove('listening');
     botAvatar.classList.remove('talking');
 }
 
-// Initialize the app
+// Initialize
 init();
