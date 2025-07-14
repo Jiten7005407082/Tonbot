@@ -42,16 +42,16 @@ function handleCommand(message) {
   let response = "";
 
   // ✅ 10 Basic Commands
-  if (message.includes("your name")) {
-    response = "I am Ton, your voice assistant.";
-  } else if (message.includes("time")) {
+  if (message.includes("what is your name")) {
+    response = "I am Ton or thongam langamba, your voice assistant.";
+  } else if (message.includes("what time now")) {
     response = "The time is " + new Date().toLocaleTimeString();
   } else if (message.includes("date")) {
     response = "Today is " + new Date().toLocaleDateString();
   } else if (message.includes("how are you")) {
     response = "I'm doing great! Thanks for asking.";
   } else if (message.includes("who made you")) {
-    response = "I was created by Jiten.";
+    response = "I was created by thongamJiten.";
   } else if (message.includes("open google")) {
     response = "Opening Google.";
     window.open("https://www.google.com", "_blank");
