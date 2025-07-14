@@ -1,110 +1,87 @@
-// Elements
-const voiceBtn = document.getElementById('voiceBtn');
-const botAvatar = document.getElementById('botAvatar');
-const languageSelect = document.getElementById('language');
 const chatDisplay = document.getElementById('chatDisplay');
+const wakeButton = document.getElementById('clickToWake');
 
-// Speech Setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const synth = window.speechSynthesis;
+
 let recognition;
-let isListening = false;
-let lastTranscript = "";
+let listening = false;
+let wakeWord = "ton";
+let context = "";
 
-// Initialize
-function init() {
-  if (!SpeechRecognition) {
-    voiceBtn.textContent = "Browser Not Supported";
-    voiceBtn.style.background = "#9E9E9E";
-    return;
-  }
-
+function initRecognition() {
   recognition = new SpeechRecognition();
-  recognition.continuous = false;
+  recognition.continuous = true;
+  recognition.lang = "en-US";
   recognition.interimResults = false;
 
-  recognition.onstart = () => {
-    isListening = true;
-    voiceBtn.textContent = "Listening...";
-    voiceBtn.classList.add('listening');
-    botAvatar.classList.add('talking');
-  };
-
   recognition.onresult = (event) => {
-    lastTranscript = event.results[0][0].transcript;
-    processVoiceInput(lastTranscript);
+    const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+    console.log("Heard:", transcript);
+
+    if (!listening && transcript.includes(wakeWord)) {
+      listening = true;
+      respond("Yes, I'm listening.");
+      return;
+    }
+
+    if (listening) {
+      handleCommand(transcript);
+      listening = false;
+    }
   };
 
-  recognition.onerror = () => stopListening();
-  recognition.onend = () => {
-    if (isListening) recognition.start();
-  };
-}
+  recognition.onend = () => recognition.start();
+  recognition.onerror = (e) => console.error("Speech error:", e);
 
-// Process Voice Input
-function processVoiceInput(transcript) {
-  const lang = languageSelect.value;
-  const response = getBotResponse(transcript, lang);
-  speakResponse(response);
-}
-
-// Get Bot Response
-function getBotResponse(message, lang) {
-  const lower = message.toLowerCase();
-
-  if (lang === 'mni') {
-    if (lower.includes('khurumjari')) return "Khurumjari! Einai thokning amukta tambiram?";
-    if (lower.includes('thouri')) return "Nungshi thouroi, yengbira!";
-    return "Einai khangdana: " + message;
-  } else {
-    if (lower.includes('hello')) return "Hello! How can I help?";
-    if (lower.includes('how are you')) return "I'm doing well!";
-    return "I heard: " + message;
-  }
-}
-
-// Speak Response
-function speakResponse(text) {
-  if (synth.speaking) synth.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = languageSelect.value === 'mni' ? 'en-IN' : 'en-US';
-
-  // Visual Feedback
-  utterance.onstart = () => {
-    botAvatar.classList.add('talking');
-    chatDisplay.innerHTML = `<p><strong>You:</strong> ${lastTranscript}</p><p><strong>Bot:</strong> ${text}</p>`;
-  };
-
-  utterance.onend = () => {
-    botAvatar.classList.remove('talking');
-    if (isListening) recognition.start();
-  };
-
-  synth.speak(utterance);
-}
-
-// Toggle Listening
-voiceBtn.addEventListener('click', () => {
-  if (isListening) {
-    stopListening();
-  } else {
-    startListening();
-  }
-});
-
-function startListening() {
-  recognition.lang = languageSelect.value === 'mni' ? 'en-IN' : 'en-US';
   recognition.start();
 }
 
-function stopListening() {
-  isListening = false;
-  recognition.stop();
-  voiceBtn.textContent = "Start Talking";
-  voiceBtn.classList.remove('listening');
-  botAvatar.classList.remove('talking');
+function handleCommand(message) {
+  context = message;
+  let response = "";
+
+  // ✅ 10 Basic Commands
+  if (message.includes("your name")) {
+    response = "I am Ton, your voice assistant.";
+  } else if (message.includes("time")) {
+    response = "The time is " + new Date().toLocaleTimeString();
+  } else if (message.includes("date")) {
+    response = "Today is " + new Date().toLocaleDateString();
+  } else if (message.includes("how are you")) {
+    response = "I'm doing great! Thanks for asking.";
+  } else if (message.includes("who made you")) {
+    response = "I was created by Jiten.";
+  } else if (message.includes("open google")) {
+    response = "Opening Google.";
+    window.open("https://www.google.com", "_blank");
+  } else if (message.includes("joke")) {
+    response = "Why don't robots panic? Because they always keep their circuits together!";
+  } else if (message.includes("weather")) {
+    response = "Sorry, I cannot fetch live weather yet.";
+  } else if (message.includes("bye") || message.includes("goodbye")) {
+    response = "Goodbye! Have a great day.";
+  } else if (message.includes("repeat")) {
+    response = "You said: " + context;
+  } else {
+    response = "You said: " + message;
+  }
+
+  respond(response);
 }
 
-// Start everything
-init();
+function respond(text) {
+  chatDisplay.innerHTML = `<p><strong>You:</strong> ${context}</p><p><strong>Ton:</strong> ${text}</p>`;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  synth.speak(utterance);
+}
+
+// Manual wake button
+wakeButton.onclick = () => {
+  listening = true;
+  respond("Yes, I'm listening.");
+};
+
+initRecognition();
