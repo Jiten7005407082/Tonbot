@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Chatbot</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voice Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <!-- Avatar Only -->
-        <div id="avatarContainer">
-            <img id="botAvatar" src="https://github.com/Jiten7005407082/Tonbot/blob/main/ton.jpeg?raw=true" alt="Ton">
-        </div>
-        
-        <!-- Single Voice Button -->
-        <button id="voiceBtn">Start Talking</button>
-        
-        <!-- Hidden Language Selector (optional) -->
-        <select id="language" style="display:none;">
-            <option value="en">English</option>
-            <option value="mni">Manipuri</option>
-        </select>
+  <div class="container">
+    <!-- Avatar -->
+    <div id="avatarContainer">
+      <img id="botAvatar" src="https://github.com/Jiten7005407082/Tonbot/blob/main/ton.jpeg?raw=true" alt="Ton" />
     </div>
-    <script src="script.js"></script>
+
+    <!-- Voice Button -->
+    <button id="voiceBtn">Start Talking</button>
+
+    <!-- Hidden Language Selector -->
+    <select id="language" style="display: none;">
+      <option value="en">English</option>
+      <option value="mni">Manipuri</option>
+    </select>
+
+    <!-- Chat Display (Optional) -->
+    <div id="chatDisplay"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
