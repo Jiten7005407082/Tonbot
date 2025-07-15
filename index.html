@@ -1,24 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ton - Voice Assistant</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton - Voice Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 5px solid #4CAF50;
+            transition: all 0.3s;
+        }
+        #avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #listeningIndicator {
+            width: 20px;
+            height: 20px;
+            background: #f44336;
+            border-radius: 50%;
+            margin: 10px auto;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .blink {
+            animation: pulse 1.5s infinite;
+            opacity: 1 !important;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .talking {
+            animation: talk 0.5s infinite alternate;
+        }
+        @keyframes talk {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        #chatDisplay {
+            min-height: 100px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Say "Ton" to wake</h1>
-
-    <!-- Blue Listening Indicator -->
+    <div id="avatar" class="avatar">
+        <img src="https://github.com/Jiten7005407082/Tonbot/blob/main/ton.jpeg?raw=true" alt="Ton">
+    </div>
     <div id="listeningIndicator"></div>
-
-    <!-- Chat Output -->
+    <button id="clickToWake">Click to Speak</button>
     <div id="chatDisplay"></div>
 
-    <!-- Manual Wake Button -->
-    <button id="clickToWake">Click to Wake</button>
-  </div>
-  <script src="script.js"></script>
+    <script>
+        const chatDisplay = document.getElementById('chatDisplay');
+        const wakeButton = document.getElementById('clickToWake');
+        const indicator = document.getElementById('listeningIndicator');
+        const avatar = document.getElementById('avatar');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const synth = window.speechSynthesis;
+
+        let recognition;
+        let listening = false;
+        let wakeWord = "ton";
+        let context = "";
+        let listenTimeout;
+
+        // Your Google Sheet Web App URL
+        const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbwgZ3aUIsyxWOqjTxgukEsok3o4xUf6tnxMoHeeBxEFXllI4IGkkjCDeRfd2lko68kOmA/exec';
+
+        function initRecognition() {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.lang = "en-US";
+            recognition.interimResults = false;
+
+            recognition.onresult = async (event) => {
+                const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+                console.log("Heard:", transcript);
+
+                if (!listening && transcript.includes(wakeWord)) {
+                    startListening();
+                    respond("Yes, I'm listening...");
+                    return;
+                }
+
+                if (listening) {
+                    stopListening();
+                    context = transcript;
+                    respond("Let me check...", true);
+                    
+                    try {
+                        const response = await fetch(`${SHEET_API_URL}?question=${encodeURIComponent(transcript)}`);
+                        const data = await response.json();
+                        respond(data.answer || "I don't have information about that.");
+                    } catch (e) {
+                        console.error("API error:", e);
+                        respond("I'm having trouble accessing my memory right now.");
+                    }
+                }
+            };
+
+            recognition.onerror = (e) => {
+                console.error("Speech error:", e);
+                stopListening();
+            };
+
+            recognition.onend = () => recognition.start();
+            recognition.start();
+        }
+
+        function startListening() {
+            listening = true;
+            indicator.classList.add('blink');
+            avatar.classList.add('talking');
+            clearTimeout(listenTimeout);
+            listenTimeout = setTimeout(stopListening, 10000);
+        }
+
+        function stopListening() {
+            listening = false;
+            indicator.classList.remove('blink');
+            avatar.classList.remove('talking');
+            clearTimeout(listenTimeout);
+        }
+
+        function respond(text, silent = false) {
+            chatDisplay.innerHTML += `<p><strong>You:</strong> ${context}</p><p><strong>Ton:</strong> ${text}</p>`;
+            if (!silent) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "en-US";
+                synth.speak(utterance);
+            }
+        }
+
+        wakeButton.onclick = () => {
+            if (!listening) {
+                startListening();
+                respond("Yes, I'm listening...");
+            } else {
+                stopListening();
+                respond("Going back to sleep.");
+            }
+        };
+
+        // Initialize
+        initRecognition();
+    </script>
 </body>
 </html>
