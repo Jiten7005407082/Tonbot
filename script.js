@@ -1,11 +1,11 @@
-async function fetchAnswerFromSheet(message) {
-  try {
-    const response = await fetch(`${SHEET_API_URL}?question=${encodeURIComponent(message)}`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const data = await response.json();
-    return data.answer || "Sorry, I don't know the answer to that.";
-  } catch (e) {
-    console.error("Fetch error:", e);
-    return "I'm having trouble accessing my memory right now.";
-  }
+// First enable Sheets API: https://console.cloud.google.com/apis/library/sheets.googleapis.com
+async function fetchViaSheetsAPI() {
+  const API_KEY = "YOUR_API_KEY";
+  const SHEET_ID = "1YOUR_SHEET_ID";
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/A:B?key=${API_KEY}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  
+  return data.values || [];
 }
