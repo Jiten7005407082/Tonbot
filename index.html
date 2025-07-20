@@ -1,166 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ton - Voice Assistant</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 20px auto;
-            overflow: hidden;
-            border: 5px solid #4CAF50;
-            transition: all 0.3s;
-        }
-        #avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        #listeningIndicator {
-            width: 20px;
-            height: 20px;
-            background: #f44336;
-            border-radius: 50%;
-            margin: 10px auto;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .blink {
-            animation: pulse 1.5s infinite;
-            opacity: 1 !important;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .talking {
-            animation: talk 0.5s infinite alternate;
-        }
-        @keyframes talk {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-        #chatDisplay {
-            min-height: 100px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-    </style>
+  <title>Voice Chatbot with Google Sheets Memory</title>
 </head>
 <body>
-    <div id="avatar" class="avatar">
-        <img src="https://github.com/Jiten7005407082/Tonbot/blob/main/ton.jpeg?raw=true" alt="Ton">
-    </div>
-    <div id="listeningIndicator"></div>
-    <button id="clickToWake">Click to Speak</button>
-    <div id="chatDisplay"></div>
+  <h2>🎙️ Voice Chatbot with Google Sheets Memory</h2>
+  <button onclick="startListening()">🎤 Talk</button>
+  <p><strong>You:</strong> <span id="userSpeech"></span></p>
+  <p><strong>Bot:</strong> <span id="botReply"></span></p>
 
-    <script>
-        const chatDisplay = document.getElementById('chatDisplay');
-        const wakeButton = document.getElementById('clickToWake');
-        const indicator = document.getElementById('listeningIndicator');
-        const avatar = document.getElementById('avatar');
+<script>
+// ✅ Your deployed Google Apps Script URL
+const scriptURL = "https://script.google.com/macros/s/AKfycbzVm0fUi13qXTD28zK4eBT4dUnqYjr6J1RUhinEZNpMP0SScEOdgtjM1oIeL-ja6iAM/exec";
+const userId = "user1";  // You can customize this per user if needed
 
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const synth = window.speechSynthesis;
+// Voice Recognition
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'en-US';
 
-        let recognition;
-        let listening = false;
-        let wakeWord = "ton";
-        let context = "";
-        let listenTimeout;
+// On Voice Result
+recognition.onresult = async function(event) {
+  const userText = event.results[0][0].transcript;
+  document.getElementById("userSpeech").textContent = userText;
 
-        // Your Google Sheet Web App URL
-        const SHEET_API_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuFI_1eO2D1GqOeZNYAOt1CkzgU4gIXvC_06fMgnhC1BilFUZ_2mgNYD4G_e2XuFD5ylZzYUjgoqTu/pubhtml';
+  let reply = "";
 
-        function initRecognition() {
-            recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.lang = "en-US";
-            recognition.interimResults = false;
+  if (userText.toLowerCase().includes("my name is")) {
+    const name = userText.split("my name is")[1].trim();
+    await saveMemory("name", name);
+    reply = `Got it! I will remember your name is ${name}.`;
+  }
+  else if (userText.toLowerCase().includes("what is my name")) {
+    const name = await loadMemory("name");
+    reply = (name === "NOT_FOUND") ? "I don't know your name yet." : `Your name is ${name}.`;
+  }
+  else {
+    reply = "Sorry, I can only remember your name right now. Say 'my name is...' or ask 'what is my name?'.";
+  }
 
-            recognition.onresult = async (event) => {
-                const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-                console.log("Heard:", transcript);
+  document.getElementById("botReply").textContent = reply;
+  speak(reply);
+};
 
-                if (!listening && transcript.includes(wakeWord)) {
-                    startListening();
-                    respond("Yes, I'm listening...");
-                    return;
-                }
+// Start listening
+function startListening() {
+  recognition.start();
+}
 
-                if (listening) {
-                    stopListening();
-                    context = transcript;
-                    respond("Let me check...", true);
-                    
-                    try {
-                        const response = await fetch(`${SHEET_API_URL}?question=${encodeURIComponent(transcript)}`);
-                        const data = await response.json();
-                        respond(data.answer || "I don't have information about that.");
-                    } catch (e) {
-                        console.error("API error:", e);
-                        respond("I'm having trouble accessing my memory right now.");
-                    }
-                }
-            };
+// Speak output
+function speak(text) {
+  const utter = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(utter);
+}
 
-            recognition.onerror = (e) => {
-                console.error("Speech error:", e);
-                stopListening();
-            };
+// Save memory to Google Sheets
+async function saveMemory(key, value) {
+  await fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify({ user: userId, key, value }),
+    headers: { "Content-Type": "application/json" }
+  });
+}
 
-            recognition.onend = () => recognition.start();
-            recognition.start();
-        }
-
-        function startListening() {
-            listening = true;
-            indicator.classList.add('blink');
-            avatar.classList.add('talking');
-            clearTimeout(listenTimeout);
-            listenTimeout = setTimeout(stopListening, 10000);
-        }
-
-        function stopListening() {
-            listening = false;
-            indicator.classList.remove('blink');
-            avatar.classList.remove('talking');
-            clearTimeout(listenTimeout);
-        }
-
-        function respond(text, silent = false) {
-            chatDisplay.innerHTML += `<p><strong>You:</strong> ${context}</p><p><strong>Ton:</strong> ${text}</p>`;
-            if (!silent) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = "en-US";
-                synth.speak(utterance);
-            }
-        }
-
-        wakeButton.onclick = () => {
-            if (!listening) {
-                startListening();
-                respond("Yes, I'm listening...");
-            } else {
-                stopListening();
-                respond("Going back to sleep.");
-            }
-        };
-
-        // Initialize
-        initRecognition();
-    </script>
+// Load memory from Google Sheets
+async function loadMemory(key) {
+  const res = await fetch(`${scriptURL}?user=${userId}&key=${key}`);
+  return await res.text();
+}
+</script>
 </body>
 </html>
