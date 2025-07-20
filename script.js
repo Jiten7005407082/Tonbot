@@ -1,57 +1,55 @@
-// ✅ Your deployed Google Apps Script URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbzVm0fUi13qXTD28zK4eBT4dUnqYjr6J1RUhinEZNpMP0SScEOdgtjM1oIeL-ja6iAM/exec";
-const userId = "user1";  // You can customize this per user if needed
-
-// Voice Recognition
-const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+const recognition = new webkitSpeechRecognition();
+recognition.continuous = false;
 recognition.lang = 'en-US';
+recognition.interimResults = false;
 
-// On Voice Result
-recognition.onresult = async function(event) {
-  const userText = event.results[0][0].transcript;
-  document.getElementById("userSpeech").textContent = userText;
-
-  let reply = "";
-
-  if (userText.toLowerCase().includes("my name is")) {
-    const name = userText.split("my name is")[1].trim();
-    await saveMemory("name", name);
-    reply = `Got it! I will remember your name is ${name}.`;
-  }
-  else if (userText.toLowerCase().includes("what is my name")) {
-    const name = await loadMemory("name");
-    reply = (name === "NOT_FOUND") ? "I don't know your name yet." : `Your name is ${name}.`;
-  }
-  else {
-    reply = "Sorry, I can only remember your name right now. Say 'my name is...' or ask 'what is my name?'.";
-  }
-
-  document.getElementById("botReply").textContent = reply;
-  speak(reply);
-};
-
-// Start listening
 function startListening() {
+  document.getElementById("userSpeech").textContent = "🎤 Listening...";
   recognition.start();
 }
 
-// Speak output
-function speak(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  speechSynthesis.speak(utter);
-}
+recognition.onresult = function(event) {
+  const transcript = event.results[0][0].transcript;
+  document.getElementById("userSpeech").textContent = "You said: " + transcript;
+  sendToGoogleSheet(transcript);
+};
 
-// Save memory to Google Sheets
-async function saveMemory(key, value) {
-  await fetch(scriptURL, {
+recognition.onerror = function(event) {
+  console.error("Speech recognition error:", event.error);
+  document.getElementById("userSpeech").textContent = "❌ Error: " + event.error;
+};
+
+recognition.onend = function() {
+  console.log("Speech recognition ended");
+};
+
+function sendToGoogleSheet(userMessage) {
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
     method: "POST",
-    body: JSON.stringify({ user: userId, key, value }),
-    headers: { "Content-Type": "application/json" }
+    body: JSON.stringify({ message: userMessage }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then(res => res.json())
+  .then(data => {
+    showReply(userMessage, data.reply);
+    speak(data.reply);
+  })
+  .catch(err => {
+    console.error("Google Sheet fetch error:", err);
+    document.getElementById("chatBox").innerHTML += `<p>❌ Error getting reply.</p>`;
   });
 }
 
-// Load memory from Google Sheets
-async function loadMemory(key) {
-  const res = await fetch(`${scriptURL}?user=${userId}&key=${key}`);
-  return await res.text();
+function showReply(question, reply) {
+  const chatBox = document.getElementById("chatBox");
+  chatBox.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+  chatBox.innerHTML += `<p><strong>Bot:</strong> ${reply}</p>`;
+}
+
+function speak(text) {
+  const synth = window.speechSynthesis;
+  const utter = new SpeechSynthesisUtterance(text);
+  synth.speak(utter);
 }
