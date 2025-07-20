@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voice Chatbot</title>
+  <title>Voice Chatbot with Google Sheet Memory</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>🎙️ Voice Chatbot with Google Sheets Memory</h2>
-  <button onclick="startListening()">🎤 Talk</button>
-  <p><strong>You:</strong> <span id="userSpeech"></span></p>
-  <p><strong>Bot:</strong> <span id="botReply"></span></p>
-
+  <div class="container">
+    <h1>🎙️ TonBot - Voice Chatbot</h1>
+    <p id="userSpeech">Press "Talk" to start</p>
+    <button onclick="startListening()">🎤 Talk</button>
+    <div id="chatBox"></div>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
