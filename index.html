@@ -2,16 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voice Chatbot with Google Sheet Memory</title>
-  <link rel="stylesheet" href="style.css">
+  <title>TonBot - Voice Chat + Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    select, button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px #ccc;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎙️ TonBot - Voice Chatbot</h1>
-    <p id="userSpeech">Press "Talk" to start</p>
-    <button onclick="startListening()">🎤 Talk</button>
-    <div id="chatBox"></div>
+  <div class="box">
+    <h1>🎤 TonBot: Quiz + Chat</h1>
+    <label>
+      Select Mode:
+      <select id="mode">
+        <option value="conversation">Conversation</option>
+        <option value="quiz">Quiz</option>
+      </select>
+    </label>
+    <br><br>
+    <button onclick="startListening()">🎙️ Start Speaking</button>
+    <p><strong>You:</strong> <span id="userText"></span></p>
+    <p><strong>Bot:</strong> <span id="botText"></span></p>
+    <p><strong>Score:</strong> <span id="scoreText">0</span></p>
   </div>
-  <script src="main.js"></script>
+
+  <script>
+    const chatSheetURL = "PASTE_YOUR_CHAT_SCRIPT_WEBAPP_URL_HERE";
+    const quizSheetURL = "PASTE_YOUR_QUIZ_SCRIPT_WEBAPP_URL_HERE";
+
+    let score = 0;
+    let currentQuestionIndex = 0;
+
+    const quiz = [
+      { q: "What is the capital of India?", a: "new delhi" },
+      { q: "What is 2 plus 2?", a: "4" },
+      { q: "Which planet is known as the Red Planet?", a: "mars" }
+    ];
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(msg);
+    }
+
+    function startListening() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const userInput = event.results[0][0].transcript.toLowerCase();
+        document.getElementById("userText").innerText = userInput;
+
+        const mode = document.getElementById("mode").value;
+        if (mode === "quiz") {
+          handleQuiz(userInput);
+        } else {
+          handleConversation(userInput);
+        }
+      };
+    }
+
+    function handleConversation(userInput) {
+      let botReply = "Sorry, I don't understand.";
+      if (userInput.includes("hello")) botReply = "Hi! How can I help you?";
+      else if (userInput.includes("your name")) botReply = "I am TonBot!";
+      else if (userInput.includes("how are you")) botReply = "I'm doing great, thank you!";
+      
+      document.getElementById("botText").innerText = botReply;
+      speak(botReply);
+      saveToSheet("conversation", userInput, botReply, "");
+    }
+
+    function handleQuiz(userInput) {
+      const q = quiz[currentQuestionIndex];
+      let botReply = "";
+      let correct = false;
+
+      if (userInput.includes(q.a)) {
+        botReply = "Correct!";
+        correct = true;
+        score++;
+      } else {
+        botReply = "Wrong! The correct answer is " + q.a;
+      }
+
+      document.getElementById("botText").innerText = botReply;
+      document.getElementById("scoreText").innerText = score;
+      speak(botReply);
+
+      saveToSheet("quiz", userInput, botReply, correct ? 1 : 0);
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quiz.length) {
+        setTimeout(() => {
+          const nextQ = quiz[currentQuestionIndex].q;
+          speak(nextQ);
+          document.getElementById("botText").innerText = nextQ;
+        }, 2500);
+      } else {
+        speak("Quiz completed! Your final score is " + score);
+        document.getElementById("botText").innerText = `Quiz done. Final Score: ${score}`;
+      }
+    }
+
+    function saveToSheet(mode, user, bot, score = "") {
+      const url = (mode === "quiz") ? quizSheetURL : chatSheetURL;
+
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode: mode,
+          user_input: user,
+          bot_reply: bot,
+          score: score
+        })
+      });
+    }
+
+    window.onload = () => {
+      const mode = document.getElementById("mode").value;
+      if (mode === "quiz") {
+        speak("Starting quiz. " + quiz[0].q);
+        document.getElementById("botText").innerText = quiz[0].q;
+      }
+    };
+  </script>
 </body>
 </html>
