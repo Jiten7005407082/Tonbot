@@ -1,59 +1,76 @@
-const questionsDB = {
+const questions = {
   Science: {
     Physics: {
-      "Light – Reflection and Refraction": [
+      "Light": [
         {
-          q: "What is the speed of light in vacuum?",
-          options: ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "3 × 10⁶ m/s", "5 × 10⁸ m/s"],
-          answer: "3 × 10⁸ m/s"
+          question: "Which of the following is a type of mirror?",
+          options: ["Convex", "Straight", "Oblong", "Parallel"],
+          answer: "Convex"
         },
         {
-          q: "What type of mirror is used in car headlights?",
-          options: ["Concave", "Convex", "Plane", "None"],
-          answer: "Concave"
+          question: "The speed of light is:",
+          options: ["3x10⁸ m/s", "300 m/s", "1500 m/s", "3x10⁵ m/s"],
+          answer: "3x10⁸ m/s"
         },
         {
-          q: "Which of these follows the laws of reflection?",
-          options: ["Plane mirror", "Concave mirror", "Convex mirror", "All of these"],
-          answer: "All of these"
+          question: "Which phenomenon explains rainbow?",
+          options: ["Dispersion", "Reflection", "Absorption", "Interference"],
+          answer: "Dispersion"
+        }
+      ],
+      "Electricity": [
+        {
+          question: "What is the unit of current?",
+          options: ["Ampere", "Volt", "Watt", "Ohm"],
+          answer: "Ampere"
+        },
+        {
+          question: "Ohm's law is:",
+          options: ["V=IR", "I=VR", "R=VI", "V=I+R"],
+          answer: "V=IR"
+        },
+        {
+          question: "Fuse is used for:",
+          options: ["Breaking circuit", "Lighting", "Heating", "None"],
+          answer: "Breaking circuit"
         }
       ]
     },
     Chemistry: {
-      "Periodic Classification of Elements": [
+      "Periodic Classification": [
         {
-          q: "Who created the modern periodic table?",
-          options: ["Mendeleev", "Mosley", "Newton", "Bohr"],
-          answer: "Mosley"
+          question: "Who gave the modern periodic table?",
+          options: ["Mendeleev", "Bohr", "Moseley", "Newton"],
+          answer: "Moseley"
         },
         {
-          q: "How are elements arranged in the modern periodic table?",
-          options: ["Atomic Mass", "Mass Number", "Valency", "Atomic Number"],
-          answer: "Atomic Number"
+          question: "Which group contains noble gases?",
+          options: ["18", "1", "17", "2"],
+          answer: "18"
         },
         {
-          q: "What are vertical columns in the periodic table called?",
-          options: ["Periods", "Groups", "Families", "Blocks"],
-          answer: "Groups"
+          question: "Number of periods in periodic table?",
+          options: ["7", "8", "10", "12"],
+          answer: "7"
         }
       ]
     },
     Biology: {
       "Life Processes": [
         {
-          q: "Which is the basic unit of life?",
-          options: ["Cell", "Tissue", "Organ", "Atom"],
-          answer: "Cell"
+          question: "Which is not a life process?",
+          options: ["Breathing", "Thinking", "Excretion", "Respiration"],
+          answer: "Thinking"
         },
         {
-          q: "Which process converts glucose into energy?",
-          options: ["Respiration", "Digestion", "Photosynthesis", "Excretion"],
-          answer: "Respiration"
+          question: "Photosynthesis requires:",
+          options: ["Sunlight", "CO2", "Water", "All of these"],
+          answer: "All of these"
         },
         {
-          q: "What organ is responsible for pumping blood?",
-          options: ["Lungs", "Heart", "Kidney", "Liver"],
-          answer: "Heart"
+          question: "What is the main excretory organ?",
+          options: ["Liver", "Heart", "Kidney", "Lungs"],
+          answer: "Kidney"
         }
       ]
     }
