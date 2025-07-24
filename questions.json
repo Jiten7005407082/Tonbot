@@ -1,60 +1,61 @@
 const questionsDB = {
-  Physics: {
-    "Light - Reflection and Refraction": [
-      {
-        q: "What is the speed of light in vacuum?",
-        options: ["3x10^8 m/s", "2x10^8 m/s", "1.5x10^8 m/s", "1x10^6 m/s"],
-        answer: "3x10^8 m/s"
-      },
-      {
-        q: "A mirror that converges parallel rays is?",
-        options: ["Plane", "Concave", "Convex", "None"],
-        answer: "Concave"
-      },
-      {
-        q: "Refraction occurs due to?",
-        options: ["Change in speed", "Reflection", "Diffraction", "Interference"],
-        answer: "Change in speed"
-      }
-    ]
-  },
-  Chemistry: {
-    "Acids, Bases and Salts": [
-      {
-        q: "Litmus turns red in?",
-        options: ["Acid", "Base", "Neutral", "Salt"],
-        answer: "Acid"
-      },
-      {
-        q: "Vinegar contains which acid?",
-        options: ["Acetic acid", "Citric acid", "Sulphuric acid", "Hydrochloric acid"],
-        answer: "Acetic acid"
-      },
-      {
-        q: "Common salt is chemically known as?",
-        options: ["NaCl", "KCl", "CaCO3", "MgSO4"],
-        answer: "NaCl"
-      }
-    ]
-  },
-  Biology: {
-    "Life Processes": [
-      {
-        q: "Which process is used by plants to make food?",
-        options: ["Photosynthesis", "Respiration", "Digestion", "Transpiration"],
-        answer: "Photosynthesis"
-      },
-      {
-        q: "The main site of digestion in humans is?",
-        options: ["Stomach", "Mouth", "Small intestine", "Large intestine"],
-        answer: "Small intestine"
-      },
-      {
-        q: "Which blood vessel carries oxygenated blood?",
-        options: ["Artery", "Vein", "Capillary", "Lymph"],
-        answer: "Artery"
-      }
-    ]
-  },
-  // Other subjects (Math, Social Science, English) remain unchanged...
+  Science: {
+    Physics: {
+      "Light – Reflection and Refraction": [
+        {
+          q: "What is the speed of light in vacuum?",
+          options: ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "3 × 10⁶ m/s", "5 × 10⁸ m/s"],
+          answer: "3 × 10⁸ m/s"
+        },
+        {
+          q: "What type of mirror is used in car headlights?",
+          options: ["Concave", "Convex", "Plane", "None"],
+          answer: "Concave"
+        },
+        {
+          q: "Which of these follows the laws of reflection?",
+          options: ["Plane mirror", "Concave mirror", "Convex mirror", "All of these"],
+          answer: "All of these"
+        }
+      ]
+    },
+    Chemistry: {
+      "Periodic Classification of Elements": [
+        {
+          q: "Who created the modern periodic table?",
+          options: ["Mendeleev", "Mosley", "Newton", "Bohr"],
+          answer: "Mosley"
+        },
+        {
+          q: "How are elements arranged in the modern periodic table?",
+          options: ["Atomic Mass", "Mass Number", "Valency", "Atomic Number"],
+          answer: "Atomic Number"
+        },
+        {
+          q: "What are vertical columns in the periodic table called?",
+          options: ["Periods", "Groups", "Families", "Blocks"],
+          answer: "Groups"
+        }
+      ]
+    },
+    Biology: {
+      "Life Processes": [
+        {
+          q: "Which is the basic unit of life?",
+          options: ["Cell", "Tissue", "Organ", "Atom"],
+          answer: "Cell"
+        },
+        {
+          q: "Which process converts glucose into energy?",
+          options: ["Respiration", "Digestion", "Photosynthesis", "Excretion"],
+          answer: "Respiration"
+        },
+        {
+          q: "What organ is responsible for pumping blood?",
+          options: ["Lungs", "Heart", "Kidney", "Liver"],
+          answer: "Heart"
+        }
+      ]
+    }
+  }
 };
