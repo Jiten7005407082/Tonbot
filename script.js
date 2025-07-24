@@ -1,123 +1,149 @@
-const chat = document.getElementById("chat");
-const input = document.getElementById("userInput");
+let step = 0, subject = "", chapter = "", score = 0, qIndex = 0;
+const chatbox = document.getElementById("chatbox");
+const input = document.getElementById("input");
 
-let state = {
-  step: "initial",
-  subject: null,
-  chapter: null,
-  questionIndex: 0,
-  questions: [],
+const chapters = {
+  science: [
+    "Periodic Classification of Elements",
+    "Chemical Bonding",
+    "Acids, Bases and Salts",
+    "Types of Chemical Reactions",
+    "Metals and Non‑Metals",
+    "Carbon and Its Compounds",
+    "Materials of Common Use",
+    "Electricity",
+    "Magnetism",
+    "Electromagnetic Induction",
+    "Light",
+    "Sources of Energy",
+    "Life Processes",
+    "Control and Coordination in Living Beings",
+    "Reproduction",
+    "Heredity and Evolution",
+    "Our Environment",
+    "Natural Resources",
+    "The Regional Environment"
+  ],
+  math: [
+    "Number System, Polynomials & Factorization",
+    "Pair of Linear Equations, Quadratics & AP",
+    "Triangles, Circles & Constructions",
+    "Trigonometric Ratios, Height & Distances, Coordinate Geometry",
+    "Mensuration",
+    "Statistics & Probability",
+    "Trading and Demat Account"
+  ],
+  social: [
+    "The Rise of Nationalism in Europe",
+    "Nationalism in India",
+    "The Second World War in Manipur",
+    "India – Resources and Their Development",
+    "Mineral Resources",
+    "Energy Resources",
+    "Agriculture",
+    "Manipuri Resources & Land‑use Pattern",
+    "Map Work",
+    "Working of Democracy",
+    "Power Sharing",
+    "Competition & Contests in Democracy",
+    "Political Parties",
+    "The Story of Development",
+    "Money & Financial System"
+  ],
+  english: [
+    "A Letter to God",
+    "Nelson Mandela",
+    "From the Diary of Anne Frank",
+    "The Hundred Dresses"
+  ]
 };
 
-const quizData = {
-  Science: {
-    "Periodic classification of elements": generateDummy("Periodic classification of elements"),
-    "Chemical bonding": generateDummy("Chemical bonding"),
-    "Acids, bases and salts": generateDummy("Acids, bases and salts"),
-    "Types of chemical reactions": generateDummy("Types of chemical reactions"),
-    "Metals and non‑metals": generateDummy("Metals and non‑metals"),
-    "Carbon and its compounds": generateDummy("Carbon and its compounds"),
-    "Materials of common use": generateDummy("Materials of common use"),
-    "Electricity bon": generateDummy("Electricity bon"),
-    "Magnetism": generateDummy("Magnetism"),
-    "Electromagnetic induction": generateDummy("Electromagnetic induction"),
-    "Light": generateDummy("Light"),
-    "Sources of energy": generateDummy("Sources of energy"),
-    "Life processes": generateDummy("Life processes"),
-    "Control and co‑ordination in living beings": generateDummy("Control and co‑ordination in living beings"),
-    "Reproduction": generateDummy("Reproduction"),
-    "Heridity and evolution": generateDummy("Heridity and evolution"),
-    "Our environment": generateDummy("Our environment"),
-    "Natural resource": generateDummy("Natural resource"),
-    "The regional environment": generateDummy("The regional environment")
-  }
+const questions = {
+  "Life Processes": [
+    { q: "Which organ filters blood in humans?", options: ["Heart", "Lungs", "Kidney", "Liver"], answer: 2 },
+    { q: "Photosynthesis occurs in?", options: ["Roots", "Stem", "Leaves", "Fruit"], answer: 2 },
+    { q: "Amoeba reproduces by?", options: ["Binary fission", "Budding", "Fragmentation", "None"], answer: 0 },
+    { q: "Which gas is released in respiration?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], answer: 1 },
+    { q: "Which system transports oxygen?", options: ["Nervous", "Digestive", "Circulatory", "Excretory"], answer: 2 }
+  ]
 };
 
-function generateDummy(title) {
-  return Array.from({ length: 10 }, (_, i) => ({
-    q: `${title} - Question ${i + 1}?`,
-    a: `Answer ${i + 1}`
-  }));
-}
-
-function sendMessage() {
-  const userText = input.value.trim();
-  if (!userText) return;
-  addMessage(userText, "user");
-  input.value = "";
-  handleUserInput(userText);
-}
-
-function addMessage(text, sender) {
+function botSay(msg) {
   const div = document.createElement("div");
-  div.className = `message ${sender}`;
-  div.innerText = text;
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
+  div.className = "bot";
+  div.innerHTML = "🤖 Bot: " + msg;
+  chatbox.appendChild(div);
+  chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-function handleUserInput(text) {
-  const txt = text.trim();
-  switch (state.step) {
-    case "initial":
-      if (txt.toLowerCase().includes("test my iq")) {
-        addMessage("Which subject? (Science)", "bot");
-        state.step = "chooseSubject";
-      } else {
-        addMessage("Say 'Test my IQ' to begin the quiz.", "bot");
-      }
-      break;
+function userSay(msg) {
+  const div = document.createElement("div");
+  div.className = "user";
+  div.innerHTML = "🧑 You: " + msg;
+  chatbox.appendChild(div);
+}
 
-    case "chooseSubject":
-      if (txt.toLowerCase() === "science") {
-        state.subject = "Science";
-        const chapters = Object.keys(quizData.Science).join(", ");
-        addMessage(`Which chapter? Choose from:\n${chapters}`, "bot");
-        state.step = "chooseChapter";
-      } else {
-        addMessage("Please choose a valid subject: Science", "bot");
-      }
-      break;
+function handleKey(e) {
+  if (e.key === "Enter") {
+    const msg = input.value.trim();
+    if (msg === "") return;
+    userSay(msg);
+    input.value = "";
 
-    case "chooseChapter":
-      const available = Object.keys(quizData.Science);
-      const match = available.find(c => c.toLowerCase() === txt.toLowerCase());
-      if (match) {
-        state.chapter = match;
-        state.questions = quizData.Science[match];
-        state.questionIndex = 0;
-        state.step = "inQuiz";
+    if (step === 0 && msg.toLowerCase().includes("iq")) {
+      step = 1;
+      botSay("Ok. In which subject do you want to test? (Science / Math / Social / English)");
+    }
+    else if (step === 1) {
+      subject = msg.toLowerCase();
+      if (!chapters[subject]) {
+        botSay("Please choose from: Science, Math, Social, or English.");
+        return;
+      }
+      step = 2;
+      const chList = chapters[subject].map((ch, i) => `${i + 1}. ${ch}`).join("<br>");
+      botSay(`Choose a chapter number:<br>${chList}`);
+    }
+    else if (step === 2) {
+      const idx = parseInt(msg) - 1;
+      if (isNaN(idx) || idx < 0 || idx >= chapters[subject].length) {
+        botSay("Please enter a valid chapter number.");
+        return;
+      }
+      chapter = chapters[subject][idx];
+      botSay(`Ok! Let us start the quiz on "${chapter}".`);
+      step = 3;
+      score = 0;
+      qIndex = 0;
+
+      if (!questions[chapter]) {
+        botSay("Sorry! Quiz questions for this chapter are not added yet.");
+        step = 4;
+        return;
+      }
+
+      setTimeout(() => askQuestion(), 1000);
+    }
+    else if (step === 3) {
+      const q = questions[chapter][qIndex];
+      const selected = parseInt(msg) - 1;
+      if (selected === q.answer) score++;
+      qIndex++;
+      if (qIndex < 5) {
         askQuestion();
       } else {
-        addMessage("Invalid chapter name. Please choose from the list.", "bot");
+        botSay(`✅ Quiz finished! You scored ${score}/5.`);
+        step = 4;
       }
-      break;
-
-    case "inQuiz":
-      const current = state.questions[state.questionIndex];
-      if (txt.toLowerCase() === current.a.toLowerCase()) {
-        addMessage("Correct!", "bot");
-      } else {
-        addMessage(`Incorrect. The correct answer is: ${current.a}`, "bot");
-      }
-      state.questionIndex++;
-      if (state.questionIndex < state.questions.length) {
-        askQuestion();
-      } else {
-        addMessage("Quiz complete! Say 'Test my IQ' to try again.", "bot");
-        state.step = "initial";
-      }
-      break;
-
-    default:
-      addMessage("Something went wrong. Let's start over. Say 'Test my IQ'.", "bot");
-      state.step = "initial";
+    }
   }
 }
 
 function askQuestion() {
-  const q = state.questions[state.questionIndex].q;
-  addMessage(q, "bot");
+  const q = questions[chapter][qIndex];
+  let msg = `${qIndex + 1}. ${q.q}<br>`;
+  q.options.forEach((opt, i) => {
+    msg += `${i + 1}. ${opt}<br>`;
+  });
+  botSay(msg);
 }
-
-addMessage("Hello! Say 'Test my IQ' to start the Science quiz.", "bot");
