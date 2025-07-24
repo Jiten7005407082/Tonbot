@@ -1,149 +1,130 @@
-let step = 0, subject = "", chapter = "", score = 0, qIndex = 0;
-const chatbox = document.getElementById("chatbox");
-const input = document.getElementById("input");
+const chat = document.getElementById('chat');
+const options = document.getElementById('options');
 
-const chapters = {
-  science: [
-    "Periodic Classification of Elements",
-    "Chemical Bonding",
-    "Acids, Bases and Salts",
-    "Types of Chemical Reactions",
-    "Metals and Non‑Metals",
-    "Carbon and Its Compounds",
-    "Materials of Common Use",
-    "Electricity",
-    "Magnetism",
-    "Electromagnetic Induction",
-    "Light",
-    "Sources of Energy",
-    "Life Processes",
-    "Control and Coordination in Living Beings",
-    "Reproduction",
-    "Heredity and Evolution",
-    "Our Environment",
-    "Natural Resources",
-    "The Regional Environment"
-  ],
-  math: [
-    "Number System, Polynomials & Factorization",
-    "Pair of Linear Equations, Quadratics & AP",
-    "Triangles, Circles & Constructions",
-    "Trigonometric Ratios, Height & Distances, Coordinate Geometry",
-    "Mensuration",
-    "Statistics & Probability",
-    "Trading and Demat Account"
-  ],
-  social: [
-    "The Rise of Nationalism in Europe",
-    "Nationalism in India",
-    "The Second World War in Manipur",
-    "India – Resources and Their Development",
-    "Mineral Resources",
-    "Energy Resources",
-    "Agriculture",
-    "Manipuri Resources & Land‑use Pattern",
-    "Map Work",
-    "Working of Democracy",
-    "Power Sharing",
-    "Competition & Contests in Democracy",
-    "Political Parties",
-    "The Story of Development",
-    "Money & Financial System"
-  ],
-  english: [
-    "A Letter to God",
-    "Nelson Mandela",
-    "From the Diary of Anne Frank",
-    "The Hundred Dresses"
-  ]
+let currentSubject = '';
+let currentChapter = '';
+let currentQuestion = 0;
+let quizData = [];
+
+const syllabus = {
+  Science: ["Chemical Reactions", "Life Processes", "Light", "Electricity", "Our Environment"],
+  Math: ["Real Numbers", "Polynomials", "Triangles", "Statistics", "Probability"],
+  "Social Science": ["Nationalism in India", "Agriculture", "Resources & Development", "Democracy", "Consumer Rights"],
+  English: ["Prose", "Poetry", "Grammar", "Reading", "Writing"]
 };
 
-const questions = {
-  "Life Processes": [
-    { q: "Which organ filters blood in humans?", options: ["Heart", "Lungs", "Kidney", "Liver"], answer: 2 },
-    { q: "Photosynthesis occurs in?", options: ["Roots", "Stem", "Leaves", "Fruit"], answer: 2 },
-    { q: "Amoeba reproduces by?", options: ["Binary fission", "Budding", "Fragmentation", "None"], answer: 0 },
-    { q: "Which gas is released in respiration?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], answer: 1 },
-    { q: "Which system transports oxygen?", options: ["Nervous", "Digestive", "Circulatory", "Excretory"], answer: 2 }
-  ]
-};
-
-function botSay(msg) {
-  const div = document.createElement("div");
-  div.className = "bot";
-  div.innerHTML = "🤖 Bot: " + msg;
-  chatbox.appendChild(div);
-  chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-function userSay(msg) {
-  const div = document.createElement("div");
-  div.className = "user";
-  div.innerHTML = "🧑 You: " + msg;
-  chatbox.appendChild(div);
-}
-
-function handleKey(e) {
-  if (e.key === "Enter") {
-    const msg = input.value.trim();
-    if (msg === "") return;
-    userSay(msg);
-    input.value = "";
-
-    if (step === 0 && msg.toLowerCase().includes("iq")) {
-      step = 1;
-      botSay("Ok. In which subject do you want to test? (Science / Math / Social / English)");
-    }
-    else if (step === 1) {
-      subject = msg.toLowerCase();
-      if (!chapters[subject]) {
-        botSay("Please choose from: Science, Math, Social, or English.");
-        return;
+const questionsDB = {
+  Science: {
+    "Life Processes": [
+      {
+        q: "Which process in plants uses sunlight to make food?",
+        options: ["Respiration", "Transpiration", "Photosynthesis", "Digestion"],
+        answer: "Photosynthesis"
+      },
+      {
+        q: "The basic unit of life is:",
+        options: ["Heart", "Neuron", "Cell", "Blood"],
+        answer: "Cell"
+      },
+      {
+        q: "Human lungs are part of which system?",
+        options: ["Circulatory", "Respiratory", "Digestive", "Excretory"],
+        answer: "Respiratory"
+      },
+      {
+        q: "Which organ filters blood in humans?",
+        options: ["Lungs", "Heart", "Kidneys", "Liver"],
+        answer: "Kidneys"
+      },
+      {
+        q: "Which is not a mode of nutrition in plants?",
+        options: ["Autotrophic", "Heterotrophic", "Parasitic", "Carnivorous"],
+        answer: "Carnivorous"
       }
-      step = 2;
-      const chList = chapters[subject].map((ch, i) => `${i + 1}. ${ch}`).join("<br>");
-      botSay(`Choose a chapter number:<br>${chList}`);
-    }
-    else if (step === 2) {
-      const idx = parseInt(msg) - 1;
-      if (isNaN(idx) || idx < 0 || idx >= chapters[subject].length) {
-        botSay("Please enter a valid chapter number.");
-        return;
-      }
-      chapter = chapters[subject][idx];
-      botSay(`Ok! Let us start the quiz on "${chapter}".`);
-      step = 3;
-      score = 0;
-      qIndex = 0;
-
-      if (!questions[chapter]) {
-        botSay("Sorry! Quiz questions for this chapter are not added yet.");
-        step = 4;
-        return;
-      }
-
-      setTimeout(() => askQuestion(), 1000);
-    }
-    else if (step === 3) {
-      const q = questions[chapter][qIndex];
-      const selected = parseInt(msg) - 1;
-      if (selected === q.answer) score++;
-      qIndex++;
-      if (qIndex < 5) {
-        askQuestion();
-      } else {
-        botSay(`✅ Quiz finished! You scored ${score}/5.`);
-        step = 4;
-      }
-    }
+    ]
   }
+};
+
+function addMessage(text, sender = 'bot') {
+  const div = document.createElement('div');
+  div.className = `message ${sender}`;
+  div.innerText = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+
+  if (sender === 'bot') speak(text);
+}
+
+function speak(text) {
+  const synth = window.speechSynthesis;
+  const utter = new SpeechSynthesisUtterance(text);
+  synth.speak(utter);
+}
+
+function clearOptions() {
+  options.innerHTML = '';
+}
+
+function showOptions(optionList, callback) {
+  clearOptions();
+  optionList.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.innerText = opt;
+    btn.onclick = () => callback(opt);
+    options.appendChild(btn);
+  });
+}
+
+// Initialize chat
+function startBot() {
+  addMessage("What can I do for you?");
+  showOptions(["I want to test my IQ"], handleMainOption);
+}
+
+function handleMainOption(choice) {
+  addMessage(choice, 'user');
+  addMessage("Okay, in which subject do you want to test?");
+  showOptions(Object.keys(syllabus), handleSubjectSelect);
+}
+
+function handleSubjectSelect(subject) {
+  addMessage(subject, 'user');
+  currentSubject = subject;
+  addMessage(`Choose a chapter in ${subject}:`);
+  showOptions(syllabus[subject], handleChapterSelect);
+}
+
+function handleChapterSelect(chapter) {
+  addMessage(chapter, 'user');
+  currentChapter = chapter;
+  addMessage("Okay, let us start the quiz.");
+  quizData = questionsDB[currentSubject]?.[currentChapter] || [];
+  currentQuestion = 0;
+  askQuestion();
 }
 
 function askQuestion() {
-  const q = questions[chapter][qIndex];
-  let msg = `${qIndex + 1}. ${q.q}<br>`;
-  q.options.forEach((opt, i) => {
-    msg += `${i + 1}. ${opt}<br>`;
-  });
-  botSay(msg);
+  if (currentQuestion < quizData.length) {
+    const qObj = quizData[currentQuestion];
+    addMessage(`Q${currentQuestion + 1}: ${qObj.q}`);
+    showOptions(qObj.options, handleAnswer);
+  } else {
+    addMessage("Quiz completed. Great job!");
+    clearOptions();
+  }
 }
+
+function handleAnswer(selected) {
+  addMessage(selected, 'user');
+  const correct = quizData[currentQuestion].answer;
+  if (selected === correct) {
+    addMessage("✅ Correct!");
+  } else {
+    addMessage(`❌ Wrong! Correct answer: ${correct}`);
+  }
+  currentQuestion++;
+  setTimeout(askQuestion, 1000);
+}
+
+// Start the bot
+startBot();
