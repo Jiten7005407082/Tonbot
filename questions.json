@@ -1,72 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Voice Chatbot with Google Sheets Memory</title>
-</head>
-<body>
-  <h2>🎙️ Voice Chatbot with Google Sheets Memory</h2>
-  <button onclick="startListening()">🎤 Talk</button>
-  <p><strong>You:</strong> <span id="userSpeech"></span></p>
-  <p><strong>Bot:</strong> <span id="botReply"></span></p>
-
-<script>
-// ✅ Your deployed Google Apps Script URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbzVm0fUi13qXTD28zK4eBT4dUnqYjr6J1RUhinEZNpMP0SScEOdgtjM1oIeL-ja6iAM/exec";
-const userId = "user1";  // You can customize this per user if needed
-
-// Voice Recognition
-const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-recognition.lang = 'en-US';
-
-// On Voice Result
-recognition.onresult = async function(event) {
-  const userText = event.results[0][0].transcript;
-  document.getElementById("userSpeech").textContent = userText;
-
-  let reply = "";
-
-  if (userText.toLowerCase().includes("my name is")) {
-    const name = userText.split("my name is")[1].trim();
-    await saveMemory("name", name);
-    reply = `Got it! I will remember your name is ${name}.`;
+{
+  "Science": {
+    "Life Processes": [
+      { "q": "Which organ filters blood?", "options": ["Liver", "Kidney", "Heart", "Lungs"], "answer": "Kidney" },
+      { "q": "Photosynthesis occurs in?", "options": ["Stem", "Leaves", "Roots", "Fruit"], "answer": "Leaves" },
+      { "q": "Amoeba reproduces by?", "options": ["Fission", "Budding", "Fusion", "Cloning"], "answer": "Fission" },
+      { "q": "Which gas is released during respiration?", "options": ["O₂", "CO₂", "N₂", "H₂"], "answer": "CO₂" },
+      { "q": "Which system carries oxygen?", "options": ["Nervous", "Digestive", "Circulatory", "Excretory"], "answer": "Circulatory" },
+      { "q": "Blood is pumped by the...", "options": ["Lungs", "Brain", "Heart", "Liver"], "answer": "Heart" },
+      { "q": "Where are alveoli found?", "options": ["Heart", "Bones", "Lungs", "Skin"], "answer": "Lungs" },
+      { "q": "Which organ is major excretory?", "options": ["Kidney", "Heart", "Stomach", "Brain"], "answer": "Kidney" },
+      { "q": "Enzyme in saliva is?", "options": ["Lipase", "Amylase", "Pepsin", "Trypsin"], "answer": "Amylase" },
+      { "q": "Location of digestion starts in:", "options": ["Mouth", "Stomach", "Small intestine", "Large intestine"], "answer": "Mouth" },
+      { "q": "Which vitamin is for vision?", "options": ["A", "B", "C", "D"], "answer": "A" },
+      { "q": "Fats are digested in the:", "options": ["Mouth", "Stomach", "Small intestine", "Liver"], "answer": "Small intestine" },
+      { "q": "Control center of the body is:", "options": ["Brain", "Heart", "Kidney", "Lung"], "answer": "Brain" },
+      { "q": "Reflex action bypasses:", "options": ["Brain", "Spinal cord", "Heart", "Eyes"], "answer": "Brain" },
+      { "q": "Movement is enabled by:", "options": ["Muscles", "Nerves", "Bones", "Skin"], "answer": "Muscles" },
+      { "q": "Fertilisation occurs in the:", "options": ["Ovary", "Uterus", "Fallopian tube", "Vagina"], "answer": "Fallopian tube" },
+      { "q": "DNA is carrier of:", "options": ["Proteins", "Lipids", "Genetic information", "Vitamins"], "answer": "Genetic information" },
+      { "q": "Which gland secretes insulin?", "options": ["Thyroid", "Pancreas", "Pituitary", "Adrenal"], "answer": "Pancreas" },
+      { "q": "Homeostasis meaning:", "options": ["Balance", "Growth", "Movement", "Reproduction"], "answer": "Balance" },
+      { "q": "Exchange of gases is via:", "options": ["Skin", "Alveoli", "Veins", "Bones"], "answer": "Alveoli" },
+      { "q": "Which is anaerobic respiration?", "options": ["Yeast fermentation", "Breathing", "Photosynthesis", "Digestion"], "answer": "Yeast fermentation" },
+      { "q": "Protein digestion begins in:", "options": ["Mouth", "Stomach", "Liver", "Intestine"], "answer": "Stomach" },
+      { "q": "Liver produces:", "options": ["Saliva", "Insulin", "Bile", "Enzyme"], "answer": "Bile" },
+      { "q": "Which transports impulse to CNS?", "options": ["Sensory nerves", "Motor nerves", "Skin", "Muscles"], "answer": "Sensory nerves" },
+      { "q": "Excretory waste in humans:", "options": ["Salt", "Urine", "Feces", "Sweat"], "answer": "Urine" },
+      { "q": "Largest gland is:", "options": ["Heart", "Liver", "Pancreas", "Thyroid"], "answer": "Liver" },
+      { "q": "Blood vessel leaving heart:", "options": ["Vein", "Capillary", "Artery", "Nerve"], "answer": "Artery" },
+      { "q": "Cells are basic units of:", "options": ["Tissues", "Organs", "Organ systems", "All"], "answer": "All" },
+      { "q": "Which blood cells fight infection?", "options": ["RBC", "WBC", "Platelets", "Plasma"], "answer": "WBC" },
+      { "q": "Involuntary action is:", "options": ["Salivation", "Breathing", "Digestion", "All"], "answer": "All" },
+      { "q": "Hormones are secreted by:", "options": ["Glands", "Kidney", "Brain", "Stomach"], "answer": "Glands" },
+      { "q": "Sugar level maintained by:", "options": ["Liver", "Kidney", "Pancreas", "Heart"], "answer": "Pancreas" },
+      { "q": "Which pleura protects lungs?", "options": ["Visceral", "Parietal", "Both", "None"], "answer": "Visceral" },
+      { "q": "Powerhouse of cell is:", "options": ["Ribosome", "Nucleus", "Mitochondria", "ER"], "answer": "Mitochondria" },
+      { "q": "Blood pressure measured in:", "options": ["Bm", "mm Hg", "°C", "atm"], "answer": "mm Hg" },
+      { "q": "Which region senses pain?", "options": ["Receptors", "Effectors", "Neurons", "Glands"], "answer": "Receptors" },
+      { "q": "Valves in heart prevent:", "options": ["Backflow", "Flow", "Clotting", "Pumping"], "answer": "Backflow" },
+      { "q": "Sweat helps in:", "options": ["Cooling", "Digestion", "Breathing", "Hunger"], "answer": "Cooling" },
+      { "q": "Which part stores bile?", "options": ["Gallbladder", "Liver", "Stomach", "Pancreas"], "answer": "Gallbladder" }
+    ]
   }
-  else if (userText.toLowerCase().includes("what is my name")) {
-    const name = await loadMemory("name");
-    reply = (name === "NOT_FOUND") ? "I don't know your name yet." : `Your name is ${name}.`;
-  }
-  else {
-    reply = "Sorry, I can only remember your name right now. Say 'my name is...' or ask 'what is my name?'.";
-  }
-
-  document.getElementById("botReply").textContent = reply;
-  speak(reply);
-};
-
-// Start listening
-function startListening() {
-  recognition.start();
 }
-
-// Speak output
-function speak(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  speechSynthesis.speak(utter);
-}
-
-// Save memory to Google Sheets
-async function saveMemory(key, value) {
-  await fetch(scriptURL, {
-    method: "POST",
-    body: JSON.stringify({ user: userId, key, value }),
-    headers: { "Content-Type": "application/json" }
-  });
-}
-
-// Load memory from Google Sheets
-async function loadMemory(key) {
-  const res = await fetch(`${scriptURL}?user=${userId}&key=${key}`);
-  return await res.text();
-}
-</script>
-</body>
-</html>
