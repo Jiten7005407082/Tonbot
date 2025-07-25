@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IQ Test Chatbot</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TonBot IQ Quiz</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="chat-container">
-    <div id="chat-box"></div>
-    <div id="button-container"></div>
+    <div id="chatbox"></div>
+    <div id="options" class="options"></div>
+    <input type="text" id="userInput" placeholder="Say something..." />
+    <button onclick="handleUserInput()">Send</button>
   </div>
   <script src="questions.js"></script>
-  <script src="main.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
