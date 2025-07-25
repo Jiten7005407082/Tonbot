@@ -1,59 +1,84 @@
-const scienceChapters = {
-  Physics: {
-    "Light – Reflection and Refraction": [
-      {
-        question: "What is the law of reflection?",
-        options: ["i = r", "i > r", "i < r", "i × r = 90°"],
-        answer: "i = r"
-      },
-      {
-        question: "A concave mirror forms a real, inverted image. What is the object position?",
-        options: ["At infinity", "Between F and P", "Beyond C", "At focus"],
-        answer: "Beyond C"
-      },
-      {
-        question: "What type of image is formed by convex mirror?",
-        options: ["Real and inverted", "Virtual and erect", "Inverted and diminished", "None"],
-        answer: "Virtual and erect"
-      }
-    ]
+const syllabus = {
+  Science: {
+    Physics: {
+      "Light": [
+        {
+          question: "What type of mirror is used in a solar cooker?",
+          options: ["Convex", "Concave", "Plane", "None"],
+          answer: "Concave"
+        },
+        {
+          question: "Which law explains the formation of image in a plane mirror?",
+          options: ["Snell's Law", "Newton's Law", "Laws of reflection", "None"],
+          answer: "Laws of reflection"
+        },
+        {
+          question: "The image formed by a plane mirror is:",
+          options: ["Real", "Inverted", "Virtual and Erect", "Magnified"],
+          answer: "Virtual and Erect"
+        }
+      ],
+      "Electricity": [
+        {
+          question: "What is the SI unit of electric current?",
+          options: ["Ampere", "Volt", "Ohm", "Watt"],
+          answer: "Ampere"
+        },
+        {
+          question: "Ohm's Law is expressed as:",
+          options: ["V = IR", "I = VR", "R = VI", "P = IV"],
+          answer: "V = IR"
+        },
+        {
+          question: "Electric power is measured in:",
+          options: ["Watts", "Joules", "Ohms", "Amperes"],
+          answer: "Watts"
+        }
+      ]
+    },
+    Chemistry: {
+      "Acids, Bases and Salts": [
+        {
+          question: "Which of the following is a strong acid?",
+          options: ["HCl", "CH3COOH", "NaOH", "NH4OH"],
+          answer: "HCl"
+        },
+        {
+          question: "The pH of a neutral solution is:",
+          options: ["0", "7", "14", "1"],
+          answer: "7"
+        },
+        {
+          question: "Which is used to neutralize a bee sting?",
+          options: ["Baking soda", "Vinegar", "Salt", "Sugar"],
+          answer: "Baking soda"
+        }
+      ]
+    }
+    // Add more chapters and Biology later
   },
-  Chemistry: {
-    "Periodic Classification of Elements": [
-      {
-        question: "Who gave the modern periodic law?",
-        options: ["Mendeleev", "Dobereiner", "Newlands", "Henry Moseley"],
-        answer: "Henry Moseley"
-      },
-      {
-        question: "How many periods are there in the modern periodic table?",
-        options: ["6", "7", "8", "9"],
-        answer: "7"
-      },
-      {
-        question: "Which group contains noble gases?",
-        options: ["17", "1", "18", "2"],
-        answer: "18"
-      }
-    ]
-  },
-  Biology: {
-    "Life Processes": [
-      {
-        question: "What is the basic unit of life?",
-        options: ["Tissue", "Organ", "Cell", "Organism"],
-        answer: "Cell"
-      },
-      {
-        question: "Photosynthesis occurs in which organelle?",
-        options: ["Mitochondria", "Chloroplast", "Nucleus", "Cytoplasm"],
-        answer: "Chloroplast"
-      },
-      {
-        question: "Which is not a life process?",
-        options: ["Breathing", "Reproduction", "Thinking", "Excretion"],
-        answer: "Thinking"
-      }
-    ]
+
+  "Social Science": {
+    History: {
+      "The Rise of Nationalism in Europe": [
+        {
+          question: "Who painted 'The Spirit of the Nation'?",
+          options: ["Voltaire", "Frederic Sorrieu", "Napoleon", "Louis XVI"],
+          answer: "Frederic Sorrieu"
+        },
+        {
+          question: "When was the Treaty of Vienna signed?",
+          options: ["1815", "1919", "1804", "1857"],
+          answer: "1815"
+        },
+        {
+          question: "What was the aim of the Treaty of Vienna?",
+          options: ["Spread democracy", "Restore monarchies", "Promote nationalism", "Divide Germany"],
+          answer: "Restore monarchies"
+        }
+      ]
+    }
   }
+
+  // Add Math and English chapters as needed
 };
