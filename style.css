@@ -1,57 +1,62 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f3f4f6;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
 }
 
-.chat-container {
+#container {
   max-width: 600px;
   margin: auto;
-  padding: 1rem;
-  background: white;
-  min-height: 100vh;
+  padding: 20px;
 }
 
-#chatbox {
-  height: 70vh;
-  overflow-y: auto;
-  padding: 1rem;
+#chat {
+  background-color: white;
   border: 1px solid #ccc;
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px;
   margin-bottom: 10px;
 }
 
-.user, .bot {
+.message {
   margin: 10px 0;
-}
-
-.user {
-  text-align: right;
-  color: blue;
+  padding: 8px 12px;
+  border-radius: 20px;
+  max-width: 80%;
+  line-height: 1.4;
 }
 
 .bot {
+  background-color: #e0e0e0;
   text-align: left;
-  color: green;
 }
 
-#userInput {
-  width: 70%;
+.user {
+  background-color: #0084ff;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+}
+
+input[type='text'] {
+  width: calc(100% - 50px);
   padding: 10px;
+  font-size: 16px;
 }
 
 button {
-  padding: 10px;
+  margin: 5px 5px 0 0;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  background-color: #5cb85c;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.options {
-  margin: 10px 0;
-}
-.options button {
-  margin: 5px;
-  padding: 8px 15px;
-  border: none;
-  background: #007BFF;
-  color: white;
-  border-radius: 5px;
+button:hover {
+  background-color: #4cae4c;
 }
