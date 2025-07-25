@@ -1,83 +1,122 @@
-const syllabus = {
-  Science: {
-    Physics: {
-      "Light": [
-        {
-          question: "What type of mirror is used in a solar cooker?",
-          options: ["Convex", "Concave", "Plane", "None"],
-          answer: "Concave"
-        },
-        {
-          question: "Which law explains the formation of image in a plane mirror?",
-          options: ["Snell's Law", "Newton's Law", "Laws of reflection", "None"],
-          answer: "Laws of reflection"
-        },
-        {
-          question: "The image formed by a plane mirror is:",
-          options: ["Real", "Inverted", "Virtual and Erect", "Magnified"],
-          answer: "Virtual and Erect"
-        }
-      ],
-      "Electricity": [
-        {
-          question: "What is the SI unit of electric current?",
-          options: ["Ampere", "Volt", "Ohm", "Watt"],
-          answer: "Ampere"
-        },
-        {
-          question: "Ohm's Law is expressed as:",
-          options: ["V = IR", "I = VR", "R = VI", "P = IV"],
-          answer: "V = IR"
-        },
-        {
-          question: "Electric power is measured in:",
-          options: ["Watts", "Joules", "Ohms", "Amperes"],
-          answer: "Watts"
-        }
-      ]
+{
+  "syllabus": {
+    "Science": {
+      "Physics": {
+        "Light": [
+          {
+            "question": "What type of mirror is used in a solar cooker?",
+            "options": ["Convex", "Concave", "Plane", "None"],
+            "answer": "Concave"
+          },
+          {
+            "question": "Which law explains the formation of image in a plane mirror?",
+            "options": ["Snell's Law", "Newton's Law", "Laws of reflection", "None"],
+            "answer": "Laws of reflection"
+          },
+          {
+            "question": "The image formed by a plane mirror is:",
+            "options": ["Real", "Inverted", "Virtual and Erect", "Magnified"],
+            "answer": "Virtual and Erect"
+          },
+          {
+            "question": "Which mirror is used in rear view mirrors of vehicles?",
+            "options": ["Plane", "Convex", "Concave", "None"],
+            "answer": "Convex"
+          },
+          {
+            "question": "What is the speed of light in vacuum?",
+            "options": ["3x10^8 m/s", "1.5x10^8 m/s", "2x10^8 m/s", "None"],
+            "answer": "3x10^8 m/s"
+          }
+        ],
+        "Electricity": [
+          {
+            "question": "What is the SI unit of electric current?",
+            "options": ["Ampere", "Volt", "Ohm", "Watt"],
+            "answer": "Ampere"
+          },
+          {
+            "question": "Ohm's Law is expressed as:",
+            "options": ["V = IR", "I = VR", "R = VI", "P = IV"],
+            "answer": "V = IR"
+          },
+          {
+            "question": "Electric power is measured in:",
+            "options": ["Watts", "Joules", "Ohms", "Amperes"],
+            "answer": "Watts"
+          },
+          {
+            "question": "Which instrument measures electric current?",
+            "options": ["Voltmeter", "Galvanometer", "Ammeter", "Multimeter"],
+            "answer": "Ammeter"
+          },
+          {
+            "question": "Which metal is used in electric wires?",
+            "options": ["Silver", "Gold", "Copper", "Iron"],
+            "answer": "Copper"
+          }
+        ]
+      },
+      "Chemistry": {
+        "Acids, Bases and Salts": [
+          {
+            "question": "Which of the following is a strong acid?",
+            "options": ["HCl", "CH3COOH", "NaOH", "NH4OH"],
+            "answer": "HCl"
+          },
+          {
+            "question": "The pH of a neutral solution is:",
+            "options": ["0", "7", "14", "1"],
+            "answer": "7"
+          },
+          {
+            "question": "Which is used to neutralize a bee sting?",
+            "options": ["Baking soda", "Vinegar", "Salt", "Sugar"],
+            "answer": "Baking soda"
+          },
+          {
+            "question": "Which indicator turns red in acid?",
+            "options": ["Litmus", "Phenolphthalein", "Methyl orange", "Water"],
+            "answer": "Litmus"
+          },
+          {
+            "question": "Which of the following is a base?",
+            "options": ["NaOH", "HCl", "CO2", "Vinegar"],
+            "answer": "NaOH"
+          }
+        ]
+      }
     },
-    Chemistry: {
-      "Acids, Bases and Salts": [
-        {
-          question: "Which of the following is a strong acid?",
-          options: ["HCl", "CH3COOH", "NaOH", "NH4OH"],
-          answer: "HCl"
-        },
-        {
-          question: "The pH of a neutral solution is:",
-          options: ["0", "7", "14", "1"],
-          answer: "7"
-        },
-        {
-          question: "Which is used to neutralize a bee sting?",
-          options: ["Baking soda", "Vinegar", "Salt", "Sugar"],
-          answer: "Baking soda"
-        }
-      ]
-    }
-  }, // <--- This comma was missing!
-
-  "Social Science": {
-    History: {
-      "The Rise of Nationalism in Europe": [
-        {
-          question: "Who painted 'The Spirit of the Nation'?",
-          options: ["Voltaire", "Frederic Sorrieu", "Napoleon", "Louis XVI"],
-          answer: "Frederic Sorrieu"
-        },
-        {
-          question: "When was the Treaty of Vienna signed?",
-          options: ["1815", "1919", "1804", "1857"],
-          answer: "1815"
-        },
-        {
-          question: "What was the aim of the Treaty of Vienna?",
-          options: ["Spread democracy", "Restore monarchies", "Promote nationalism", "Divide Germany"],
-          answer: "Restore monarchies"
-        }
-      ]
+    "Social Science": {
+      "History": {
+        "The Rise of Nationalism in Europe": [
+          {
+            "question": "Who painted 'The Spirit of the Nation'?",
+            "options": ["Voltaire", "Frederic Sorrieu", "Napoleon", "Louis XVI"],
+            "answer": "Frederic Sorrieu"
+          },
+          {
+            "question": "When was the Treaty of Vienna signed?",
+            "options": ["1815", "1919", "1804", "1857"],
+            "answer": "1815"
+          },
+          {
+            "question": "What was the aim of the Treaty of Vienna?",
+            "options": ["Spread democracy", "Restore monarchies", "Promote nationalism", "Divide Germany"],
+            "answer": "Restore monarchies"
+          },
+          {
+            "question": "Which country led the unification of Germany?",
+            "options": ["Austria", "Italy", "Prussia", "France"],
+            "answer": "Prussia"
+          },
+          {
+            "question": "Which revolution led to the rise of liberal nationalism?",
+            "options": ["Russian Revolution", "French Revolution", "Industrial Revolution", "None"],
+            "answer": "French Revolution"
+          }
+        ]
+      }
     }
   }
-
-  // Add Math and English chapters as needed
-};
+}
