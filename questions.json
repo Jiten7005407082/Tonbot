@@ -55,8 +55,7 @@ const syllabus = {
         }
       ]
     }
-    // Add more chapters and Biology later
-  },
+  }, // <--- This comma was missing!
 
   "Social Science": {
     History: {
