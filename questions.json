@@ -5,6 +5,159 @@
       "options": ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
       "answer": "Hydrogen"
     },
+    "Chemical Reactions & Equations": [
+  {
+    "q": "Which of the following is NOT a type of chemical reaction?",
+    "options": ["Combination", "Decomposition", "Reflection", "Displacement"],
+    "answer": "Reflection"
+  },
+  {
+    "q": "What type of reaction is: 2Mg + O₂ → 2MgO?",
+    "options": ["Decomposition", "Combination", "Displacement", "Double displacement"],
+    "answer": "Combination"
+  },
+  {
+    "q": "In the reaction CaCO₃ → CaO + CO₂, what type of reaction is this?",
+    "options": ["Decomposition", "Combination", "Neutralization", "Redox"],
+    "answer": "Decomposition"
+  },
+  {
+    "q": "Which of the following is a displacement reaction?",
+    "options": ["Zn + CuSO₄ → ZnSO₄ + Cu", "H₂ + Cl₂ → 2HCl", "2KClO₃ → 2KCl + 3O₂", "CaO + H₂O → Ca(OH)₂"],
+    "answer": "Zn + CuSO₄ → ZnSO₄ + Cu"
+  },
+  {
+    "q": "What is the color change when copper powder is heated?",
+    "options": ["Red to black", "Blue to green", "Brown to black", "Black to red"],
+    "answer": "Brown to black"
+  },
+  {
+    "q": "What is the reaction called when heat is absorbed from surroundings?",
+    "options": ["Exothermic", "Endothermic", "Displacement", "Neutralization"],
+    "answer": "Endothermic"
+  },
+  {
+    "q": "What type of chemical reaction is photosynthesis?",
+    "options": ["Exothermic", "Endothermic", "Displacement", "Combustion"],
+    "answer": "Endothermic"
+  },
+  {
+    "q": "Which gas is evolved when zinc reacts with hydrochloric acid?",
+    "options": ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
+    "answer": "Hydrogen"
+  },
+  {
+    "q": "Which is the oxidizing agent in the reaction: Zn + CuSO₄ → ZnSO₄ + Cu?",
+    "options": ["Zn", "Cu²⁺", "SO₄²⁻", "Cu"],
+    "answer": "Cu²⁺"
+  },
+  {
+    "q": "What is observed when iron nails are dipped into copper sulphate solution?",
+    "options": ["Solution turns blue", "Iron nails turn brownish", "Gas bubbles form", "Nothing happens"],
+    "answer": "Iron nails turn brownish"
+  },
+  {
+    "q": "Which of the following is a redox reaction?",
+    "options": ["2H₂ + O₂ → 2H₂O", "AgNO₃ + NaCl → AgCl + NaNO₃", "BaCl₂ + H₂SO₄ → BaSO₄ + 2HCl", "CaO + H₂O → Ca(OH)₂"],
+    "answer": "2H₂ + O₂ → 2H₂O"
+  },
+  {
+    "q": "What is the process of depositing a thin layer of zinc on iron called?",
+    "options": ["Rusting", "Alloying", "Galvanization", "Electroplating"],
+    "answer": "Galvanization"
+  },
+  {
+    "q": "What type of reaction is: AgNO₃ + NaCl → AgCl + NaNO₃?",
+    "options": ["Displacement", "Double displacement", "Decomposition", "Combination"],
+    "answer": "Double displacement"
+  },
+  {
+    "q": "What is the brown gas produced when lead nitrate is heated?",
+    "options": ["NO₂", "CO₂", "SO₂", "O₂"],
+    "answer": "NO₂"
+  },
+  {
+    "q": "Which of the following is an example of a combination reaction?",
+    "options": ["H₂ + Cl₂ → 2HCl", "CaCO₃ → CaO + CO₂", "Zn + CuSO₄ → ZnSO₄ + Cu", "AgNO₃ + NaCl → AgCl + NaNO₃"],
+    "answer": "H₂ + Cl₂ → 2HCl"
+  },
+  {
+    "q": "Which type of reaction is: Fe + CuSO₄ → FeSO₄ + Cu?",
+    "options": ["Combination", "Double displacement", "Displacement", "Decomposition"],
+    "answer": "Displacement"
+  },
+  {
+    "q": "Which chemical is used to test for the evolution of CO₂ gas?",
+    "options": ["Blue litmus paper", "Lime water", "Red litmus paper", "Phenolphthalein"],
+    "answer": "Lime water"
+  },
+  {
+    "q": "Which element is oxidized in the reaction Zn + H₂SO₄ → ZnSO₄ + H₂?",
+    "options": ["Zn", "H", "S", "O"],
+    "answer": "Zn"
+  },
+  {
+    "q": "What type of reaction occurs when electricity is passed through water to give hydrogen and oxygen?",
+    "options": ["Decomposition", "Displacement", "Neutralization", "Combination"],
+    "answer": "Decomposition"
+  },
+  {
+    "q": "Which reaction produces a precipitate?",
+    "options": ["AgNO₃ + NaCl → AgCl + NaNO₃", "2Mg + O₂ → 2MgO", "Zn + HCl → ZnCl₂ + H₂", "C + O₂ → CO₂"],
+    "answer": "AgNO₃ + NaCl → AgCl + NaNO₃"
+  },
+  {
+    "q": "What type of reaction is neutralization?",
+    "options": ["Combination", "Decomposition", "Double displacement", "Displacement"],
+    "answer": "Double displacement"
+  },
+  {
+    "q": "Which metal does NOT displace hydrogen from acids?",
+    "options": ["Copper", "Zinc", "Magnesium", "Iron"],
+    "answer": "Copper"
+  },
+  {
+    "q": "Which of the following reactions is endothermic?",
+    "options": ["Photosynthesis", "Combustion of fuels", "Respiration", "Neutralization"],
+    "answer": "Photosynthesis"
+  },
+  {
+    "q": "Which of these changes indicates a chemical reaction?",
+    "options": ["Color change", "Gas formation", "Temperature change", "All of these"],
+    "answer": "All of these"
+  },
+  {
+    "q": "What type of reaction is rusting of iron?",
+    "options": ["Redox", "Displacement", "Combination", "Neutralization"],
+    "answer": "Redox"
+  },
+  {
+    "q": "Which gas turns lime water milky?",
+    "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Sulphur dioxide"],
+    "answer": "Carbon dioxide"
+  },
+  {
+    "q": "When ammonium chloride is heated it breaks into NH₃ and HCl. This is an example of?",
+    "options": ["Combination", "Decomposition", "Neutralization", "Displacement"],
+    "answer": "Decomposition"
+  },
+  {
+    "q": "What is observed when a magnesium ribbon burns in air?",
+    "options": ["Red flame and black residue", "White dazzling flame and white powder", "Blue flame and green powder", "No visible change"],
+    "answer": "White dazzling flame and white powder"
+  },
+  {
+    "q": "Which of the following is an oxidation reaction?",
+    "options": ["2Cu + O₂ → 2CuO", "2MgO → 2Mg + O₂", "Zn + H₂ → ZnH₂", "C + 2Cl₂ → CCl₄"],
+    "answer": "2Cu + O₂ → 2CuO"
+  },
+  {
+    "q": "In a balanced chemical equation:",
+    "options": ["Mass is created", "Mass is destroyed", "Mass is conserved", "Atoms are destroyed"],
+    "answer": "Mass is conserved"
+  }
+]
+
     {
       "q": "Which type of reaction is rusting of iron?",
       "options": ["Combination", "Decomposition", "Oxidation", "Displacement"],
