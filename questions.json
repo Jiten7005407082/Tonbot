@@ -462,3 +462,269 @@
       "answer": "n/2 (2a + (n − 1)d)"
     }
   ]
+,
+  "Triangles": [
+    {
+      "q": "The Pythagoras theorem applies to which triangle?",
+      "options": ["Equilateral", "Isosceles", "Right-angled", "Scalene"],
+      "answer": "Right-angled"
+    },
+    {
+      "q": "Two triangles are similar if their:",
+      "options": ["Sides equal", "Angles equal", "Perimeters equal", "Heights equal"],
+      "answer": "Angles equal"
+    },
+    {
+      "q": "The ratio of areas of two similar triangles is equal to:",
+      "options": ["Ratio of sides", "Square of ratio of sides", "Cube of ratio of sides", "None"],
+      "answer": "Square of ratio of sides"
+    },
+    {
+      "q": "The sum of angles of a triangle is:",
+      "options": ["90°", "120°", "180°", "360°"],
+      "answer": "180°"
+    }
+  ],
+  "Coordinate Geometry": [
+    {
+      "q": "What is the distance between (0,0) and (3,4)?",
+      "options": ["5", "6", "7", "4"],
+      "answer": "5"
+    },
+    {
+      "q": "Slope of x-axis is:",
+      "options": ["0", "1", "Infinity", "−1"],
+      "answer": "0"
+    },
+    {
+      "q": "The coordinates of origin are:",
+      "options": ["(1,1)", "(0,0)", "(1,0)", "(0,1)"],
+      "answer": "(0,0)"
+    },
+    {
+      "q": "Midpoint of (2,4) and (6,8) is:",
+      "options": ["(4,6)", "(5,7)", "(3,5)", "(6,9)"],
+      "answer": "(4,6)"
+    }
+  ],
+  "Introduction to Trigonometry": [
+    {
+      "q": "sin 90° = ?",
+      "options": ["0", "1", "√3/2", "1/2"],
+      "answer": "1"
+    },
+    {
+      "q": "tan 45° = ?",
+      "options": ["0", "1", "∞", "√3"],
+      "answer": "1"
+    },
+    {
+      "q": "sec²θ − tan²θ = ?",
+      "options": ["1", "0", "sinθ", "cosθ"],
+      "answer": "1"
+    },
+    {
+      "q": "cosec 30° = ?",
+      "options": ["1", "2", "√2", "1/2"],
+      "answer": "2"
+    }
+  ],
+  "Some Applications of Trigonometry": [
+    {
+      "q": "The branch of mathematics used in heights and distances is:",
+      "options": ["Algebra", "Geometry", "Trigonometry", "Calculus"],
+      "answer": "Trigonometry"
+    },
+    {
+      "q": "The angle of elevation is measured from:",
+      "options": ["Above the horizontal", "Below the horizontal", "At the center", "None"],
+      "answer": "Above the horizontal"
+    },
+    {
+      "q": "The angle of depression is measured from:",
+      "options": ["Above the horizontal", "Below the horizontal", "Right angle", "None"],
+      "answer": "Below the horizontal"
+    },
+    {
+      "q": "What trigonometric ratio is used for opposite/adjacent?",
+      "options": ["sin", "cos", "tan", "cosec"],
+      "answer": "tan"
+    }
+  ],
+  "Circles": [
+    {
+      "q": "The tangent to a circle makes what angle with the radius?",
+      "options": ["0°", "45°", "60°", "90°"],
+      "answer": "90°"
+    },
+    {
+      "q": "How many tangents can be drawn to a circle from an external point?",
+      "options": ["1", "2", "3", "Infinite"],
+      "answer": "2"
+    },
+    {
+      "q": "A line intersecting a circle at two points is called:",
+      "options": ["Tangent", "Chord", "Secant", "Diameter"],
+      "answer": "Secant"
+    },
+    {
+      "q": "A tangent touches a circle at:",
+      "options": ["Two points", "One point", "Three points", "No points"],
+      "answer": "One point"
+    }
+  ],
+  "Constructions": [
+    {
+      "q": "The method of drawing a tangent without using center involves:",
+      "options": ["Bisecting chords", "Using arcs", "Using secants", "None"],
+      "answer": "Bisecting chords"
+    },
+    {
+      "q": "Number of tangents from an external point is:",
+      "options": ["1", "2", "3", "Infinite"],
+      "answer": "2"
+    },
+    {
+      "q": "A triangle can be constructed if its:",
+      "options": ["Two angles given", "Three sides given", "Two heights given", "None"],
+      "answer": "Three sides given"
+    },
+    {
+      "q": "The instrument used for drawing arcs is:",
+      "options": ["Ruler", "Divider", "Compass", "Set square"],
+      "answer": "Compass"
+    }
+  ],
+  "Surface Areas & Volumes": [
+    {
+      "q": "The formula for the volume of a sphere is:",
+      "options": ["4/3πr³", "2πr³", "πr²h", "πr³/3"],
+      "answer": "4/3πr³"
+    },
+    {
+      "q": "The curved surface area of a cylinder is:",
+      "options": ["2πrh", "πr²", "4πr²", "πrl"],
+      "answer": "2πrh"
+    },
+    {
+      "q": "What is the surface area of a cube of side a?",
+      "options": ["4a²", "5a²", "6a²", "7a²"],
+      "answer": "6a²"
+    },
+    {
+      "q": "Volume of a cone is:",
+      "options": ["1/3πr²h", "πr²h", "2/3πr²h", "4/3πr³"],
+      "answer": "1/3πr²h"
+    }
+  ],
+  "Statistics": [
+    {
+      "q": "The mean is obtained by dividing:",
+      "options": ["Sum of values by number of values", "Number of values by sum", "Values by frequency", "None"],
+      "answer": "Sum of values by number of values"
+    },
+    {
+      "q": "The median is:",
+      "options": ["Middle value", "Highest value", "Lowest value", "Average value"],
+      "answer": "Middle value"
+    },
+    {
+      "q": "Mode is the value that occurs:",
+      "options": ["Once", "Most frequently", "Least frequently", "Randomly"],
+      "answer": "Most frequently"
+    },
+    {
+      "q": "The difference between highest and lowest values is:",
+      "options": ["Median", "Mean", "Range", "Frequency"],
+      "answer": "Range"
+    }
+  ],
+  "Probability": [
+    {
+      "q": "Probability of an impossible event is:",
+      "options": ["1", "0", "1/2", "−1"],
+      "answer": "0"
+    },
+    {
+      "q": "Probability of a certain event is:",
+      "options": ["1", "0", "1/2", "2"],
+      "answer": "1"
+    },
+    {
+      "q": "The probability of getting a head in a coin toss is:",
+      "options": ["1/2", "1/3", "1", "0"],
+      "answer": "1/2"
+    },
+    {
+      "q": "Which cannot be the probability of an event?",
+      "options": ["1", "0", "1.5", "1/4"],
+      "answer": "1.5"
+    }
+  ],
+
+  "History": [
+    {
+      "q": "Who was the first Governor-General of India?",
+      "options": ["Warren Hastings", "Lord Cornwallis", "Lord Wellesley", "Lord Dalhousie"],
+      "answer": "Warren Hastings"
+    },
+    {
+      "q": "The revolt of 1857 is also called:",
+      "options": ["Sepoy Mutiny", "Indian War", "British Revolt", "National Rebellion"],
+      "answer": "Sepoy Mutiny"
+    },
+    {
+      "q": "Who wrote 'Discovery of India'?",
+      "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhash Chandra Bose", "B.R. Ambedkar"],
+      "answer": "Jawaharlal Nehru"
+    },
+    {
+      "q": "When did India get independence?",
+      "options": ["1945", "1947", "1950", "1962"],
+      "answer": "1947"
+    }
+  ],
+  "Civics": [
+    {
+      "q": "India is a:",
+      "options": ["Monarchy", "Democracy", "Dictatorship", "Theocracy"],
+      "answer": "Democracy"
+    },
+    {
+      "q": "How many fundamental rights are there in Indian Constitution?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "6"
+    },
+    {
+      "q": "Who is the head of the state?",
+      "options": ["President", "Prime Minister", "Governor", "Chief Minister"],
+      "answer": "President"
+    },
+    {
+      "q": "Which is NOT a state subject?",
+      "options": ["Police", "Agriculture", "Education", "Railways"],
+      "answer": "Railways"
+    }
+  ],
+  "Geography": [
+    {
+      "q": "The largest planet in the solar system is:",
+      "options": ["Earth", "Saturn", "Jupiter", "Mars"],
+      "answer": "Jupiter"
+    },
+    {
+      "q": "Which river is the longest in India?",
+      "options": ["Ganga", "Yamuna", "Brahmaputra", "Narmada"],
+      "answer": "Ganga"
+    },
+    {
+      "q": "The Tropic of Cancer passes through how many states in India?",
+      "options": ["6", "7", "8", "9"],
+      "answer": "8"
+    },
+    {
+      "q": "Which is the southernmost point of India?",
+      "options": ["Kanyakumari", "Indira Point", "Rameswaram", "Lakshadweep"],
+      "answer": "Indira Point"
+    }
+  ]
