@@ -1,153 +1,210 @@
-"Light – Reflection & Refraction": [
-  {
-    "q": "What is the speed of light in air approximately?",
-    "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"],
-    "answer": "3 × 10⁸ m/s"
-  },
-  {
-    "q": "The angle between the incident ray and the normal is called?",
-    "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"],
-    "answer": "Angle of Incidence"
-  },
-  {
-    "q": "The bouncing back of light after hitting a polished surface is called?",
-    "options": ["Refraction", "Dispersion", "Reflection", "Scattering"],
-    "answer": "Reflection"
-  },
-  {
-    "q": "Which of the following obeys the laws of reflection?",
-    "options": ["Plane mirror", "Spherical mirror", "Both A and B", "None of these"],
-    "answer": "Both A and B"
-  },
-  {
-    "q": "What is the SI unit of refractive index?",
-    "options": ["No unit", "m/s", "meter", "candela"],
-    "answer": "No unit"
-  },
-  {
-    "q": "The phenomenon of bending of light when it passes from one medium to another is called?",
-    "options": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
-    "answer": "Refraction"
-  },
-  {
-    "q": "Which law states that the incident ray, refracted ray and normal all lie in the same plane?",
-    "options": ["Snell’s Law", "Law of Reflection", "Law of Refraction", "Law of Incidence"],
-    "answer": "Law of Refraction"
-  },
-  {
-    "q": "The ratio of speed of light in vacuum to speed of light in medium is called?",
-    "options": ["Refractive index", "Reflection ratio", "Speed index", "Light coefficient"],
-    "answer": "Refractive index"
-  },
-  {
-    "q": "What is the focal length of a plane mirror?",
-    "options": ["Infinite", "Zero", "10 cm", "Depends on object distance"],
-    "answer": "Infinite"
-  },
-  {
-    "q": "A real image is always?",
-    "options": ["Inverted", "Erect", "Virtual", "Same size as object"],
-    "answer": "Inverted"
-  },
-  {
-    "q": "If the refractive index of water is 1.33, this means:",
-    "options": ["Light travels 1.33 times faster in water", "Light slows down by 1.33 times in water", "Water has density 1.33 g/cm³", "None of these"],
-    "answer": "Light slows down by 1.33 times in water"
-  },
-  {
-    "q": "Which type of lens is used to correct myopia?",
-    "options": ["Convex lens", "Concave lens", "Cylindrical lens", "Bifocal lens"],
-    "answer": "Concave lens"
-  },
-  {
-    "q": "Which type of mirror is used in vehicles as rear-view mirrors?",
-    "options": ["Concave", "Convex", "Plane", "Parabolic"],
-    "answer": "Convex"
-  },
-  {
-    "q": "In a plane mirror, the image formed is always?",
-    "options": ["Real & inverted", "Virtual & erect", "Virtual & inverted", "Real & erect"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "If angle of incidence is 30°, what will be angle of reflection?",
-    "options": ["60°", "30°", "15°", "45°"],
-    "answer": "30°"
-  },
-  {
-    "q": "The power of a lens is measured in?",
-    "options": ["Diopter", "Candela", "Lumen", "Meter"],
-    "answer": "Diopter"
-  },
-  {
-    "q": "Which color of light deviates the least when passed through a prism?",
-    "options": ["Violet", "Red", "Green", "Blue"],
-    "answer": "Red"
-  },
-  {
-    "q": "What type of image does a concave mirror form when object is placed between focus and mirror?",
-    "options": ["Real & inverted", "Virtual & erect", "Enlarged & real", "Diminished & real"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "In refraction, when light passes from a denser to a rarer medium, it bends?",
-    "options": ["Towards normal", "Away from normal", "Does not bend", "Depends on color"],
-    "answer": "Away from normal"
-  },
-  {
-    "q": "Which phenomenon makes a straw appear bent in water?",
-    "options": ["Reflection", "Refraction", "Dispersion", "Scattering"],
-    "answer": "Refraction"
-  },
-  {
-    "q": "A concave mirror is also known as?",
-    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
-    "answer": "Converging mirror"
-  },
-  {
-    "q": "A convex mirror is also known as?",
-    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
-    "answer": "Diverging mirror"
-  },
-  {
-    "q": "When light travels from air into glass, its speed?",
-    "options": ["Increases", "Decreases", "Remains same", "First increases then decreases"],
-    "answer": "Decreases"
-  },
-  {
-    "q": "The mirror used by dentists is?",
-    "options": ["Plane mirror", "Concave mirror", "Convex mirror", "None"],
-    "answer": "Concave mirror"
-  },
-  {
-    "q": "The image formed by convex mirror is always?",
-    "options": ["Real & inverted", "Virtual & erect", "Varies with object distance", "None of these"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "Snell’s law relates which quantities?",
-    "options": ["Angles of incidence & reflection", "Angles of incidence & refraction", "Speed & wavelength", "Frequency & wavelength"],
-    "answer": "Angles of incidence & refraction"
-  },
-  {
-    "q": "What is the focal length of a convex mirror?",
-    "options": ["Positive", "Negative", "Zero", "Infinite"],
-    "answer": "Positive"
-  },
-  {
-    "q": "What is the focal length of a concave mirror?",
-    "options": ["Positive", "Negative", "Zero", "Infinite"],
-    "answer": "Negative"
-  },
-  {
-    "q": "Which lens is used in magnifying glasses?",
-    "options": ["Concave lens", "Convex lens", "Cylindrical lens", "Plano lens"],
-    "answer": "Convex lens"
-  },
-  {
-    "q": "Which of the following is NOT a law of reflection?",
-    "options": ["Angle of incidence = angle of reflection", "Incident ray, reflected ray, and normal are in same plane", "Reflected ray is always perpendicular to surface", "None of these"],
-    "answer": "Reflected ray is always perpendicular to surface"
-  }
-]
+let quizData = {};
+let userName = "";
+let currentSubject = "";
+let currentSubclass = "";
+let currentChapter = "";
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+let stage = "loading"; // "loading" until JSON loaded
 
+// ✅ Load questions.json first
+async function loadQuestions() {
+    try {
+        const response = await fetch('questions.json');
+        quizData = await response.json();
+        console.log("✅ Questions loaded");
+        botReply("👋 Hello! What is your name?");
+        stage = "intro";
+    } catch (err) {
+        console.error("❌ Failed to load questions.json", err);
+        botReply("❌ Could not load quiz data.");
+    }
+}
+loadQuestions();
+
+// ✅ Helper: Bot reply
+function botReply(text) {
+    let chatBox = document.getElementById("chatBox");
+    chatBox.innerHTML += `<div class='bot'>${text}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ✅ Helper: User reply
+function userReply(text) {
+    let chatBox = document.getElementById("chatBox");
+    chatBox.innerHTML += `<div class='user'>${text}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ✅ Main user input handler
+function handleUserInput() {
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+    if (!message) return;
+    userReply(message);
+    input.value = "";
+
+    // ❗ If questions aren’t loaded yet
+    if (stage === "loading") {
+        botReply("⏳ Please wait, loading quiz data...");
+        return;
+    }
+
+    if (stage === "intro") {
+        userName = message;
+        botReply(`Hi ${userName}! 👋 What can I do for you today?`);
+        stage = "menu";
+        return;
+    }
+
+    if (stage === "menu") {
+        if (message.toLowerCase().includes("iq")) {
+            botReply("Great! Which subject do you want to test? \n👉 Science, Math, Social Science, English");
+            stage = "subject";
+        } else {
+            botReply("You can type: *I want to test my IQ* to start a quiz.");
+        }
+        return;
+    }
+
+    if (stage === "subject") {
+        let subj = message.toLowerCase();
+        if (subj.includes("science")) {
+            currentSubject = "Science";
+            botReply("Which subclass do you want? \n👉 Physics, Chemistry, Biology");
+            stage = "subclass";
+        } else if (subj.includes("math")) {
+            currentSubject = "Math";
+            botReply("Math has no subclasses. Here are the chapters:\n" + listChapters("Math"));
+            stage = "chapter";
+        } else if (subj.includes("social")) {
+            currentSubject = "Social Science";
+            botReply("Choose a subclass:\n👉 History, Civics, Geography");
+            stage = "subclass";
+        } else if (subj.includes("english")) {
+            currentSubject = "English";
+            botReply("Choose a subclass:\n👉 Grammar, Literature");
+            stage = "subclass";
+        } else {
+            botReply("Please choose: Science, Math, Social Science, or English.");
+        }
+        return;
+    }
+
+    if (stage === "subclass") {
+        currentSubclass = message;
+        botReply(`Great! Choose a chapter from:\n${listChapters(currentSubject, currentSubclass)}`);
+        stage = "chapter";
+        return;
+    }
+
+    if (stage === "chapter") {
+        currentChapter = message;
+        if (quizData[currentChapter]) {
+            botReply(`🎯 Starting quiz on *${currentChapter}*`);
+            startQuiz(currentChapter);
+        } else {
+            botReply("❌ Chapter not found. Please type the chapter name exactly as listed.");
+        }
+        return;
+    }
+
+    if (stage === "quiz") {
+        checkAnswer(message);
+        return;
+    }
+
+    if (stage === "score") {
+        if (message.toLowerCase() === "yes") {
+            botReply("✅ Let's go again! Which subject do you want to test? \n👉 Science, Math, Social Science, English");
+            stage = "subject";
+        } else {
+            botReply("🎉 Thank you for playing! Bye 👋");
+            stage = "done";
+        }
+    }
+}
+
+// ✅ List chapters based on subject/subclass
+function listChapters(subject, subclass = "") {
+    let chapters = Object.keys(quizData);
+    let filtered = [];
+
+    if (subject === "Science") {
+        if (subclass.toLowerCase() === "physics") {
+            filtered = [
+                "Light – Reflection & Refraction",
+                "Human Eye & Colourful World",
+                "Electricity",
+                "Magnetic Effects of Electric Current",
+                "Sources of Energy"
+            ];
+        } else if (subclass.toLowerCase() === "chemistry") {
+            filtered = [
+                "Chemical Reactions & Equations",
+                "Acids, Bases & Salts",
+                "Metals & Non‑Metals",
+                "Carbon & Its Compounds",
+                "Periodic Classification of Elements"
+            ];
+        } else if (subclass.toLowerCase() === "biology") {
+            filtered = [
+                "Life Processes",
+                "Control & Coordination",
+                "How Do Organisms Reproduce?",
+                "Heredity & Evolution",
+                "Our Environment",
+                "Management of Natural Resources"
+            ];
+        }
+    } else if (subject === "Math") {
+        filtered = chapters.filter(ch => [
+            "Real Numbers", "Polynomials", "Pair of Linear Equations in Two Variables",
+            "Quadratic Equations", "Arithmetic Progression", "Triangles",
+            "Coordinate Geometry", "Introduction to Trigonometry", "Some Applications of Trigonometry",
+            "Circles", "Constructions", "Surface Areas & Volumes", "Statistics", "Probability"
+        ].includes(ch));
+    } else if (subject === "Social Science") {
+        if (subclass.toLowerCase() === "history") filtered = ["History"];
+        if (subclass.toLowerCase() === "civics") filtered = ["Civics"];
+        if (subclass.toLowerCase() === "geography") filtered = ["Geography"];
+    } else if (subject === "English") {
+        if (subclass.toLowerCase() === "grammar") filtered = ["English Grammar"];
+        if (subclass.toLowerCase() === "literature") filtered = ["English Literature"];
+    }
+
+    return filtered.join(", ");
+}
+
+// ✅ Quiz functions
+function startQuiz(chapter) {
+    currentQuestions = quizData[chapter];
+    currentQuestionIndex = 0;
+    score = 0;
+    stage = "quiz";
+    askQuestion();
+}
+
+function askQuestion() {
+    if (currentQuestionIndex < currentQuestions.length) {
+        let q = currentQuestions[currentQuestionIndex];
+        botReply(`Q${currentQuestionIndex + 1}: ${q.q}\nOptions: ${q.options.join(", ")}`);
+    } else {
+        botReply(`🎯 Quiz finished! Your score: ${score}/${currentQuestions.length}`);
+        botReply("Do you want another quiz? (Yes/No)");
+        stage = "score";
+    }
+}
+
+function checkAnswer(userAnswer) {
+    let correct = currentQuestions[currentQuestionIndex].answer;
+    if (userAnswer.toLowerCase() === correct.toLowerCase()) {
+        score++;
+        botReply("✅ Correct!");
+    } else {
+        botReply(`❌ Wrong! Correct answer: ${correct}`);
+    }
+    currentQuestionIndex++;
+    askQuestion();
+}
