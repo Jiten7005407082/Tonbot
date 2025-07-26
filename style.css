@@ -1,14 +1,77 @@
-.option-btn {
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.chat-container {
+  width: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  background: #4CAF50;
+  color: white;
+  margin: 0;
+  padding: 12px;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  height: 400px;
+}
+
+.bot {
+  background: #e8f5e9;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.user {
+  background: #d1c4e9;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  align-self: flex-end;
+  max-width: 80%;
+  text-align: right;
+}
+
+.input-row {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
   background: #4CAF50;
   color: white;
   border: none;
-  margin: 5px;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 10px 16px;
   cursor: pointer;
-  font-size: 14px;
 }
 
-.option-btn:hover {
+button:hover {
   background: #45a049;
 }
