@@ -1,1081 +1,306 @@
 {
-  "Chemical Reactions & Equations": [
-    {
-      "q": "Which gas is released when zinc reacts with hydrochloric acid?",
-      "options": ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
-      "answer": "Hydrogen"
-    },
-    "Chemical Reactions & Equations": [
-  {
-    "q": "Which of the following is NOT a type of chemical reaction?",
-    "options": ["Combination", "Decomposition", "Reflection", "Displacement"],
-    "answer": "Reflection"
-  },
-  {
-    "q": "What type of reaction is: 2Mg + O₂ → 2MgO?",
-    "options": ["Decomposition", "Combination", "Displacement", "Double displacement"],
-    "answer": "Combination"
-  },
-  {
-    "q": "In the reaction CaCO₃ → CaO + CO₂, what type of reaction is this?",
-    "options": ["Decomposition", "Combination", "Neutralization", "Redox"],
-    "answer": "Decomposition"
-  },
-  {
-    "q": "Which of the following is a displacement reaction?",
-    "options": ["Zn + CuSO₄ → ZnSO₄ + Cu", "H₂ + Cl₂ → 2HCl", "2KClO₃ → 2KCl + 3O₂", "CaO + H₂O → Ca(OH)₂"],
-    "answer": "Zn + CuSO₄ → ZnSO₄ + Cu"
-  },
-  {
-    "q": "What is the color change when copper powder is heated?",
-    "options": ["Red to black", "Blue to green", "Brown to black", "Black to red"],
-    "answer": "Brown to black"
-  },
-  {
-    "q": "What is the reaction called when heat is absorbed from surroundings?",
-    "options": ["Exothermic", "Endothermic", "Displacement", "Neutralization"],
-    "answer": "Endothermic"
-  },
-  {
-    "q": "What type of chemical reaction is photosynthesis?",
-    "options": ["Exothermic", "Endothermic", "Displacement", "Combustion"],
-    "answer": "Endothermic"
-  },
-  {
-    "q": "Which gas is evolved when zinc reacts with hydrochloric acid?",
-    "options": ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
-    "answer": "Hydrogen"
-  },
-  {
-    "q": "Which is the oxidizing agent in the reaction: Zn + CuSO₄ → ZnSO₄ + Cu?",
-    "options": ["Zn", "Cu²⁺", "SO₄²⁻", "Cu"],
-    "answer": "Cu²⁺"
-  },
-  {
-    "q": "What is observed when iron nails are dipped into copper sulphate solution?",
-    "options": ["Solution turns blue", "Iron nails turn brownish", "Gas bubbles form", "Nothing happens"],
-    "answer": "Iron nails turn brownish"
-  },
-  {
-    "q": "Which of the following is a redox reaction?",
-    "options": ["2H₂ + O₂ → 2H₂O", "AgNO₃ + NaCl → AgCl + NaNO₃", "BaCl₂ + H₂SO₄ → BaSO₄ + 2HCl", "CaO + H₂O → Ca(OH)₂"],
-    "answer": "2H₂ + O₂ → 2H₂O"
-  },
-  {
-    "q": "What is the process of depositing a thin layer of zinc on iron called?",
-    "options": ["Rusting", "Alloying", "Galvanization", "Electroplating"],
-    "answer": "Galvanization"
-  },
-  {
-    "q": "What type of reaction is: AgNO₃ + NaCl → AgCl + NaNO₃?",
-    "options": ["Displacement", "Double displacement", "Decomposition", "Combination"],
-    "answer": "Double displacement"
-  },
-  {
-    "q": "What is the brown gas produced when lead nitrate is heated?",
-    "options": ["NO₂", "CO₂", "SO₂", "O₂"],
-    "answer": "NO₂"
-  },
-  {
-    "q": "Which of the following is an example of a combination reaction?",
-    "options": ["H₂ + Cl₂ → 2HCl", "CaCO₃ → CaO + CO₂", "Zn + CuSO₄ → ZnSO₄ + Cu", "AgNO₃ + NaCl → AgCl + NaNO₃"],
-    "answer": "H₂ + Cl₂ → 2HCl"
-  },
-  {
-    "q": "Which type of reaction is: Fe + CuSO₄ → FeSO₄ + Cu?",
-    "options": ["Combination", "Double displacement", "Displacement", "Decomposition"],
-    "answer": "Displacement"
-  },
-  {
-    "q": "Which chemical is used to test for the evolution of CO₂ gas?",
-    "options": ["Blue litmus paper", "Lime water", "Red litmus paper", "Phenolphthalein"],
-    "answer": "Lime water"
-  },
-  {
-    "q": "Which element is oxidized in the reaction Zn + H₂SO₄ → ZnSO₄ + H₂?",
-    "options": ["Zn", "H", "S", "O"],
-    "answer": "Zn"
-  },
-  {
-    "q": "What type of reaction occurs when electricity is passed through water to give hydrogen and oxygen?",
-    "options": ["Decomposition", "Displacement", "Neutralization", "Combination"],
-    "answer": "Decomposition"
-  },
-  {
-    "q": "Which reaction produces a precipitate?",
-    "options": ["AgNO₃ + NaCl → AgCl + NaNO₃", "2Mg + O₂ → 2MgO", "Zn + HCl → ZnCl₂ + H₂", "C + O₂ → CO₂"],
-    "answer": "AgNO₃ + NaCl → AgCl + NaNO₃"
-  },
-  {
-    "q": "What type of reaction is neutralization?",
-    "options": ["Combination", "Decomposition", "Double displacement", "Displacement"],
-    "answer": "Double displacement"
-  },
-  {
-    "q": "Which metal does NOT displace hydrogen from acids?",
-    "options": ["Copper", "Zinc", "Magnesium", "Iron"],
-    "answer": "Copper"
-  },
-  {
-    "q": "Which of the following reactions is endothermic?",
-    "options": ["Photosynthesis", "Combustion of fuels", "Respiration", "Neutralization"],
-    "answer": "Photosynthesis"
-  },
-  {
-    "q": "Which of these changes indicates a chemical reaction?",
-    "options": ["Color change", "Gas formation", "Temperature change", "All of these"],
-    "answer": "All of these"
-  },
-  {
-    "q": "What type of reaction is rusting of iron?",
-    "options": ["Redox", "Displacement", "Combination", "Neutralization"],
-    "answer": "Redox"
-  },
-  {
-    "q": "Which gas turns lime water milky?",
-    "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Sulphur dioxide"],
-    "answer": "Carbon dioxide"
-  },
-  {
-    "q": "When ammonium chloride is heated it breaks into NH₃ and HCl. This is an example of?",
-    "options": ["Combination", "Decomposition", "Neutralization", "Displacement"],
-    "answer": "Decomposition"
-  },
-  {
-    "q": "What is observed when a magnesium ribbon burns in air?",
-    "options": ["Red flame and black residue", "White dazzling flame and white powder", "Blue flame and green powder", "No visible change"],
-    "answer": "White dazzling flame and white powder"
-  },
-  {
-    "q": "Which of the following is an oxidation reaction?",
-    "options": ["2Cu + O₂ → 2CuO", "2MgO → 2Mg + O₂", "Zn + H₂ → ZnH₂", "C + 2Cl₂ → CCl₄"],
-    "answer": "2Cu + O₂ → 2CuO"
-  },
-  {
-    "q": "In a balanced chemical equation:",
-    "options": ["Mass is created", "Mass is destroyed", "Mass is conserved", "Atoms are destroyed"],
-    "answer": "Mass is conserved"
-  }
-]
-
-    {
-      "q": "Which type of reaction is rusting of iron?",
-      "options": ["Combination", "Decomposition", "Oxidation", "Displacement"],
-      "answer": "Oxidation"
-    },
-    {
-      "q": "The reaction of calcium oxide with water to form slaked lime is:",
-      "options": ["Endothermic", "Exothermic", "Neutral", "Substitution"],
-      "answer": "Exothermic"
-    },
-    {
-      "q": "Which of these is a displacement reaction?",
-      "options": ["Zn + CuSO₄ → ZnSO₄ + Cu", "CaO + H₂O → Ca(OH)₂", "2Mg + O₂ → 2MgO", "2KClO₃ → 2KCl + 3O₂"],
-      "answer": "Zn + CuSO₄ → ZnSO₄ + Cu"
-    }
-  ],
-  "Acids, Bases & Salts": [
-    {
-      "q": "What is the pH of a neutral solution?",
-      "options": ["1", "7", "14", "0"],
-      "answer": "7"
-    },
-    {
-      "q": "Which acid is present in vinegar?",
-      "options": ["Formic acid", "Acetic acid", "Oxalic acid", "Citric acid"],
-      "answer": "Acetic acid"
-    },
-    {
-      "q": "Common salt is chemically known as:",
-      "options": ["KCl", "NaCl", "NaOH", "Na₂CO₃"],
-      "answer": "NaCl"
-    },
-    {
-      "q": "Litmus solution turns red in:",
-      "options": ["Base", "Acid", "Salt", "Distilled water"],
-      "answer": "Acid"
-    }
-  ],
-  "Metals & Non‑Metals": [
-    {
-      "q": "Which metal is liquid at room temperature?",
-      "options": ["Mercury", "Sodium", "Potassium", "Lead"],
-      "answer": "Mercury"
-    },
-    {
-      "q": "The most malleable metal is:",
-      "options": ["Gold", "Iron", "Copper", "Zinc"],
-      "answer": "Gold"
-    },
-    {
-      "q": "Which gas is produced when metals react with acids?",
-      "options": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon dioxide"],
-      "answer": "Hydrogen"
-    },
-    {
-      "q": "Which non-metal is a good conductor of electricity?",
-      "options": ["Sulfur", "Graphite", "Phosphorus", "Iodine"],
-      "answer": "Graphite"
-    }
-  ],
-  "Carbon & Its Compounds": [
-    {
-      "q": "Which allotrope of carbon is used in jewellery?",
-      "options": ["Graphite", "Diamond", "Coal", "Fullerene"],
-      "answer": "Diamond"
-    },
-    {
-      "q": "Which gas is evolved on combustion of methane?",
-      "options": ["CO₂", "O₂", "H₂", "CO"],
-      "answer": "CO₂"
-    },
-    {
-      "q": "Soap is made by:",
-      "options": ["Saponification", "Oxidation", "Substitution", "Neutralisation"],
-      "answer": "Saponification"
-    },
-    {
-      "q": "C₂H₅OH is commonly known as:",
-      "options": ["Methanol", "Ethanol", "Propanol", "Butanol"],
-      "answer": "Ethanol"
-    }
-  ],
-  "Periodic Classification of Elements": [
-    {
-      "q": "Who is known as the father of the periodic table?",
-      "options": ["Mendeleev", "Dalton", "Newlands", "Dobereiner"],
-      "answer": "Mendeleev"
-    },
-    {
-      "q": "Modern periodic table is arranged by:",
-      "options": ["Atomic mass", "Atomic number", "Valency", "Density"],
-      "answer": "Atomic number"
-    },
-    {
-      "q": "Which group is called noble gases?",
-      "options": ["Group 17", "Group 1", "Group 18", "Group 16"],
-      "answer": "Group 18"
-    },
-    {
-      "q": "Which element is placed in group 1 and period 2?",
-      "options": ["Li", "Na", "K", "Rb"],
-      "answer": "Li"
-    }
-  ],
   "Light – Reflection & Refraction": [
     {
-      "q": "The image formed by a plane mirror is:",
-      "options": ["Real", "Virtual", "Inverted", "Magnified"],
-      "answer": "Virtual"
-    },"Light – Reflection & Refraction": [
-  {
-    "q": "What is the speed of light in air approximately?",
-    "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"],
-    "answer": "3 × 10⁸ m/s"
-  },
-  {
-    "q": "The angle between the incident ray and the normal is called?",
-    "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"],
-    "answer": "Angle of Incidence"
-  },
-  {
-    "q": "The bouncing back of light after hitting a polished surface is called?",
-    "options": ["Refraction", "Dispersion", "Reflection", "Scattering"],
-    "answer": "Reflection"
-  },
-  {
-    "q": "Which of the following obeys the laws of reflection?",
-    "options": ["Plane mirror", "Spherical mirror", "Both A and B", "None of these"],
-    "answer": "Both A and B"
-  },
-  {
-    "q": "What is the SI unit of refractive index?",
-    "options": ["No unit", "m/s", "meter", "candela"],
-    "answer": "No unit"
-  },
-  {
-    "q": "The phenomenon of bending of light when it passes from one medium to another is called?",
-    "options": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
-    "answer": "Refraction"
-  },
-  {
-    "q": "Which law states that the incident ray, refracted ray and normal all lie in the same plane?",
-    "options": ["Snell’s Law", "Law of Reflection", "Law of Refraction", "Law of Incidence"],
-    "answer": "Law of Refraction"
-  },
-  {
-    "q": "The ratio of speed of light in vacuum to speed of light in medium is called?",
-    "options": ["Refractive index", "Reflection ratio", "Speed index", "Light coefficient"],
-    "answer": "Refractive index"
-  },
-  {
-    "q": "What is the focal length of a plane mirror?",
-    "options": ["Infinite", "Zero", "10 cm", "Depends on object distance"],
-    "answer": "Infinite"
-  },
-  {
-    "q": "A real image is always?",
-    "options": ["Inverted", "Erect", "Virtual", "Same size as object"],
-    "answer": "Inverted"
-  },
-  {
-    "q": "If the refractive index of water is 1.33, this means:",
-    "options": ["Light travels 1.33 times faster in water", "Light slows down by 1.33 times in water", "Water has density 1.33 g/cm³", "None of these"],
-    "answer": "Light slows down by 1.33 times in water"
-  },
-  {
-    "q": "Which type of lens is used to correct myopia?",
-    "options": ["Convex lens", "Concave lens", "Cylindrical lens", "Bifocal lens"],
-    "answer": "Concave lens"
-  },
-  {
-    "q": "Which type of mirror is used in vehicles as rear-view mirrors?",
-    "options": ["Concave", "Convex", "Plane", "Parabolic"],
-    "answer": "Convex"
-  },
-  {
-    "q": "In a plane mirror, the image formed is always?",
-    "options": ["Real & inverted", "Virtual & erect", "Virtual & inverted", "Real & erect"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "If angle of incidence is 30°, what will be angle of reflection?",
-    "options": ["60°", "30°", "15°", "45°"],
-    "answer": "30°"
-  },
-  {
-    "q": "The power of a lens is measured in?",
-    "options": ["Diopter", "Candela", "Lumen", "Meter"],
-    "answer": "Diopter"
-  },
-  {
-    "q": "Which color of light deviates the least when passed through a prism?",
-    "options": ["Violet", "Red", "Green", "Blue"],
-    "answer": "Red"
-  },
-  {
-    "q": "What type of image does a concave mirror form when object is placed between focus and mirror?",
-    "options": ["Real & inverted", "Virtual & erect", "Enlarged & real", "Diminished & real"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "In refraction, when light passes from a denser to a rarer medium, it bends?",
-    "options": ["Towards normal", "Away from normal", "Does not bend", "Depends on color"],
-    "answer": "Away from normal"
-  },
-  {
-    "q": "Which phenomenon makes a straw appear bent in water?",
-    "options": ["Reflection", "Refraction", "Dispersion", "Scattering"],
-    "answer": "Refraction"
-  },
-  {
-    "q": "A concave mirror is also known as?",
-    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
-    "answer": "Converging mirror"
-  },
-  {
-    "q": "A convex mirror is also known as?",
-    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
-    "answer": "Diverging mirror"
-  },
-  {
-    "q": "When light travels from air into glass, its speed?",
-    "options": ["Increases", "Decreases", "Remains same", "First increases then decreases"],
-    "answer": "Decreases"
-  },
-  {
-    "q": "The mirror used by dentists is?",
-    "options": ["Plane mirror", "Concave mirror", "Convex mirror", "None"],
-    "answer": "Concave mirror"
-  },
-  {
-    "q": "The image formed by convex mirror is always?",
-    "options": ["Real & inverted", "Virtual & erect", "Varies with object distance", "None of these"],
-    "answer": "Virtual & erect"
-  },
-  {
-    "q": "Snell’s law relates which quantities?",
-    "options": ["Angles of incidence & reflection", "Angles of incidence & refraction", "Speed & wavelength", "Frequency & wavelength"],
-    "answer": "Angles of incidence & refraction"
-  },
-  {
-    "q": "What is the focal length of a convex mirror?",
-    "options": ["Positive", "Negative", "Zero", "Infinite"],
-    "answer": "Positive"
-  },
-  {
-    "q": "What is the focal length of a concave mirror?",
-    "options": ["Positive", "Negative", "Zero", "Infinite"],
-    "answer": "Negative"
-  },
-  {
-    "q": "Which lens is used in magnifying glasses?",
-    "options": ["Concave lens", "Convex lens", "Cylindrical lens", "Plano lens"],
-    "answer": "Convex lens"
-  },
-  {
-    "q": "Which of the following is NOT a law of reflection?",
-    "options": ["Angle of incidence = angle of reflection", "Incident ray, reflected ray, and normal are in same plane", "Reflected ray is always perpendicular to surface", "None of these"],
-    "answer": "Reflected ray is always perpendicular to surface"
-  }
-]
-
-    {
-      "q": "The mirror used in car headlights is:",
-      "options": ["Concave", "Convex", "Plane", "Cylindrical"],
-      "answer": "Concave"
+      "q": "What is the speed of light in air approximately?",
+      "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"],
+      "answer": "3 × 10⁸ m/s"
     },
     {
-      "q": "Which lens is used in a magnifying glass?",
-      "options": ["Concave", "Convex", "Bifocal", "Plano"],
-      "answer": "Convex"
+      "q": "The angle between the incident ray and the normal is called?",
+      "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"],
+      "answer": "Angle of Incidence"
     },
     {
-      "q": "Speed of light in air is about:",
-      "options": ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"],
-      "answer": "3×10⁸ m/s"
-    }
-  ],
-  "Human Eye & Colourful World": [
-    {
-      "q": "The part of the eye that controls the size of the pupil is:",
-      "options": ["Retina", "Cornea", "Iris", "Lens"],
-      "answer": "Iris"
+      "q": "The bouncing back of light after hitting a polished surface is called?",
+      "options": ["Refraction", "Dispersion", "Reflection", "Scattering"],
+      "answer": "Reflection"
     },
     {
-      "q": "Which phenomenon causes the sky to appear blue?",
-      "options": ["Dispersion", "Scattering", "Reflection", "Refraction"],
-      "answer": "Scattering"
+      "q": "Which of the following obeys the laws of reflection?",
+      "options": ["Plane mirror", "Spherical mirror", "Both A and B", "None of these"],
+      "answer": "Both A and B"
     },
     {
-      "q": "Which defect is corrected using convex lens?",
-      "options": ["Myopia", "Hypermetropia", "Astigmatism", "Color blindness"],
-      "answer": "Hypermetropia"
+      "q": "What is the SI unit of refractive index?",
+      "options": ["No unit", "m/s", "meter", "candela"],
+      "answer": "No unit"
     },
     {
-      "q": "Which phenomenon creates a rainbow?",
-      "options": ["Dispersion", "Reflection", "Diffraction", "Interference"],
-      "answer": "Dispersion"
-    }
-  ],
-  "Electricity": [
-    {
-      "q": "Unit of electric resistance?",
-      "options": ["Ohm", "Ampere", "Volt", "Coulomb"],
-      "answer": "Ohm"
+      "q": "The phenomenon of bending of light when it passes from one medium to another is called?",
+      "options": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
+      "answer": "Refraction"
     },
     {
-      "q": "What is the SI unit of electric current?",
-      "options": ["Volt", "Ampere", "Ohm", "Coulomb"],
-      "answer": "Ampere"
+      "q": "Which law states that the incident ray, refracted ray and normal all lie in the same plane?",
+      "options": ["Snell’s Law", "Law of Reflection", "Law of Refraction", "Law of Incidence"],
+      "answer": "Law of Refraction"
     },
     {
-      "q": "Device used to measure current:",
-      "options": ["Voltmeter", "Ammeter", "Galvanometer", "Ohmmeter"],
-      "answer": "Ammeter"
+      "q": "The ratio of speed of light in vacuum to speed of light in medium is called?",
+      "options": ["Refractive index", "Reflection ratio", "Speed index", "Light coefficient"],
+      "answer": "Refractive index"
     },
     {
-      "q": "What type of current is supplied to homes?",
-      "options": ["AC", "DC", "Both", "None"],
-      "answer": "AC"
-    }
-  ],
-  "Magnetic Effects of Electric Current": [
-    {
-      "q": "The magnetic field around a current carrying conductor is:",
-      "options": ["Circular", "Straight", "Elliptical", "Irregular"],
-      "answer": "Circular"
-    },
-    {
-      "q": "Right hand thumb rule gives direction of:",
-      "options": ["Current", "Force", "Magnetic field", "Voltage"],
-      "answer": "Magnetic field"
-    },
-    {
-      "q": "Device that converts mechanical energy to electrical energy:",
-      "options": ["Motor", "Generator", "Transformer", "Battery"],
-      "answer": "Generator"
-    },
-    {
-      "q": "Electromagnet strength can be increased by:",
-      "options": ["Reducing current", "Removing core", "Using iron core", "Using wood core"],
-      "answer": "Using iron core"
-    }
-  ],
-  "Sources of Energy": [
-    {
-      "q": "Which is a renewable energy source?",
-      "options": ["Coal", "Petroleum", "Solar", "Natural gas"],
-      "answer": "Solar"
-    },
-    {
-      "q": "Most widely used fuel in India?",
-      "options": ["Coal", "Petrol", "LPG", "Kerosene"],
-      "answer": "Coal"
-    },
-    {
-      "q": "Which device converts solar energy to electricity?",
-      "options": ["Solar cooker", "Solar cell", "Solar heater", "Solar panel"],
-      "answer": "Solar cell"
-    },
-    {
-      "q": "Which gas causes acid rain?",
-      "options": ["Oxygen", "Sulphur dioxide", "Nitrogen", "Carbon monoxide"],
-      "answer": "Sulphur dioxide"
-    }
-  ],
-  "Life Processes": [
-    {
-      "q": "Which process in plants uses sunlight?",
-      "options": ["Respiration", "Photosynthesis", "Transpiration", "Excretion"],
-      "answer": "Photosynthesis"
-    },
-    {
-      "q": "Which enzyme is in saliva?",
-      "options": ["Pepsin", "Amylase", "Trypsin", "Lipase"],
-      "answer": "Amylase"
-    },
-    {
-      "q": "What is the basic unit of kidney?",
-      "options": ["Neuron", "Nephron", "Alveoli", "Neutrino"],
-      "answer": "Nephron"
-    },
-    {
-      "q": "Which blood vessel carries oxygenated blood?",
-      "options": ["Vein", "Artery", "Capillary", "Venule"],
-      "answer": "Artery"
-    }
-  ],
-  "Control & Coordination": [
-    {
-      "q": "Which part of the brain controls involuntary actions?",
-      "options": ["Cerebrum", "Cerebellum", "Medulla oblongata", "Thalamus"],
-      "answer": "Medulla oblongata"
-    },
-    {
-      "q": "Which hormone is known as the 'fight or flight' hormone?",
-      "options": ["Insulin", "Adrenaline", "Thyroxine", "Estrogen"],
-      "answer": "Adrenaline"
-    },
-    {
-      "q": "Tropic movements in plants occur due to:",
-      "options": ["Nervous system", "Hormones", "Roots", "Leaves"],
-      "answer": "Hormones"
-    },
-    {
-      "q": "Which part of the plant shows geotropism?",
-      "options": ["Leaf", "Stem", "Root", "Flower"],
-      "answer": "Root"
-    }
-  ],
-  "How Do Organisms Reproduce?": [
-    {
-      "q": "Asexual reproduction in Hydra occurs by:",
-      "options": ["Binary fission", "Budding", "Fragmentation", "Spore formation"],
-      "answer": "Budding"
-    },
-    {
-      "q": "Which is the reproductive part of a plant?",
-      "options": ["Leaf", "Root", "Flower", "Stem"],
-      "answer": "Flower"
-    },
-    {
-      "q": "Which organ produces sperm in humans?",
-      "options": ["Ovary", "Testis", "Penis", "Prostate"],
-      "answer": "Testis"
-    },
-    {
-      "q": "The process of fusion of male and female gametes is:",
-      "options": ["Pollination", "Fertilization", "Reproduction", "Germination"],
-      "answer": "Fertilization"
-    }
-  ],
-  "Heredity & Evolution": [
-    {
-      "q": "Who is known as the father of genetics?",
-      "options": ["Darwin", "Mendel", "Lamarck", "Watson"],
-      "answer": "Mendel"
-    },
-    {
-      "q": "Which law explains the 3:1 ratio in monohybrid cross?",
-      "options": ["Law of dominance", "Law of segregation", "Law of independent assortment", "Theory of evolution"],
-      "answer": "Law of dominance"
-    },
-    {
-      "q": "Human height is an example of:",
-      "options": ["Single gene trait", "Multiple gene trait", "Mutation", "Inheritance"],
-      "answer": "Multiple gene trait"
-    },
-    {
-      "q": "The evolution theory was proposed by:",
-      "options": ["Darwin", "Mendel", "Newton", "Pasteur"],
-      "answer": "Darwin"
-    }
-  ],
-  "Our Environment": [
-    {
-      "q": "Which of these is a biodegradable substance?",
-      "options": ["Plastic", "Paper", "Glass", "Metal"],
-      "answer": "Paper"
-    },
-    {
-      "q": "The maximum energy in a food chain is at which level?",
-      "options": ["Top carnivores", "Producers", "Primary consumers", "Decomposers"],
-      "answer": "Producers"
-    },
-    {
-      "q": "Which gas is responsible for the greenhouse effect?",
-      "options": ["Oxygen", "CO₂", "Nitrogen", "Hydrogen"],
-      "answer": "CO₂"
-    },
-    {
-      "q": "An ecosystem includes:",
-      "options": ["Only plants", "Only animals", "Both living and non-living things", "Only water"],
-      "answer": "Both living and non-living things"
-    }
-  ],
-  "Management of Natural Resources": [
-    {
-      "q": "Chipko movement is related to:",
-      "options": ["Saving water", "Saving soil", "Saving forests", "Saving wildlife"],
-      "answer": "Saving forests"
-    },
-    {
-      "q": "Water harvesting is done to:",
-      "options": ["Increase rainfall", "Store rainwater", "Filter water", "None"],
-      "answer": "Store rainwater"
-    },
-    {
-      "q": "Which dam is built on river Sutlej?",
-      "options": ["Tehri", "Bhakra Nangal", "Sardar Sarovar", "Hirakud"],
-      "answer": "Bhakra Nangal"
-    },
-    {
-      "q": "Which resource is non-renewable?",
-      "options": ["Sunlight", "Coal", "Water", "Air"],
-      "answer": "Coal"
-    }
-  ],
-
-  "Real Numbers": [
-    {
-      "q": "What is the HCF of 12 and 18?",
-      "options": ["6", "4", "3", "12"],
-      "answer": "6"
-    },
-    {
-      "q": "√2 is an example of:",
-      "options": ["Natural", "Rational", "Irrational", "Whole"],
-      "answer": "Irrational"
-    },
-    {
-      "q": "LCM × HCF of two numbers equals:",
-      "options": ["Sum of numbers", "Difference of numbers", "Product of numbers", "None"],
-      "answer": "Product of numbers"
-    },
-    {
-      "q": "Every composite number can be expressed as:",
-      "options": ["A prime number", "Product of primes", "Sum of primes", "None"],
-      "answer": "Product of primes"
-    }
-  ],
-  "Polynomials": [
-    {
-      "q": "A polynomial of degree 2 is called:",
-      "options": ["Linear", "Quadratic", "Cubic", "Constant"],
-      "answer": "Quadratic"
-    },
-    {
-      "q": "If one zero of x² + 7x + k is −3, find k.",
-      "options": ["2", "4", "6", "5"],
-      "answer": "6"
-    },
-    {
-      "q": "A polynomial of degree 0 is:",
-      "options": ["Zero", "Constant", "Linear", "Quadratic"],
-      "answer": "Constant"
-    },
-    {
-      "q": "The sum of zeroes of 2x² – 8x + 6 is:",
-      "options": ["4", "2", "−4", "−2"],
-      "answer": "2"
-    }
-  ],
-  "Pair of Linear Equations in Two Variables": [
-    {
-      "q": "x + y = 5 and x − y = 1 gives x = ?",
-      "options": ["2", "3", "4", "1"],
-      "answer": "3"
-    },
-    {
-      "q": "Lines that coincide have how many solutions?",
-      "options": ["One", "Two", "Infinite", "None"],
+      "q": "What is the focal length of a plane mirror?",
+      "options": ["Infinite", "Zero", "10 cm", "Depends on object distance"],
       "answer": "Infinite"
     },
     {
-      "q": "Graph of a linear equation in two variables is a:",
-      "options": ["Curve", "Line", "Point", "Circle"],
-      "answer": "Line"
+      "q": "A real image is always?",
+      "options": ["Inverted", "Erect", "Virtual", "Same size as object"],
+      "answer": "Inverted"
     },
     {
-      "q": "Lines that intersect at one point have:",
-      "options": ["No solution", "One solution", "Two solutions", "Infinite solutions"],
-      "answer": "One solution"
+      "q": "If the refractive index of water is 1.33, this means:",
+      "options": ["Light travels 1.33 times faster in water", "Light slows down by 1.33 times in water", "Water has density 1.33 g/cm³", "None of these"],
+      "answer": "Light slows down by 1.33 times in water"
+    },
+    {
+      "q": "Which type of lens is used to correct myopia?",
+      "options": ["Convex lens", "Concave lens", "Cylindrical lens", "Bifocal lens"],
+      "answer": "Concave lens"
+    },
+    {
+      "q": "Which type of mirror is used in vehicles as rear-view mirrors?",
+      "options": ["Concave", "Convex", "Plane", "Parabolic"],
+      "answer": "Convex"
+    },
+    {
+      "q": "In a plane mirror, the image formed is always?",
+      "options": ["Real & inverted", "Virtual & erect", "Virtual & inverted", "Real & erect"],
+      "answer": "Virtual & erect"
+    },
+    {
+      "q": "If angle of incidence is 30°, what will be angle of reflection?",
+      "options": ["60°", "30°", "15°", "45°"],
+      "answer": "30°"
+    },
+    {
+      "q": "The power of a lens is measured in?",
+      "options": ["Diopter", "Candela", "Lumen", "Meter"],
+      "answer": "Diopter"
+    },
+    {
+      "q": "Which color of light deviates the least when passed through a prism?",
+      "options": ["Violet", "Red", "Green", "Blue"],
+      "answer": "Red"
+    },
+    {
+      "q": "What type of image does a concave mirror form when object is placed between focus and mirror?",
+      "options": ["Real & inverted", "Virtual & erect", "Enlarged & real", "Diminished & real"],
+      "answer": "Virtual & erect"
+    },
+    {
+      "q": "In refraction, when light passes from a denser to a rarer medium, it bends?",
+      "options": ["Towards normal", "Away from normal", "Does not bend", "Depends on color"],
+      "answer": "Away from normal"
+    },
+    {
+      "q": "Which phenomenon makes a straw appear bent in water?",
+      "options": ["Reflection", "Refraction", "Dispersion", "Scattering"],
+      "answer": "Refraction"
+    },
+    {
+      "q": "A concave mirror is also known as?",
+      "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
+      "answer": "Converging mirror"
+    },
+    {
+      "q": "A convex mirror is also known as?",
+      "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
+      "answer": "Diverging mirror"
+    },
+    {
+      "q": "When light travels from air into glass, its speed?",
+      "options": ["Increases", "Decreases", "Remains same", "First increases then decreases"],
+      "answer": "Decreases"
+    },
+    {
+      "q": "The mirror used by dentists is?",
+      "options": ["Plane mirror", "Concave mirror", "Convex mirror", "None"],
+      "answer": "Concave mirror"
+    },
+    {
+      "q": "The image formed by convex mirror is always?",
+      "options": ["Real & inverted", "Virtual & erect", "Varies with object distance", "None of these"],
+      "answer": "Virtual & erect"
+    },
+    {
+      "q": "Snell’s law relates which quantities?",
+      "options": ["Angles of incidence & reflection", "Angles of incidence & refraction", "Speed & wavelength", "Frequency & wavelength"],
+      "answer": "Angles of incidence & refraction"
+    },
+    {
+      "q": "What is the focal length of a convex mirror?",
+      "options": ["Positive", "Negative", "Zero", "Infinite"],
+      "answer": "Positive"
+    },
+    {
+      "q": "What is the focal length of a concave mirror?",
+      "options": ["Positive", "Negative", "Zero", "Infinite"],
+      "answer": "Negative"
+    },
+    {
+      "q": "Which lens is used in magnifying glasses?",
+      "options": ["Concave lens", "Convex lens", "Cylindrical lens", "Plano lens"],
+      "answer": "Convex lens"
+    },
+    {
+      "q": "Which of the following is NOT a law of reflection?",
+      "options": ["Angle of incidence = angle of reflection", "Incident ray, reflected ray, and normal are in same plane", "Reflected ray is always perpendicular to surface", "None of these"],
+      "answer": "Reflected ray is always perpendicular to surface"
     }
   ],
-  "Quadratic Equations": [
+  "Chemical Reactions & Equations": [
     {
-      "q": "The general form of a quadratic equation is:",
-      "options": ["ax + b = 0", "ax² + bx + c = 0", "ax³ + bx + c = 0", "None"],
-      "answer": "ax² + bx + c = 0"
+      "q": "Which of the following is NOT a type of chemical reaction?",
+      "options": ["Combination", "Decomposition", "Reflection", "Displacement"],
+      "answer": "Reflection"
     },
     {
-      "q": "If one root of x² – 5x + k = 0 is 2, find k.",
-      "options": ["2", "3", "4", "5"],
-      "answer": "3"
+      "q": "What type of reaction is: 2Mg + O₂ → 2MgO?",
+      "options": ["Decomposition", "Combination", "Displacement", "Double displacement"],
+      "answer": "Combination"
     },
     {
-      "q": "The discriminant of 2x² − 3x + 1 is:",
-      "options": ["1", "5", "7", "3"],
-      "answer": "1"
+      "q": "In the reaction CaCO₃ → CaO + CO₂, what type of reaction is this?",
+      "options": ["Decomposition", "Combination", "Neutralization", "Redox"],
+      "answer": "Decomposition"
     },
     {
-      "q": "Number of roots for Δ > 0 is:",
-      "options": ["1", "2 real & unequal", "2 real & equal", "None"],
-      "answer": "2 real & unequal"
-    }
-  ],
-  "Arithmetic Progression": [
-    {
-      "q": "The nth term of an AP is given by:",
-      "options": ["a + (n − 1)d", "a − (n − 1)d", "a + nd", "a − nd"],
-      "answer": "a + (n − 1)d"
+      "q": "Which of the following is a displacement reaction?",
+      "options": ["Zn + CuSO₄ → ZnSO₄ + Cu", "H₂ + Cl₂ → 2HCl", "2KClO₃ → 2KCl + 3O₂", "CaO + H₂O → Ca(OH)₂"],
+      "answer": "Zn + CuSO₄ → ZnSO₄ + Cu"
     },
     {
-      "q": "Find the 10th term of AP: 2, 5, 8,…",
-      "options": ["29", "30", "31", "32"],
-      "answer": "29"
+      "q": "What is the color change when copper powder is heated?",
+      "options": ["Red to black", "Blue to green", "Brown to black", "Black to red"],
+      "answer": "Brown to black"
     },
     {
-      "q": "In AP, if a = 3, d = 2, find a₅.",
-      "options": ["9", "11", "13", "15"],
-      "answer": "11"
+      "q": "What is the reaction called when heat is absorbed from surroundings?",
+      "options": ["Exothermic", "Endothermic", "Displacement", "Neutralization"],
+      "answer": "Endothermic"
     },
     {
-      "q": "Sum of first n terms of AP is:",
-      "options": ["n/2 (2a + (n − 1)d)", "n/2 (a + d)", "2a + d", "a + nd"],
-      "answer": "n/2 (2a + (n − 1)d)"
-    }
-  ]
-,
-  "Triangles": [
-    {
-      "q": "The Pythagoras theorem applies to which triangle?",
-      "options": ["Equilateral", "Isosceles", "Right-angled", "Scalene"],
-      "answer": "Right-angled"
+      "q": "What type of chemical reaction is photosynthesis?",
+      "options": ["Exothermic", "Endothermic", "Displacement", "Combustion"],
+      "answer": "Endothermic"
     },
     {
-      "q": "Two triangles are similar if their:",
-      "options": ["Sides equal", "Angles equal", "Perimeters equal", "Heights equal"],
-      "answer": "Angles equal"
+      "q": "Which gas is evolved when zinc reacts with hydrochloric acid?",
+      "options": ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
+      "answer": "Hydrogen"
     },
     {
-      "q": "The ratio of areas of two similar triangles is equal to:",
-      "options": ["Ratio of sides", "Square of ratio of sides", "Cube of ratio of sides", "None"],
-      "answer": "Square of ratio of sides"
+      "q": "Which is the oxidizing agent in the reaction: Zn + CuSO₄ → ZnSO₄ + Cu?",
+      "options": ["Zn", "Cu²⁺", "SO₄²⁻", "Cu"],
+      "answer": "Cu²⁺"
     },
     {
-      "q": "The sum of angles of a triangle is:",
-      "options": ["90°", "120°", "180°", "360°"],
-      "answer": "180°"
-    }
-  ],
-  "Coordinate Geometry": [
-    {
-      "q": "What is the distance between (0,0) and (3,4)?",
-      "options": ["5", "6", "7", "4"],
-      "answer": "5"
+      "q": "What is observed when iron nails are dipped into copper sulphate solution?",
+      "options": ["Solution turns blue", "Iron nails turn brownish", "Gas bubbles form", "Nothing happens"],
+      "answer": "Iron nails turn brownish"
     },
     {
-      "q": "Slope of x-axis is:",
-      "options": ["0", "1", "Infinity", "−1"],
-      "answer": "0"
+      "q": "Which of the following is a redox reaction?",
+      "options": ["2H₂ + O₂ → 2H₂O", "AgNO₃ + NaCl → AgCl + NaNO₃", "BaCl₂ + H₂SO₄ → BaSO₄ + 2HCl", "CaO + H₂O → Ca(OH)₂"],
+      "answer": "2H₂ + O₂ → 2H₂O"
     },
     {
-      "q": "The coordinates of origin are:",
-      "options": ["(1,1)", "(0,0)", "(1,0)", "(0,1)"],
-      "answer": "(0,0)"
+      "q": "What is the process of depositing a thin layer of zinc on iron called?",
+      "options": ["Rusting", "Alloying", "Galvanization", "Electroplating"],
+      "answer": "Galvanization"
     },
     {
-      "q": "Midpoint of (2,4) and (6,8) is:",
-      "options": ["(4,6)", "(5,7)", "(3,5)", "(6,9)"],
-      "answer": "(4,6)"
-    }
-  ],
-  "Introduction to Trigonometry": [
-    {
-      "q": "sin 90° = ?",
-      "options": ["0", "1", "√3/2", "1/2"],
-      "answer": "1"
+      "q": "What type of reaction is: AgNO₃ + NaCl → AgCl + NaNO₃?",
+      "options": ["Displacement", "Double displacement", "Decomposition", "Combination"],
+      "answer": "Double displacement"
     },
     {
-      "q": "tan 45° = ?",
-      "options": ["0", "1", "∞", "√3"],
-      "answer": "1"
+      "q": "What is the brown gas produced when lead nitrate is heated?",
+      "options": ["NO₂", "CO₂", "SO₂", "O₂"],
+      "answer": "NO₂"
     },
     {
-      "q": "sec²θ − tan²θ = ?",
-      "options": ["1", "0", "sinθ", "cosθ"],
-      "answer": "1"
+      "q": "Which of the following is an example of a combination reaction?",
+      "options": ["H₂ + Cl₂ → 2HCl", "CaCO₃ → CaO + CO₂", "Zn + CuSO₄ → ZnSO₄ + Cu", "AgNO₃ + NaCl → AgCl + NaNO₃"],
+      "answer": "H₂ + Cl₂ → 2HCl"
     },
     {
-      "q": "cosec 30° = ?",
-      "options": ["1", "2", "√2", "1/2"],
-      "answer": "2"
-    }
-  ],
-  "Some Applications of Trigonometry": [
-    {
-      "q": "The branch of mathematics used in heights and distances is:",
-      "options": ["Algebra", "Geometry", "Trigonometry", "Calculus"],
-      "answer": "Trigonometry"
+      "q": "Which type of reaction is: Fe + CuSO₄ → FeSO₄ + Cu?",
+      "options": ["Combination", "Double displacement", "Displacement", "Decomposition"],
+      "answer": "Displacement"
     },
     {
-      "q": "The angle of elevation is measured from:",
-      "options": ["Above the horizontal", "Below the horizontal", "At the center", "None"],
-      "answer": "Above the horizontal"
+      "q": "Which chemical is used to test for the evolution of CO₂ gas?",
+      "options": ["Blue litmus paper", "Lime water", "Red litmus paper", "Phenolphthalein"],
+      "answer": "Lime water"
     },
     {
-      "q": "The angle of depression is measured from:",
-      "options": ["Above the horizontal", "Below the horizontal", "Right angle", "None"],
-      "answer": "Below the horizontal"
+      "q": "Which element is oxidized in the reaction Zn + H₂SO₄ → ZnSO₄ + H₂?",
+      "options": ["Zn", "H", "S", "O"],
+      "answer": "Zn"
     },
     {
-      "q": "What trigonometric ratio is used for opposite/adjacent?",
-      "options": ["sin", "cos", "tan", "cosec"],
-      "answer": "tan"
-    }
-  ],
-  "Circles": [
-    {
-      "q": "The tangent to a circle makes what angle with the radius?",
-      "options": ["0°", "45°", "60°", "90°"],
-      "answer": "90°"
+      "q": "What type of reaction occurs when electricity is passed through water to give hydrogen and oxygen?",
+      "options": ["Decomposition", "Displacement", "Neutralization", "Combination"],
+      "answer": "Decomposition"
     },
     {
-      "q": "How many tangents can be drawn to a circle from an external point?",
-      "options": ["1", "2", "3", "Infinite"],
-      "answer": "2"
+      "q": "Which reaction produces a precipitate?",
+      "options": ["AgNO₃ + NaCl → AgCl + NaNO₃", "2Mg + O₂ → 2MgO", "Zn + HCl → ZnCl₂ + H₂", "C + O₂ → CO₂"],
+      "answer": "AgNO₃ + NaCl → AgCl + NaNO₃"
     },
     {
-      "q": "A line intersecting a circle at two points is called:",
-      "options": ["Tangent", "Chord", "Secant", "Diameter"],
-      "answer": "Secant"
+      "q": "What type of reaction is neutralization?",
+      "options": ["Combination", "Decomposition", "Double displacement", "Displacement"],
+      "answer": "Double displacement"
     },
     {
-      "q": "A tangent touches a circle at:",
-      "options": ["Two points", "One point", "Three points", "No points"],
-      "answer": "One point"
-    }
-  ],
-  "Constructions": [
-    {
-      "q": "The method of drawing a tangent without using center involves:",
-      "options": ["Bisecting chords", "Using arcs", "Using secants", "None"],
-      "answer": "Bisecting chords"
+      "q": "Which metal does NOT displace hydrogen from acids?",
+      "options": ["Copper", "Zinc", "Magnesium", "Iron"],
+      "answer": "Copper"
     },
     {
-      "q": "Number of tangents from an external point is:",
-      "options": ["1", "2", "3", "Infinite"],
-      "answer": "2"
+      "q": "Which of the following reactions is endothermic?",
+      "options": ["Photosynthesis", "Combustion of fuels", "Respiration", "Neutralization"],
+      "answer": "Photosynthesis"
     },
     {
-      "q": "A triangle can be constructed if its:",
-      "options": ["Two angles given", "Three sides given", "Two heights given", "None"],
-      "answer": "Three sides given"
+      "q": "Which of these changes indicates a chemical reaction?",
+      "options": ["Color change", "Gas formation", "Temperature change", "All of these"],
+      "answer": "All of these"
     },
     {
-      "q": "The instrument used for drawing arcs is:",
-      "options": ["Ruler", "Divider", "Compass", "Set square"],
-      "answer": "Compass"
-    }
-  ],
-  "Surface Areas & Volumes": [
-    {
-      "q": "The formula for the volume of a sphere is:",
-      "options": ["4/3πr³", "2πr³", "πr²h", "πr³/3"],
-      "answer": "4/3πr³"
+      "q": "What type of reaction is rusting of iron?",
+      "options": ["Redox", "Displacement", "Combination", "Neutralization"],
+      "answer": "Redox"
     },
     {
-      "q": "The curved surface area of a cylinder is:",
-      "options": ["2πrh", "πr²", "4πr²", "πrl"],
-      "answer": "2πrh"
+      "q": "Which gas turns lime water milky?",
+      "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Sulphur dioxide"],
+      "answer": "Carbon dioxide"
     },
     {
-      "q": "What is the surface area of a cube of side a?",
-      "options": ["4a²", "5a²", "6a²", "7a²"],
-      "answer": "6a²"
+      "q": "When ammonium chloride is heated it breaks into NH₃ and HCl. This is an example of?",
+      "options": ["Combination", "Decomposition", "Neutralization", "Displacement"],
+      "answer": "Decomposition"
     },
     {
-      "q": "Volume of a cone is:",
-      "options": ["1/3πr²h", "πr²h", "2/3πr²h", "4/3πr³"],
-      "answer": "1/3πr²h"
-    }
-  ],
-  "Statistics": [
-    {
-      "q": "The mean is obtained by dividing:",
-      "options": ["Sum of values by number of values", "Number of values by sum", "Values by frequency", "None"],
-      "answer": "Sum of values by number of values"
+      "q": "What is observed when a magnesium ribbon burns in air?",
+      "options": ["Red flame and black residue", "White dazzling flame and white powder", "Blue flame and green powder", "No visible change"],
+      "answer": "White dazzling flame and white powder"
     },
     {
-      "q": "The median is:",
-      "options": ["Middle value", "Highest value", "Lowest value", "Average value"],
-      "answer": "Middle value"
+      "q": "Which of the following is an oxidation reaction?",
+      "options": ["2Cu + O₂ → 2CuO", "2MgO → 2Mg + O₂", "Zn + H₂ → ZnH₂", "C + 2Cl₂ → CCl₄"],
+      "answer": "2Cu + O₂ → 2CuO"
     },
     {
-      "q": "Mode is the value that occurs:",
-      "options": ["Once", "Most frequently", "Least frequently", "Randomly"],
-      "answer": "Most frequently"
-    },
-    {
-      "q": "The difference between highest and lowest values is:",
-      "options": ["Median", "Mean", "Range", "Frequency"],
-      "answer": "Range"
-    }
-  ],
-  "Probability": [
-    {
-      "q": "Probability of an impossible event is:",
-      "options": ["1", "0", "1/2", "−1"],
-      "answer": "0"
-    },
-    {
-      "q": "Probability of a certain event is:",
-      "options": ["1", "0", "1/2", "2"],
-      "answer": "1"
-    },
-    {
-      "q": "The probability of getting a head in a coin toss is:",
-      "options": ["1/2", "1/3", "1", "0"],
-      "answer": "1/2"
-    },
-    {
-      "q": "Which cannot be the probability of an event?",
-      "options": ["1", "0", "1.5", "1/4"],
-      "answer": "1.5"
-    }
-  ],
-
-  "History": [
-    {
-      "q": "Who was the first Governor-General of India?",
-      "options": ["Warren Hastings", "Lord Cornwallis", "Lord Wellesley", "Lord Dalhousie"],
-      "answer": "Warren Hastings"
-    },
-    {
-      "q": "The revolt of 1857 is also called:",
-      "options": ["Sepoy Mutiny", "Indian War", "British Revolt", "National Rebellion"],
-      "answer": "Sepoy Mutiny"
-    },
-    {
-      "q": "Who wrote 'Discovery of India'?",
-      "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhash Chandra Bose", "B.R. Ambedkar"],
-      "answer": "Jawaharlal Nehru"
-    },
-    {
-      "q": "When did India get independence?",
-      "options": ["1945", "1947", "1950", "1962"],
-      "answer": "1947"
-    }
-  ],
-  "Civics": [
-    {
-      "q": "India is a:",
-      "options": ["Monarchy", "Democracy", "Dictatorship", "Theocracy"],
-      "answer": "Democracy"
-    },
-    {
-      "q": "How many fundamental rights are there in Indian Constitution?",
-      "options": ["5", "6", "7", "8"],
-      "answer": "6"
-    },
-    {
-      "q": "Who is the head of the state?",
-      "options": ["President", "Prime Minister", "Governor", "Chief Minister"],
-      "answer": "President"
-    },
-    {
-      "q": "Which is NOT a state subject?",
-      "options": ["Police", "Agriculture", "Education", "Railways"],
-      "answer": "Railways"
-    }
-  ],
-  "Geography": [
-    {
-      "q": "The largest planet in the solar system is:",
-      "options": ["Earth", "Saturn", "Jupiter", "Mars"],
-      "answer": "Jupiter"
-    },
-    {
-      "q": "Which river is the longest in India?",
-      "options": ["Ganga", "Yamuna", "Brahmaputra", "Narmada"],
-      "answer": "Ganga"
-    },
-    {
-      "q": "The Tropic of Cancer passes through how many states in India?",
-      "options": ["6", "7", "8", "9"],
-      "answer": "8"
-    },
-    {
-      "q": "Which is the southernmost point of India?",
-      "options": ["Kanyakumari", "Indira Point", "Rameswaram", "Lakshadweep"],
-      "answer": "Indira Point"
-    }
-  ]
-,
-  "English Grammar": [
-    {
-      "q": "Choose the correct tense: She ____ to school every day.",
-      "options": ["go", "goes", "gone", "going"],
-      "answer": "goes"
-    },
-    {
-      "q": "Identify the adjective: The sky is blue.",
-      "options": ["sky", "is", "blue", "the"],
-      "answer": "blue"
-    },
-    {
-      "q": "Pick the correct passive form: They wrote a letter.",
-      "options": ["A letter wrote by them", "A letter was written by them", "A letter is written by them", "A letter writing by them"],
-      "answer": "A letter was written by them"
-    },
-    {
-      "q": "Which is a preposition?",
-      "options": ["under", "quickly", "beautiful", "sing"],
-      "answer": "under"
-    }
-  ],
-  "English Literature": [
-    {
-      "q": "Who wrote the play 'Julius Caesar'?",
-      "options": ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
-      "answer": "William Shakespeare"
-    },
-    {
-      "q": "In ‘The Merchant of Venice’, who demanded a pound of flesh?",
-      "options": ["Antonio", "Bassanio", "Shylock", "Gratiano"],
-      "answer": "Shylock"
-    },
-    {
-      "q": "In poetry, a fourteen-line poem is called?",
-      "options": ["Sonnet", "Ode", "Epic", "Ballad"],
-      "answer": "Sonnet"
-    },
-    {
-      "q": "The moral of ‘The Necklace’ by Guy de Maupassant is about:",
-      "options": ["Truthfulness", "Honesty", "Vanity & pride", "Charity"],
-      "answer": "Vanity & pride"
+      "q": "In a balanced chemical equation:",
+      "options": ["Mass is created", "Mass is destroyed", "Mass is conserved", "Atoms are destroyed"],
+      "answer": "Mass is conserved"
     }
   ]
 }
