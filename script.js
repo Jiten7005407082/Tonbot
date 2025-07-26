@@ -10,12 +10,13 @@ let waitingForSubject = false;
 let waitingForSubClass = false;
 let waitingForChapter = false;
 let inQuiz = false;
+let waitingForReplay = false;   // ✅ NEW flag for replay choice
 
 let selectedSubject = "";
 let selectedSubClass = "";
 let selectedChapter = "";
 
-// ✅ All chapters by subject & subclass
+// ✅ All chapters by subject & subclass (same as before)
 const chapters = {
   "Science": {
     "Physics": ["Light – Reflection & Refraction", "Human Eye & Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Source of Energy"],
@@ -37,7 +38,7 @@ const chapters = {
   }
 };
 
-// ✅ Sample quiz questions (only one chapter for demo)
+// ✅ Sample quiz questions (just one chapter for demo)
 const quizQuestions = {
   "Light – Reflection & Refraction": [
     { q: "What is the speed of light in vacuum?", options: ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"], answer: "3×10⁸ m/s" },
@@ -47,7 +48,6 @@ const quizQuestions = {
   ]
 };
 
-// --- QUIZ state
 let currentQuestionIndex = 0;
 let score = 0;
 
@@ -86,7 +86,7 @@ function handleUserInput() {
     userName = text;
     addMessage(`Nice to meet you, ${userName}! What can I do for you today?`, 'bot');
     askedName = false;
-  } else if (waitingForSubject || waitingForSubClass || waitingForChapter || inQuiz) {
+  } else if (waitingForSubject || waitingForSubClass || waitingForChapter || inQuiz || waitingForReplay) {
     addMessage(`Please click one of the options above, ${userName}.`, 'bot');
   } else {
     botReply(text);
@@ -97,9 +97,7 @@ function botReply(text) {
   const lower = text.toLowerCase();
 
   if (lower.includes("iq")) {
-    addMessage(`Great! In which subject do you want to test your IQ?`, 'bot');
-    ["Science", "Math", "Social Science", "English"].forEach(addOption);
-    waitingForSubject = true;
+    askSubject();
   } else {
     addMessage(`I’m here to chat or help you test your IQ, ${userName}. Just type: “I want to test my IQ.”`, 'bot');
   }
@@ -109,7 +107,6 @@ function botReply(text) {
 function handleOptionClick(option) {
   addMessage(option, 'user');
 
-  // --- SUBJECT SELECTED ---
   if (waitingForSubject) {
     selectedSubject = option;
     waitingForSubject = false;
@@ -137,7 +134,6 @@ function handleOptionClick(option) {
       chapters["Math"][""].forEach(addOption);
     }
 
-  // --- SUBCLASS SELECTED ---
   } else if (waitingForSubClass) {
     selectedSubClass = option;
     waitingForSubClass = false;
@@ -145,17 +141,31 @@ function handleOptionClick(option) {
     addMessage(`Perfect! Choose a chapter in ${option}, ${userName}:`, 'bot');
     chapters[selectedSubject][selectedSubClass].forEach(addOption);
 
-  // --- CHAPTER SELECTED ---
   } else if (waitingForChapter) {
     waitingForChapter = false;
     selectedChapter = option;
     addMessage(`Great! Let's start your IQ test on "${option}", ${userName}!`, 'bot');
     startQuiz(option);
 
-  // --- QUIZ ANSWER SELECTED ---
   } else if (inQuiz) {
     checkAnswer(option);
+
+  } else if (waitingForReplay) {
+    waitingForReplay = false;
+    if (option === "Yes") {
+      addMessage("Awesome! Let's start a new quiz.", 'bot');
+      askSubject();
+    } else {
+      addMessage("Thanks for playing! 👋 Have a great day.", 'bot');
+    }
   }
+}
+
+// ✅ Ask subject selection again
+function askSubject() {
+  addMessage(`Great! In which subject do you want to test your IQ?`, 'bot');
+  ["Science", "Math", "Social Science", "English"].forEach(addOption);
+  waitingForSubject = true;
 }
 
 // ✅ QUIZ: Start quiz for selected chapter
@@ -170,7 +180,6 @@ function startQuiz(chapter) {
 function askQuestion() {
   const questionSet = quizQuestions[selectedChapter];
   
-  // If no questions for this chapter
   if (!questionSet) {
     addMessage(`Sorry, quiz questions for "${selectedChapter}" are not ready yet.`, 'bot');
     inQuiz = false;
@@ -182,9 +191,14 @@ function askQuestion() {
     addMessage(`Q${currentQuestionIndex+1}: ${q.q}`, 'bot');
     q.options.forEach(addOption);
   } else {
-    // Quiz finished
+    // 🎯 Quiz finished
     addMessage(`🎉 Quiz finished! You scored ${score}/${questionSet.length}, ${userName}.`, 'bot');
     inQuiz = false;
+    // ✅ Ask if user wants another quiz
+    addMessage("Would you like to take another quiz?", 'bot');
+    addOption("Yes");
+    addOption("No");
+    waitingForReplay = true;
   }
 }
 
