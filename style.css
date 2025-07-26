@@ -1,62 +1,64 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
 }
 
 .chat-container {
   width: 400px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 h2 {
-  text-align: center;
   background: #4CAF50;
   color: white;
   margin: 0;
   padding: 12px;
+  text-align: center;
 }
 
 .chat-box {
-  flex: 1;
+  height: 400px;
   padding: 10px;
   overflow-y: auto;
-  height: 400px;
+  background: #fafafa;
+}
+
+.bot, .user {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
 }
 
 .bot {
-  background: #e8f5e9;
-  margin: 8px 0;
-  padding: 8px 12px;
-  border-radius: 10px;
-  max-width: 80%;
+  background: #e0f7fa;
+  align-self: flex-start;
 }
 
 .user {
-  background: #d1c4e9;
-  margin: 8px 0;
-  padding: 8px 12px;
-  border-radius: 10px;
+  background: #c8e6c9;
   align-self: flex-end;
-  max-width: 80%;
   text-align: right;
 }
 
-.input-row {
+.input-box {
   display: flex;
   border-top: 1px solid #ddd;
 }
 
-input {
+.input-box input {
   flex: 1;
   padding: 10px;
   border: none;
@@ -64,14 +66,14 @@ input {
   font-size: 16px;
 }
 
-button {
+.input-box button {
   background: #4CAF50;
   color: white;
   border: none;
-  padding: 10px 16px;
+  padding: 10px 15px;
   cursor: pointer;
 }
 
-button:hover {
+.input-box button:hover {
   background: #45a049;
 }
