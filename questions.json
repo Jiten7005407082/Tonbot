@@ -197,7 +197,7 @@
       "answer": "Using iron core"
     }
   ],
-  "Source of Energy": [
+  "Sources of Energy": [
     {
       "q": "Which is a renewable energy source?",
       "options": ["Coal", "Petroleum", "Solar", "Natural gas"],
@@ -241,5 +241,3 @@
       "answer": "Artery"
     }
   ],
-  "...": []
-}
