@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+
 const chatBox = document.getElementById('chat-box');
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
@@ -35,15 +37,14 @@ const chapters = {
   }
 };
 
-// ✅ Sample quiz questions (4 per chapter)
+// ✅ Sample quiz questions (only one chapter for demo)
 const quizQuestions = {
   "Light – Reflection & Refraction": [
     { q: "What is the speed of light in vacuum?", options: ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"], answer: "3×10⁸ m/s" },
     { q: "Which mirror is used in headlights?", options: ["Concave", "Convex", "Plane", "Cylindrical"], answer: "Concave" },
     { q: "What is the refractive index of water?", options: ["1.33", "1.50", "1.00", "2.42"], answer: "1.33" },
     { q: "Which lens corrects myopia?", options: ["Concave", "Convex", "Bifocal", "Plano"], answer: "Concave" }
-  ],
-  // ✅ Add at least one set for every chapter you want to test
+  ]
 };
 
 // --- QUIZ state
@@ -201,3 +202,5 @@ function checkAnswer(selectedOption) {
   currentQuestionIndex++;
   askQuestion();
 }
+
+}); // DOMContentLoaded end
