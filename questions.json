@@ -241,3 +241,224 @@
       "answer": "Artery"
     }
   ],
+  "Control & Coordination": [
+    {
+      "q": "Which part of the brain controls involuntary actions?",
+      "options": ["Cerebrum", "Cerebellum", "Medulla oblongata", "Thalamus"],
+      "answer": "Medulla oblongata"
+    },
+    {
+      "q": "Which hormone is known as the 'fight or flight' hormone?",
+      "options": ["Insulin", "Adrenaline", "Thyroxine", "Estrogen"],
+      "answer": "Adrenaline"
+    },
+    {
+      "q": "Tropic movements in plants occur due to:",
+      "options": ["Nervous system", "Hormones", "Roots", "Leaves"],
+      "answer": "Hormones"
+    },
+    {
+      "q": "Which part of the plant shows geotropism?",
+      "options": ["Leaf", "Stem", "Root", "Flower"],
+      "answer": "Root"
+    }
+  ],
+  "How Do Organisms Reproduce?": [
+    {
+      "q": "Asexual reproduction in Hydra occurs by:",
+      "options": ["Binary fission", "Budding", "Fragmentation", "Spore formation"],
+      "answer": "Budding"
+    },
+    {
+      "q": "Which is the reproductive part of a plant?",
+      "options": ["Leaf", "Root", "Flower", "Stem"],
+      "answer": "Flower"
+    },
+    {
+      "q": "Which organ produces sperm in humans?",
+      "options": ["Ovary", "Testis", "Penis", "Prostate"],
+      "answer": "Testis"
+    },
+    {
+      "q": "The process of fusion of male and female gametes is:",
+      "options": ["Pollination", "Fertilization", "Reproduction", "Germination"],
+      "answer": "Fertilization"
+    }
+  ],
+  "Heredity & Evolution": [
+    {
+      "q": "Who is known as the father of genetics?",
+      "options": ["Darwin", "Mendel", "Lamarck", "Watson"],
+      "answer": "Mendel"
+    },
+    {
+      "q": "Which law explains the 3:1 ratio in monohybrid cross?",
+      "options": ["Law of dominance", "Law of segregation", "Law of independent assortment", "Theory of evolution"],
+      "answer": "Law of dominance"
+    },
+    {
+      "q": "Human height is an example of:",
+      "options": ["Single gene trait", "Multiple gene trait", "Mutation", "Inheritance"],
+      "answer": "Multiple gene trait"
+    },
+    {
+      "q": "The evolution theory was proposed by:",
+      "options": ["Darwin", "Mendel", "Newton", "Pasteur"],
+      "answer": "Darwin"
+    }
+  ],
+  "Our Environment": [
+    {
+      "q": "Which of these is a biodegradable substance?",
+      "options": ["Plastic", "Paper", "Glass", "Metal"],
+      "answer": "Paper"
+    },
+    {
+      "q": "The maximum energy in a food chain is at which level?",
+      "options": ["Top carnivores", "Producers", "Primary consumers", "Decomposers"],
+      "answer": "Producers"
+    },
+    {
+      "q": "Which gas is responsible for the greenhouse effect?",
+      "options": ["Oxygen", "CO₂", "Nitrogen", "Hydrogen"],
+      "answer": "CO₂"
+    },
+    {
+      "q": "An ecosystem includes:",
+      "options": ["Only plants", "Only animals", "Both living and non-living things", "Only water"],
+      "answer": "Both living and non-living things"
+    }
+  ],
+  "Management of Natural Resources": [
+    {
+      "q": "Chipko movement is related to:",
+      "options": ["Saving water", "Saving soil", "Saving forests", "Saving wildlife"],
+      "answer": "Saving forests"
+    },
+    {
+      "q": "Water harvesting is done to:",
+      "options": ["Increase rainfall", "Store rainwater", "Filter water", "None"],
+      "answer": "Store rainwater"
+    },
+    {
+      "q": "Which dam is built on river Sutlej?",
+      "options": ["Tehri", "Bhakra Nangal", "Sardar Sarovar", "Hirakud"],
+      "answer": "Bhakra Nangal"
+    },
+    {
+      "q": "Which resource is non-renewable?",
+      "options": ["Sunlight", "Coal", "Water", "Air"],
+      "answer": "Coal"
+    }
+  ],
+
+  "Real Numbers": [
+    {
+      "q": "What is the HCF of 12 and 18?",
+      "options": ["6", "4", "3", "12"],
+      "answer": "6"
+    },
+    {
+      "q": "√2 is an example of:",
+      "options": ["Natural", "Rational", "Irrational", "Whole"],
+      "answer": "Irrational"
+    },
+    {
+      "q": "LCM × HCF of two numbers equals:",
+      "options": ["Sum of numbers", "Difference of numbers", "Product of numbers", "None"],
+      "answer": "Product of numbers"
+    },
+    {
+      "q": "Every composite number can be expressed as:",
+      "options": ["A prime number", "Product of primes", "Sum of primes", "None"],
+      "answer": "Product of primes"
+    }
+  ],
+  "Polynomials": [
+    {
+      "q": "A polynomial of degree 2 is called:",
+      "options": ["Linear", "Quadratic", "Cubic", "Constant"],
+      "answer": "Quadratic"
+    },
+    {
+      "q": "If one zero of x² + 7x + k is −3, find k.",
+      "options": ["2", "4", "6", "5"],
+      "answer": "6"
+    },
+    {
+      "q": "A polynomial of degree 0 is:",
+      "options": ["Zero", "Constant", "Linear", "Quadratic"],
+      "answer": "Constant"
+    },
+    {
+      "q": "The sum of zeroes of 2x² – 8x + 6 is:",
+      "options": ["4", "2", "−4", "−2"],
+      "answer": "2"
+    }
+  ],
+  "Pair of Linear Equations in Two Variables": [
+    {
+      "q": "x + y = 5 and x − y = 1 gives x = ?",
+      "options": ["2", "3", "4", "1"],
+      "answer": "3"
+    },
+    {
+      "q": "Lines that coincide have how many solutions?",
+      "options": ["One", "Two", "Infinite", "None"],
+      "answer": "Infinite"
+    },
+    {
+      "q": "Graph of a linear equation in two variables is a:",
+      "options": ["Curve", "Line", "Point", "Circle"],
+      "answer": "Line"
+    },
+    {
+      "q": "Lines that intersect at one point have:",
+      "options": ["No solution", "One solution", "Two solutions", "Infinite solutions"],
+      "answer": "One solution"
+    }
+  ],
+  "Quadratic Equations": [
+    {
+      "q": "The general form of a quadratic equation is:",
+      "options": ["ax + b = 0", "ax² + bx + c = 0", "ax³ + bx + c = 0", "None"],
+      "answer": "ax² + bx + c = 0"
+    },
+    {
+      "q": "If one root of x² – 5x + k = 0 is 2, find k.",
+      "options": ["2", "3", "4", "5"],
+      "answer": "3"
+    },
+    {
+      "q": "The discriminant of 2x² − 3x + 1 is:",
+      "options": ["1", "5", "7", "3"],
+      "answer": "1"
+    },
+    {
+      "q": "Number of roots for Δ > 0 is:",
+      "options": ["1", "2 real & unequal", "2 real & equal", "None"],
+      "answer": "2 real & unequal"
+    }
+  ],
+  "Arithmetic Progression": [
+    {
+      "q": "The nth term of an AP is given by:",
+      "options": ["a + (n − 1)d", "a − (n − 1)d", "a + nd", "a − nd"],
+      "answer": "a + (n − 1)d"
+    },
+    {
+      "q": "Find the 10th term of AP: 2, 5, 8,…",
+      "options": ["29", "30", "31", "32"],
+      "answer": "29"
+    },
+    {
+      "q": "In AP, if a = 3, d = 2, find a₅.",
+      "options": ["9", "11", "13", "15"],
+      "answer": "11"
+    },
+    {
+      "q": "Sum of first n terms of AP is:",
+      "options": ["n/2 (2a + (n − 1)d)", "n/2 (a + d)", "2a + d", "a + nd"],
+      "answer": "n/2 (2a + (n − 1)d)"
+    }
+  ]
