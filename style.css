@@ -1,76 +1,24 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Chatbot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <h2>📚 IQ Quiz Bot</h2>
+    <div id="chatBox" class="chat-box">
+      <!-- Bot & user messages will appear here -->
+    </div>
 
-.chat-container {
-  width: 350px;
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-}
+    <div class="input-row">
+      <input id="userInput" type="text" placeholder="Type your message here..." onkeydown="if(event.key==='Enter'){handleUserInput()}">
+      <button onclick="handleUserInput()">Send</button>
+    </div>
+  </div>
 
-.chat-box {
-  height: 300px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.bot-msg {
-  background: #e1f5fe;
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 10px;
-}
-
-.user-msg {
-  background: #c8e6c9;
-  padding: 8px;
-  margin: 5px 0;
-  text-align: right;
-  border-radius: 10px;
-}
-
-.bot-option {
-  display: inline-block;
-  background: #ffecb3;
-  padding: 6px 10px;
-  margin: 5px 3px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-.input-container {
-  display: flex;
-  gap: 5px;
-}
-
-#user-input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-#send-btn {
-  background: #4CAF50;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#send-btn:hover {
-  background: #45a049;
-}
+  <script src="script.js"></script>
+</body>
+</html>
