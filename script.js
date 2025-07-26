@@ -10,13 +10,26 @@ let waitingForSubject = false;
 let waitingForSubClass = false;
 let waitingForChapter = false;
 let inQuiz = false;
-let waitingForReplay = false;   // ✅ NEW flag for replay choice
+let waitingForReplay = false;
 
 let selectedSubject = "";
 let selectedSubClass = "";
 let selectedChapter = "";
 
-// ✅ All chapters by subject & subclass (same as before)
+let quizData = {};    // ✅ will hold questions from questions.json
+let currentQuestionIndex = 0;
+let score = 0;
+
+// ✅ Load questions.json on startup
+fetch('questions.json')
+  .then(response => response.json())
+  .then(data => {
+    quizData = data;
+    console.log("✅ Questions loaded", quizData);
+  })
+  .catch(error => console.error("❌ Error loading questions.json", error));
+
+// ✅ Chapter list remains in JS
 const chapters = {
   "Science": {
     "Physics": ["Light – Reflection & Refraction", "Human Eye & Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Source of Energy"],
@@ -38,20 +51,6 @@ const chapters = {
   }
 };
 
-// ✅ Sample quiz questions (just one chapter for demo)
-const quizQuestions = {
-  "Light – Reflection & Refraction": [
-    { q: "What is the speed of light in vacuum?", options: ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"], answer: "3×10⁸ m/s" },
-    { q: "Which mirror is used in headlights?", options: ["Concave", "Convex", "Plane", "Cylindrical"], answer: "Concave" },
-    { q: "What is the refractive index of water?", options: ["1.33", "1.50", "1.00", "2.42"], answer: "1.33" },
-    { q: "Which lens corrects myopia?", options: ["Concave", "Convex", "Bifocal", "Plano"], answer: "Concave" }
-  ]
-};
-
-let currentQuestionIndex = 0;
-let score = 0;
-
-// ✅ Add message bubble
 function addMessage(msg, sender) {
   const div = document.createElement('div');
   div.classList.add(sender === 'bot' ? 'bot-msg' : 'user-msg');
@@ -60,7 +59,6 @@ function addMessage(msg, sender) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ✅ Add clickable option buttons
 function addOption(text) {
   const btn = document.createElement('div');
   btn.classList.add('bot-option');
@@ -103,7 +101,6 @@ function botReply(text) {
   }
 }
 
-// ✅ Handle clicking on bot options
 function handleOptionClick(option) {
   addMessage(option, 'user');
 
@@ -127,7 +124,6 @@ function handleOptionClick(option) {
       waitingForSubClass = true;
 
     } else {
-      // Math has no subclass
       selectedSubClass = "";
       waitingForChapter = true;
       addMessage(`Awesome! Choose a chapter in Math, ${userName}:`, 'bot');
@@ -161,14 +157,12 @@ function handleOptionClick(option) {
   }
 }
 
-// ✅ Ask subject selection again
 function askSubject() {
   addMessage(`Great! In which subject do you want to test your IQ?`, 'bot');
   ["Science", "Math", "Social Science", "English"].forEach(addOption);
   waitingForSubject = true;
 }
 
-// ✅ QUIZ: Start quiz for selected chapter
 function startQuiz(chapter) {
   inQuiz = true;
   score = 0;
@@ -176,9 +170,8 @@ function startQuiz(chapter) {
   askQuestion();
 }
 
-// ✅ QUIZ: Ask the current question
 function askQuestion() {
-  const questionSet = quizQuestions[selectedChapter];
+  const questionSet = quizData[selectedChapter];   // ✅ fetch from JSON
   
   if (!questionSet) {
     addMessage(`Sorry, quiz questions for "${selectedChapter}" are not ready yet.`, 'bot');
@@ -191,10 +184,8 @@ function askQuestion() {
     addMessage(`Q${currentQuestionIndex+1}: ${q.q}`, 'bot');
     q.options.forEach(addOption);
   } else {
-    // 🎯 Quiz finished
     addMessage(`🎉 Quiz finished! You scored ${score}/${questionSet.length}, ${userName}.`, 'bot');
     inQuiz = false;
-    // ✅ Ask if user wants another quiz
     addMessage("Would you like to take another quiz?", 'bot');
     addOption("Yes");
     addOption("No");
@@ -202,9 +193,8 @@ function askQuestion() {
   }
 }
 
-// ✅ QUIZ: Check answer
 function checkAnswer(selectedOption) {
-  const q = quizQuestions[selectedChapter][currentQuestionIndex];
+  const q = quizData[selectedChapter][currentQuestionIndex];
 
   if (selectedOption === q.answer) {
     addMessage("✅ Correct!", 'bot');
