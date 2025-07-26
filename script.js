@@ -2,7 +2,10 @@
 const questionsData = {
   "Light – Reflection & Refraction": [
     { "q": "What is the speed of light in air approximately?", "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"], "answer": "3 × 10⁸ m/s" },
-    { "q": "The angle between the incident ray and the normal is called?", "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"], "answer": "Angle of Incidence" },
+   { "q": "Can light through any object?", "options": ["yes", "some times", "only transparent", "3 × 10⁶ m/s"], "answer": "3 × 10⁸ m/s" },
+   { "q": "What is the speed of light in air approximately?", "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"], "answer": "3 × 10⁸ m/s" },
+   { "q": "What is the speed of light in air approximately?", "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"], "answer": "3 × 10⁸ m/s" },
+   { "q": "The angle between the incident ray and the normal is called?", "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"], "answer": "Angle of Incidence" },
     // ✅ (remaining Light & Chemical Reactions questions go here – same as before)
   ],
   "Chemical Reactions & Equations": [
