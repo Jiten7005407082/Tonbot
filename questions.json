@@ -1,32 +1,46 @@
 {
-  "Electricity": {
-    "Basic Concepts": [
-      {
-        "q": "What is the SI unit of electric current?",
-        "options": ["Ampere", "Volt", "Ohm", "Watt"],
-        "a": "Ampere"
-      },
-      {
-        "q": "What instrument is used to measure current?",
-        "options": ["Voltmeter", "Ammeter", "Galvanometer", "Multimeter"],
-        "a": "Ammeter"
-      }
-    ],
-    "Ohm's Law": [
-      {
-        "q": "Ohm’s law states that V = ?",
-        "options": ["I/R", "IR", "R/I", "I+R"],
-        "a": "IR"
-      }
-    ]
-  },
-  "Magnetism": {
-    "Magnets and Fields": [
-      {
-        "q": "What is the direction of magnetic field lines outside a bar magnet?",
-        "options": ["North to South", "South to North", "Upward", "Circular"],
-        "a": "North to South"
-      }
-    ]
-  }
+  "Light – Reflection & Refraction": [
+    {
+      "q": "What is the speed of light in vacuum?",
+      "options": ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"],
+      "answer": "3×10⁸ m/s"
+    },
+    {
+      "q": "Which mirror is used in headlights?",
+      "options": ["Concave", "Convex", "Plane", "Cylindrical"],
+      "answer": "Concave"
+    },
+    {
+      "q": "What is the refractive index of water?",
+      "options": ["1.33", "1.50", "1.00", "2.42"],
+      "answer": "1.33"
+    },
+    {
+      "q": "Which lens corrects myopia?",
+      "options": ["Concave", "Convex", "Bifocal", "Plano"],
+      "answer": "Concave"
+    }
+  ],
+  "Electricity": [
+    {
+      "q": "What is the SI unit of electric current?",
+      "options": ["Volt", "Ampere", "Ohm", "Coulomb"],
+      "answer": "Ampere"
+    },
+    {
+      "q": "What happens to resistance if the length of a conductor doubles?",
+      "options": ["Doubles", "Halves", "Stays same", "Becomes zero"],
+      "answer": "Doubles"
+    },
+    {
+      "q": "Which device is used to measure current?",
+      "options": ["Voltmeter", "Ammeter", "Galvanometer", "Ohmmeter"],
+      "answer": "Ammeter"
+    },
+    {
+      "q": "What type of current is supplied to homes?",
+      "options": ["AC", "DC", "Both", "None"],
+      "answer": "AC"
+    }
+  ]
 }
