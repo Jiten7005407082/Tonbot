@@ -728,3 +728,49 @@
       "answer": "Indira Point"
     }
   ]
+,
+  "English Grammar": [
+    {
+      "q": "Choose the correct tense: She ____ to school every day.",
+      "options": ["go", "goes", "gone", "going"],
+      "answer": "goes"
+    },
+    {
+      "q": "Identify the adjective: The sky is blue.",
+      "options": ["sky", "is", "blue", "the"],
+      "answer": "blue"
+    },
+    {
+      "q": "Pick the correct passive form: They wrote a letter.",
+      "options": ["A letter wrote by them", "A letter was written by them", "A letter is written by them", "A letter writing by them"],
+      "answer": "A letter was written by them"
+    },
+    {
+      "q": "Which is a preposition?",
+      "options": ["under", "quickly", "beautiful", "sing"],
+      "answer": "under"
+    }
+  ],
+  "English Literature": [
+    {
+      "q": "Who wrote the play 'Julius Caesar'?",
+      "options": ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
+      "answer": "William Shakespeare"
+    },
+    {
+      "q": "In ‘The Merchant of Venice’, who demanded a pound of flesh?",
+      "options": ["Antonio", "Bassanio", "Shylock", "Gratiano"],
+      "answer": "Shylock"
+    },
+    {
+      "q": "In poetry, a fourteen-line poem is called?",
+      "options": ["Sonnet", "Ode", "Epic", "Ballad"],
+      "answer": "Sonnet"
+    },
+    {
+      "q": "The moral of ‘The Necklace’ by Guy de Maupassant is about:",
+      "options": ["Truthfulness", "Honesty", "Vanity & pride", "Charity"],
+      "answer": "Vanity & pride"
+    }
+  ]
+}
