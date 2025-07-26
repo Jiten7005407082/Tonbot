@@ -6,15 +6,16 @@ let currentChapter = "";
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-let stage = "intro"; // intro → subject → subclass → chapter → quiz → score
+let stage = "loading"; // "loading" until JSON loaded
 
-// ✅ Load questions.json
+// ✅ Load questions.json first
 async function loadQuestions() {
     try {
         const response = await fetch('questions.json');
         quizData = await response.json();
-        console.log("✅ Questions loaded", quizData);
+        console.log("✅ Questions loaded");
         botReply("👋 Hello! What is your name?");
+        stage = "intro";
     } catch (err) {
         console.error("❌ Failed to load questions.json", err);
         botReply("❌ Could not load quiz data.");
@@ -22,14 +23,14 @@ async function loadQuestions() {
 }
 loadQuestions();
 
-// ✅ Send bot reply to chat
+// ✅ Helper: Bot reply
 function botReply(text) {
     let chatBox = document.getElementById("chatBox");
     chatBox.innerHTML += `<div class='bot'>${text}</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ✅ Send user message to chat
+// ✅ Helper: User reply
 function userReply(text) {
     let chatBox = document.getElementById("chatBox");
     chatBox.innerHTML += `<div class='user'>${text}</div>`;
@@ -44,6 +45,12 @@ function handleUserInput() {
     userReply(message);
     input.value = "";
 
+    // ❗ If questions aren’t loaded yet
+    if (stage === "loading") {
+        botReply("⏳ Please wait, loading quiz data...");
+        return;
+    }
+
     if (stage === "intro") {
         userName = message;
         botReply(`Hi ${userName}! 👋 What can I do for you today?`);
@@ -56,7 +63,7 @@ function handleUserInput() {
             botReply("Great! Which subject do you want to test? \n👉 Science, Math, Social Science, English");
             stage = "subject";
         } else {
-            botReply("You can say: *I want to test my IQ* to start a quiz.");
+            botReply("You can type: *I want to test my IQ* to start a quiz.");
         }
         return;
     }
@@ -95,7 +102,7 @@ function handleUserInput() {
     if (stage === "chapter") {
         currentChapter = message;
         if (quizData[currentChapter]) {
-            botReply(`Starting quiz on *${currentChapter}* 📘`);
+            botReply(`🎯 Starting quiz on *${currentChapter}*`);
             startQuiz(currentChapter);
         } else {
             botReply("❌ Chapter not found. Please type the chapter name exactly as listed.");
@@ -119,12 +126,11 @@ function handleUserInput() {
     }
 }
 
-// ✅ Helper: List chapters based on subject/subclass
+// ✅ List chapters based on subject/subclass
 function listChapters(subject, subclass = "") {
     let chapters = Object.keys(quizData);
     let filtered = [];
 
-    // Group chapters logically
     if (subject === "Science") {
         if (subclass.toLowerCase() === "physics") {
             filtered = [
