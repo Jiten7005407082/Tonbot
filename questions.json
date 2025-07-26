@@ -1,39 +1,171 @@
 {
-  "Light – Reflection & Refraction": [
+  "Chemical Reactions & Equations": [
     {
-      "q": "What is the speed of light in vacuum?",
-      "options": ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"],
-      "answer": "3×10⁸ m/s"
+      "q": "Which gas is released when zinc reacts with hydrochloric acid?",
+      "options": ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
+      "answer": "Hydrogen"
     },
     {
-      "q": "Which mirror is used in headlights?",
+      "q": "Which type of reaction is rusting of iron?",
+      "options": ["Combination", "Decomposition", "Oxidation", "Displacement"],
+      "answer": "Oxidation"
+    },
+    {
+      "q": "The reaction of calcium oxide with water to form slaked lime is:",
+      "options": ["Endothermic", "Exothermic", "Neutral", "Substitution"],
+      "answer": "Exothermic"
+    },
+    {
+      "q": "Which of these is a displacement reaction?",
+      "options": ["Zn + CuSO₄ → ZnSO₄ + Cu", "CaO + H₂O → Ca(OH)₂", "2Mg + O₂ → 2MgO", "2KClO₃ → 2KCl + 3O₂"],
+      "answer": "Zn + CuSO₄ → ZnSO₄ + Cu"
+    }
+  ],
+  "Acids, Bases & Salts": [
+    {
+      "q": "What is the pH of a neutral solution?",
+      "options": ["1", "7", "14", "0"],
+      "answer": "7"
+    },
+    {
+      "q": "Which acid is present in vinegar?",
+      "options": ["Formic acid", "Acetic acid", "Oxalic acid", "Citric acid"],
+      "answer": "Acetic acid"
+    },
+    {
+      "q": "Common salt is chemically known as:",
+      "options": ["KCl", "NaCl", "NaOH", "Na₂CO₃"],
+      "answer": "NaCl"
+    },
+    {
+      "q": "Litmus solution turns red in:",
+      "options": ["Base", "Acid", "Salt", "Distilled water"],
+      "answer": "Acid"
+    }
+  ],
+  "Metals & Non‑Metals": [
+    {
+      "q": "Which metal is liquid at room temperature?",
+      "options": ["Mercury", "Sodium", "Potassium", "Lead"],
+      "answer": "Mercury"
+    },
+    {
+      "q": "The most malleable metal is:",
+      "options": ["Gold", "Iron", "Copper", "Zinc"],
+      "answer": "Gold"
+    },
+    {
+      "q": "Which gas is produced when metals react with acids?",
+      "options": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon dioxide"],
+      "answer": "Hydrogen"
+    },
+    {
+      "q": "Which non-metal is a good conductor of electricity?",
+      "options": ["Sulfur", "Graphite", "Phosphorus", "Iodine"],
+      "answer": "Graphite"
+    }
+  ],
+  "Carbon & Its Compounds": [
+    {
+      "q": "Which allotrope of carbon is used in jewellery?",
+      "options": ["Graphite", "Diamond", "Coal", "Fullerene"],
+      "answer": "Diamond"
+    },
+    {
+      "q": "Which gas is evolved on combustion of methane?",
+      "options": ["CO₂", "O₂", "H₂", "CO"],
+      "answer": "CO₂"
+    },
+    {
+      "q": "Soap is made by:",
+      "options": ["Saponification", "Oxidation", "Substitution", "Neutralisation"],
+      "answer": "Saponification"
+    },
+    {
+      "q": "C₂H₅OH is commonly known as:",
+      "options": ["Methanol", "Ethanol", "Propanol", "Butanol"],
+      "answer": "Ethanol"
+    }
+  ],
+  "Periodic Classification of Elements": [
+    {
+      "q": "Who is known as the father of the periodic table?",
+      "options": ["Mendeleev", "Dalton", "Newlands", "Dobereiner"],
+      "answer": "Mendeleev"
+    },
+    {
+      "q": "Modern periodic table is arranged by:",
+      "options": ["Atomic mass", "Atomic number", "Valency", "Density"],
+      "answer": "Atomic number"
+    },
+    {
+      "q": "Which group is called noble gases?",
+      "options": ["Group 17", "Group 1", "Group 18", "Group 16"],
+      "answer": "Group 18"
+    },
+    {
+      "q": "Which element is placed in group 1 and period 2?",
+      "options": ["Li", "Na", "K", "Rb"],
+      "answer": "Li"
+    }
+  ],
+  "Light – Reflection & Refraction": [
+    {
+      "q": "The image formed by a plane mirror is:",
+      "options": ["Real", "Virtual", "Inverted", "Magnified"],
+      "answer": "Virtual"
+    },
+    {
+      "q": "The mirror used in car headlights is:",
       "options": ["Concave", "Convex", "Plane", "Cylindrical"],
       "answer": "Concave"
     },
     {
-      "q": "What is the refractive index of water?",
-      "options": ["1.33", "1.50", "1.00", "2.42"],
-      "answer": "1.33"
+      "q": "Which lens is used in a magnifying glass?",
+      "options": ["Concave", "Convex", "Bifocal", "Plano"],
+      "answer": "Convex"
     },
     {
-      "q": "Which lens corrects myopia?",
-      "options": ["Concave", "Convex", "Bifocal", "Plano"],
-      "answer": "Concave"
+      "q": "Speed of light in air is about:",
+      "options": ["3×10⁸ m/s", "3×10⁶ m/s", "1×10⁸ m/s", "1×10⁶ m/s"],
+      "answer": "3×10⁸ m/s"
+    }
+  ],
+  "Human Eye & Colourful World": [
+    {
+      "q": "The part of the eye that controls the size of the pupil is:",
+      "options": ["Retina", "Cornea", "Iris", "Lens"],
+      "answer": "Iris"
+    },
+    {
+      "q": "Which phenomenon causes the sky to appear blue?",
+      "options": ["Dispersion", "Scattering", "Reflection", "Refraction"],
+      "answer": "Scattering"
+    },
+    {
+      "q": "Which defect is corrected using convex lens?",
+      "options": ["Myopia", "Hypermetropia", "Astigmatism", "Color blindness"],
+      "answer": "Hypermetropia"
+    },
+    {
+      "q": "Which phenomenon creates a rainbow?",
+      "options": ["Dispersion", "Reflection", "Diffraction", "Interference"],
+      "answer": "Dispersion"
     }
   ],
   "Electricity": [
+    {
+      "q": "Unit of electric resistance?",
+      "options": ["Ohm", "Ampere", "Volt", "Coulomb"],
+      "answer": "Ohm"
+    },
     {
       "q": "What is the SI unit of electric current?",
       "options": ["Volt", "Ampere", "Ohm", "Coulomb"],
       "answer": "Ampere"
     },
     {
-      "q": "What happens to resistance if the length of a conductor doubles?",
-      "options": ["Doubles", "Halves", "Stays same", "Becomes zero"],
-      "answer": "Doubles"
-    },
-    {
-      "q": "Which device is used to measure current?",
+      "q": "Device used to measure current:",
       "options": ["Voltmeter", "Ammeter", "Galvanometer", "Ohmmeter"],
       "answer": "Ammeter"
     },
@@ -42,5 +174,72 @@
       "options": ["AC", "DC", "Both", "None"],
       "answer": "AC"
     }
-  ]
+  ],
+  "Magnetic Effects of Electric Current": [
+    {
+      "q": "The magnetic field around a current carrying conductor is:",
+      "options": ["Circular", "Straight", "Elliptical", "Irregular"],
+      "answer": "Circular"
+    },
+    {
+      "q": "Right hand thumb rule gives direction of:",
+      "options": ["Current", "Force", "Magnetic field", "Voltage"],
+      "answer": "Magnetic field"
+    },
+    {
+      "q": "Device that converts mechanical energy to electrical energy:",
+      "options": ["Motor", "Generator", "Transformer", "Battery"],
+      "answer": "Generator"
+    },
+    {
+      "q": "Electromagnet strength can be increased by:",
+      "options": ["Reducing current", "Removing core", "Using iron core", "Using wood core"],
+      "answer": "Using iron core"
+    }
+  ],
+  "Source of Energy": [
+    {
+      "q": "Which is a renewable energy source?",
+      "options": ["Coal", "Petroleum", "Solar", "Natural gas"],
+      "answer": "Solar"
+    },
+    {
+      "q": "Most widely used fuel in India?",
+      "options": ["Coal", "Petrol", "LPG", "Kerosene"],
+      "answer": "Coal"
+    },
+    {
+      "q": "Which device converts solar energy to electricity?",
+      "options": ["Solar cooker", "Solar cell", "Solar heater", "Solar panel"],
+      "answer": "Solar cell"
+    },
+    {
+      "q": "Which gas causes acid rain?",
+      "options": ["Oxygen", "Sulphur dioxide", "Nitrogen", "Carbon monoxide"],
+      "answer": "Sulphur dioxide"
+    }
+  ],
+  "Life Processes": [
+    {
+      "q": "Which process in plants uses sunlight?",
+      "options": ["Respiration", "Photosynthesis", "Transpiration", "Excretion"],
+      "answer": "Photosynthesis"
+    },
+    {
+      "q": "Which enzyme is in saliva?",
+      "options": ["Pepsin", "Amylase", "Trypsin", "Lipase"],
+      "answer": "Amylase"
+    },
+    {
+      "q": "What is the basic unit of kidney?",
+      "options": ["Neuron", "Nephron", "Alveoli", "Neutrino"],
+      "answer": "Nephron"
+    },
+    {
+      "q": "Which blood vessel carries oxygenated blood?",
+      "options": ["Vein", "Artery", "Capillary", "Venule"],
+      "answer": "Artery"
+    }
+  ],
+  "...": []
 }
