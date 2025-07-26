@@ -6,7 +6,7 @@ let currentChapter = "";
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-let stage = "loading"; // stays "loading" until JSON loads
+let stage = "loading"; // "loading" until JSON loaded
 
 // ✅ Load questions.json first
 async function loadQuestions() {
@@ -23,35 +23,11 @@ async function loadQuestions() {
 }
 loadQuestions();
 
-// ✅ Trim chat to keep only last 6 messages
-function trimChat() {
-    let chatBox = document.getElementById("chatBox");
-    while (chatBox.children.length > 6) {
-        chatBox.removeChild(chatBox.children[0]);
-    }
-}
-
-// ✅ Helper: Bot reply text only
+// ✅ Helper: Bot reply
 function botReply(text) {
     let chatBox = document.getElementById("chatBox");
     chatBox.innerHTML += `<div class='bot'>${text}</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
-    trimChat(); 
-}
-
-// ✅ Helper: Bot reply with clickable buttons
-function botReplyOptions(text, options) {
-    let chatBox = document.getElementById("chatBox");
-    let buttons = options.map(opt => `<button class="option-btn" onclick="selectOption('${opt}')">${opt}</button>`).join(" ");
-    chatBox.innerHTML += `<div class='bot'>${text}<br>${buttons}</div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
-    trimChat(); 
-}
-
-// ✅ When user clicks a button option
-function selectOption(choice) {
-    userReply(choice);
-    processMessage(choice);
 }
 
 // ✅ Helper: User reply
@@ -59,21 +35,17 @@ function userReply(text) {
     let chatBox = document.getElementById("chatBox");
     chatBox.innerHTML += `<div class='user'>${text}</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
-    trimChat(); 
 }
 
-// ✅ Manual send (for name or free text)
+// ✅ Main user input handler
 function handleUserInput() {
     let input = document.getElementById("userInput");
     let message = input.value.trim();
     if (!message) return;
     userReply(message);
     input.value = "";
-    processMessage(message);
-}
 
-// ✅ Core logic
-function processMessage(message) {
+    // ❗ If questions aren’t loaded yet
     if (stage === "loading") {
         botReply("⏳ Please wait, loading quiz data...");
         return;
@@ -82,17 +54,16 @@ function processMessage(message) {
     if (stage === "intro") {
         userName = message;
         botReply(`Hi ${userName}! 👋 What can I do for you today?`);
-        botReplyOptions("👉 Choose:", ["I want to test my IQ"]);
         stage = "menu";
         return;
     }
 
     if (stage === "menu") {
         if (message.toLowerCase().includes("iq")) {
-            botReplyOptions("Great! Which subject do you want to test?", ["Science", "Math", "Social Science", "English"]);
+            botReply("Great! Which subject do you want to test? \n👉 Science, Math, Social Science, English");
             stage = "subject";
         } else {
-            botReply("You can tap: *I want to test my IQ* to start.");
+            botReply("You can type: *I want to test my IQ* to start a quiz.");
         }
         return;
     }
@@ -101,27 +72,29 @@ function processMessage(message) {
         let subj = message.toLowerCase();
         if (subj.includes("science")) {
             currentSubject = "Science";
-            botReplyOptions("Which subclass do you want?", ["Physics", "Chemistry", "Biology"]);
+            botReply("Which subclass do you want? \n👉 Physics, Chemistry, Biology");
             stage = "subclass";
         } else if (subj.includes("math")) {
             currentSubject = "Math";
-            botReplyOptions("Math has no subclasses. Choose a chapter:", listChapterArray("Math"));
+            botReply("Math has no subclasses. Here are the chapters:\n" + listChapters("Math"));
             stage = "chapter";
         } else if (subj.includes("social")) {
             currentSubject = "Social Science";
-            botReplyOptions("Choose a subclass:", ["History", "Civics", "Geography"]);
+            botReply("Choose a subclass:\n👉 History, Civics, Geography");
             stage = "subclass";
         } else if (subj.includes("english")) {
             currentSubject = "English";
-            botReplyOptions("Choose a subclass:", ["Grammar", "Literature"]);
+            botReply("Choose a subclass:\n👉 Grammar, Literature");
             stage = "subclass";
+        } else {
+            botReply("Please choose: Science, Math, Social Science, or English.");
         }
         return;
     }
 
     if (stage === "subclass") {
         currentSubclass = message;
-        botReplyOptions(`Great! Choose a chapter:`, listChapterArray(currentSubject, currentSubclass));
+        botReply(`Great! Choose a chapter from:\n${listChapters(currentSubject, currentSubclass)}`);
         stage = "chapter";
         return;
     }
@@ -132,7 +105,7 @@ function processMessage(message) {
             botReply(`🎯 Starting quiz on *${currentChapter}*`);
             startQuiz(currentChapter);
         } else {
-            botReply("❌ Chapter not found.");
+            botReply("❌ Chapter not found. Please type the chapter name exactly as listed.");
         }
         return;
     }
@@ -144,7 +117,7 @@ function processMessage(message) {
 
     if (stage === "score") {
         if (message.toLowerCase() === "yes") {
-            botReplyOptions("✅ Let's go again! Which subject do you want?", ["Science", "Math", "Social Science", "English"]);
+            botReply("✅ Let's go again! Which subject do you want to test? \n👉 Science, Math, Social Science, English");
             stage = "subject";
         } else {
             botReply("🎉 Thank you for playing! Bye 👋");
@@ -153,30 +126,58 @@ function processMessage(message) {
     }
 }
 
-// ✅ Make chapter list into array for buttons
-function listChapterArray(subject, subclass = "") {
+// ✅ List chapters based on subject/subclass
+function listChapters(subject, subclass = "") {
+    let chapters = Object.keys(quizData);
+    let filtered = [];
+
     if (subject === "Science") {
-        if (subclass && subclass.toLowerCase() === "physics") {
-            return ["Light – Reflection & Refraction", "Human Eye & Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Sources of Energy"];
-        } else if (subclass && subclass.toLowerCase() === "chemistry") {
-            return ["Chemical Reactions & Equations", "Acids, Bases & Salts", "Metals & Non‑Metals", "Carbon & Its Compounds", "Periodic Classification of Elements"];
-        } else if (subclass && subclass.toLowerCase() === "biology") {
-            return ["Life Processes", "Control & Coordination", "How Do Organisms Reproduce?", "Heredity & Evolution", "Our Environment", "Management of Natural Resources"];
+        if (subclass.toLowerCase() === "physics") {
+            filtered = [
+                "Light – Reflection & Refraction",
+                "Human Eye & Colourful World",
+                "Electricity",
+                "Magnetic Effects of Electric Current",
+                "Sources of Energy"
+            ];
+        } else if (subclass.toLowerCase() === "chemistry") {
+            filtered = [
+                "Chemical Reactions & Equations",
+                "Acids, Bases & Salts",
+                "Metals & Non‑Metals",
+                "Carbon & Its Compounds",
+                "Periodic Classification of Elements"
+            ];
+        } else if (subclass.toLowerCase() === "biology") {
+            filtered = [
+                "Life Processes",
+                "Control & Coordination",
+                "How Do Organisms Reproduce?",
+                "Heredity & Evolution",
+                "Our Environment",
+                "Management of Natural Resources"
+            ];
         }
     } else if (subject === "Math") {
-        return ["Real Numbers", "Polynomials", "Pair of Linear Equations in Two Variables", "Quadratic Equations", "Arithmetic Progression", "Triangles", "Coordinate Geometry", "Introduction to Trigonometry", "Some Applications of Trigonometry", "Circles", "Constructions", "Surface Areas & Volumes", "Statistics", "Probability"];
+        filtered = chapters.filter(ch => [
+            "Real Numbers", "Polynomials", "Pair of Linear Equations in Two Variables",
+            "Quadratic Equations", "Arithmetic Progression", "Triangles",
+            "Coordinate Geometry", "Introduction to Trigonometry", "Some Applications of Trigonometry",
+            "Circles", "Constructions", "Surface Areas & Volumes", "Statistics", "Probability"
+        ].includes(ch));
     } else if (subject === "Social Science") {
-        if (subclass.toLowerCase() === "history") return ["History"];
-        if (subclass.toLowerCase() === "civics") return ["Civics"];
-        if (subclass.toLowerCase() === "geography") return ["Geography"];
+        if (subclass.toLowerCase() === "history") filtered = ["History"];
+        if (subclass.toLowerCase() === "civics") filtered = ["Civics"];
+        if (subclass.toLowerCase() === "geography") filtered = ["Geography"];
     } else if (subject === "English") {
-        if (subclass.toLowerCase() === "grammar") return ["English Grammar"];
-        if (subclass.toLowerCase() === "literature") return ["English Literature"];
+        if (subclass.toLowerCase() === "grammar") filtered = ["English Grammar"];
+        if (subclass.toLowerCase() === "literature") filtered = ["English Literature"];
     }
-    return [];
+
+    return filtered.join(", ");
 }
 
-// ✅ Quiz Functions
+// ✅ Quiz functions
 function startQuiz(chapter) {
     currentQuestions = quizData[chapter];
     currentQuestionIndex = 0;
@@ -188,10 +189,10 @@ function startQuiz(chapter) {
 function askQuestion() {
     if (currentQuestionIndex < currentQuestions.length) {
         let q = currentQuestions[currentQuestionIndex];
-        botReplyOptions(`Q${currentQuestionIndex + 1}: ${q.q}`, q.options);
+        botReply(`Q${currentQuestionIndex + 1}: ${q.q}\nOptions: ${q.options.join(", ")}`);
     } else {
         botReply(`🎯 Quiz finished! Your score: ${score}/${currentQuestions.length}`);
-        botReplyOptions("Do you want another quiz?", ["Yes", "No"]);
+        botReply("Do you want another quiz? (Yes/No)");
         stage = "score";
     }
 }
