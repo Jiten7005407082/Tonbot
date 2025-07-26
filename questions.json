@@ -114,7 +114,159 @@
       "q": "The image formed by a plane mirror is:",
       "options": ["Real", "Virtual", "Inverted", "Magnified"],
       "answer": "Virtual"
-    },
+    },"Light – Reflection & Refraction": [
+  {
+    "q": "What is the speed of light in air approximately?",
+    "options": ["3 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2 × 10⁸ m/s", "3 × 10⁶ m/s"],
+    "answer": "3 × 10⁸ m/s"
+  },
+  {
+    "q": "The angle between the incident ray and the normal is called?",
+    "options": ["Angle of Refraction", "Angle of Incidence", "Angle of Deviation", "Angle of Prism"],
+    "answer": "Angle of Incidence"
+  },
+  {
+    "q": "The bouncing back of light after hitting a polished surface is called?",
+    "options": ["Refraction", "Dispersion", "Reflection", "Scattering"],
+    "answer": "Reflection"
+  },
+  {
+    "q": "Which of the following obeys the laws of reflection?",
+    "options": ["Plane mirror", "Spherical mirror", "Both A and B", "None of these"],
+    "answer": "Both A and B"
+  },
+  {
+    "q": "What is the SI unit of refractive index?",
+    "options": ["No unit", "m/s", "meter", "candela"],
+    "answer": "No unit"
+  },
+  {
+    "q": "The phenomenon of bending of light when it passes from one medium to another is called?",
+    "options": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
+    "answer": "Refraction"
+  },
+  {
+    "q": "Which law states that the incident ray, refracted ray and normal all lie in the same plane?",
+    "options": ["Snell’s Law", "Law of Reflection", "Law of Refraction", "Law of Incidence"],
+    "answer": "Law of Refraction"
+  },
+  {
+    "q": "The ratio of speed of light in vacuum to speed of light in medium is called?",
+    "options": ["Refractive index", "Reflection ratio", "Speed index", "Light coefficient"],
+    "answer": "Refractive index"
+  },
+  {
+    "q": "What is the focal length of a plane mirror?",
+    "options": ["Infinite", "Zero", "10 cm", "Depends on object distance"],
+    "answer": "Infinite"
+  },
+  {
+    "q": "A real image is always?",
+    "options": ["Inverted", "Erect", "Virtual", "Same size as object"],
+    "answer": "Inverted"
+  },
+  {
+    "q": "If the refractive index of water is 1.33, this means:",
+    "options": ["Light travels 1.33 times faster in water", "Light slows down by 1.33 times in water", "Water has density 1.33 g/cm³", "None of these"],
+    "answer": "Light slows down by 1.33 times in water"
+  },
+  {
+    "q": "Which type of lens is used to correct myopia?",
+    "options": ["Convex lens", "Concave lens", "Cylindrical lens", "Bifocal lens"],
+    "answer": "Concave lens"
+  },
+  {
+    "q": "Which type of mirror is used in vehicles as rear-view mirrors?",
+    "options": ["Concave", "Convex", "Plane", "Parabolic"],
+    "answer": "Convex"
+  },
+  {
+    "q": "In a plane mirror, the image formed is always?",
+    "options": ["Real & inverted", "Virtual & erect", "Virtual & inverted", "Real & erect"],
+    "answer": "Virtual & erect"
+  },
+  {
+    "q": "If angle of incidence is 30°, what will be angle of reflection?",
+    "options": ["60°", "30°", "15°", "45°"],
+    "answer": "30°"
+  },
+  {
+    "q": "The power of a lens is measured in?",
+    "options": ["Diopter", "Candela", "Lumen", "Meter"],
+    "answer": "Diopter"
+  },
+  {
+    "q": "Which color of light deviates the least when passed through a prism?",
+    "options": ["Violet", "Red", "Green", "Blue"],
+    "answer": "Red"
+  },
+  {
+    "q": "What type of image does a concave mirror form when object is placed between focus and mirror?",
+    "options": ["Real & inverted", "Virtual & erect", "Enlarged & real", "Diminished & real"],
+    "answer": "Virtual & erect"
+  },
+  {
+    "q": "In refraction, when light passes from a denser to a rarer medium, it bends?",
+    "options": ["Towards normal", "Away from normal", "Does not bend", "Depends on color"],
+    "answer": "Away from normal"
+  },
+  {
+    "q": "Which phenomenon makes a straw appear bent in water?",
+    "options": ["Reflection", "Refraction", "Dispersion", "Scattering"],
+    "answer": "Refraction"
+  },
+  {
+    "q": "A concave mirror is also known as?",
+    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
+    "answer": "Converging mirror"
+  },
+  {
+    "q": "A convex mirror is also known as?",
+    "options": ["Diverging mirror", "Converging mirror", "Plane mirror", "Neutral mirror"],
+    "answer": "Diverging mirror"
+  },
+  {
+    "q": "When light travels from air into glass, its speed?",
+    "options": ["Increases", "Decreases", "Remains same", "First increases then decreases"],
+    "answer": "Decreases"
+  },
+  {
+    "q": "The mirror used by dentists is?",
+    "options": ["Plane mirror", "Concave mirror", "Convex mirror", "None"],
+    "answer": "Concave mirror"
+  },
+  {
+    "q": "The image formed by convex mirror is always?",
+    "options": ["Real & inverted", "Virtual & erect", "Varies with object distance", "None of these"],
+    "answer": "Virtual & erect"
+  },
+  {
+    "q": "Snell’s law relates which quantities?",
+    "options": ["Angles of incidence & reflection", "Angles of incidence & refraction", "Speed & wavelength", "Frequency & wavelength"],
+    "answer": "Angles of incidence & refraction"
+  },
+  {
+    "q": "What is the focal length of a convex mirror?",
+    "options": ["Positive", "Negative", "Zero", "Infinite"],
+    "answer": "Positive"
+  },
+  {
+    "q": "What is the focal length of a concave mirror?",
+    "options": ["Positive", "Negative", "Zero", "Infinite"],
+    "answer": "Negative"
+  },
+  {
+    "q": "Which lens is used in magnifying glasses?",
+    "options": ["Concave lens", "Convex lens", "Cylindrical lens", "Plano lens"],
+    "answer": "Convex lens"
+  },
+  {
+    "q": "Which of the following is NOT a law of reflection?",
+    "options": ["Angle of incidence = angle of reflection", "Incident ray, reflected ray, and normal are in same plane", "Reflected ray is always perpendicular to surface", "None of these"],
+    "answer": "Reflected ray is always perpendicular to surface"
+  }
+]
+
     {
       "q": "The mirror used in car headlights is:",
       "options": ["Concave", "Convex", "Plane", "Cylindrical"],
