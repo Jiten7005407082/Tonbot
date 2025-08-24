@@ -1,189 +1,208 @@
-// Global variables
-let currentSubject = '';
-let currentChapter = '';
-let currentQuestions = [];
-let currentQuestionIndex = 0;
+// DOM Elements
+const screens = document.querySelectorAll('.screen');
+const nameInput = document.getElementById('name-input');
+const startBtn = document.getElementById('start-btn');
+const userName = document.getElementById('user-name');
+const subjectBtns = document.querySelectorAll('.subject-btn');
+const selectedSubject = document.getElementById('selected-subject');
+const chapterList = document.getElementById('chapter-list');
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const questionNumber = document.getElementById('question-number');
+const totalQuestions = document.getElementById('total-questions');
+const progressBar = document.getElementById('progress-bar');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const resultName = document.getElementById('result-name');
+const resultChapter = document.getElementById('result-chapter');
+const scoreElement = document.getElementById('score');
+const totalElement = document.getElementById('total');
+const correctElement = document.getElementById('correct');
+const incorrectElement = document.getElementById('incorrect');
+const restartBtn = document.getElementById('restart-btn');
+
+// Quiz State
+let currentScreen = 0;
+let userData = {
+    name: '',
+    subject: '',
+    chapter: ''
+};
+let currentQuestion = 0;
 let score = 0;
 let userAnswers = [];
-
-// DOM elements
-const subjectsView = document.getElementById('subjects-view');
-const quizView = document.getElementById('quiz-view');
-const resultsView = document.getElementById('results-view');
-const currentQuestionElement = document.getElementById('current-question');
-const totalQuestionsElement = document.getElementById('total-questions');
-const scoreElement = document.getElementById('score');
-const progressBar = document.getElementById('progress-bar');
-const questionText = document.getElementById('question-text');
-const optionsContainer = document.getElementById('options-container');
-const btnPrev = document.getElementById('btn-prev');
-const btnNext = document.getElementById('btn-next');
-const btnSubmit = document.getElementById('btn-submit');
-const final极速赛车开奖直播Score = document.getElementById('final-score');
-const resultsFeedback = document.getElementById('results-feedback');
-const btnRestart = document.getElementById('btn-restart');
-
-// Quiz questions database (will be populated by chapter-specific files)
-const quizDatabase = {
-    physics: {},
-    chemistry: {},
-    biology: {},
-    english: {}
-};
+let quizData = [];
 
 // Initialize the application
 function init() {
-    // Add event listeners to chapter list items
-    const chapterItems = document.querySelectorAll('.subject-content li');
-    chapterItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const subject = this.getAttribute('data-subject');
-            const chapter = this.getAttribute('data-chapter');
-            startQuiz(subject, chapter);
-        });
+    // Event Listeners
+    startBtn.addEventListener('click', startQuiz);
+    subjectBtns.forEach(btn => {
+        btn.addEventListener('click', selectSubject);
+    });
+    prevBtn.addEventListener('click', showPreviousQuestion);
+    nextBtn.addEventListener('click', showNextQuestion);
+    restartBtn.addEventListener('click', restartQuiz);
+}
+
+// Start the quiz
+function startQuiz() {
+    if (nameInput.value.trim() === '') {
+        alert('Please enter your name');
+        return;
+    }
+    
+    userData.name = nameInput.value.trim();
+    userName.textContent = userData.name;
+    
+    showScreen(1);
+}
+
+// Select a subject
+function selectSubject(e) {
+    userData.subject = e.target.getAttribute('data-subject');
+    selectedSubject.textContent = userData.subject.charAt(0).toUpperCase() + userData.subject.slice(1);
+    
+    // Clear previous chapters
+    chapterList.innerHTML = '';
+    
+    // Add chapters for the selected subject
+    chapters[userData.subject].forEach(chapter => {
+        const li = document.createElement('li');
+        li.className = 'chapter-item';
+        li.textContent = chapter.name;
+        li.setAttribute('data-chapter', chapter.id);
+        li.addEventListener('click', selectChapter);
+        chapterList.appendChild(li);
     });
     
-    // Add event listeners to navigation buttons
-    btnPrev.addEventListener('click', previousQuestion);
-    btnNext.addEventListener('click', nextQuestion);
-    btnSubmit.addEventListener('click', submitQuiz);
-    btnRestart.addEventListener('click', restartQuiz);
-    
-    // Hide quiz and results views initially
-    quizView.style.display = 'none';
-    resultsView.style.display = 'none';
+    showScreen(2);
 }
 
-// Start the quiz with selected subject and chapter
-function startQuiz(subject, chapter) {
-    currentSubject = subject;
-    currentChapter = chapter;
-    currentQuestions = quizDatabase[subject][chapter];
-    currentQuestionIndex = 0;
+// Select a chapter
+function selectChapter(e) {
+    userData.chapter = e.target.getAttribute('data-chapter');
+    
+    // Load quiz data based on the selected chapter
+    if (typeof quizDataMap !== 'undefined' && quizDataMap[userData.chapter]) {
+        quizData = quizDataMap[userData.chapter].questions;
+        resultChapter.textContent = quizDataMap[userData.chapter].chapter;
+    } else {
+        // Default to light quiz if chapter not found
+        quizData = quizDataMap.light.questions;
+        resultChapter.textContent = quizDataMap.light.chapter;
+    }
+    
+    // Initialize quiz
+    currentQuestion = 0;
     score = 0;
-    userAnswers = [];
+    userAnswers = new Array(quizData.length).fill(null);
     
-    // Hide subjects view and show quiz view
-    subjectsView.style.display = 'none';
-    quizView.style.display = 'block';
-    resultsView.style.display = 'none';
+    totalQuestions.textContent = quizData.length;
+    totalElement.textContent = quizData.length;
     
-    // Update score and question count
-    scoreElement.textContent = score;
-    totalQuestionsElement.textContent = currentQuestions.length;
+    showQuestion();
+    updateProgressBar();
     
-    // Load the first question
-    loadQuestion();
+    showScreen(3);
 }
 
-// Load the current question
-function loadQuestion() {
-    const question = currentQuestions[currentQuestionIndex];
-    
-    // Update progress bar
-    const progressPercent = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
-    progressBar.style.width = `${progressPercent}%`;
-    
-    // Update question count
-    currentQuestionElement.textContent = currentQuestion极速赛车开奖直播Index + 1;
-    
-    // Set question text
-    questionText.textContent = question.question;
+// Show a question
+function showQuestion() {
+    const question = quizData[currentQuestion];
+    questionElement.textContent = question.question;
     
     // Clear previous options
-    optionsContainer.innerHTML = '';
+    optionsElement.innerHTML = '';
     
-    // Add new options
+    // Add options
     question.options.forEach((option, index) => {
         const optionElement = document.createElement('div');
         optionElement.className = 'option';
-        if (userAnswers[currentQuestionIndex] === index) {
+        if (userAnswers[currentQuestion] === index) {
             optionElement.classList.add('selected');
         }
         optionElement.textContent = option;
         optionElement.addEventListener('click', () => selectOption(index));
-        optionsContainer.appendChild(optionElement);
+        optionsElement.appendChild(optionElement);
     });
     
+    questionNumber.textContent = currentQuestion + 1;
+    
     // Update navigation buttons
-    btnPrev.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
-    btnNext.style.display = currentQuestionIndex === currentQuestions.length - 1 ? 'none' : 'block';
-    btnSubmit.style.display = currentQuestionIndex === currentQuestions.length - 1 ? 'block' : 'none';
+    prevBtn.disabled = currentQuestion === 0;
+    nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish' : 'Next';
 }
 
 // Select an option
-function selectOption(optionIndex) {
-    // Remove selected class from all options
-    const options = document.querySelectorAll('.option');
+function selectOption(index) {
+    userAnswers[currentQuestion] = index;
+    
+    // Update UI
+    const options = optionsElement.querySelectorAll('.option');
     options.forEach(option => option.classList.remove('selected'));
-    
-    // Add selected class to clicked option
-    options[optionIndex].极速赛车开奖直播classList.add('selected');
-    
-    // Store user's answer
-    userAnswers[currentQuestionIndex] = optionIndex;
+    options[index].classList.add('selected');
+}
+
+// Show next question
+function showNextQuestion() {
+    if (userAnswers[currentQuestion] === null) {
+        alert('Please select an answer');
+        return;
+    }
     
     // Check if answer is correct
-    const correctAnswer = currentQuestions[currentQuestionIndex].answer;
-    if (optionIndex === correctAnswer) {
-        // Update score if not already answered
-        if (userAnswers[currentQuestionIndex] !== correctAnswer) {
-            score++;
-            scoreElement.textContent = score;
-        }
-    } else if (userAnswers[currentQuestionIndex] === correctAnswer) {
-        // Decrease score if changing from correct to incorrect
-        score--;
-        scoreElement.textContent = score;
+    if (userAnswers[currentQuestion] === quizData[currentQuestion].correctAnswer) {
+        score++;
     }
-}
-
-// Navigate to next question
-function nextQuestion() {
-    if (currentQuestionIndex < currentQuestions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion();
-    }
-}
-
-// Navig极速赛车开奖直播ate to previous question
-function previousQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-    }
-}
-
-// Submit the quiz
-function submitQuiz() {
-    // Hide quiz view and show results view
-    quizView.style.display = 'none';
-    resultsView.style.display = 'block';
     
-    // Calculate final score
-    const finalScoreValue = Math.round((score / currentQuestions.length) * 100);
-    finalScore.textContent = finalScoreValue + '%';
-    
-    // Provide feedback based on score
-    let feedback = '';
-    if (finalScoreValue >= 80) {
-        feedback = 'Excellent! You have a strong understanding of this chapter.';
-    } else if (finalScoreValue >= 60) {
-        feedback = 'Good job! You have a good grasp of the concepts.';
-    } else if (finalScoreValue >= 40) {
-        feedback = 'Not bad! Review the chapter and try again.';
+    if (currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        showQuestion();
+        updateProgressBar();
     } else {
-        feedback = 'Keep studying! You\'ll improve with more practice.';
+        showResults();
     }
+}
+
+// Show previous question
+function showPreviousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+        updateProgressBar();
+    }
+}
+
+// Update progress bar
+function updateProgressBar() {
+    const progress = ((currentQuestion + 1) / quizData.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+// Show results
+function showResults() {
+    resultName.textContent = userData.name;
+    scoreElement.textContent = score;
+    correctElement.textContent = score;
+    incorrectElement.textContent = quizData.length - score;
     
-    resultsFeedback.textContent = feedback;
+    showScreen(4);
 }
 
 // Restart the quiz
 function restartQuiz() {
-    resultsView.style.display = 'none';
-    subjectsView.style.display = 'block';
+    userData.subject = '';
+    userData.chapter = '';
+    showScreen(1);
 }
 
-// Initialize the application when the DOM is fully loaded
+// Show a specific screen
+function showScreen(index) {
+    screens.forEach(screen => screen.classList.remove('active'));
+    screens[index].classList.add('active');
+    currentScreen = index;
+}
+
+// Initialize the app when the DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
