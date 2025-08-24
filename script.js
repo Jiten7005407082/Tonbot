@@ -14,12 +14,12 @@ const currentQuestionElement = document.getElementById('current-question');
 const totalQuestionsElement = document.getElementById('total-questions');
 const scoreElement = document.getElementById('score');
 const progressBar = document.getElementById('progress-bar');
-const questionText = document.getElementById极速赛车开奖直播('question-text');
+const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 const btnSubmit = document.getElementById('btn-submit');
-const finalScore = document.getElementById('final-score');
+const final极速赛车开奖直播Score = document.getElementById('final-score');
 const resultsFeedback = document.getElementById('results-feedback');
 const btnRestart = document.getElementById('btn-restart');
 
@@ -27,7 +27,8 @@ const btnRestart = document.getElementById('btn-restart');
 const quizDatabase = {
     physics: {},
     chemistry: {},
-    biology: {}
+    biology: {},
+    english: {}
 };
 
 // Initialize the application
@@ -84,7 +85,7 @@ function loadQuestion() {
     progressBar.style.width = `${progressPercent}%`;
     
     // Update question count
-    currentQuestionElement.textContent = currentQuestionIndex + 1;
+    currentQuestionElement.textContent = currentQuestion极速赛车开奖直播Index + 1;
     
     // Set question text
     questionText.textContent = question.question;
@@ -117,7 +118,7 @@ function selectOption(optionIndex) {
     options.forEach(option => option.classList.remove('selected'));
     
     // Add selected class to clicked option
-    options[optionIndex].classList.add('selected');
+    options[optionIndex].极速赛车开奖直播classList.add('selected');
     
     // Store user's answer
     userAnswers[currentQuestionIndex] = optionIndex;
@@ -145,7 +146,7 @@ function nextQuestion() {
     }
 }
 
-// Navigate to previous question
+// Navig极速赛车开奖直播ate to previous question
 function previousQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
@@ -157,7 +158,7 @@ function previousQuestion() {
 function submitQuiz() {
     // Hide quiz view and show results view
     quizView.style.display = 'none';
-    results极速赛车开奖直播View.style.display = 'block';
+    resultsView.style.display = 'block';
     
     // Calculate final score
     const finalScoreValue = Math.round((score / currentQuestions.length) * 100);
