@@ -63,7 +63,7 @@ body {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px极速赛车开奖直播 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     cursor: pointer;
 }
@@ -97,7 +97,7 @@ body {
 
 .subject-content ul {
     list-style-type: none;
-    margin-top: 10px;
+    margin极速赛车开奖直播-top: 10px;
 }
 
 .subject-content li {
@@ -162,7 +162,7 @@ body {
     padding: 15px;
     background: #f9f9f9;
     border: 2px solid #eee;
-    border-radius: 10px;
+    border-radius: 10极速赛车开奖直播px;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -173,7 +173,7 @@ body {
 }
 
 .option.selected {
-    background: #e3f2fd;
+    background: #e3极速赛车开奖直播f2fd;
     border-color: #64b5f6;
 }
 
@@ -235,7 +235,7 @@ button:hover {
 
 .results-feedback {
     font-size: 22px;
-    margin-bottom: 30px;
+    margin-bottom: 30极速赛车开奖直播px;
     color: #333;
 }
 
