@@ -3,134 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 10 Quiz - BSEM</title>
+    <title>Class 10 BOSEM Quiz Bot</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Class 10 Quiz</h1>
-            <p>Test your knowledge of Science and English (BSEM Curriculum)</p>
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcome-screen">
+            <h1>Class 10 BOSEM Quiz Bot</h1>
+            <p class="welcome-message">Welcome to the interactive quiz platform for Class 10 BOSEM students!</p>
+            <div class="input-group">
+                <input type="text" id="name-input" placeholder="Enter your name">
+            </div>
+            <button class="btn" id="start-btn">Get Started</button>
         </div>
         
-        <div class="content">
-            <div id="subjects-view">
-                <h2>Select a Subject</h2>
-                <div class="subjects-container">
-                    <div class="subject-card physics">
-                        <div class="subject-header">
-                            <h3>Physics</h3>
-                        </div>
-                        <div class="subject-content">
-                            <p>Chapters:</p>
-                            <ul>
-                                <li data-subject="physics" data-chapter="Light">Light - Reflection and Refraction</li>
-                                <li data-subject="physics" data-chapter="Electricity">Electricity</li>
-                                <li data-subject="physics" data-chapter="Magnetism">Magnetic Effects of Electric Current</li>
-                                <li data-subject="physics" data-chapter="Energy">Sources of Energy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="subject-card chemistry">
-                        <div class="subject-header">
-                            <h3>Chemistry</h3>
-                        </div>
-                        <div class="subject-content">
-                            <p>Chapters:</p>
-                            <ul>
-                                <li data-subject="chemistry" data-chapter="Reactions">Chemical Reactions and Equations</li>
-                                <li data-subject="chemistry" data-chapter="Acids">Acids, Bases and Salts</li>
-                                <li data-subject="chemistry" data-chapter="Metals">Metals and Non-metals</li>
-                                <li data-subject="chemistry" data-chapter="Carbon">Carbon and its Compounds</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="subject-card biology">
-                        <div class="subject-header">
-                            <h3>Biology</h3>
-                        </div>
-                        <div class="subject-content">
-                            <p>Chapters:</p>
-                            <ul>
-                                <li data-subject="biology" data-chapter="Life">Life Processes</li>
-                                <li data-subject="biology" data-chapter="Control">Control and Coordination</li>
-                                <li data-subject="biology" data-chapter="Reproduction">How do Organisms Reproduce?</li>
-                                <li data-subject="biology" data-chapter="Heredity">Heredity and Evolution</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="subject-card english">
-                        <div class="subject-header">
-                            <h3>English</h3>
-                        </div>
-                        <div class="subject-content">
-                            <p>Chapters:</p>
-                            <ul>
-                                <li data-subject="english" data-chapter="Literature">English Literature</li>
-                                <li data-subject="english" data-chapter="Grammar">English Grammar</li>
-                                <li data-subject="english" data-chapter="Writing">Writing Skills</li>
-                                <li data-subject="english" data-chapter="Comprehension">Reading Comprehension</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <!-- Subject Selection Screen -->
+        <div class="screen" id="subject-screen">
+            <h2>Choose Your Subject</h2>
+            <p>Hello, <span id="user-name"></span>! Please select a subject to continue.</p>
+            <div class="subject-grid">
+                <div class="subject-btn" data-subject="science">Science</div>
+                <div class="subject-btn" data-subject="mathematics">Mathematics</div>
+                <div class="subject-btn" data-subject="social-science">Social Science</div>
+                <div class="subject-btn" data-subject="english">English</div>
             </div>
-            
-            <div id="quiz-view" class="quiz-container">
-                <div class="quiz-header">
-                    <div class="question-count">Question <span id="current-question">1</span> of <span id="total-questions">5</span></div>
-                    <div class="score-container">Score: <span id="score">0</span></div>
-                </div>
-                
-                <div class="progress-bar">
-                    <div class="progress" id="progress-bar"></div>
-                </div>
-                
-                <div class="question-text" id="question-text"></div>
-                
-                <div class="options-container" id="options-container"></div>
-                
-                <div class="navigation">
-                    <button class="btn-prev" id="btn-prev">Previous</button>
-                    <button class="btn-next" id="btn-next">Next</button>
-                    <button class="btn-submit" id="btn-submit">Submit Quiz</button>
-                </div>
+        </div>
+        
+        <!-- Chapter Selection Screen -->
+        <div class="screen" id="chapter-screen">
+            <h2>Select a Chapter</h2>
+            <p>You've selected: <span id="selected-subject"></span></p>
+            <ul class="chapter-list" id="chapter-list">
+                <!-- Chapters will be dynamically added here -->
+            </ul>
+        </div>
+        
+        <!-- Quiz Screen -->
+        <div class="screen" id="quiz-screen">
+            <h2>Chapter Quiz</h2>
+            <p>Question <span id="question-number">1</span> of <span id="total-questions">10</span></p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
             </div>
-            
-            <div id="results-view" class="results-container">
-                <h2>Quiz Completed!</h2>
-                <div class="results-score" id="final-score">0</div>
-                <div class="results-feedback" id="results-feedback">Well done!</div>
-                <button class="btn-restart" id="btn-restart">Try Another Quiz</button>
+            <div class="question" id="question"></div>
+            <div class="options" id="options">
+                <!-- Options will be dynamically added here -->
+            </div>
+            <div class="navigation">
+                <button class="btn" id="prev-btn">Previous</button>
+                <button class="btn" id="next-btn">Next</button>
+            </div>
+        </div>
+        
+        <!-- Results Screen -->
+        <div class="screen" id="results-screen">
+            <h2>Quiz Results</h2>
+            <div class="result-container">
+                <p>Congratulations, <span id="result-name"></span>!</p>
+                <p>You've completed the quiz on <span id="result-chapter"></span></p>
+                <div class="score">Your Score: <span id="score">0</span>/<span id="total">10</span></div>
+                <div class="score-details">
+                    <p>Correct Answers: <span id="correct">0</span></p>
+                    <p>Incorrect Answers: <span id="incorrect">0</span></p>
+                </div>
+                <button class="btn" id="restart-btn">Take Another Quiz</button>
             </div>
         </div>
     </div>
 
-    <!-- Main app logic -->
+    <!-- Chapter data files -->
+    <script src="chapters/chapters.js"></script>
+    <script src="chapters/light.js"></script>
+    <script src="chapters/electricity.js"></script>
+    <script src="chapters/human-eye.js"></script>
+    <script src="chapters/real-numbers.js"></script>
+    
+    <!-- Main application script -->
     <script src="script.js"></script>
-    
-    <!-- Subject question files -->
-    <script src="physics-light.js"></script>
-    <script src="physics-electricity.js"></script>
-    <script src="physics-magnetism.js"></script>
-    <script src="physics-energy.js"></script>
-    
-    <script src="chemistry-reactions.js"></script>
-    <script src="chemistry-acids.js"></script>
-    <script src="chemistry-metals.js"></script>
-    <script src="chemistry-carbon.js"></script>
-    
-    <script src="biology-life.js"></script>
-    <script src="biology-control.js"></script>
-    <script src="biology-reproduction.js"></script>
-    <script src="biology-heredity.js"></script>
-    
-    <script src="english-literature.js"></script>
-    <script src="english-grammar.js"></script>
-    <script src="english-writing.js"></script>
-    <script src="english-comprehension.js"></script>
 </body>
 </html>
