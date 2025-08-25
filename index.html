@@ -23,7 +23,7 @@
         
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -189,6 +189,78 @@
             50% { transform: translateY(-5px); }
         }
         
+        /* Quiz specific styles */
+        .quiz-container {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .quiz-option {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #f0f8ff;
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .quiz-btn {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .quiz-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .quiz-score {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 height: 95vh;
@@ -201,6 +273,14 @@
             
             .header h1 {
                 font-size: 20px;
+            }
+            
+            .quiz-options {
+                gap: 5px;
+            }
+            
+            .quiz-option {
+                padding: 8px;
             }
         }
     </style>
@@ -228,6 +308,22 @@
         </div>
     </div>
 
+    <!-- JavaScript files for each chapter -->
+    <script src="motion.js"></script>
+    <script src="light.js"></script>
+    <script src="electricity.js"></script>
+    <script src="chemical-reactions.js"></script>
+    <script src="acids-bases.js"></script>
+    <script src="life-processes.js"></script>
+    <script src="reproduction.js"></script>
+    <script src="nationalism.js"></script>
+    <script src="federalism.js"></script>
+    <script src="resources.js"></script>
+    <script src="real-numbers.js"></script>
+    <script src="polynomials.js"></script>
+    <script src="comprehension.js"></script>
+    <script src="grammar.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatMessages = document.getElementById('chat-messages');
@@ -238,7 +334,29 @@
             let userName = '';
             let selectedSubject = '';
             let selectedCategory = '';
+            let selectedChapter = '';
             let currentStep = 'greeting';
+            let currentQuiz = null;
+            let currentQuestionIndex = 0;
+            let userScore = 0;
+            
+            // Chapter to JS file mapping
+            const chapterQuizzes = {
+                'Motion, Force and Work': motionQuiz,
+                'Light - Reflection and Refraction': lightQuiz,
+                'Electricity': electricityQuiz,
+                'Chemical Reactions and Equations': chemicalReactionsQuiz,
+                'Acids, Bases and Salts': acidsBasesQuiz,
+                'Life Processes': lifeProcessesQuiz,
+                'Reproduction': reproductionQuiz,
+                'The Rise of Nationalism in Europe': nationalismQuiz,
+                'Federalism': federalismQuiz,
+                'Resources and Development': resourcesQuiz,
+                'Real Numbers': realNumbersQuiz,
+                'Polynomials': polynomialsQuiz,
+                'Reading Comprehension': comprehensionQuiz,
+                'Grammar': grammarQuiz
+            };
             
             // Initial bot greeting with a delay
             setTimeout(() => {
@@ -303,6 +421,128 @@
                 typingIndicator.style.display = 'none';
             }
             
+            // Function to start a quiz
+            function startQuiz() {
+                if (chapterQuizzes[selectedChapter]) {
+                    currentQuiz = chapterQuizzes[selectedChapter];
+                    currentQuestionIndex = 0;
+                    userScore = 0;
+                    displayQuestion();
+                } else {
+                    addBotMessage("Quiz for this chapter is not available yet. Please select another chapter.");
+                    askChapter(selectedSubject, selectedCategory);
+                }
+            }
+            
+            // Function to display the current question
+            function displayQuestion() {
+                if (!currentQuiz || currentQuestionIndex >= currentQuiz.questions.length) {
+                    endQuiz();
+                    return;
+                }
+                
+                const question = currentQuiz.questions[currentQuestionIndex];
+                const quizHtml = `
+                    <div class="quiz-container">
+                        <div class="quiz-question">${currentQuestionIndex + 1}. ${question.question}</div>
+                        <div class="quiz-options">
+                            ${question.options.map((option, i) => 
+                                `<div class="quiz-option" data-index="${i}">${String.fromCharCode(65 + i)}. ${option}</div>`
+                            ).join('')}
+                        </div>
+                        <div class="quiz-navigation">
+                            <button class="quiz-btn" id="prev-question" ${currentQuestionIndex === 0 ? 'disabled' : ''}>Previous</button>
+                            <button class="quiz-btn" id="next-question">${currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finish Quiz' : 'Next'}</button>
+                        </div>
+                    </div>
+                `;
+                
+                const quizContainer = document.createElement('div');
+                quizContainer.innerHTML = quizHtml;
+                chatMessages.appendChild(quizContainer);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Add event listeners to options
+                const optionElements = quizContainer.querySelectorAll('.quiz-option');
+                optionElements.forEach(option => {
+                    option.addEventListener('click', function() {
+                        const selectedOption = parseInt(this.getAttribute('data-index'));
+                        checkAnswer(selectedOption, question.correctAnswer, optionElements);
+                    });
+                });
+                
+                // Add event listeners to navigation buttons
+                quizContainer.querySelector('#prev-question').addEventListener('click', goToPreviousQuestion);
+                quizContainer.querySelector('#next-question').addEventListener('click', goToNextQuestion);
+            }
+            
+            // Function to check the answer
+            function checkAnswer(selectedOption, correctAnswer, optionElements) {
+                optionElements.forEach((option, index) => {
+                    if (index === correctAnswer) {
+                        option.classList.add('correct');
+                    } else if (index === selectedOption && index !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+                
+                if (selectedOption === correctAnswer) {
+                    userScore++;
+                }
+            }
+            
+            // Function to go to the next question
+            function goToNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < currentQuiz.questions.length) {
+                    clearQuizContainer();
+                    displayQuestion();
+                } else {
+                    endQuiz();
+                }
+            }
+            
+            // Function to go to the previous question
+            function goToPreviousQuestion() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    clearQuizContainer();
+                    displayQuestion();
+                }
+            }
+            
+            // Function to clear the quiz container
+            function clearQuizContainer() {
+                const quizContainer = document.querySelector('.quiz-container');
+                if (quizContainer) {
+                    quizContainer.remove();
+                }
+            }
+            
+            // Function to end the quiz and show results
+            function endQuiz() {
+                clearQuizContainer();
+                const percentage = (userScore / currentQuiz.questions.length) * 100;
+                
+                addBotMessage(`Quiz completed! Your score: ${userScore}/${currentQuiz.questions.length} (${percentage.toFixed(1)}%)`);
+                
+                if (percentage >= 80) {
+                    addBotMessage("Excellent work! You have a strong understanding of this chapter.");
+                } else if (percentage >= 60) {
+                    addBotMessage("Good job! You have a decent grasp of the material.");
+                } else if (percentage >= 40) {
+                    addBotMessage("Not bad, but you might want to review this chapter again.");
+                } else {
+                    addBotMessage("You may need to study this chapter more thoroughly.");
+                }
+                
+                setTimeout(() => {
+                    addBotMessage("Would you like to try another chapter? (yes/no)");
+                    currentStep = 'restart_query';
+                }, 1000);
+            }
+            
             // Function to handle user input
             function handleUserInput() {
                 const message = userInput.value.trim();
@@ -360,20 +600,15 @@
                         break;
                         
                     case 'select_chapter':
+                        selectedChapter = message;
                         showTypingIndicator();
                         setTimeout(() => {
                             hideTypingIndicator();
-                            addBotMessage(`You've selected Chapter: ${message}`);
+                            addBotMessage(`You've selected: ${selectedChapter}`);
                             setTimeout(() => {
-                                addBotMessage("This is where the quiz would begin!");
-                            }, 800);
-                            setTimeout(() => {
-                                addBotMessage("(Quiz functionality would be implemented here)");
-                            }, 1600);
-                            setTimeout(() => {
-                                addBotMessage("Would you like to try another subject? (yes/no)");
-                                currentStep = 'restart_query';
-                            }, 2400);
+                                addBotMessage("Starting quiz... Good luck!");
+                                startQuiz();
+                            }, 1000);
                         }, 1000);
                         break;
                         
@@ -384,6 +619,7 @@
                                 hideTypingIndicator();
                                 selectedSubject = '';
                                 selectedCategory = '';
+                                selectedChapter = '';
                                 askSubject();
                             }, 1000);
                         } else {
