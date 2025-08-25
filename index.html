@@ -308,22 +308,6 @@
         </div>
     </div>
 
-    <!-- JavaScript files for each chapter -->
-    <script src="motion.js"></script>
-    <script src="light.js"></script>
-    <script src="electricity.js"></script>
-    <script src="chemical-reactions.js"></script>
-    <script src="acids-bases.js"></script>
-    <script src="life-processes.js"></script>
-    <script src="reproduction.js"></script>
-    <script src="nationalism.js"></script>
-    <script src="federalism.js"></script>
-    <script src="resources.js"></script>
-    <script src="real-numbers.js"></script>
-    <script src="polynomials.js"></script>
-    <script src="comprehension.js"></script>
-    <script src="grammar.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatMessages = document.getElementById('chat-messages');
@@ -340,22 +324,248 @@
             let currentQuestionIndex = 0;
             let userScore = 0;
             
-            // Chapter to JS file mapping
+            // Define all quizzes within the main file for simplicity
             const chapterQuizzes = {
-                'Motion, Force and Work': motionQuiz,
-                'Light - Reflection and Refraction': lightQuiz,
-                'Electricity': electricityQuiz,
-                'Chemical Reactions and Equations': chemicalReactionsQuiz,
-                'Acids, Bases and Salts': acidsBasesQuiz,
-                'Life Processes': lifeProcessesQuiz,
-                'Reproduction': reproductionQuiz,
-                'The Rise of Nationalism in Europe': nationalismQuiz,
-                'Federalism': federalismQuiz,
-                'Resources and Development': resourcesQuiz,
-                'Real Numbers': realNumbersQuiz,
-                'Polynomials': polynomialsQuiz,
-                'Reading Comprehension': comprehensionQuiz,
-                'Grammar': grammarQuiz
+                'Motion, Force and Work': {
+                    title: "Motion, Force and Work",
+                    questions: [
+                        {
+                            question: "What is the SI unit of force?",
+                            options: ["Joule", "Newton", "Watt", "Pascal"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "Which of the following is a scalar quantity?",
+                            options: ["Force", "Velocity", "Speed", "Acceleration"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "What does Newton's first law of motion describe?",
+                            options: [
+                                "Action-reaction pairs",
+                                "Relationship between force and acceleration",
+                                "Inertia of objects",
+                                "Gravitational force"
+                            ],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'Light - Reflection and Refraction': {
+                    title: "Light - Reflection and Refraction",
+                    questions: [
+                        {
+                            question: "What is the speed of light in vacuum?",
+                            options: [
+                                "3 × 10^6 m/s",
+                                "3 × 10^8 m/s",
+                                "3 × 10^10 m/s",
+                                "3 × 10^12 m/s"
+                            ],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "Which law states that the angle of incidence equals the angle of reflection?",
+                            options: [
+                                "Law of Refraction",
+                                "Law of Reflection",
+                                "Snell's Law",
+                                "Law of Diffraction"
+                            ],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Electricity': {
+                    title: "Electricity",
+                    questions: [
+                        {
+                            question: "What is the unit of electrical resistance?",
+                            options: ["Volt", "Ampere", "Ohm", "Watt"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "Which of these is a good conductor of electricity?",
+                            options: ["Rubber", "Glass", "Copper", "Plastic"],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'Chemical Reactions and Equations': {
+                    title: "Chemical Reactions and Equations",
+                    questions: [
+                        {
+                            question: "What is the process of gaining oxygen called?",
+                            options: ["Reduction", "Oxidation", "Neutralization", "Combustion"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "Which gas is evolved when zinc reacts with dilute hydrochloric acid?",
+                            options: ["Oxygen", "Carbon dioxide", "Hydrogen", "Nitrogen"],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'Acids, Bases and Salts': {
+                    title: "Acids, Bases and Salts",
+                    questions: [
+                        {
+                            question: "What is the pH value of a neutral solution?",
+                            options: ["0", "7", "14", "10"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "Which of the following is a strong acid?",
+                            options: ["Acetic acid", "Citric acid", "Hydrochloric acid", "Carbonic acid"],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'Life Processes': {
+                    title: "Life Processes",
+                    questions: [
+                        {
+                            question: "Which organelle is known as the powerhouse of the cell?",
+                            options: ["Nucleus", "Mitochondria", "Chloroplast", "Golgi apparatus"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "What is the primary function of the roots in plants?",
+                            options: ["Photosynthesis", "Absorption of water and minerals", "Reproduction", "Transpiration"],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Reproduction': {
+                    title: "Reproduction",
+                    questions: [
+                        {
+                            question: "Which type of reproduction involves only one parent?",
+                            options: ["Sexual reproduction", "Asexual reproduction", "Binary fission", "Budding"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "In humans, the male gamete is called?",
+                            options: ["Ovum", "Zygote", "Sperm", "Embryo"],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'The Rise of Nationalism in Europe': {
+                    title: "The Rise of Nationalism in Europe",
+                    questions: [
+                        {
+                            question: "Who was the founder of the Young Italy movement?",
+                            options: ["Giuseppe Garibaldi", "Count Cavour", "Giuseppe Mazzini", "Victor Emmanuel II"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "Which treaty recognized Greece as an independent nation?",
+                            options: ["Treaty of Vienna", "Treaty of Constantinople", "Treaty of Versailles", "Treaty of Paris"],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Federalism': {
+                    title: "Federalism",
+                    questions: [
+                        {
+                            question: "Which country is an example of holding together federation?",
+                            options: ["USA", "Australia", "India", "Switzerland"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "Which subject is included in the Union List?",
+                            options: ["Police", "Agriculture", "Defense", "Public health"],
+                            correctAnswer: 2
+                        }
+                    ]
+                },
+                'Resources and Development': {
+                    title: "Resources and Development",
+                    questions: [
+                        {
+                            question: "Which of the following is a renewable resource?",
+                            options: ["Coal", "Petroleum", "Solar energy", "Natural gas"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "What is the percentage of plains in India's total land area?",
+                            options: ["43%", "30%", "27%", "50%"],
+                            correctAnswer: 0
+                        }
+                    ]
+                },
+                'Real Numbers': {
+                    title: "Real Numbers",
+                    questions: [
+                        {
+                            question: "Which of the following is an irrational number?",
+                            options: ["√9", "√4", "√2", "√16"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "What is the HCF of 12 and 18?",
+                            options: ["3", "6", "2", "9"],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Polynomials': {
+                    title: "Polynomials",
+                    questions: [
+                        {
+                            question: "What is the degree of the polynomial 4x³ + 2x² + 7?",
+                            options: ["1", "2", "3", "4"],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: "How many zeros can a quadratic polynomial have?",
+                            options: ["Exactly 1", "At most 2", "Exactly 3", "At most 4"],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Reading Comprehension': {
+                    title: "Reading Comprehension",
+                    questions: [
+                        {
+                            question: "What is the main purpose of a topic sentence in a paragraph?",
+                            options: [
+                                "To provide evidence",
+                                "To introduce the main idea",
+                                "To conclude the paragraph",
+                                "To ask a question"
+                            ],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "What does 'inference' mean in reading comprehension?",
+                            options: [
+                                "Literal meaning of words",
+                                "Drawing conclusions based on evidence",
+                                "Summarizing the text",
+                                "Identifying the main character"
+                            ],
+                            correctAnswer: 1
+                        }
+                    ]
+                },
+                'Grammar': {
+                    title: "Grammar",
+                    questions: [
+                        {
+                            question: "Which of the following is a collective noun?",
+                            options: ["Book", "Team", "Computer", "Teacher"],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: "What is the past participle of 'eat'?",
+                            options: ["Ate", "Eaten", "Eating", "Eats"],
+                            correctAnswer: 1
+                        }
+                    ]
+                }
             };
             
             // Initial bot greeting with a delay
