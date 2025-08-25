@@ -3,83 +3,505 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 10 BOSEM Quiz Bot</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BOSEM Educational Quiz Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #fafafa;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: #1976d2;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .option-btn {
+            padding: 10px 15px;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .option-btn:hover {
+            background-color: #c8e6c9;
+            transform: translateY(-2px);
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+            background-color: white;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        #user-input:focus {
+            border-color: #3498db;
+        }
+        
+        #send-btn {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #send-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .typing-indicator {
+            align-self: flex-start;
+            background-color: #e3f2fd;
+            color: #1976d2;
+            padding: 12px 18px;
+            border-radius: 18px;
+            display: none;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: #1976d2;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 2px;
+            opacity: 0.6;
+            animation: typing 1s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                height: 95vh;
+                width: 95%;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Welcome Screen -->
-        <div class="screen active" id="welcome-screen">
-            <h1>Class 10 BOSEM Quiz Bot</h1>
-            <p class="welcome-message">Welcome to the interactive quiz platform for Class 10 BOSEM students!</p>
-            <div class="input-group">
-                <input type="text" id="name-input" placeholder="Enter your name">
-            </div>
-            <button class="btn" id="start-btn">Get Started</button>
+        <div class="header">
+            <h1>BOSEM Educational Quiz Bot</h1>
+            <p>Test your knowledge in Science, Math, Social Science, and English</p>
         </div>
         
-        <!-- Subject Selection Screen -->
-        <div class="screen" id="subject-screen">
-            <h2>Choose Your Subject</h2>
-            <p>Hello, <span id="user-name"></span>! Please select a subject to continue.</p>
-            <div class="subject-grid">
-                <div class="subject-btn" data-subject="science">Science</div>
-                <div class="subject-btn" data-subject="mathematics">Mathematics</div>
-                <div class="subject-btn" data-subject="social-science">Social Science</div>
-                <div class="subject-btn" data-subject="english">English</div>
-            </div>
-        </div>
-        
-        <!-- Chapter Selection Screen -->
-        <div class="screen" id="chapter-screen">
-            <h2>Select a Chapter</h2>
-            <p>You've selected: <span id="selected-subject"></span></p>
-            <ul class="chapter-list" id="chapter-list">
-                <!-- Chapters will be dynamically added here -->
-            </ul>
-        </div>
-        
-        <!-- Quiz Screen -->
-        <div class="screen" id="quiz-screen">
-            <h2>Chapter Quiz</h2>
-            <p>Question <span id="question-number">1</span> of <span id="total-questions">10</span></p>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            <div class="question" id="question"></div>
-            <div class="options" id="options">
-                <!-- Options will be dynamically added here -->
-            </div>
-            <div class="navigation">
-                <button class="btn" id="prev-btn">Previous</button>
-                <button class="btn" id="next-btn">Next</button>
-            </div>
-        </div>
-        
-        <!-- Results Screen -->
-        <div class="screen" id="results-screen">
-            <h2>Quiz Results</h2>
-            <div class="result-container">
-                <p>Congratulations, <span id="result-name"></span>!</p>
-                <p>You've completed the quiz on <span id="result-chapter"></span></p>
-                <div class="score">Your Score: <span id="score">0</span>/<span id="total">10</span></div>
-                <div class="score-details">
-                    <p>Correct Answers: <span id="correct">0</span></p>
-                    <p>Incorrect Answers: <span id="incorrect">0</span></p>
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <div class="typing-indicator" id="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <button class="btn" id="restart-btn">Take Another Quiz</button>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+                <button id="send-btn">Send</button>
             </div>
         </div>
     </div>
 
-    <!-- Chapter data files -->
-    <script src="chapters/chapters.js"></script>
-    <script src="chapters/light.js"></script>
-    <script src="chapters/electricity.js"></script>
-    <script src="chapters/human-eye.js"></script>
-    <script src="chapters/real-numbers.js"></script>
-    
-    <!-- Main application script -->
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const typingIndicator = document.getElementById('typing-indicator');
+            
+            let userName = '';
+            let selectedSubject = '';
+            let selectedCategory = '';
+            let currentStep = 'greeting';
+            
+            // Initial bot greeting with a delay
+            setTimeout(() => {
+                addBotMessage("Hello! Welcome to the BOSEM Educational Quiz Bot!");
+            }, 500);
+            
+            setTimeout(() => {
+                addBotMessage("I'm here to help test your knowledge in various subjects.");
+            }, 1500);
+            
+            setTimeout(() => {
+                addBotMessage("What's your name?");
+                currentStep = 'get_name';
+            }, 2500);
+            
+            // Function to add a bot message
+            function addBotMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'bot-message');
+                messageDiv.textContent = text;
+                chatMessages.insertBefore(messageDiv, typingIndicator);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to add a user message
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'user-message');
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to show options to the user
+            function showOptions(options, optionType) {
+                const optionsContainer = document.createElement('div');
+                optionsContainer.classList.add('options-container');
+                
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.classList.add('option-btn');
+                    button.textContent = option;
+                    button.addEventListener('click', () => {
+                        userInput.value = option;
+                        handleUserInput();
+                    });
+                    optionsContainer.appendChild(button);
+                });
+                
+                chatMessages.appendChild(optionsContainer);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                typingIndicator.style.display = 'block';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to hide typing indicator
+            function hideTypingIndicator() {
+                typingIndicator.style.display = 'none';
+            }
+            
+            // Function to handle user input
+            function handleUserInput() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                addUserMessage(message);
+                userInput.value = '';
+                
+                switch(currentStep) {
+                    case 'get_name':
+                        userName = message;
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            addBotMessage(`Nice to meet you, ${userName}!`);
+                            askSubject();
+                        }, 1000);
+                        break;
+                        
+                    case 'select_subject':
+                        selectedSubject = message;
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            addBotMessage(`Great! You've selected ${selectedSubject}.`);
+                            
+                            if (selectedSubject === 'Science') {
+                                askScienceCategory();
+                            } else if (selectedSubject === 'Social Science') {
+                                askSocialScienceCategory();
+                            } else {
+                                askChapter(selectedSubject);
+                            }
+                        }, 1000);
+                        break;
+                        
+                    case 'select_science_category':
+                        selectedCategory = message;
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            addBotMessage(`Excellent! You've chosen ${selectedCategory}.`);
+                            askChapter(selectedSubject, selectedCategory);
+                        }, 1000);
+                        break;
+                        
+                    case 'select_social_science_category':
+                        selectedCategory = message;
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            addBotMessage(`Excellent! You've chosen ${selectedCategory}.`);
+                            askChapter(selectedSubject, selectedCategory);
+                        }, 1000);
+                        break;
+                        
+                    case 'select_chapter':
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            hideTypingIndicator();
+                            addBotMessage(`You've selected Chapter: ${message}`);
+                            setTimeout(() => {
+                                addBotMessage("This is where the quiz would begin!");
+                            }, 800);
+                            setTimeout(() => {
+                                addBotMessage("(Quiz functionality would be implemented here)");
+                            }, 1600);
+                            setTimeout(() => {
+                                addBotMessage("Would you like to try another subject? (yes/no)");
+                                currentStep = 'restart_query';
+                            }, 2400);
+                        }, 1000);
+                        break;
+                        
+                    case 'restart_query':
+                        if (message.toLowerCase() === 'yes' || message.toLowerCase() === 'y') {
+                            showTypingIndicator();
+                            setTimeout(() => {
+                                hideTypingIndicator();
+                                selectedSubject = '';
+                                selectedCategory = '';
+                                askSubject();
+                            }, 1000);
+                        } else {
+                            showTypingIndicator();
+                            setTimeout(() => {
+                                hideTypingIndicator();
+                                addBotMessage(`Thank you for using the BOSEM Educational Quiz Bot, ${userName}! Feel free to start again anytime.`);
+                                currentStep = 'completed';
+                            }, 1000);
+                        }
+                        break;
+                }
+            }
+            
+            // Function to ask for subject selection
+            function askSubject() {
+                currentStep = 'select_subject';
+                addBotMessage("Which subject would you like to be tested on?");
+                showOptions(['Science', 'Math', 'Social Science', 'English']);
+            }
+            
+            // Function to ask for science category
+            function askScienceCategory() {
+                currentStep = 'select_science_category';
+                addBotMessage("Please select a science category:");
+                showOptions(['Physics', 'Chemistry', 'Biology']);
+            }
+            
+            // Function to ask for social science category
+            function askSocialScienceCategory() {
+                currentStep = 'select_social_science_category';
+                addBotMessage("Please select a social science category:");
+                showOptions(['History', 'Civics', 'Geography']);
+            }
+            
+            // Function to ask for chapter selection
+            function askChapter(subject, category = null) {
+                currentStep = 'select_chapter';
+                
+                // Define chapters based on BOSEM curriculum
+                let chapters = [];
+                
+                if (subject === 'Science') {
+                    if (category === 'Physics') {
+                        chapters = [
+                            'Motion, Force and Work',
+                            'Light - Reflection and Refraction',
+                            'Electricity',
+                            'Magnetic Effects of Electric Current'
+                        ];
+                    } else if (category === 'Chemistry') {
+                        chapters = [
+                            'Chemical Reactions and Equations',
+                            'Acids, Bases and Salts',
+                            'Metals and Non-metals',
+                            'Carbon and its Compounds'
+                        ];
+                    } else if (category === 'Biology') {
+                        chapters = [
+                            'Life Processes',
+                            'Control and Coordination',
+                            'Reproduction',
+                            'Heredity and Evolution'
+                        ];
+                    }
+                } else if (subject === 'Social Science') {
+                    if (category === 'History') {
+                        chapters = [
+                            'The Rise of Nationalism in Europe',
+                            'Nationalism in India',
+                            'The Making of a Global World',
+                            'The Age of Industrialization'
+                        ];
+                    } else if (category === 'Civics') {
+                        chapters = [
+                            'Power Sharing',
+                            'Federalism',
+                            'Democracy and Diversity',
+                            'Gender, Religion and Caste'
+                        ];
+                    } else if (category === 'Geography') {
+                        chapters = [
+                            'Resources and Development',
+                            'Water Resources',
+                            'Agriculture',
+                            'Minerals and Energy Resources'
+                        ];
+                    }
+                } else if (subject === 'Math') {
+                    chapters = [
+                        'Real Numbers',
+                        'Polynomials',
+                        'Pair of Linear Equations in Two Variables',
+                        'Quadratic Equations',
+                        'Arithmetic Progressions'
+                    ];
+                } else if (subject === 'English') {
+                    chapters = [
+                        'Reading Comprehension',
+                        'Writing Skills',
+                        'Grammar',
+                        'Literature'
+                    ];
+                }
+                
+                addBotMessage("Please select a chapter:");
+                showOptions(chapters);
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', handleUserInput);
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
