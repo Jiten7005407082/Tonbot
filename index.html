@@ -2,130 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Math Quiz Chatbot - 250 MCQs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz Chatbot</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb, #2575fc);
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #8e44ad);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-    .chat-container {
+    #chatbot {
+      width: 90%;
       max-width: 800px;
-      margin: 0 auto;
+      height: 90vh;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
       padding: 20px;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
-    .bot, .user {
+    .message {
       margin: 10px 0;
       padding: 12px;
       border-radius: 10px;
+      max-width: 80%;
     }
     .bot {
-      background: rgba(255,255,255,0.2);
-      text-align: left;
+      background: #2c3e50;
+      align-self: flex-start;
     }
     .user {
-      background: rgba(0,0,0,0.3);
-      text-align: right;
+      background: #27ae60;
+      align-self: flex-end;
+      margin-left: auto;
     }
     .options button {
       display: block;
-      margin: 6px 0;
+      margin: 5px 0;
       padding: 10px;
+      width: 100%;
       border: none;
       border-radius: 8px;
-      background: #fff;
-      color: #000;
+      background: #3498db;
+      color: white;
       cursor: pointer;
-      width: 100%;
-      text-align: left;
-      font-size: 15px;
+      font-size: 16px;
     }
     .options button:hover {
-      background: #ddd;
+      background: #2980b9;
     }
-    .correct { background: #4CAF50 !important; color: white !important; }
-    .wrong { background: #f44336 !important; color: white !important; }
   </style>
 </head>
 <body>
-  <div class="chat-container" id="chat"></div>
+  <div id="chatbot"></div>
 
   <script>
-    const questions = [
-      // ================= LINEAR EQUATIONS (50) =================
-      { q: "Solve: If 2x + 3y = 12 and x + y = 5, find x.", options: ["2", "3", "4", "5"], answer: "3" },
-      { q: "The solution of x + y = 10, x - y = 2 is:", options: ["x=6, y=4", "x=4, y=6", "x=5, y=5", "x=7, y=3"], answer: "x=6, y=4" },
-      { q: "The pair of equations x + y = 4, 2x + 2y = 8 has:", options: ["Unique solution", "No solution", "Infinitely many solutions", "Cannot be determined"], answer: "Infinitely many solutions" },
-      // ... (47 more Linear Equations questions hard-coded) ...
+    const chatbot = document.getElementById("chatbot");
 
-      // ================= QUADRATIC EQUATIONS (50) =================
-      { q: "The roots of x² - 5x + 6 = 0 are:", options: ["2 and 3", "3 and 4", "1 and 6", "2 and 6"], answer: "2 and 3" },
-      { q: "Discriminant of equation x² - 4x + 4 = 0 is:", options: ["16", "0", "4", "8"], answer: "0" },
-      { q: "If roots of x² - kx + 8 = 0 are equal, then k = ?", options: ["4", "±4", "8", "16"], answer: "±4" },
-      // ... (47 more Quadratic questions hard-coded) ...
+    function addMessage(text, sender="bot") {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+      msg.innerText = text;
+      chatbot.appendChild(msg);
+      chatbot.scrollTop = chatbot.scrollHeight;
+    }
 
-      // ================= ARITHMETIC PROGRESSION (50) =================
-      { q: "The nth term of AP: 2, 5, 8, 11... is:", options: ["2n+1", "3n-1", "3n+2", "n+2"], answer: "3n-1" },
-      { q: "Find the 10th term of AP: 7, 13, 19...", options: ["55", "61", "67", "73"], answer: "61" },
-      { q: "Sum of first 20 terms of AP: 1, 4, 7, ... is:", options: ["570", "600", "620", "640"], answer: "610" },
-      // ... (47 more AP questions hard-coded) ...
-
-      // ================= TRIGONOMETRY (50) =================
-      { q: "sin²θ + cos²θ equals:", options: ["0", "1", "2", "θ"], answer: "1" },
-      { q: "tan45° equals:", options: ["1", "0", "√3", "None"], answer: "1" },
-      { q: "cos60° equals:", options: ["1/2", "√3/2", "0", "1"], answer: "1/2" },
-      // ... (47 more Trigonometry questions hard-coded) ...
-
-      // ================= MENSURATION (50) =================
-      { q: "Volume of sphere of radius r is:", options: ["(4/3)πr³", "2πr³", "πr²", "πr³"], answer: "(4/3)πr³" },
-      { q: "Surface area of a cube of side a is:", options: ["a³", "6a²", "4a²", "2a²"], answer: "6a²" },
-      { q: "Curved surface area of cylinder of radius r and height h is:", options: ["2πrh", "πr²h", "2πr²h", "πr³"], answer: "2πrh" },
-      // ... (47 more Mensuration questions hard-coded) ...
-    ];
-
-    let currentQuestion = 0;
-    const chat = document.getElementById("chat");
-
-    function showQuestion() {
-      if (currentQuestion >= questions.length) {
-        chat.innerHTML += `<div class="bot"><b>Quiz Completed!</b><br>You answered all ${questions.length} questions.</div>`;
-        return;
-      }
-      const qObj = questions[currentQuestion];
-      chat.innerHTML += `<div class="bot">Q${currentQuestion+1}: ${qObj.q}</div>`;
-      const optionsDiv = document.createElement("div");
-      optionsDiv.className = "options";
-      qObj.options.forEach(opt => {
+    function addOptions(options, correctIndex, callback) {
+      const container = document.createElement("div");
+      container.classList.add("options");
+      options.forEach((opt, i) => {
         const btn = document.createElement("button");
         btn.innerText = opt;
-        btn.onclick = () => checkAnswer(btn, qObj.answer);
-        optionsDiv.appendChild(btn);
+        btn.onclick = () => {
+          if (i === correctIndex) {
+            addMessage("✅ Correct!", "bot");
+            score++;
+          } else {
+            addMessage("❌ Incorrect! Correct answer: " + options[correctIndex], "bot");
+          }
+          callback();
+        };
+        container.appendChild(btn);
       });
-      chat.appendChild(optionsDiv);
+      chatbot.appendChild(container);
+      chatbot.scrollTop = chatbot.scrollHeight;
     }
 
-    function checkAnswer(btn, correct) {
-      if (btn.innerText === correct) {
-        btn.classList.add("correct");
-        chat.innerHTML += `<div class="bot">✅ Correct!</div>`;
-      } else {
-        btn.classList.add("wrong");
-        chat.innerHTML += `<div class="bot">❌ Wrong! Correct answer: ${correct}</div>`;
-      }
-      currentQuestion++;
-      setTimeout(showQuestion, 1000);
-    }
-
-    showQuestion();
-  </script>
-</body>
-</html>
+    let questions = [
+      // 👉 Parts 2–5 will inject the 250 questions here
