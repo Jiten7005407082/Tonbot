@@ -1,208 +1,192 @@
-// DOM Elements
-const screens = document.querySelectorAll('.screen');
-const nameInput = document.getElementById('name-input');
-const startBtn = document.getElementById('start-btn');
-const userName = document.getElementById('user-name');
-const subjectBtns = document.querySelectorAll('.subject-btn');
-const selectedSubject = document.getElementById('selected-subject');
-const chapterList = document.getElementById('chapter-list');
-const questionElement = document.getElementById('question');
-const optionsElement = document.getElementById('options');
-const questionNumber = document.getElementById('question-number');
-const totalQuestions = document.getElementById('total-questions');
-const progressBar = document.getElementById('progress-bar');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const resultName = document.getElementById('result-name');
-const resultChapter = document.getElementById('result-chapter');
-const scoreElement = document.getElementById('score');
-const totalElement = document.getElementById('total');
-const correctElement = document.getElementById('correct');
-const incorrectElement = document.getElementById('incorrect');
-const restartBtn = document.getElementById('restart-btn');
+// === Default Question Bank ===
+const DEFAULT_QUESTIONS = [
+  {
+    id: 1,
+    topic: "Parts of Speech",
+    question: "Which part of speech is the word 'quickly'?",
+    options: ["Noun", "Adverb", "Adjective", "Verb"],
+    answer: "Adverb",
+    explanation: "‘Quickly’ describes how an action is performed, so it’s an adverb."
+  },
+  {
+    id: 2,
+    topic: "Kinds of Sentences",
+    question: "Identify the kind of sentence: 'Please sit down.'",
+    options: ["Declarative", "Imperative", "Exclamatory", "Interrogative"],
+    answer: "Imperative",
+    explanation: "It expresses a command or request, so it’s imperative."
+  },
+  {
+    id: 3,
+    topic: "Transformation",
+    question: "Change into passive: 'She writes a letter.'",
+    options: ["A letter was written by her.", "A letter is written by her.", "A letter has been written by her.", "A letter is being written by her."],
+    answer: "A letter is written by her.",
+    explanation: "In present simple passive, the structure is: object + is/are + past participle."
+  },
+  {
+    id: 4,
+    topic: "Tense",
+    question: "Which tense is this: 'They will be playing football.'",
+    options: ["Future Continuous", "Future Perfect", "Present Continuous", "Future Simple"],
+    answer: "Future Continuous",
+    explanation: "‘Will be playing’ shows an action continuing in the future."
+  },
+  {
+    id: 5,
+    topic: "Voice",
+    question: "Convert to active voice: 'The work was finished by John.'",
+    options: ["John has finished the work.", "John finished the work.", "John is finishing the work.", "John will finish the work."],
+    answer: "John finished the work.",
+    explanation: "The correct active form is simple past tense."
+  },
+  {
+    id: 6,
+    topic: "Narration",
+    question: "Change to indirect speech: He said, 'I am happy.'",
+    options: ["He said that he was happy.", "He said that he is happy.", "He said that he had been happy.", "He said that he will be happy."],
+    answer: "He said that he was happy.",
+    explanation: "The reporting verb is past tense, so present simple becomes past simple."
+  },
+  {
+    id: 7,
+    topic: "Determiners",
+    question: "Choose the correct determiner: 'There are ___ books on the table.'",
+    options: ["much", "many", "little", "a"],
+    answer: "many",
+    explanation: "‘Books’ is countable plural, so we use ‘many’."
+  },
+  {
+    id: 8,
+    topic: "Parts of Speech",
+    question: "Which part of speech is the word 'beauty'?",
+    options: ["Verb", "Adjective", "Noun", "Adverb"],
+    answer: "Noun",
+    explanation: "‘Beauty’ is a thing or quality, so it’s a noun."
+  },
+  {
+    id: 9,
+    topic: "Kinds of Sentences",
+    question: "Identify the sentence: 'What a beautiful day!'",
+    options: ["Imperative", "Declarative", "Exclamatory", "Interrogative"],
+    answer: "Exclamatory",
+    explanation: "It expresses strong feeling, so it’s exclamatory."
+  },
+  {
+    id: 10,
+    topic: "Tense",
+    question: "Find the tense: 'She had left before I arrived.'",
+    options: ["Past Continuous", "Past Perfect", "Present Perfect", "Future Perfect"],
+    answer: "Past Perfect",
+    explanation: "‘Had left’ shows an action completed before another past action."
+  }
+];
 
-// Quiz State
-let currentScreen = 0;
-let userData = {
-    name: '',
-    subject: '',
-    chapter: ''
-};
-let currentQuestion = 0;
+// === App State ===
+let questions = JSON.parse(localStorage.getItem("questions")) || DEFAULT_QUESTIONS;
+let currentIndex = 0;
 let score = 0;
-let userAnswers = [];
-let quizData = [];
 
-// Initialize the application
-function init() {
-    // Event Listeners
-    startBtn.addEventListener('click', startQuiz);
-    subjectBtns.forEach(btn => {
-        btn.addEventListener('click', selectSubject);
-    });
-    prevBtn.addEventListener('click', showPreviousQuestion);
-    nextBtn.addEventListener('click', showNextQuestion);
-    restartBtn.addEventListener('click', restartQuiz);
+// === DOM Elements ===
+const quizEl = document.getElementById("quiz");
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const scoreEl = document.getElementById("score");
+const topicFilter = document.getElementById("topicFilter");
+const editorModal = document.getElementById("editorModal");
+const jsonEditor = document.getElementById("jsonEditor");
+
+// === Initialize ===
+function initTopics() {
+  const topics = [...new Set(questions.map(q => q.topic))];
+  topics.forEach(t => {
+    const opt = document.createElement("option");
+    opt.value = t;
+    opt.textContent = t;
+    topicFilter.appendChild(opt);
+  });
 }
 
-// Start the quiz
 function startQuiz() {
-    if (nameInput.value.trim() === '') {
-        alert('Please enter your name');
-        return;
-    }
-    
-    userData.name = nameInput.value.trim();
-    userName.textContent = userData.name;
-    
-    showScreen(1);
+  currentIndex = 0;
+  score = 0;
+  quizEl.classList.remove("hidden");
+  renderQuestion();
 }
 
-// Select a subject
-function selectSubject(e) {
-    userData.subject = e.target.getAttribute('data-subject');
-    selectedSubject.textContent = userData.subject.charAt(0).toUpperCase() + userData.subject.slice(1);
-    
-    // Clear previous chapters
-    chapterList.innerHTML = '';
-    
-    // Add chapters for the selected subject
-    chapters[userData.subject].forEach(chapter => {
-        const li = document.createElement('li');
-        li.className = 'chapter-item';
-        li.textContent = chapter.name;
-        li.setAttribute('data-chapter', chapter.id);
-        li.addEventListener('click', selectChapter);
-        chapterList.appendChild(li);
-    });
-    
-    showScreen(2);
+function renderQuestion() {
+  const filtered = getFilteredQuestions();
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex >= filtered.length) currentIndex = filtered.length - 1;
+
+  const q = filtered[currentIndex];
+  questionEl.textContent = `${currentIndex + 1}. ${q.question}`;
+  optionsEl.innerHTML = "";
+
+  q.options.forEach(opt => {
+    const btn = document.createElement("div");
+    btn.classList.add("option");
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(q, opt);
+    optionsEl.appendChild(btn);
+  });
+
+  scoreEl.textContent = `Score: ${score} / ${filtered.length}`;
 }
 
-// Select a chapter
-function selectChapter(e) {
-    userData.chapter = e.target.getAttribute('data-chapter');
-    
-    // Load quiz data based on the selected chapter
-    if (typeof quizDataMap !== 'undefined' && quizDataMap[userData.chapter]) {
-        quizData = quizDataMap[userData.chapter].questions;
-        resultChapter.textContent = quizDataMap[userData.chapter].chapter;
-    } else {
-        // Default to light quiz if chapter not found
-        quizData = quizDataMap.light.questions;
-        resultChapter.textContent = quizDataMap.light.chapter;
-    }
-    
-    // Initialize quiz
-    currentQuestion = 0;
-    score = 0;
-    userAnswers = new Array(quizData.length).fill(null);
-    
-    totalQuestions.textContent = quizData.length;
-    totalElement.textContent = quizData.length;
-    
-    showQuestion();
-    updateProgressBar();
-    
-    showScreen(3);
+function checkAnswer(question, selected) {
+  if (selected === question.answer) {
+    alert("✅ Correct! " + question.explanation);
+    score++;
+  } else {
+    alert("❌ Wrong! Correct: " + question.answer + "\n" + question.explanation);
+  }
+  currentIndex++;
+  renderQuestion();
 }
 
-// Show a question
-function showQuestion() {
-    const question = quizData[currentQuestion];
-    questionElement.textContent = question.question;
-    
-    // Clear previous options
-    optionsElement.innerHTML = '';
-    
-    // Add options
-    question.options.forEach((option, index) => {
-        const optionElement = document.createElement('div');
-        optionElement.className = 'option';
-        if (userAnswers[currentQuestion] === index) {
-            optionElement.classList.add('selected');
-        }
-        optionElement.textContent = option;
-        optionElement.addEventListener('click', () => selectOption(index));
-        optionsElement.appendChild(optionElement);
-    });
-    
-    questionNumber.textContent = currentQuestion + 1;
-    
-    // Update navigation buttons
-    prevBtn.disabled = currentQuestion === 0;
-    nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish' : 'Next';
+function getFilteredQuestions() {
+  const t = topicFilter.value;
+  if (t === "all") return questions;
+  return questions.filter(q => q.topic === t);
 }
 
-// Select an option
-function selectOption(index) {
-    userAnswers[currentQuestion] = index;
-    
-    // Update UI
-    const options = optionsElement.querySelectorAll('.option');
-    options.forEach(option => option.classList.remove('selected'));
-    options[index].classList.add('selected');
-}
+// === Event Listeners ===
+document.getElementById("startQuiz").addEventListener("click", startQuiz);
+document.getElementById("prevBtn").addEventListener("click", () => { currentIndex--; renderQuestion(); });
+document.getElementById("nextBtn").addEventListener("click", () => { currentIndex++; renderQuestion(); });
 
-// Show next question
-function showNextQuestion() {
-    if (userAnswers[currentQuestion] === null) {
-        alert('Please select an answer');
-        return;
-    }
-    
-    // Check if answer is correct
-    if (userAnswers[currentQuestion] === quizData[currentQuestion].correctAnswer) {
-        score++;
-    }
-    
-    if (currentQuestion < quizData.length - 1) {
-        currentQuestion++;
-        showQuestion();
-        updateProgressBar();
-    } else {
-        showResults();
-    }
-}
+// Editor
+document.getElementById("editQuestions").addEventListener("click", () => {
+  jsonEditor.value = JSON.stringify(questions, null, 2);
+  editorModal.classList.remove("hidden");
+});
 
-// Show previous question
-function showPreviousQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion();
-        updateProgressBar();
-    }
-}
+document.getElementById("saveQuestions").addEventListener("click", () => {
+  try {
+    questions = JSON.parse(jsonEditor.value);
+    localStorage.setItem("questions", JSON.stringify(questions));
+    editorModal.classList.add("hidden");
+    alert("✅ Questions updated!");
+    location.reload();
+  } catch (e) {
+    alert("Invalid JSON: " + e.message);
+  }
+});
 
-// Update progress bar
-function updateProgressBar() {
-    const progress = ((currentQuestion + 1) / quizData.length) * 100;
-    progressBar.style.width = `${progress}%`;
-}
+document.getElementById("closeEditor").addEventListener("click", () => {
+  editorModal.classList.add("hidden");
+});
 
-// Show results
-function showResults() {
-    resultName.textContent = userData.name;
-    scoreElement.textContent = score;
-    correctElement.textContent = score;
-    incorrectElement.textContent = quizData.length - score;
-    
-    showScreen(4);
-}
+document.getElementById("downloadJson").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(questions, null, 2)], {type: "application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "questions.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
-// Restart the quiz
-function restartQuiz() {
-    userData.subject = '';
-    userData.chapter = '';
-    showScreen(1);
-}
-
-// Show a specific screen
-function showScreen(index) {
-    screens.forEach(screen => screen.classList.remove('active'));
-    screens[index].classList.add('active');
-    currentScreen = index;
-}
-
-// Initialize the app when the DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+// === Run ===
+initTopics();
