@@ -3,438 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math Quiz Chatbot</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #4facfe, #8e44ad);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    #chatbot {
-      width: 90%;
-      max-width: 800px;
-      height: 90vh;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 15px;
-      padding: 20px;
-      overflow-y: auto;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .message {
-      margin: 10px 0;
-      padding: 12px;
-      border-radius: 10px;
-      max-width: 80%;
-    }
-    .bot {
-      background: #2c3e50;
-      align-self: flex-start;
-    }
-    .user {
-      background: #27ae60;
-      align-self: flex-end;
-      margin-left: auto;
-    }
-    .options button {
-      display: block;
-      margin: 5px 0;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      background: #3498db;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .options button:hover {
-      background: #2980b9;
-    }
-  </style>
+  <title>English Grammar Quiz Bot</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="chatbot"></div>
+  <div class="quiz-container">
+    <h1>English Grammar Quiz Bot</h1>
 
-  <script>
-    const chatbot = document.getElementById("chatbot");
+    <div class="controls">
+      <select id="topicFilter">
+        <option value="all">All Topics</option>
+      </select>
+      <button id="startQuiz">Start Quiz</button>
+      <button id="editQuestions">Edit Questions (JSON)</button>
+    </div>
 
-    function addMessage(text, sender="bot") {
-      const msg = document.createElement("div");
-      msg.classList.add("message", sender);
-      msg.innerText = text;
-      chatbot.appendChild(msg);
-      chatbot.scrollTop = chatbot.scrollHeight;
-    }
+    <div id="quiz" class="hidden">
+      <div id="question-container">
+        <div id="question">Question text</div>
+        <div id="options"></div>
+      </div>
+      <div class="navigation">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+      <div id="score"></div>
+    </div>
+  </div>
 
-    function addOptions(options, correctIndex, callback) {
-      const container = document.createElement("div");
-      container.classList.add("options");
-      options.forEach((opt, i) => {
-        const btn = document.createElement("button");
-        btn.innerText = opt;
-        btn.onclick = () => {
-          if (i === correctIndex) {
-            addMessage("✅ Correct!", "bot");
-            score++;
-          } else {
-            addMessage("❌ Incorrect! Correct answer: " + options[correctIndex], "bot");
-          }
-          callback();
-        };
-        container.appendChild(btn);
-      });
-      chatbot.appendChild(container);
-      chatbot.scrollTop = chatbot.scrollHeight;
-    }
+  <!-- JSON Editor Modal -->
+  <div id="editorModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Edit Questions JSON</h2>
+      <textarea id="jsonEditor"></textarea>
+      <div class="modal-buttons">
+        <button id="saveQuestions">Save & Apply</button>
+        <button id="downloadJson">Download JSON</button>
+        <button id="closeEditor">Close</button>
+      </div>
+    </div>
+  </div>
 
-    let questions = [       // Linear Equations in Two Variables - 50 Questions
-      {
-        q: "Solve: If 2x + 3y = 12 and x – y = 1, then x = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 2
-      },
-      {
-        q: "Solve for y: 3x + 2y = 12, x = 2",
-        options: ["2", "3", "4", "5"],
-        answer: 0
-      },
-      {
-        q: "If x + y = 10 and x – y = 4, then x = ?",
-        options: ["7", "6", "8", "9"],
-        answer: 2
-      },
-      {
-        q: "The solution of x = 2, y = 3 satisfies equation: ?",
-        options: ["2x + y = 7", "x – y = 1", "x + y = 6", "All of these"],
-        answer: 3
-      },
-      {
-        q: "If x + y = 5 and 2x + 3y = 12, then y = ?",
-        options: ["2", "1", "3", "4"],
-        answer: 0
-      },
-      {
-        q: "Equation of line parallel to y = 2x + 3 through (1,2):",
-        options: ["y = 2x + 1", "y = 2x – 1", "y = 2x + 2", "y = 2x – 2"],
-        answer: 1
-      },
-      {
-        q: "Equation of line through (0,2) and slope 3:",
-        options: ["y = 3x + 2", "y = 3x – 2", "y = –3x + 2", "y = 2x + 3"],
-        answer: 0
-      },
-      {
-        q: "If x + y = 7 and 2x – y = 4, then x = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 1
-      },
-      {
-        q: "Which is a linear equation in two variables?",
-        options: ["2x + 3y = 6", "x² + y = 4", "xy = 10", "y² – x = 0"],
-        answer: 0
-      },
-      {
-        q: "x + y = 8, x – y = 2 ⇒ y = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 2
-      },
-      {
-        q: "Equation of line parallel to x-axis passing through (3,4):",
-        options: ["x = 3", "y = 3", "y = 4", "x = 4"],
-        answer: 2
-      },
-      {
-        q: "If 3x + y = 10 and x – y = 2, then x = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 2
-      },
-      {
-        q: "Equation of line perpendicular to y = 2x + 5:",
-        options: ["y = –½x + c", "y = –2x + c", "y = ½x + c", "y = 2x + c"],
-        answer: 0
-      },
-      {
-        q: "If x + 2y = 8 and x – y = 1, then y = ?",
-        options: ["1", "2", "3", "4"],
-        answer: 2
-      },
-      {
-        q: "Equation of line with slope 0 through (1,–3):",
-        options: ["y = –3", "x = –3", "y = 0", "x = 1"],
-        answer: 0
-      },
-      {
-        q: "Solution of x + y = 9 and 2x – y = 3:",
-        options: ["x=4,y=5", "x=5,y=4", "x=3,y=6", "x=6,y=3"],
-        answer: 1
-      },
-      {
-        q: "If y = 3x + 2, slope is:",
-        options: ["2", "–3", "3", "–2"],
-        answer: 2
-      },
-      {
-        q: "x + 2y = 7 and x – y = 1 ⇒ x = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 1
-      },
-      {
-        q: "Equation of line through origin with slope 2:",
-        options: ["y = 2x", "y = x + 2", "y = –2x", "y = 2x + 1"],
-        answer: 0
-      },
-      {
-        q: "If x + y = 4, then which is true?",
-        options: ["y = 4 – x", "x = 4 – y", "Both A and B", "None"],
-        answer: 2
-      },
-      {
-        q: "Solution of 3x + 2y = 12, x = 2 ⇒ y = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 0
-      },
-      {
-        q: "Equation with infinitely many solutions:",
-        options: ["2x + 3y = 6, 4x + 6y = 12", "x + y = 5, x – y = 2", "x=2,y=3", "2x+y=7,3x+y=8"],
-        answer: 0
-      },
-      {
-        q: "Equation with no solution:",
-        options: ["x + y = 2, 2x + 2y = 4", "x – y = 1, y – x = 1", "x=1,y=2", "2x+y=7,3x+y=8"],
-        answer: 1
-      },
-      {
-        q: "Equation with unique solution:",
-        options: ["x + y = 2, x – y = 0", "2x+3y=6,4x+6y=12", "x – y = 0, y – x = 0", "None"],
-        answer: 0
-      },
-      {
-        q: "Equation of line through (2,3) slope 4:",
-        options: ["y – 3 = 4(x – 2)", "y – 2 = 4(x – 3)", "y + 3 = 4(x + 2)", "y = 4x + 2"],
-        answer: 0
-      },
-      {
-        q: "x + y = 10, x – y = 4 ⇒ x = ?",
-        options: ["6", "7", "8", "9"],
-        answer: 2
-      },
-      {
-        q: "Equation of line parallel to y-axis through (–2,3):",
-        options: ["y = –2", "x = –2", "y = 3", "x = 3"],
-        answer: 1
-      },
-      {
-        q: "If slope of line = 5, then equation through origin:",
-        options: ["y = 5x", "x = 5y", "y = –5x", "y = x/5"],
-        answer: 0
-      },
-      {
-        q: "x + 2y = 6, x – y = 1 ⇒ y = ?",
-        options: ["1", "2", "3", "4"],
-        answer: 1
-      },
-      {
-        q: "Equation of line with slope –1 through (1,2):",
-        options: ["y – 2 = –(x – 1)", "y + 2 = –(x + 1)", "y – 1 = –(x – 2)", "y = –x + 3"],
-        answer: 3
-      },
-      {
-        q: "If x = 2, y = –1, equation satisfied:?",
-        options: ["2x + y = 3", "x – y = 3", "x + y = 1", "All"],
-        answer: 3
-      },
-      {
-        q: "Equation of line through (0,0) and (1,1):",
-        options: ["y = x", "y = 2x", "y = x + 1", "y = –x"],
-        answer: 0
-      },
-      {
-        q: "If 2x – 3y = 6, slope is:",
-        options: ["2/3", "–2/3", "3/2", "–3/2"],
-        answer: 0
-      },
-      {
-        q: "Equation of line parallel to y = –3x + 2 through (0,5):",
-        options: ["y = –3x + 5", "y = –3x – 5", "y = 3x + 5", "y = –3x + 2"],
-        answer: 0
-      },
-      {
-        q: "x + y = 6 and x – y = 0 ⇒ y = ?",
-        options: ["2", "3", "4", "5"],
-        answer: 1
-      },
-      {
-        q: "Equation of line with intercepts (2,0) and (0,3):",
-        options: ["3x + 2y = 6", "x + y = 5", "2x + 3y = 6", "x + 3y = 6"],
-        answer: 2
-      },
-      {
-        q: "Slope of line x – 2y = 4:",
-        options: ["1/2", "2", "–2", "–1/2"],
-        answer: 0
-      },
-      {
-        q: "Equation of line y = mx + c is linear if:",
-        options: ["m, c are real", "m=0", "c=0", "Both A and B"],
-        answer: 0
-      },
-      {
-        q: "Equation of line through (–1,2) slope ½:",
-        options: ["y – 2 = ½(x + 1)", "y + 1 = ½(x – 2)", "y – 1 = ½(x – 2)", "y + 2 = ½(x + 1)"],
-        answer: 0
-      },
-      {
-        q: "x + y = 11, x – y = 3 ⇒ y = ?",
-        options: ["3", "4", "5", "6"],
-        answer: 1
-      },
-      {
-        q: "Equation of line perpendicular to x-axis through (3,–2):",
-        options: ["y = 3", "x = 3", "y = –2", "x = –2"],
-        answer: 1
-      },
-      {
-        q: "If 3x + 2y = 12 and x = 0 ⇒ y = ?",
-        options: ["6", "4", "2", "0"],
-        answer: 1
-      },
-      {
-        q: "Equation of line parallel to y-axis through (5,–1):",
-        options: ["x = 5", "y = –1", "x = –1", "y = 5"],
-        answer: 0
-      },
-      {
-        q: "Slope of line 2y – 3x = 5:",
-        options: ["3/2", "–3/2", "2/3", "–2/3"],
-        answer: 2
-      },
-      {
-        q: "Equation of line with slope 2 and y-intercept 3:",
-        options: ["y = 2x + 3", "y = 3x + 2", "y = 2x – 3", "y = –2x + 3"],
-        answer: 0
-      },
-      {
-        q: "Equation of line through (1,–1) slope –2:",
-        options: ["y + 1 = –2(x – 1)", "y – 1 = –2(x + 1)", "y – 1 = –2(x – 1)", "y + 1 = –2(x + 1)"],
-        answer: 0
-      },
-      {
-        q: "If 4x + y = 9, then when x = 2 ⇒ y = ?",
-        options: ["1", "2", "3", "4"],
-        answer: 0
-      },
-
-      // 👉 Parts 2      // --- Arithmetic Progression (50 Questions) ---
-      {
-        q: "The nth term of AP 3, 7, 11, ... is?",
-        options: ["4n-1", "3n-1", "4n-5", "2n+1"],
-        answer: 0
-      },
-      {
-        q: "The sum of first 10 terms of AP 2, 5, 8, ... is?",
-        options: ["125", "155", "145", "150"],
-        answer: 1
-      },
-      {
-        q: "Which of the following is an AP?",
-        options: ["2, 4, 8, 16", "3, 6, 9, 12", "1, 2, 4, 8", "5, 10, 20, 40"],
-        answer: 1
-      },
-      {
-        q: "If the first term of an AP is 5 and common difference is 2, the 20th term is?",
-        options: ["43", "44", "45", "42"],
-        answer: 0
-      },
-      {
-        q: "In an AP, if a=7, d=3, n=15, then an is?",
-        options: ["49", "50", "51", "52"],
-        answer: 2
-      },
-      // … continue until total 50 Arithmetic Progression Qs …
-
-      // --- Trigonometry (50 Questions) ---
-      {
-        q: "sin²θ + cos²θ = ?",
-        options: ["0", "1", "2", "θ²"],
-        answer: 1
-      },
-      {
-        q: "tanθ = ?",
-        options: ["sinθ/cosθ", "cosθ/sinθ", "1/sinθ", "1/cosθ"],
-        answer: 0
-      },
-      {
-        q: "If sinθ = 3/5, then cosθ = ?",
-        options: ["4/5", "5/4", "√(1-9/25)", "3/4"],
-        answer: 0
-      },
-      {
-        q: "The value of sin30° is?",
-        options: ["0", "1/2", "√3/2", "1"],
-        answer: 1
-      },
-      {
-        q: "The value of cos60° is?",
-        options: ["1/2", "√3/2", "0", "1"],
-        answer: 0
-      },
-      // … continue until total 50 Trigonometry Qs        // Mensuration – 50 Questions
-        { q: "The volume of a cube of side 7 cm is:", options: ["343 cm³", "350 cm³", "300 cm³", "400 cm³"], answer: 0 },
-        { q: "The curved surface area of a cylinder of radius 7 cm and height 10 cm is:", options: ["440 cm²", "220 cm²", "4400 cm²", "2200 cm²"], answer: 0 },
-        { q: "The volume of a cuboid of length 10 cm, breadth 8 cm, and height 5 cm is:", options: ["400 cm³", "200 cm³", "100 cm³", "50 cm³"], answer: 0 },
-        { q: "The total surface area of a sphere of radius 7 cm is:", options: ["616 cm²", "308 cm²", "154 cm²", "700 cm²"], answer: 0 },
-        { q: "The volume of a cone of radius 7 cm and height 24 cm is:", options: ["1232 cm³", "1230 cm³", "1234 cm³", "1200 cm³"], answer: 0 },
-        { q: "The curved surface area of a cone of radius 7 cm and slant height 25 cm is:", options: ["550 cm²", "600 cm²", "700 cm²", "800 cm²"], answer: 0 },
-        { q: "The volume of a sphere of radius 7 cm is:", options: ["1436 cm³", "1440 cm³", "1500 cm³", "1400 cm³"], answer: 0 },
-        { q: "The total surface area of a cube of side 10 cm is:", options: ["600 cm²", "500 cm²", "400 cm²", "700 cm²"], answer: 0 },
-        { q: "The length of the diagonal of a cube of side 7 cm is:", options: ["7√3 cm", "14 cm", "21 cm", "10√3 cm"], answer: 0 },
-        { q: "The volume of a cylinder of radius 7 cm and height 14 cm is:", options: ["2156 cm³", "2200 cm³", "2000 cm³", "2100 cm³"], answer: 0 },
-        { q: "The height of a cone of radius 7 cm and slant height 25 cm is:", options: ["24 cm", "25 cm", "26 cm", "20 cm"], answer: 0 },
-        { q: "The area of a circle of radius 7 cm is:", options: ["154 cm²", "308 cm²", "100 cm²", "200 cm²"], answer: 0 },
-        { q: "The volume of a hemisphere of radius 7 cm is:", options: ["718 cm³", "720 cm³", "700 cm³", "730 cm³"], answer: 0 },
-        { q: "The total surface area of a hemisphere of radius 7 cm is:", options: ["462 cm²", "463 cm²", "460 cm²", "465 cm²"], answer: 0 },
-        { q: "The length of the diagonal of a cuboid of dimensions 3 cm × 4 cm × 12 cm is:", options: ["13 cm", "12 cm", "11 cm", "14 cm"], answer: 0 },
-        { q: "The volume of a cone with radius 3.5 cm and height 10 cm is:", options: ["128.33 cm³", "120 cm³", "130 cm³", "140 cm³"], answer: 0 },
-        { q: "The curved surface area of a cylinder of radius 3.5 cm and height 20 cm is:", options: ["439.6 cm²", "440 cm²", "450 cm²", "430 cm²"], answer: 0 },
-        { q: "The lateral surface area of a cuboid of dimensions 5 cm × 4 cm × 3 cm is:", options: ["62 cm²", "60 cm²", "64 cm²", "65 cm²"], answer: 0 },
-        { q: "The volume of a sphere of diameter 14 cm is:", options: ["1436 cm³", "1500 cm³", "1400 cm³", "1450 cm³"], answer: 0 },
-        { q: "The total surface area of a cuboid of length 10 cm, breadth 8 cm, and height 6 cm is:", options: ["376 cm²", "400 cm²", "350 cm²", "420 cm²"], answer: 0 },
-        { q: "The curved surface area of a cone of radius 14 cm and slant height 50 cm is:", options: ["2200 cm²", "2300 cm²", "2400 cm²", "2500 cm²"], answer: 0 },
-        { q: "The volume of a cube of side 5 cm is:", options: ["125 cm³", "150 cm³", "100 cm³", "200 cm³"], answer: 0 },
-        { q: "The height of a cone with radius 12 cm and slant height 13 cm is:", options: ["5 cm", "6 cm", "7 cm", "8 cm"], answer: 0 },
-        { q: "The curved surface area of a sphere of radius 7 cm is:", options: ["616 cm²", "600 cm²", "620 cm²", "610 cm²"], answer: 0 },
-        { q: "The length of the diagonal of a cube of side 12 cm is:", options: ["12√3 cm", "13 cm", "14 cm", "15 cm"], answer: 0 },
-        { q: "The volume of a cuboid of length 15 cm, breadth 10 cm, and height 8 cm is:", options: ["1200 cm³", "1000 cm³", "1500 cm³", "1100 cm³"], answer: 0 },
-        { q: "The curved surface area of a cone of radius 21 cm and slant height 28 cm is:", options: ["1847 cm²", "1850 cm²", "1800 cm²", "1900 cm²"], answer: 0 },
-        { q: "The volume of a hemisphere of radius 14 cm is:", options: ["5745 cm³", "5750 cm³", "5700 cm³", "5800 cm³"], answer: 0 },
-        { q: "The total surface area of a cuboid of dimensions 4 cm × 5 cm × 6 cm is:", options: ["148 cm²", "150 cm²", "160 cm²", "140 cm²"], answer: 0 },
-        { q: "The volume of a cone of radius 7 cm and height 7 cm is:", options: ["359.3 cm³", "360 cm³", "370 cm³", "350 cm³"], answer: 0 },
-        { q: "The curved surface area of a cylinder of radius 14 cm and height 20 cm is:", options: ["1760 cm²", "1750 cm²", "1800 cm²", "1700 cm²"], answer: 0 },
-        { q: "The total surface area of a cube of side 14 cm is:", options: ["1176 cm²", "1200 cm²", "1100 cm²", "1150 cm²"], answer: 0 },
-        { q: "The volume of a sphere of radius 14 cm is:", options: ["11494 cm³", "11500 cm³", "11400 cm³", "11600 cm³"], answer: 0 },
-        { q: "The total surface area of a hemisphere of radius 14 cm is:", options: ["1847 cm²", "1850 cm²", "1800 cm²", "1900 cm²"], answer: 0 },
-        { q: "The curved surface area of a cone with radius 10 cm and slant height 26 cm is:", options: ["816 cm²", "820 cm²", "800 cm²", "830 cm²"], answer: 0 },
-        { q: "The length of the diagonal of a cuboid of dimensions 6 cm × 8 cm × 24 cm is:", options: ["26 cm", "25 cm", "27 cm", "28 cm"], answer: 0 },
-        { q: "The volume of a cylinder with radius 3.5 cm and height 10 cm is:", options: ["384.6 cm³", "385 cm³", "390 cm³", "380 cm³"], answer: 0 },
-        { q: "The curved surface area of a cone of radius 3.5 cm and slant height 10 cm is:", options: ["110 cm²", "111 cm²", "115 cm²", "120 cm²"], answer: 0 },
-        { q: "The volume of a cube of side 14 cm is:", options: ["2744 cm³", "2750 cm³", "2800 cm³", "2700 cm³"], answer: 0 },
-        { q: "The total surface area of a cuboid 20 cm × 10 cm × 5 cm is:", options: ["700 cm²", "710 cm²", "720 cm²", "730 cm²"], answer: 0 },
-        { q: "The volume of a hemisphere of radius 3.5 cm is:", options: ["89.8 cm³", "90 cm³", "95 cm³", "100 cm³"], answer: 0 },
-        { q: "The curved surface area of a sphere of radius 14 cm is:", options: ["2464 cm²", "2450 cm²", "2400 cm²", "2500 cm²"], answer: 0 },
-        { q: "The volume of a cuboid of dimensions 8 cm × 6 cm × 4 cm is:", options: ["192 cm³", "200 cm³", "180 cm³", "190 cm³"], answer: 0 },
-        { q: "The total surface area of a cone of radius 7 cm and slant height 25 cm is:", options: ["704 cm²", "700 cm²", "710 cm²", "720 cm²"], answer: 0 },
-        { q: "The volume of a cylinder of radius 7 cm and height 10 cm is:", options: ["1540 cm³", "1550 cm³", "1500 cm³", "1600 cm³"], answer: 0 },
-        { q: "The curved surface area of a cone of radius 14 cm and slant height 50 cm is:", options: ["2200 cm²", "2300 cm²", "2400 cm²", "2500 cm²"], answer: 0 },
-        { q: "The volume of a cube of side 20 cm is:", options: ["8000 cm³", "8100 cm³", "8200 cm³", "8300 cm³"], answer: 0 },
-        { q: "The total surface area of a sphere of radius 21 cm is:", options: ["5544 cm²", "5550 cm²", "5500 cm²", "5600 cm²"], answer: 0 },
-        { q: "The length of the diagonal of a cube of side 21 cm is:", options: ["21√3 cm", "22 cm", "23 cm", "24 cm"], answer: 0 }
-
-
-
-
+  <script src="script.js"></script>
+</body>
+</html>
