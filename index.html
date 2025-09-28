@@ -3,47 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Grammar Quiz Bot</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>English Grammar Lessons</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>English Grammar Quiz Bot</h1>
+  <header>
+    <h1>English Grammar Learning Website</h1>
+    <p>Select a chapter to begin learning:</p>
+  </header>
 
-    <div class="controls">
-      <select id="topicFilter">
-        <option value="all">All Topics</option>
-      </select>
-      <button id="startQuiz">Start Quiz</button>
-      <button id="editQuestions">Edit Questions (JSON)</button>
-    </div>
-
-    <div id="quiz" class="hidden">
-      <div id="question-container">
-        <div id="question">Question text</div>
-        <div id="options"></div>
-      </div>
-      <div class="navigation">
-        <button id="prevBtn">Previous</button>
-        <button id="nextBtn">Next</button>
-      </div>
-      <div id="score"></div>
-    </div>
-  </div>
-
-  <!-- JSON Editor Modal -->
-  <div id="editorModal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Edit Questions JSON</h2>
-      <textarea id="jsonEditor"></textarea>
-      <div class="modal-buttons">
-        <button id="saveQuestions">Save & Apply</button>
-        <button id="downloadJson">Download JSON</button>
-        <button id="closeEditor">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <main>
+    <ul class="chapter-list">
+      <li><a href="chapter1.html">Noun</a></li>
+      <li><a href="chapter2.html">Pronoun</a></li>
+      <li><a href="chapter3.html">Verb</a></li>
+      <li><a href="chapter4.html">Adverb</a></li>
+      <li><a href="chapter5.html">Preposition</a></li>
+      <li><a href="chapter6.html">Conjunction</a></li>
+      <li><a href="chapter7.html">Interjection</a></li>
+      <li><a href="chapter8.html">Parts of Speech</a></li>
+    </ul>
+  </main>
 </body>
 </html>
