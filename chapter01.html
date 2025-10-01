@@ -1,77 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Chapter 1 - The Sentence</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence Learning</title>
   <style>
-    /* Use E-pao Meetei Mayek font for Manipuri */
-    @font-face {
-      font-family: 'EPAOMayek';
-      src: url('EPAOMAYEK.ttf') format('truetype');
-    }
-
-    body { font-family: system-ui, sans-serif; margin:24px; background:#f9f9f9; }
-    .card { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-    h1 { font-size:26px; margin-bottom:10px; color:#2b6cb0; }
-    h2 { color:#444; margin-top:20px; }
-    .example { background:#f2f7ff; padding:12px; border-radius:8px; margin:12px 0; }
-    .manipuri { font-family: 'EPAOMayek', sans-serif; font-size:18px; line-height:1.6; color:#222; }
-    .note { margin-top:24px; padding:15px; background:#fff9e6; border:1px solid #ffe58f; border-radius:8px; }
-    .btns { margin-top:10px; }
-    .btns button { padding:10px 16px; margin-right:12px; border:none; border-radius:6px; cursor:pointer; font-weight:600; }
-    .yes { background:#38a169; color:white; }
-    .no { background:#e53e3e; color:white; }
-    a.back { display:inline-block; margin-top:24px; padding:8px 12px; background:#2b6cb0; color:white; text-decoration:none; border-radius:6px; }
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background: #f9f9f9; }
+    h2 { color: #2a5d84; }
+    button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #response { margin-top: 20px; font-weight: bold; color: green; }
   </style>
-  <script>
-    function answer(choice){
-      if(choice === 'yes'){
-        alert("Great! A quiz feature can be added here.");
-      } else {
-        alert("Okay! You can continue reading the lesson.");
-      }
-    }
-  </script>
 </head>
 <body>
+
   <div class="card">
-    <h1>Chapter 1: The Sentence</h1>
-
-    <h2>Lesson (English)</h2>
-    <p>A <strong>Sentence</strong> is a group of words that makes complete sense.  
-    Every sentence must have a subject and a predicate, and it must express a complete thought.</p>
-
-    <h2>Lesson (Manipuri - Meetei Mayek)</h2>
-    <p class="manipuri">
-      ꯁꯦꯟꯇꯦꯟꯁ ꯑm ꯋꯥꯍꯦꯢ ꯑꯃꯁꯨꯡ ꯋꯥꯍꯦꯢꯡꯒꯤ ꯂꯧꯁꯤꯡ ꯑꯗꯨ ꯍꯧꯔꯤ.  
-      ꯁꯦꯟꯇꯦꯟꯁ ꯑꯗꯨ subject ꯑꯃꯁꯨꯡ predicate ꯂꯩꯕ ꯑꯗꯨ ꯍꯧꯔꯤ.
+    <h2>Sentence & Noun</h2>
+    <p>
+      A <b>sentence</b> is a group of words that expresses a complete thought.  
+      A <b>sentence</b> is the group of words that has a subject and predicate. For example:  
+      <i>Rita plays football.</i> → "It is a sentence.
+      <i>Rita very nice football.</i> → is not a sentence because it has no meaningful sense.
     </p>
 
-    <h2>Examples</h2>
-    <div class="example">
-      <strong>English:</strong> She goes to school every day.<br>
-      <strong class="manipuri">ꯃꯍꯛ ꯅꯨꯡꯁꯤ ꯁ꯭ꯀꯨꯜ ꯗ ꯆꯥꯠꯤ.</strong>
-    </div>
-    <div class="example">
-      <strong>English:</strong> The sun rises in the east.<br>
-      <strong class="manipuri">ꯅꯨꯃꯤꯠ ꯃꯛꯍꯥꯀꯤ ꯊꯦꯡ ꯅ ꯊꯣꯛꯤ.</strong>
-    </div>
-    <div class="example">
-      <strong>English:</strong> I like reading books.<br>
-      <strong class="manipuri">ꯑꯩ ꯄꯤꯖꯣꯜ ꯇꯧꯕ ꯄꯥꯛꯊꯤ.</strong>
-    </div>
+    <p>
+      <b>Meitei Mayek / Epaō Mayek:</b><br>
+      ꯃꯄꯨꯡ ꯐꯥꯕ ꯑꯊ_ꯔ ꯐꯣꯉꯗꯣꯀꯞ ꯋꯍꯩ ꯀꯥꯉꯕꯨꯕꯨ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯢ   
+    </p>
 
-    <div class="note">
-      <p><strong>Do you want to test your knowledge?</strong></p>
-      <div class="btns">
-        <button class="yes" onclick="answer('yes')">YES</button>
-        <button class="no" onclick="answer('no')">NO</button>
-      </div>
-    </div>
-
-    <a href="index.html" class="back">← Back to Chapters</a>
+    <h3>Do you want to test your knowledge on sentences?</h3>
+    <button onclick="goQuiz()">Yes</button>
+    <button onclick="sayNo()">No</button>
+    <div id="response"></div>
   </div>
+
+  <script>
+    function goQuiz() {
+      window.location.href = "sentencequiz.html";
+    }
+    function sayNo() {
+      document.getElementById("response").innerText = "Okay! Come back anytime when you're ready 😊";
+    }
+  </script>
+
 </body>
 </html>
-
