@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Chapter 1 - The Sentence</title>
   <style>
+    /* Use E-pao Meetei Mayek font for Manipuri */
+    @font-face {
+      font-family: 'EPAOMayek';
+      src: url('EPAOMAYEK.ttf') format('truetype');
+    }
+
     body { font-family: system-ui, sans-serif; margin:24px; background:#f9f9f9; }
     .card { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
     h1 { font-size:26px; margin-bottom:10px; color:#2b6cb0; }
     h2 { color:#444; margin-top:20px; }
     .example { background:#f2f7ff; padding:12px; border-radius:8px; margin:12px 0; }
+    .manipuri { font-family: 'EPAOMayek', sans-serif; font-size:18px; line-height:1.6; color:#222; }
     .note { margin-top:24px; padding:15px; background:#fff9e6; border:1px solid #ffe58f; border-radius:8px; }
     .btns { margin-top:10px; }
     .btns button { padding:10px 16px; margin-right:12px; border:none; border-radius:6px; cursor:pointer; font-weight:600; }
@@ -22,7 +29,7 @@
       if(choice === 'yes'){
         alert("Great! A quiz feature can be added here.");
       } else {
-        alert("Okay! You can continue reading the lessons.");
+        alert("Okay! You can continue reading the lesson.");
       }
     }
   </script>
@@ -35,22 +42,24 @@
     <p>A <strong>Sentence</strong> is a group of words that makes complete sense.  
     Every sentence must have a subject and a predicate, and it must express a complete thought.</p>
 
-    <h2>Lesson (Manipuri / Meiteilon)</h2>
-    <p><strong>Sentence</strong> adu oiraba matamda, eina khangba nattraga khanghanbagi maram adu pumnamak piba
-    wahei-sing amasung wahei-singgi loushing adu leite. Aduga sentence adu subject amasung predicate lei-i.</p>
+    <h2>Lesson (Manipuri - Meetei Mayek)</h2>
+    <p class="manipuri">
+      ꯁꯦꯟꯇꯦꯟꯁ ꯑꯗꯨ ꯋꯥꯍꯦꯢ ꯑꯃꯁꯨꯡ ꯋꯥꯍꯦꯢꯡꯒꯤ ꯂꯧꯁꯤꯡ ꯑꯗꯨ ꯍꯧꯔꯤ.  
+      ꯁꯦꯟꯇꯦꯟꯁ ꯑꯗꯨ subject ꯑꯃꯁꯨꯡ predicate ꯂꯩꯕ ꯑꯗꯨ ꯍꯧꯔꯤ.
+    </p>
 
     <h2>Examples</h2>
     <div class="example">
       <strong>English:</strong> She goes to school every day.<br>
-      <strong>Manipuri:</strong> Mahak nungsi khudol taretki matung-inna school da chat-i.
+      <strong class="manipuri">ꯃꯍꯛ ꯅꯨꯡꯁꯤ ꯁ꯭ꯀꯨꯜ ꯗ ꯆꯥꯠꯤ.</strong>
     </div>
     <div class="example">
       <strong>English:</strong> The sun rises in the east.<br>
-      <strong>Manipuri:</strong> Numitki nungshiba nungshibi oiraba adu makha-ki theng-na thok-i.
+      <strong class="manipuri">ꯅꯨꯃꯤꯠ ꯃꯛꯍꯥꯀꯤ ꯊꯦꯡ ꯅ ꯊꯣꯛꯤ.</strong>
     </div>
     <div class="example">
       <strong>English:</strong> I like reading books.<br>
-      <strong>Manipuri:</strong> Eigi nungairaba phijol aduda eibu yar-i.
+      <strong class="manipuri">ꯑꯩ ꯄꯤꯖꯣꯜ ꯇꯧꯕ ꯄꯥꯛꯊꯤ.</strong>
     </div>
 
     <div class="note">
