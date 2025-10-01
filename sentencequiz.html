@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .quiz { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background: #f9f9f9; }
+    h2 { color: #2a5d84; }
+    button { margin: 5px; padding: 8px 15px; cursor: pointer; }
+    #result { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+
+  <div class="quiz">
+    <h2>Sentence Quiz</h2>
+    <div id="quiz-container"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    let questions = [
+      {
+        q: "Which of these is a complete sentence?",
+        options: ["Running fast.", "She runs every day.", "In the park."],
+        answer: 1
+      },
+      {
+        q: "Identify the noun: 'The dog barked loudly.'",
+        options: ["dog", "barked", "loudly"],
+        answer: 0
+      },
+      {
+        q: "Which group of words is NOT a sentence?",
+        options: ["He is playing.", "The sun rises.", "Beautiful garden."],
+        answer: 2
+      }
+    ];
+
+    let index = 0;
+    let score = 0;
+
+    function showQuestion() {
+      if (index >= questions.length) {
+        document.getElementById("quiz-container").innerHTML = "";
+        document.getElementById("result").innerText =
+          `Quiz Over! Your Score: ${score}/${questions.length}`;
+        return;
+      }
+      let q = questions[index];
+      let html = `<p><b>Q${index+1}:</b> ${q.q}</p>`;
+      q.options.forEach((opt, i) => {
+        html += `<button onclick="checkAnswer(${i})">${opt}</button>`;
+      });
+      document.getElementById("quiz-container").innerHTML = html;
+    }
+
+    function checkAnswer(selected) {
+      let q = questions[index];
+      if (selected === q.answer) {
+        score++;
+        alert("Correct!");
+      } else {
+        alert("Wrong! Correct answer is: " + q.options[q.answer]);
+      }
+      index++;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+
+</body>
+</html>
