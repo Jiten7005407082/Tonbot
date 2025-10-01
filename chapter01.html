@@ -8,7 +8,14 @@
     body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
     .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background: #f9f9f9; }
     h2 { color: #2a5d84; }
-    button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    button, a.btn { 
+      margin: 10px; padding: 10px 20px; 
+      font-size: 16px; cursor: pointer; 
+      text-decoration: none; 
+      border: 1px solid #2a5d84; border-radius: 6px; 
+      background: #e0f0ff; color: #2a5d84;
+    }
+    button:hover, a.btn:hover { background: #2a5d84; color: white; }
     #response { margin-top: 20px; font-weight: bold; color: green; }
   </style>
 </head>
@@ -18,26 +25,22 @@
     <h2>Sentence & Noun</h2>
     <p>
       A <b>sentence</b> is a group of words that expresses a complete thought.  
-      A <b>sentence</b> is the group of words that has a subject and predicate. For example:  
-      <i>Rita plays football.</i> → "It is a sentence.
-      <i>Rita very nice football.</i> → is not a sentence because it has no meaningful sense.
+      A <b>noun</b> is the name of a person, place, thing, or idea. For example:  
+      <i>Rita plays football.</i> → "Rita" is a noun (person), "football" is a noun (thing).
     </p>
 
     <p>
       <b>Meitei Mayek / Epaō Mayek:</b><br>
-      ꯃꯄꯨꯡ ꯐꯥꯕ ꯑꯊ_ꯔ ꯐꯣꯉꯗꯣꯀꯞ ꯋꯍꯩ ꯀꯥꯉꯕꯨꯕꯨ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯢ   
+      ꯁꯦꯟꯇꯦꯟꯁ ꯑꯃꯥ ꯂꯣꯟꯒꯤ ꯂꯣꯏ ꯃꯇꯝꯁꯤꯡꯒꯤ ꯃꯇꯝꯅ ꯃꯥꯏꯅꯥ ꯑꯃꯗꯣꯛꯄ ꯑꯃꯥꯏꯅꯥ ꯅꯧꯔꯤ ꯑꯣꯏ ꯆꯤꯡꯒꯤ ꯆꯥꯎꯅ ꯇꯧꯕꯥ ꯇꯦꯟꯁ ꯑꯃꯥ ꯍꯦꯡꯒꯤ ꯑꯃꯥꯏꯅꯥ ꯅꯧꯔꯤ।  
     </p>
 
     <h3>Do you want to test your knowledge on sentences?</h3>
-    <button onclick="goQuiz()">Yes</button>
+    <a href="sentencequiz.html" class="btn">Yes</a>
     <button onclick="sayNo()">No</button>
     <div id="response"></div>
   </div>
 
   <script>
-    function goQuiz() {
-      window.location.href = "sentencequiz.html";
-    }
     function sayNo() {
       document.getElementById("response").innerText = "Okay! Come back anytime when you're ready 😊";
     }
