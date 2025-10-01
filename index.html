@@ -3,88 +3,63 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>English Grammar Chatbot - Class 10</title>
+  <title>English Grammar - Class 10</title>
   <style>
-    :root { --bg:#f4f6fb; --card:#ffffff; --accent:#2b6cb0; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:var(--bg); margin:0; padding:24px; }
-    .container { max-width:900px; margin:20px auto; }
-    .card { background:var(--card); border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(10,20,40,0.06); }
-    .chat { min-height:140px; padding:12px; border-radius:8px; background:#f7f9ff; margin-bottom:12px; }
-    .bot { color:#0b3a66; font-weight:600; margin-bottom:10px; }
-    .controls { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
-    button { padding:10px 14px; border-radius:8px; border: none; cursor:pointer; background:var(--accent); color:white; font-weight:600; }
-    button.ghost { background:transparent; color:var(--accent); border:1px solid #cfe0f6; }
-    .chapters { margin-top:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:8px; }
-    .chapter-btn { text-align:left; padding:10px; border-radius:8px; background:#fff; border:1px solid #eee; cursor:pointer; }
-    .chapter-btn:hover { background:#e6f0ff; }
+    body { font-family: system-ui, sans-serif; background:#f4f6fb; margin:0; padding:24px; }
+    .container { max-width:800px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    h1 { text-align:center; color:#2b6cb0; }
+    ul { list-style:none; padding:0; }
+    li { margin:8px 0; }
+    a { display:block; padding:10px 14px; background:#f7f9ff; border:1px solid #ddd; border-radius:8px;
+        text-decoration:none; color:#0b3a66; font-weight:500; }
+    a:hover { background:#e6f0ff; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <div id="chat" class="chat">
-        <div class="bot">Hello! 👋</div>
-        <div id="bot-msg" class="bot">Do you want to learn English grammar? (Yes / No)</div>
-      </div>
-
-      <div id="controls" class="controls">
-        <button id="btn-yes">Yes</button>
-        <button id="btn-no" class="ghost">No</button>
-      </div>
-
-      <div id="chapters-area" style="display:none;">
-        <h3>Choose a Chapter (1–39)</h3>
-        <div class="chapters" id="chapters"></div>
-      </div>
-    </div>
+    <h1>Class 10 English Grammar</h1>
+    <p>Select a chapter to read:</p>
+    <ul>
+      <li><a href="chapter01.html">1. The Sentence</a></li>
+      <li><a href="chapter02.html">2. Subjects & Predicates</a></li>
+      <li><a href="chapter03.html">3. Phrase & Clause</a></li>
+      <li><a href="chapter04.html">4. Parts of Speech</a></li>
+      <li><a href="chapter05.html">5. The Noun: Kinds</a></li>
+      <li><a href="chapter06.html">6. The Noun: Gender</a></li>
+      <li><a href="chapter07.html">7. The Noun: Number</a></li>
+      <li><a href="chapter08.html">8. The Noun: Case</a></li>
+      <li><a href="chapter09.html">9. The Adjective</a></li>
+      <li><a href="chapter10.html">10. Comparison of Adjectives</a></li>
+      <li><a href="chapter11.html">11. Adjectives used as Nouns</a></li>
+      <li><a href="chapter12.html">12. Position of Adjectives</a></li>
+      <li><a href="chapter13.html">13. Correct Use of Some Adjectives</a></li>
+      <li><a href="chapter14.html">14. Articles</a></li>
+      <li><a href="chapter15.html">15. Personal Pronouns</a></li>
+      <li><a href="chapter16.html">16. Reflexive & Emphatic Pronouns</a></li>
+      <li><a href="chapter17.html">17. Demonstrative / Indefinite / Distributive Pronouns</a></li>
+      <li><a href="chapter18.html">18. Relative Pronouns</a></li>
+      <li><a href="chapter19.html">19. Interrogative Pronouns</a></li>
+      <li><a href="chapter20.html">20. The Verb</a></li>
+      <li><a href="chapter21.html">21. Verbs of Incomplete Predication</a></li>
+      <li><a href="chapter22.html">22. Active & Passive Voice</a></li>
+      <li><a href="chapter23.html">23. Mood</a></li>
+      <li><a href="chapter24.html">24. Tenses: Introduction</a></li>
+      <li><a href="chapter25.html">25. More about Verbs & Tenses</a></li>
+      <li><a href="chapter26.html">26. Modals & Auxiliaries</a></li>
+      <li><a href="chapter27.html">27. Determiners</a></li>
+      <li><a href="chapter28.html">28. Transformation of Sentences</a></li>
+      <li><a href="chapter29.html">29. Direct & Indirect Speech</a></li>
+      <li><a href="chapter30.html">30. Concord / Agreement</a></li>
+      <li><a href="chapter31.html">31. Punctuation</a></li>
+      <li><a href="chapter32.html">32. Phrase & Clause (advanced)</a></li>
+      <li><a href="chapter33.html">33. Idioms & Phrases</a></li>
+      <li><a href="chapter34.html">34. One-word substitution</a></li>
+      <li><a href="chapter35.html">35. Prefixes & Suffixes</a></li>
+      <li><a href="chapter36.html">36. Synonyms / Antonyms / Homonyms</a></li>
+      <li><a href="chapter37.html">37. Use of Prepositions</a></li>
+      <li><a href="chapter38.html">38. Use of Conjunctions</a></li>
+      <li><a href="chapter39.html">39. Sentence Improvement / Correction</a></li>
+    </ul>
   </div>
-
-  <script>
-    const chapters = [
-      "The Sentence","Subjects & Predicates","Phrase & Clause","Parts of Speech",
-      "The Noun: Kinds","The Noun: Gender","The Noun: Number","The Noun: Case",
-      "The Adjective","Comparison of Adjectives","Adjectives used as Nouns","Position of Adjectives",
-      "Correct Use of Some Adjectives","Articles","Personal Pronouns","Reflexive & Emphatic Pronouns",
-      "Demonstrative / Indefinite / Distributive Pronouns","Relative Pronouns","Interrogative Pronouns","The Verb",
-      "Verbs of Incomplete Predication","Active & Passive Voice","Mood","Tenses: Introduction",
-      "More about Verbs & Tenses","Modals & Auxiliaries","Determiners","Transformation of Sentences",
-      "Direct & Indirect Speech","Concord / Agreement","Punctuation","Phrase & Clause (advanced)",
-      "Idioms & Phrases","One-word substitution","Prefixes & Suffixes","Synonyms / Antonyms / Homonyms",
-      "Use of Prepositions","Use of Conjunctions","Sentence Improvement / Correction"
-    ];
-
-    const chaptersArea = document.getElementById('chapters-area');
-    const chaptersContainer = document.getElementById('chapters');
-    const btnYes = document.getElementById('btn-yes');
-    const btnNo = document.getElementById('btn-no');
-    const botMsg = document.getElementById('bot-msg');
-
-    btnYes.addEventListener('click', () => {
-      botMsg.textContent = 'Great! Pick a chapter from the list below.';
-      chaptersArea.style.display = 'block';
-      btnYes.style.display = 'none';
-      btnNo.style.display = 'inline-block';
-
-      if (!chaptersContainer.hasChildNodes()) {
-        chapters.forEach((c, idx) => {
-          const div = document.createElement('div');
-          div.className = 'chapter-btn';
-          const num = String(idx+1).padStart(2, '0');
-          div.innerHTML = '<strong>' + (idx+1) + '. </strong>' + c;
-          div.addEventListener('click', () => {
-            window.open('chapter' + num + '.html', '_blank');
-          });
-          chaptersContainer.appendChild(div);
-        });
-      }
-    });
-
-    btnNo.addEventListener('click', () => {
-      botMsg.textContent = 'No problem — come back anytime to learn English. 🙂';
-      btnYes.style.display = 'inline-block';
-      btnNo.style.display = 'none';
-      chaptersArea.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
