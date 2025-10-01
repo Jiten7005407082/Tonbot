@@ -7,27 +7,61 @@
   <style>
     body { font-family: system-ui, sans-serif; margin:24px; background:#f9f9f9; }
     .card { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-    h1 { font-size:24px; margin-bottom:10px; }
-    h2 { margin-top:20px; }
+    h1 { font-size:26px; margin-bottom:10px; color:#2b6cb0; }
+    h2 { color:#444; margin-top:20px; }
     .example { background:#f2f7ff; padding:12px; border-radius:8px; margin:12px 0; }
-    a.back { display:inline-block; margin-top:20px; padding:8px 12px; background:#2b6cb0; color:white; text-decoration:none; border-radius:6px; }
+    .note { margin-top:24px; padding:15px; background:#fff9e6; border:1px solid #ffe58f; border-radius:8px; }
+    .btns { margin-top:10px; }
+    .btns button { padding:10px 16px; margin-right:12px; border:none; border-radius:6px; cursor:pointer; font-weight:600; }
+    .yes { background:#38a169; color:white; }
+    .no { background:#e53e3e; color:white; }
+    a.back { display:inline-block; margin-top:24px; padding:8px 12px; background:#2b6cb0; color:white; text-decoration:none; border-radius:6px; }
   </style>
+  <script>
+    function answer(choice){
+      if(choice === 'yes'){
+        alert("Great! A quiz feature can be added here.");
+      } else {
+        alert("Okay! You can continue reading the lessons.");
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="card">
     <h1>Chapter 1: The Sentence</h1>
-    <p>This is a placeholder lesson for <strong>The Sentence</strong>. Replace this text with detailed explanation, rules and examples.</p>
 
-    <h2>Example</h2>
+    <h2>Lesson (English)</h2>
+    <p>A <strong>Sentence</strong> is a group of words that makes complete sense.  
+    Every sentence must have a subject and a predicate, and it must express a complete thought.</p>
+
+    <h2>Lesson (Manipuri / Meiteilon)</h2>
+    <p><strong>Sentence</strong> adu oiraba matamda, eina khangba nattraga khanghanbagi maram adu pumnamak piba
+    wahei-sing amasung wahei-singgi loushing adu leite. Aduga sentence adu subject amasung predicate lei-i.</p>
+
+    <h2>Examples</h2>
     <div class="example">
-      Example sentence: <em>"She goes to school every day."</em>
+      <strong>English:</strong> She goes to school every day.<br>
+      <strong>Manipuri:</strong> Mahak nungsi khudol taretki matung-inna school da chat-i.
+    </div>
+    <div class="example">
+      <strong>English:</strong> The sun rises in the east.<br>
+      <strong>Manipuri:</strong> Numitki nungshiba nungshibi oiraba adu makha-ki theng-na thok-i.
+    </div>
+    <div class="example">
+      <strong>English:</strong> I like reading books.<br>
+      <strong>Manipuri:</strong> Eigi nungairaba phijol aduda eibu yar-i.
     </div>
 
-    <h2>Practice</h2>
-    <p>1. Write two declarative sentences.<br>
-       2. Write two interrogative sentences.</p>
+    <div class="note">
+      <p><strong>Do you want to test your knowledge?</strong></p>
+      <div class="btns">
+        <button class="yes" onclick="answer('yes')">YES</button>
+        <button class="no" onclick="answer('no')">NO</button>
+      </div>
+    </div>
 
-    <a href="index.html" class="back">← Back to Chatbot</a>
+    <a href="index.html" class="back">← Back to Chapters</a>
   </div>
 </body>
 </html>
