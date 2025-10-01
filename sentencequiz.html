@@ -3,50 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentence Quiz</title>
+  <title>Sentence Learning</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .quiz { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background: #f9f9f9; }
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; background: #f9f9f9; }
     h2 { color: #2a5d84; }
-    button { margin: 5px; padding: 8px 15px; cursor: pointer; }
-    #result { margin-top: 20px; font-weight: bold; color: green; }
+    button, a.btn { 
+      margin: 8px; padding: 10px 20px; 
+      font-size: 16px; cursor: pointer; 
+      border: 1px solid #2a5d84; border-radius: 6px; 
+      background: #e0f0ff; color: #2a5d84;
+    }
+    button:hover, a.btn:hover { background: #2a5d84; color: white; }
+    #response, #result { margin-top: 20px; font-weight: bold; }
+    #quiz { margin-top: 20px; }
   </style>
 </head>
 <body>
 
-  <div class="quiz">
-    <h2>Sentence Quiz</h2>
+  <div class="card" id="lesson">
+    <h2>Sentence & Noun</h2>
+    <p>
+      A <b>sentence</b> is a group of words that expresses a complete thought.  
+      A <b>noun</b> is the name of a person, place, thing, or idea. For example:  
+      <i>Rita plays football.</i> → "Rita" is a noun (person), "football" is a noun (thing).
+    </p>
+
+    <p>
+      <b>Meitei Mayek / Epaō Mayek:</b><br>
+      ꯁꯦꯟꯇꯦꯟꯁ ꯑꯃꯥ ꯂꯣꯟꯒꯤ ꯂꯣꯏ ꯃꯇꯝꯁꯤꯡꯒꯤ ꯃꯇꯝꯅ ꯃꯥꯏꯅꯥ ꯑꯃꯗꯣꯛꯄ ꯑꯃꯥꯏꯅꯥ ꯅꯧꯔꯤ ꯑꯣꯏ ꯆꯤꯡꯒꯤ ꯆꯥꯎꯅ ꯇꯧꯕꯥ ꯇꯦꯟꯁ ꯑꯃꯥ ꯍꯦꯡꯒꯤ ꯑꯃꯥꯏꯅꯥ ꯅꯧꯔꯤ।  
+    </p>
+
+    <h3>Do you want to test your knowledge on sentences?</h3>
+    <button onclick="startQuiz()">Yes</button>
+    <button onclick="sayNo()">No</button>
+    <div id="response"></div>
+  </div>
+
+  <div id="quiz" style="display:none;">
+    <h2>Sentence Quiz (20 Questions)</h2>
     <div id="quiz-container"></div>
     <div id="result"></div>
+    <a href="chapters.html" class="btn" style="display:none;" id="returnBtn">⬅ Back to Chapter Selection</a>
   </div>
 
   <script>
+    function sayNo() {
+      document.getElementById("response").innerText = 
+        "Okay! Come back anytime when you're ready 😊";
+    }
+
+    // 20 quiz questions about sentences
     let questions = [
-      {
-        q: "Which of these is a complete sentence?",
-        options: ["Running fast.", "She runs every day.", "In the park."],
-        answer: 1
-      },
-      {
-        q: "Identify the noun: 'The dog barked loudly.'",
-        options: ["dog", "barked", "loudly"],
-        answer: 0
-      },
-      {
-        q: "Which group of words is NOT a sentence?",
-        options: ["He is playing.", "The sun rises.", "Beautiful garden."],
-        answer: 2
-      }
+      {q:"Which of these is a complete sentence?", options:["Running fast.","She runs every day.","In the park."], answer:1},
+      {q:"Identify the noun: 'The dog barked loudly.'", options:["dog","barked","loudly"], answer:0},
+      {q:"Which group of words is NOT a sentence?", options:["He is playing.","The sun rises.","Beautiful garden."], answer:2},
+      {q:"What does every sentence begin with?", options:["Capital letter","Full stop","Question mark"], answer:0},
+      {q:"What must every sentence end with?", options:["Comma","Full stop / ? / !","Colon"], answer:1},
+      {q:"Which is a question sentence?", options:["She is reading.","Are you happy?","Close the door."], answer:1},
+      {q:"Which is an imperative sentence?", options:["The boy runs.","Open the window.","What is your name?"], answer:1},
+      {q:"Which is an exclamatory sentence?", options:["He is tall.","How beautiful the sky is!","She eats rice."], answer:1},
+      {q:"Choose the sentence with a proper noun.", options:["I like city.","She lives in Delhi.","He plays cricket."], answer:1},
+      {q:"Which is a negative sentence?", options:["I am not ready.","I am ready.","I was ready."], answer:0},
+      {q:"Which of these is a compound sentence?", options:["She sings and he dances.","He plays football.","I like tea."], answer:0},
+      {q:"Which is a complex sentence?", options:["He came late because he missed the bus.","I love apples.","She runs fast."], answer:0},
+      {q:"Which of these is a declarative sentence?", options:["Shut the door.","He is a doctor.","What are you doing?"], answer:1},
+      {q:"Which is an interrogative sentence?", options:["Where do you live?","She is my friend.","The cat slept."], answer:0},
+      {q:"Which sentence shows strong feeling?", options:["She is kind.","What a surprise!","I like pizza."], answer:1},
+      {q:"Pick the sentence with a plural noun.", options:["The boy plays.","The boys are playing.","The dog barks."], answer:1},
+      {q:"Which sentence is in the past tense?", options:["He plays.","He played.","He will play."], answer:1},
+      {q:"Which sentence is in the future tense?", options:["I eat rice.","I will eat rice.","I am eating rice."], answer:1},
+      {q:"Which sentence is correct?", options:["She go to school.","She goes to school.","She going school."], answer:1},
+      {q:"Choose the sentence with correct punctuation.", options:["where are you.","Where are you?","where are you?"], answer:1}
     ];
 
     let index = 0;
     let score = 0;
 
+    function startQuiz(){
+      document.getElementById("lesson").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      index = 0; score = 0;
+      showQuestion();
+    }
+
     function showQuestion() {
       if (index >= questions.length) {
         document.getElementById("quiz-container").innerHTML = "";
-        document.getElementById("result").innerText =
+        document.getElementById("result").innerText = 
           `Quiz Over! Your Score: ${score}/${questions.length}`;
+        document.getElementById("returnBtn").style.display = "inline-block";
         return;
       }
       let q = questions[index];
@@ -61,15 +107,13 @@
       let q = questions[index];
       if (selected === q.answer) {
         score++;
-        alert("Correct!");
+        alert("✅ Correct!");
       } else {
-        alert("Wrong! Correct answer is: " + q.options[q.answer]);
+        alert("❌ Wrong! Correct answer: " + q.options[q.answer]);
       }
       index++;
       showQuestion();
     }
-
-    showQuestion();
   </script>
 
 </body>
