@@ -1,300 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentence Learning</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      padding: 20px;
-      min-height: 100vh;
-    }
-    
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 20px;
-      background: #2a5d84;
-      color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    
-    h2 {
-      color: #2a5d84;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #e0f0ff;
-      padding-bottom: 8px;
-    }
-    
-    h3 {
-      color: #2a5d84;
-      margin: 20px 0 10px;
-    }
-    
-    p {
-      margin-bottom: 15px;
-    }
-    
-    .highlight {
-      background: #e0f0ff;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 15px 0;
-      border-left: 4px solid #2a5d84;
-    }
-    
-    .sentence-type {
-      margin-bottom: 25px;
-      padding: 15px;
-      background: #f9f9f9;
-      border-radius: 8px;
-      border-left: 4px solid #2a5d84;
-    }
-    
-    .sentence-type h4 {
-      color: #2a5d84;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-    
-    .example {
-      margin-top: 12px;
-      padding: 12px;
-      background: white;
-      border-radius: 6px;
-      border: 1px dashed #2a5d84;
-    }
-    
-    .meitei-mayek {
-      font-size: 18px;
-      margin-top: 8px;
-      direction: ltr;
-    }
-    
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    
-    button, a.btn {
-      margin: 10px;
-      padding: 12px 25px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      border-radius: 6px;
-      background: #2a5d84;
-      color: white;
-      transition: all 0.3s ease;
-      display: inline-block;
-      text-align: center;
-    }
-    
-    button:hover, a.btn:hover {
-      background: #1e4568;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    #response {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #2a5d84;
-      text-align: center;
-      padding: 15px;
-      background: #e0f0ff;
-      border-radius: 8px;
-    }
-    
-    .definition {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 15px;
-    }
-    
-    .definition-icon {
-      font-size: 24px;
-      margin-right: 15px;
-      color: #2a5d84;
-    }
-    
-    footer {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      color: #666;
-      font-size: 0.9rem;
-    }
-    
-    @media (max-width: 768px) {
-      .btn-group {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      button, a.btn {
-        width: 80%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parts of Speech - English Grammar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .intro h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .part-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #1a2a6c;
+        }
+        
+        .part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .part-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .part-card h3 span {
+            background: #1a2a6c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .definition {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #b21f1f;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .meitei-mayek {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #fdbb2d;
+            font-family: 'Nirmala UI', sans-serif;
+        }
+        
+        .meitei-mayek h4 {
+            color: #b21f1f;
+            margin-bottom: 8px;
+        }
+        
+        .epao-mayek {
+            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .test-section {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .test-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .no-btn:hover {
+            background: #da190b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .option-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Sentence Learning</h1>
-      <p class="subtitle">Learn about sentences and their types in English and Meitei Mayek</p>
-    </header>
-
-    <div class="card">
-      <h2>What is a Sentence?</h2>
-      
-      <div class="definition">
-        <div class="definition-icon">📝</div>
-        <div>
-          <p>
-            A <b>sentence</b> is a group of words that expresses a complete thought. It typically contains a subject and a predicate.
-          </p>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
+            <h1>Parts of Speech</h1>
+            <p>Understanding the Building Blocks of English Language</p>
         </div>
-      </div>
-      
-      <div class="highlight">
-        <p><strong>Example of a sentence:</strong> <i>Rita plays football.</i> → This expresses a complete thought.</p>
-        <p><strong>Example of a non-sentence:</strong> <i>Rita nice very football.</i> → This doesn't make meaningful sense.</p>
-      </div>
-      
-      <div class="definition">
-        <div class="definition-icon">ꯁ</div>
-        <div>
-          <p><b>Meitei Mayek / Epaō Mayek:</b></p>
-          <p class="meitei-mayek">ꯁꯦꯅꯇꯦꯟꯁ ꯍꯥꯏꯕꯁꯤ ꯊ_ꯔꯥ ꯂꯩꯕ ꯋꯥꯍꯩ ꯀꯥꯉꯕꯨꯅꯤ ꯫</p>
-          <p class="meitei-mayek"><i>ꯈꯨꯗꯝ : ꯔꯤꯇꯥꯟ ꯕꯣꯜ ꯁꯥꯟꯅꯩ꯫</i> → ꯃꯁꯤ ꯁꯦꯟꯇꯦꯟꯁꯅꯤ꯫</p>
-          <p class="meitei-mayek"><i>ꯈꯨꯗꯝ :<i>ꯔꯤꯇꯥ ꯐꯖꯕꯥ ꯌꯥꯝꯅꯥ ꯐꯨꯠꯕꯣꯜ꯫</i> → ꯃꯁꯤ ꯁꯦꯟꯇꯦꯟꯁ ꯅꯠꯇ_ꯔꯦ ꯃꯔꯝꯗꯤ ꯑꯊ_ꯔꯥ ꯊꯣꯛꯇꯦ꯫</p>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>What are Parts of Speech?</h2>
+                <p>Parts of speech are the categories to which words are assigned based on their syntactic functions and semantic roles in a sentence. English has eight primary parts of speech that help us understand how words function in different contexts.</p>
+            <div class="meitei-mayek">
+                        <h4>Wahanthok (ꯋꯥꯍꯩ ꯄꯔꯦꯡ ꯑꯃꯒꯤ ꯃꯅꯨꯡꯗ ꯃꯈꯣꯏꯅꯥ ꯇꯧꯔꯤꯕ ꯃꯥꯅꯗꯕꯥ ꯊꯕꯛꯀꯤ ꯃꯇꯨꯡ ꯏꯟꯅꯥ ꯋꯥꯍꯩꯁꯤꯡꯕꯨ ꯃꯈꯜ ꯅꯤꯄꯥꯟ ꯊꯣꯛꯅꯥ ꯈꯥꯏꯗꯣꯛꯢ ꯃꯈꯣꯏꯕꯨ ꯄꯥꯔꯠ ꯑꯣꯐ ꯁꯄꯤꯁ ꯀꯧꯏ)</h4></div>
+            
+            <div class="parts-grid">
+                <!-- Noun -->
+                <div class="part-card">
+                    <h3><span>1</span> Noun</h3>
+                    <div class="definition">
+                        A noun is a word that names a person, place, thing, or idea.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> teacher, school, book, happiness
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>Meitei Mayek (ꯃꯩꯇꯩꯂꯣꯟ)</h4>
+                        <div class="epao-mayek">
+                            <p>ꯅꯥꯎꯟ (Noun) - ꯄꯣꯠ , ꯃꯤ ,ꯁꯥ ,ꯂꯝ ꯅꯥ ꯆꯤꯡꯕꯒꯤ ꯃꯃꯤꯡ ꯈꯪꯅꯕꯥ ꯋꯥꯍꯩꯕꯨ ꯅꯥꯎꯟ ꯀꯧꯏ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ: ꯇꯣꯝ_ꯕꯥ, ꯏꯝꯐꯥꯜ, ꯂꯥꯏꯔꯤꯛ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pronoun -->
+                <div class="part-card">
+                    <h3><span>2</span> Pronoun</h3>
+                    <div class="definition">
+                        A pronoun is a word that takes the place of a noun to avoid repetition.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> he, she, it, they, we, you
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>Meitei Mayek (ꯅꯥꯎꯟꯒꯤ ꯃꯍꯨꯠ ꯁꯤꯟꯗꯨꯟ ꯁꯤꯖꯤꯟꯅꯕ ꯋꯥꯍꯩꯕꯨ ꯄ_ꯔꯣꯅꯣꯎꯟ ꯀꯧꯏ)</h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ: ꯃꯍꯥꯛ, ꯃꯈꯣꯏ, ꯑꯩꯈꯣꯢ, ꯅꯈꯣꯏ</p>
+                         
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Verb -->
+                <div class="part-card">
+                    <h3><span>3</span> Verb</h3>
+                    <div class="definition">
+                        A verb expresses an action, occurrence, or state of being.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> run, think, is, have, become
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯊꯕꯛ ꯇꯧꯕꯒꯤ ꯃꯑꯣꯡ ꯈꯪꯅꯕ ꯋꯥꯍꯩꯕꯨ ꯚꯥꯕ ꯀꯧꯏ</h4>
+                        <div class="epao-mayek">
+                           
+                            <p>ꯈꯨꯗꯝ : ꯆꯠꯄꯥ, ꯆꯥꯕꯥ, ꯐꯝꯕꯥ </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adjective -->
+                <div class="part-card">
+                    <h3><span>4</span> Adjective</h3>
+                    <div class="definition">
+                        An adjective describes or modifies a noun or pronoun.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> beautiful, tall, smart, five
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯅꯥꯎꯟ ꯅꯇ_ꯔꯥꯒ ꯄ_ꯔꯣꯅꯥꯎꯟ  ꯑꯥꯃꯒꯤ ꯃꯒꯨꯟ ꯐꯣꯡꯗꯣꯛꯄꯥ ꯋꯥꯍꯩꯕꯨ ꯑꯦꯗꯖꯦꯛꯇꯤꯚ ꯀꯧꯏ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ : ꯐꯥꯖꯕ , ꯑꯋꯥꯡꯕ , ꯑꯄꯤꯛꯄ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adverb -->
+                <div class="part-card">
+                    <h3><span>5</span> Adverb</h3>
+                    <div class="definition">
+                        An adverb describes or modifies a verb,or another adverb.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> quickly, very, well, yesterday
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯋꯥꯍꯅꯊꯣꯛ: ꯚꯥꯔꯕ ꯑꯃꯒꯤ ꯃꯑꯣꯡ ꯃꯇꯧ ꯁꯦꯃꯗꯣꯛꯄꯥ ꯅꯇ_ꯔꯥꯒ ꯆꯥꯡ ꯇꯥꯀꯄꯥ ꯋꯥꯍꯩꯕꯨ ꯑꯦꯗꯚꯥꯕ ꯀꯧꯏ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ : ꯌꯥꯡꯅꯥ , ꯊꯨꯅꯥ , ꯐꯥꯖꯅꯥ </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preposition -->
+                <div class="part-card">
+                    <h3><span>6</span> Preposition</h3>
+                    <div class="definition">
+                        A preposition shows the relationship between a noun/pronoun and other words in a sentence.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> in, on, at, with, between
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯄ_ꯔꯤꯄꯣꯖꯤꯁꯟ ꯑꯃꯅꯥ ꯅꯥꯎꯟ  ꯑꯃꯕꯨ ꯑꯇꯣꯞꯄꯥ ꯋꯥꯍꯩꯁꯤꯡꯒꯥ ꯃꯔꯤ ꯂꯩꯅꯍꯜꯂꯤ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ: ꯃꯊꯛꯇꯥ , ꯃꯈꯥꯗ  , ꯅꯥꯀꯟꯗꯥ </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conjunction -->
+                <div class="part-card">
+                    <h3><span>7</span> Conjunction</h3>
+                    <div class="definition">
+                        A conjunction connects words, sentences, or clauses.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> and, but, or, because, although
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯀꯟꯖꯪꯁꯟ ꯑꯃꯅꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡ ꯑꯃꯒꯥ ꯑꯃꯒꯥ ꯇꯥꯏꯁꯤꯟꯅꯩ </h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ : ꯑꯗꯨꯒꯥ , ꯑꯗꯨꯕꯨ, ꯑꯃꯔꯣꯝꯗ , ꯑꯗꯨꯝ ꯑꯣꯏꯅꯃꯛ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interjection -->
+                <div class="part-card">
+                    <h3><span>8</span> Interjection</h3>
+                    <div class="definition">
+                        An interjection expresses strong emotion or surprise and stands alone.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> Wow! Ouch! Hey! Oh no!
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯋꯥꯍꯟꯊꯣꯛ : ꯏꯟꯇꯦꯔꯖꯦꯛꯁꯟ  ꯑꯃꯅꯥ ꯊꯥꯖꯗꯕꯥ ꯑꯉꯛꯄꯥ ꯐꯣꯡꯗꯣꯛꯏ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯈꯨꯗꯝ : ꯑꯣ ꯑꯋꯥꯕꯅꯤ , ꯍꯥ ꯀꯔꯤ , ꯀꯔꯤꯅꯣ ꯍꯥꯏꯔꯤꯁꯤꯕꯣ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-section">
+                <h2>Test Your Knowledge</h2>
+                <p>Now that you've learned about the eight parts of speech, would you like to test your understanding with a short quiz?</p>
+                <div class="options">
+                    <button class="option-btn yes-btn" onclick="takeQuiz()">Yes, Take Quiz</button>
+                    <button class="option-btn no-btn" onclick="goBack()">No, Return to Chat</button>
+                </div>
+            </div>
         </div>
-      </div>
+        
+        <div class="footer">
+            <p>English Grammar Learning System &copy; 2023 | Parts of Speech Module</p>
+        </div>
     </div>
 
-    <div class="card">
-      <h2>5 Types of Sentences</h2>
-      
-      <div class="sentence-type">
-        <h4>1. Declarative/ Ashertive Sentence (Statement)</h4>
-        <p>Makes a statement or expresses an opinion.</p>
-        <p class="meitei-mayek"><b>ꯋꯥꯐꯝ ꯅꯇ_ꯔꯥꯒ ꯃꯣꯠ ꯑꯃꯥ ꯐꯣꯡꯗꯣꯛꯞ  ꯋꯥꯍꯩ ꯄꯔꯦꯡꯕꯨ ꯑꯦꯁꯦꯔꯇꯤꯞ ꯀꯧꯏ:</p>
+    <script>
+        function takeQuiz() {
+            // In a real implementation, this would redirect to the quiz page
+            alert("Redirecting to Parts of Speech Quiz...");
+            window.location.href = "partsofspeechquiz.html";
+        }
         
-        <div class="example">
-          <p><strong>English:</strong> Rita sings a song.</p>
-          <p><strong>Meitei Mayek:</strong> <span class="meitei-mayek">ꯔꯤꯇꯥꯟ ꯏꯁꯩ ꯑꯃꯥ ꯁꯛꯏ꯫</span></p>
-        </div>
-      </div>
-      
-      <div class="sentence-type">
-        <h4>2. Interrogative Sentence (Question)</h4>
-        <p>Asks a question. Ends with a question mark.</p>
-        <p class="meitei-mayek"><b>ꯋꯥꯍꯪ ꯑꯃꯥ ꯍꯪꯕ ꯋꯥꯍꯩ ꯄꯔꯦꯡꯕꯨ ꯏꯟꯇ_ꯔꯣꯒꯦꯇꯤꯞ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯏ꯫</p>
-        
-        <div class="example">
-          <p><strong>English:</strong> Does Rita play football?</p>
-          <p><strong>Meitei Mayek:</strong> <span class="meitei-mayek">ꯔꯤꯇꯥꯅꯥ ꯐꯨꯠꯕꯣꯜ ꯁꯥꯅꯕ_ꯔꯥ?</span></p>
-        </div>
-      </div>
-      
-      <div class="sentence-type">
-        <h4>3. Imperative Sentence (Command)</h4>
-        <p>Gives a command, makes a request, or gives instructions. Ends with a period or exclamation mark.</p>
-        <p class="meitei-mayek"><b>ꯍꯥꯏꯖꯕꯥ ꯊꯧꯗꯥꯕ ꯑꯃꯗꯤ ꯌꯥꯊꯪꯄꯤꯕ ꯋꯥꯍꯩꯄꯔꯦꯡꯕꯨ ꯏꯃꯄꯔꯦꯇꯤꯞ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯏ꯫</p>
-        
-        <div class="example">
-          <p><strong>English:</strong> Please pass the ball.</p>
-          <p><strong>Meitei Mayek:</strong> <span class="meitei-mayek">ꯆꯥꯟꯕꯤꯗꯨꯟ ꯕꯣꯜ ꯑꯗꯨ ꯄꯤꯕꯤꯔꯛꯎ꯫</span></p>
-        </div>
-      </div>
-      
-      <div class="sentence-type">
-        <h4>4. Exclamatory Sentence (Exclamation)</h4>
-        <p>Expresses strong emotion or surprise. Ends with an exclamation mark.</p>
-        <p class="meitei-mayek"><b>ꯑꯉꯛꯄꯥ ꯅꯇ_ꯔꯥꯒ ꯑꯀꯟꯕ ꯏꯍꯨꯜ ꯐꯣꯡꯗꯣꯀꯄꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡꯕꯨ ꯑꯦꯁꯀ_ꯂꯥꯃꯦꯇꯣꯔꯤ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯏ꯫</p>
-        
-        <div class="example">
-          <p><strong>English:</strong> ya My mother is coming ! </p>
-          <p><strong>Meitei Mayek:</strong> <span class="meitei-mayek">ꯅꯨꯉꯥꯏꯔꯦ ꯏꯃꯥ ꯂꯥꯛꯂꯦ!</span></p>
-        </div>
-      </div>
-      
-      <div class="sentence-type">
-        <h4>5. Optative Sentence (Wish or Prayer)</h4>
-        <p>Expresses a wish, prayer, or hope.</p>
-        <p class="meitei-mayek"><b>ꯊꯧꯅꯤꯖꯕ ꯅꯇ_ꯔꯥꯒ ꯅꯤꯖꯕꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡꯕꯨ ꯑꯣꯞꯇꯦꯞꯇꯤꯞ ꯁꯦꯟꯇꯦꯟꯁ ꯀꯧꯏ꯫</p>
-        
-        <div class="example">
-          <p><strong>English:</strong> May you succeed in your efforts.</p>
-          <p><strong>Meitei Mayek:</strong> <span class="meitei-mayek">ꯅꯡꯅꯥ ꯍꯣꯠꯅꯖꯕꯥ ꯄꯨꯝꯕꯥ ꯃꯥꯢꯄꯥꯛꯄꯥ ꯑꯣꯏꯌꯨ꯫</span></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Test Your Knowledge</h3>
-      <p>Ready to check your understanding of sentence types?</p>
-      
-      <div class="btn-group">
-        <a href="sentencequiz.html" class="btn">Yes, Take the Quiz</a>
-        <button onclick="sayNo()">No, Not Yet</button>
-      </div>
-      
-      <div id="response"></div>
-    </div>
-
-    <footer>
-      <p>Sentence Learning Page &copy; 2023 | English & Meitei Mayek</p>
-    </footer>
-  </div>
-
-  <script>
-    function sayNo() {
-      document.getElementById('response').innerHTML = "Okay! Come back anytime when you're ready 😊<br>ꯑꯣꯛꯄꯦ! ꯑꯗꯣꯝꯅꯥ ꯌꯥꯝꯅꯥ ꯊꯃꯣꯏꯗꯥꯕꯥ ꯐꯪꯒꯗꯕꯥ ꯃꯇꯝꯗꯥ ꯍꯟꯗꯣꯀꯄꯤꯌꯨ 😊";
-    }
-  </script>
+        function goBack() {
+            // In a real implementation, this would return to the chatbot
+            alert("Returning to the main chat...");
+            window.location.href = "grammar-chatbot.html";
+        }
+    </script>
 </body>
 </html>
