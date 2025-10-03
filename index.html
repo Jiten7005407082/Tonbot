@@ -1,65 +1,326 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>English Grammar - Class 10</title>
-  <style>
-    body { font-family: system-ui, sans-serif; background:#f4f6fb; margin:0; padding:24px; }
-    .container { max-width:800px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
-    h1 { text-align:center; color:#2b6cb0; }
-    ul { list-style:none; padding:0; }
-    li { margin:8px 0; }
-    a { display:block; padding:10px 14px; background:#f7f9ff; border:1px solid #ddd; border-radius:8px;
-        text-decoration:none; color:#0b3a66; font-weight:500; }
-    a:hover { background:#e6f0ff; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            height: 400px;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background-color: #f0f2f5;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: #4a00e0;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .option-btn {
+            background-color: #e9ecef;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .option-btn:hover {
+            background-color: #4a00e0;
+            color: white;
+        }
+        
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .chapter-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 12px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .chapter-btn:hover {
+            background-color: #4a00e0;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-area {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-area input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .input-area button {
+            background-color: #4a00e0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .input-area button:hover {
+            background-color: #3800a8;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .chapter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Class 10 English Grammar</h1>
-    <p>Select a chapter to read:</p>
-    <ul>
-      <li><a href="chapter01.html">1. The Sentence</a></li>
-      <li><a href="chapter02.html">2. Subjects & Predicates</a></li>
-      <li><a href="chapter03.html">3. Phrase & Clause</a></li>
-      <li><a href="chapter04.html">4. Parts of Speech</a></li>
-      <li><a href="chapter05.html">5. The Noun: Kinds</a></li>
-      <li><a href="chapter06.html">6. The Noun: Gender</a></li>
-      <li><a href="chapter07.html">7. The Noun: Number</a></li>
-      <li><a href="chapter08.html">8. The Noun: Case</a></li>
-      <li><a href="chapter09.html">9. The Adjective</a></li>
-      <li><a href="chapter10.html">10. Comparison of Adjectives</a></li>
-      <li><a href="chapter11.html">11. Adjectives used as Nouns</a></li>
-      <li><a href="chapter12.html">12. Position of Adjectives</a></li>
-      <li><a href="chapter13.html">13. Correct Use of Some Adjectives</a></li>
-      <li><a href="chapter14.html">14. Articles</a></li>
-      <li><a href="chapter15.html">15. Personal Pronouns</a></li>
-      <li><a href="chapter16.html">16. Reflexive & Emphatic Pronouns</a></li>
-      <li><a href="chapter17.html">17. Demonstrative / Indefinite / Distributive Pronouns</a></li>
-      <li><a href="chapter18.html">18. Relative Pronouns</a></li>
-      <li><a href="chapter19.html">19. Interrogative Pronouns</a></li>
-      <li><a href="chapter20.html">20. The Verb</a></li>
-      <li><a href="chapter21.html">21. Verbs of Incomplete Predication</a></li>
-      <li><a href="chapter22.html">22. Active & Passive Voice</a></li>
-      <li><a href="chapter23.html">23. Mood</a></li>
-      <li><a href="chapter24.html">24. Tenses: Introduction</a></li>
-      <li><a href="chapter25.html">25. More about Verbs & Tenses</a></li>
-      <li><a href="chapter26.html">26. Modals & Auxiliaries</a></li>
-      <li><a href="chapter27.html">27. Determiners</a></li>
-      <li><a href="chapter28.html">28. Transformation of Sentences</a></li>
-      <li><a href="chapter29.html">29. Direct & Indirect Speech</a></li>
-      <li><a href="chapter30.html">30. Concord / Agreement</a></li>
-      <li><a href="chapter31.html">31. Punctuation</a></li>
-      <li><a href="chapter32.html">32. Phrase & Clause (advanced)</a></li>
-      <li><a href="chapter33.html">33. Idioms & Phrases</a></li>
-      <li><a href="chapter34.html">34. One-word substitution</a></li>
-      <li><a href="chapter35.html">35. Prefixes & Suffixes</a></li>
-      <li><a href="chapter36.html">36. Synonyms / Antonyms / Homonyms</a></li>
-      <li><a href="chapter37.html">37. Use of Prepositions</a></li>
-      <li><a href="chapter38.html">38. Use of Conjunctions</a></li>
-      <li><a href="chapter39.html">39. Sentence Improvement / Correction</a></li>
-    </ul>
-  </div>
+    <div class="container">
+        <div class="header">
+            <h1>English Grammar Assistant</h1>
+            <p>Your personal guide to mastering English grammar</p>
+        </div>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="message bot-message">
+                Hello! Welcome to the English Grammar Learning Assistant. What's your name?
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chatContainer');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            
+            let userName = '';
+            let currentStep = 'getName';
+            
+            // Function to add a message to the chat
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                messageDiv.innerHTML = message;
+                chatContainer.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Function to add options to the chat
+            function addOptions(options) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option-btn';
+                    button.textContent = option.text;
+                    button.onclick = option.action;
+                    optionsDiv.appendChild(button);
+                });
+                
+                chatContainer.appendChild(optionsDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Function to handle user input
+            function handleUserInput() {
+                const input = userInput.value.trim();
+                if (!input) return;
+                
+                addMessage(input, true);
+                userInput.value = '';
+                
+                if (currentStep === 'getName') {
+                    userName = input;
+                    currentStep = 'askToLearn';
+                    setTimeout(() => {
+                        addMessage(`Nice to meet you, ${userName}! Would you like to learn English grammar with me?`);
+                        addOptions([
+                            {
+                                text: 'Yes',
+                                action: function() {
+                                    addMessage('Yes', true);
+                                    showChapterSelection();
+                                }
+                            },
+                            {
+                                text: 'No',
+                                action: function() {
+                                    addMessage('No', true);
+                                    addMessage("That's okay. Feel free to come back anytime you want to improve your English grammar skills. Have a great day!");
+                                }
+                            }
+                        ]);
+                    }, 1000);
+                }
+            }
+            
+            // Function to show chapter selection
+            function showChapterSelection() {
+                setTimeout(() => {
+                    addMessage("Great! Now choose a chapter you'd like to learn:");
+                    
+                    const chapters = [
+                        { name: 'Parts of Speech', file: 'partsofspeech.html' },
+                        { name: 'Noun', file: 'noun.html' },
+                        { name: 'Number', file: 'number.html' },
+                        { name: 'Gender', file: 'gender.html' },
+                        { name: 'Person', file: 'person.html' },
+                        { name: 'Degree', file: 'degree.html' },
+                        { name: 'Pronoun', file: 'pronoun.html' },
+                        { name: 'Adjective', file: 'adjective.html' },
+                        { name: 'Verb', file: 'verb.html' },
+                        { name: 'Adverb', file: 'adverb.html' },
+                        { name: 'Preposition', file: 'preposition.html' },
+                        { name: 'Conjunction', file: 'conjunction.html' },
+                        { name: 'Interjection', file: 'interjection.html' },
+                        { name: 'Sentence', file: 'sentence.html' },
+                        { name: 'Kinds of Sentences', file: 'kindsofsentences.html' },
+                        { name: 'Transformation of Sentences', file: 'transformationofsentences.html' },
+                        { name: 'Tense', file: 'tense.html' },
+                        { name: 'Voice', file: 'voice.html' },
+                        { name: 'Narration', file: 'narration.html' }
+                    ];
+                    
+                    const gridDiv = document.createElement('div');
+                    gridDiv.className = 'chapter-grid';
+                    
+                    chapters.forEach(chapter => {
+                        const chapterBtn = document.createElement('a');
+                        chapterBtn.className = 'chapter-btn';
+                        chapterBtn.textContent = chapter.name;
+                        chapterBtn.href = chapter.file;
+                        chapterBtn.target = '_blank';
+                        gridDiv.appendChild(chapterBtn);
+                    });
+                    
+                    chatContainer.appendChild(gridDiv);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }, 1000);
+            }
+            
+            // Event listeners
+            sendButton.addEventListener('click', handleUserInput);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
