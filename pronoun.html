@@ -1,40 +1,528 @@
-// Physics - Light Chapter Questions
-quizDatabase.physics.Light = [
-    {
-        question: "What is the SI unit of power of a lens?",
-        options: ["Dioptre", "Volt", "Watt", "Newton"],
-        answer: 0,
-        explanation: "The SI unit of power of a lens is dioptre, which is equal to the reciprocal of focal length in meters."
-    },
-    {
-        question: "Which mirror always produces a virtual, erect and diminished image?",
-        options: ["Concave mirror", "Convex mirror", "Plane mirror", "Spherical mirror"],
-        answer: 1,
-        explanation: "A convex mirror always produces a virtual, erect and diminished image regardless of the position of the object."
-    },
-    {
-        question: "The refractive index of water is 1.33. What does this mean?",
-        options: [
-            "Light travels 1.33 times faster in water than in vacuum",
-            "Light travels 1.33 times slower in water than in vacuum",
-            "Water is 1.33 times denser than air",
-            "Light bends 1.33 degrees when entering water"
-        ],
-        answer: 1,
-        explanation: "Refractive index indicates how much light slows down in a medium compared to vacuum. A refractive index of 1.33 means light travels 1.33 times slower in water than in vacuum."
-    },
-    // Add more questions here to reach 50
-    {
-        question: "What is the focal length of a plane mirror?",
-        options: ["Zero", "Infinity", "Equal to the object distance", "Equal to the image distance"],
-        answer: 1,
-        explanation: "A plane mirror can be considered as a spherical mirror with an infinite radius of curvature, hence its focal length is infinity."
-    },
-    {
-        question: "Which phenomenon is responsible for the twinkling of stars?",
-        options: ["Reflection", "Refraction", "Atmospheric refraction", "Dispersion"],
-        answer: 2,
-        explanation: "The twinkling of stars is due to atmospheric refraction, where starlight undergoes continuous refraction as it passes through layers of air with varying densities."
-    }
-    // Continue adding questions until you reach 50
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronoun - English Grammar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .intro h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pronoun-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #1a2a6c;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .type-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .type-card h3 span {
+            background: #1a2a6c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .definition {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #b21f1f;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .meitei-mayek {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #fdbb2d;
+            font-family: 'Nirmala UI', sans-serif;
+        }
+        
+        .meitei-mayek h4 {
+            color: #b21f1f;
+            margin-bottom: 8px;
+        }
+        
+        .epao-mayek {
+            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .pronoun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pronoun-table th {
+            background: #1a2a6c;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .pronoun-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .pronoun-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .pronoun-table tr:hover {
+            background: #e9ecef;
+        }
+        
+        .test-section {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .test-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .no-btn:hover {
+            background: #da190b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .pronoun-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .option-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .pronoun-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
+            <h1>Pronoun</h1>
+            <p>Understanding Words That Replace Nouns</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>What is a Pronoun?</h2>
+                <p>A pronoun is a word that takes the place of a noun to avoid repetition. Pronouns help make sentences less repetitive and more concise.</p>
+                <div class="meitei-mayek">
+                    <h4>ꯄ꯭ꯔꯣꯅꯥꯎꯟ ꯀꯔꯤꯅꯣ?</h4>
+                    <div class="epao-mayek">
+                        <p>ꯄ꯭ꯔꯣꯅꯥꯎꯟ ꯑꯁꯤ ꯅꯥꯎꯟ ꯑꯃꯒꯤ ꯃꯐꯝꯗꯥ ꯁꯤꯖꯤꯟꯅꯕꯥ ꯁꯤꯖꯤꯟꯅꯗꯨꯅꯥ ꯃꯆꯥꯀꯗꯕꯥ ꯋꯥꯍꯩꯅꯤ꯫ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯋꯥꯍꯩꯄꯔꯦꯡꯁꯤꯡꯕꯨ ꯃꯆꯥꯀꯗꯕꯥ ꯑꯃꯁꯨꯡ ꯍꯦꯟꯅꯥ ꯁꯤꯡꯊꯥꯕꯥ ꯇꯧꯏ꯫</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pronoun-types">
+                <!-- Personal Pronoun -->
+                <div class="type-card">
+                    <h3><span>1</span> Personal Pronoun</h3>
+                    <div class="definition">
+                        Personal pronouns refer to specific people or things. They change form based on person, number, gender, and case.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> I, you, he, she, it, we, they
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯃꯤꯔꯦꯜꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯃꯤꯔꯦꯜꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯃꯅꯨꯡꯒꯤ ꯃꯤꯁꯤꯡ ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯁꯤꯡꯗꯥ ꯈꯪꯅꯩ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯑꯩ, ꯅꯪ, ꯃꯍꯥꯛ, ꯃꯍꯤ, ꯑꯗꯨ, ꯑꯩꯈꯣꯏ, ꯃꯈꯣꯏ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Possessive Pronoun -->
+                <div class="type-card">
+                    <h3><span>2</span> Possessive Pronoun</h3>
+                    <div class="definition">
+                        Possessive pronouns show ownership or possession without needing a noun.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> mine, yours, his, hers, its, ours, theirs
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯌꯥꯎꯕꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯌꯥꯎꯕꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯑꯄꯣꯛꯄꯥ ꯅꯠꯇ꯭ꯔꯒ ꯌꯥꯎꯕꯥ ꯎꯠꯏ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯑꯩꯒꯤ, ꯅꯪꯒꯤ, ꯃꯍꯥꯛꯒꯤ, ꯃꯍꯤꯒꯤ, ꯑꯗꯨꯒꯤ, ꯑꯩꯈꯣꯏꯒꯤ, ꯃꯈꯣꯏꯒꯤ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reflexive Pronoun -->
+                <div class="type-card">
+                    <h3><span>3</span> Reflexive Pronoun</h3>
+                    <div class="definition">
+                        Reflexive pronouns refer back to the subject of the sentence and end in "-self" or "-selves".
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> myself, yourself, himself, herself, itself, ourselves, themselves
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯑꯃꯨꯛꯇꯃꯛꯀꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯑꯃꯨꯛꯇꯃꯛꯀꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯋꯥꯍꯩꯄꯔꯦꯡꯒꯤ ꯁꯕꯖꯦꯛꯇꯗꯥ ꯍꯪꯗꯅꯥ ꯈꯪꯅꯩ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯑꯩꯅꯤ, ꯅꯪꯅꯤ, ꯃꯍꯥꯛꯅꯤ, ꯃꯍꯤꯅꯤ, ꯑꯗꯨꯅꯤ, ꯑꯩꯈꯣꯏꯅꯤ, ꯃꯈꯣꯏꯅꯤ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demonstrative Pronoun -->
+                <div class="type-card">
+                    <h3><span>4</span> Demonstrative Pronoun</h3>
+                    <div class="definition">
+                        Demonstrative pronouns point to specific things and indicate whether they are near or far.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> this, that, these, those
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯎꯠꯄꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯎꯠꯄꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯃꯅꯨꯡꯒꯤ ꯄꯣꯠꯁꯤꯡꯗꯥ ꯎꯠꯏ ꯑꯃꯁꯨꯡ ꯃꯈꯣꯏ ꯎꯔꯥꯕꯥ ꯅꯠꯇ꯭ꯔꯒ ꯃꯥꯔꯥꯕꯥ ꯑꯣꯏꯕꯥ ꯎꯠꯏ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯑꯁꯤ, ꯑꯗꯣ, ꯑꯁꯤꯁꯤꯡ, ꯑꯗꯣꯁꯤꯡ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interrogative Pronoun -->
+                <div class="type-card">
+                    <h3><span>5</span> Interrogative Pronoun</h3>
+                    <div class="definition">
+                        Interrogative pronouns are used to ask questions about people or things.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> who, whom, whose, which, what
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯍꯪꯕꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯍꯪꯕꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯕꯨ ꯃꯤꯁꯤꯡ ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯁꯤꯡꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯍꯪꯕꯥ ꯉꯝꯕꯗꯥ ꯁꯤꯖꯤꯟꯅꯩ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯀꯔꯤꯅꯣ, ꯀꯔꯤꯒꯤꯅꯣ, ꯀꯅꯥꯒꯤꯅꯣ, ꯀꯅꯥꯅꯣ, ꯀꯔꯤꯅꯣ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Relative Pronoun -->
+                <div class="type-card">
+                    <h3><span>6</span> Relative Pronoun</h3>
+                    <div class="definition">
+                        Relative pronouns introduce relative clauses and connect them to the main clause.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> who, whom, whose, which, that
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯃꯔꯤꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯃꯔꯤꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯃꯔꯤꯒꯤ ꯀ꯭ꯂꯥꯖꯁꯤꯡꯕꯨ ꯍꯧꯗꯣꯛꯏ ꯑꯃꯁꯨꯡ ꯃꯈꯣꯏꯕꯨ ꯃꯌꯥꯝꯒꯤ ꯀ꯭ꯂꯥꯖꯗꯥ ꯁꯦꯝꯕꯥ ꯇꯧꯏ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯃꯔꯝꯕꯥ, ꯃꯔꯝꯕꯥ, ꯃꯔꯝꯕꯒꯤ, ꯃꯔꯝꯕꯥ, ꯑꯗꯨ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indefinite Pronoun -->
+                <div class="type-card">
+                    <h3><span>7</span> Indefinite Pronoun</h3>
+                    <div class="definition">
+                        Indefinite pronouns refer to non-specific people or things.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> anyone, someone, everyone, nobody, something, anything, everything
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯃꯅꯨꯡꯕꯥ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯃꯅꯨꯡꯕꯥ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯃꯅꯨꯡꯒꯤ ꯑꯣꯏꯗꯕꯥ ꯃꯤꯁꯤꯡ ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯁꯤꯡꯗꯥ ꯈꯪꯅꯩ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯀꯅꯥꯒꯨꯝꯕꯥ, ꯀꯅꯥꯃꯆꯥꯅꯥ, ꯃꯤꯄꯨꯝꯅꯃꯛ, ꯀꯅꯥꯃꯆꯥꯅꯤ, ꯀꯔꯤꯃꯇꯨꯡꯗꯥ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reciprocal Pronoun -->
+                <div class="type-card">
+                    <h3><span>8</span> Reciprocal Pronoun</h3>
+                    <div class="definition">
+                        Reciprocal pronouns indicate a mutual relationship or action between two or more people or things.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> each other, one another
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯑꯣꯟꯊꯣꯛꯄꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯑꯣꯟꯊꯣꯛꯄꯒꯤ ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯃꯤ ꯲ ꯅꯠꯇ꯭ꯔꯒ ꯍꯦꯟꯅꯥ ꯂꯩꯕꯥ ꯃꯤꯁꯤꯡ ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯁꯤꯡꯒꯤ ꯃꯔꯛꯇꯥ ꯂꯩꯕꯥ ꯃꯄꯨꯡꯐꯝꯕꯥ ꯃꯔꯤꯂꯩꯅꯕꯥ ꯅꯠꯇ꯭ꯔꯒ ꯊꯕꯛꯀꯤ ꯃꯇꯥꯡꯗꯥ ꯎꯠꯏ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯑꯃꯒꯤꯗꯃꯛꯇꯥ, ꯑꯇꯣꯞꯄꯥ ꯑꯃꯗꯥ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="intro">
+                <h2>Pronoun Cases</h2>
+                <p>Pronouns change form depending on their function in a sentence. The three main cases are subjective, objective, and possessive.</p>
+                <div class="meitei-mayek">
+                    <h4>ꯄ꯭ꯔꯣꯅꯥꯎꯟꯒꯤ ꯀꯦꯁꯁꯤꯡ</h4>
+                    <div class="epao-mayek">
+                        <p>ꯄ꯭ꯔꯣꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯃꯈꯣꯏꯒꯤ ꯊꯕꯛꯀꯤ ꯃꯇꯥꯡꯗꯥ ꯌꯥꯝꯅꯥ ꯍꯣꯡꯗꯣꯛꯏ꯫</p>
+                    </div>
+                </div>
+            </div>
+            
+            <table class="pronoun-table">
+                <thead>
+                    <tr>
+                        <th>Case</th>
+                        <th>Function</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Subjective</td>
+                        <td>Used when the pronoun is the subject of the sentence</td>
+                        <td><strong>She</strong> reads books. <strong>They</strong> play football.</td>
+                    </tr>
+                    <tr>
+                        <td>Objective</td>
+                        <td>Used when the pronoun is the object of a verb or preposition</td>
+                        <td>The teacher called <strong>him</strong>. Give the book to <strong>me</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Possessive</td>
+                        <td>Shows ownership or possession</td>
+                        <td>This is <strong>my</strong> book. That car is <strong>theirs</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="test-section">
+                <h2>Test Your Knowledge</h2>
+                <p>Now that you've learned about pronouns, would you like to test your understanding with a short quiz?</p>
+                <div class="options">
+                    <button class="option-btn yes-btn" onclick="takeQuiz()">Yes, Take Quiz</button>
+                    <button class="option-btn no-btn" onclick="goBack()">No, Return to Chat</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>English Grammar Learning System &copy; 2023 | Pronoun Chapter</p>
+        </div>
+    </div>
+
+    <script>
+        function takeQuiz() {
+            // In a real implementation, this would redirect to the quiz page
+            alert("Redirecting to Pronoun Quiz...");
+            window.location.href = "pronounquiz.html";
+        }
+        
+        function goBack() {
+            // In a real implementation, this would return to the chatbot
+            alert("Returning to the main chat...");
+            window.location.href = "grammar-chatbot.html";
+        }
+    </script>
+</body>
+</html>
