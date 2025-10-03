@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noun - English Grammar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .intro h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .noun-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #1a2a6c;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .type-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .type-card h3 span {
+            background: #1a2a6c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .definition {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #b21f1f;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .meitei-mayek {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #fdbb2d;
+            font-family: 'Nirmala UI', sans-serif;
+        }
+        
+        .meitei-mayek h4 {
+            color: #b21f1f;
+            margin-bottom: 8px;
+        }
+        
+        .epao-mayek {
+            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .noun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .noun-table th {
+            background: #1a2a6c;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .noun-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .noun-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .noun-table tr:hover {
+            background: #e9ecef;
+        }
+        
+        .test-section {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .test-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .no-btn:hover {
+            background: #da190b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .noun-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .option-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .noun-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
+            <h1>Noun</h1>
+            <p>Understanding Naming Words in English Language</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>What is a Noun?</h2>
+                <p>A noun is a word that names a person, place, thing, or idea. Nouns are one of the most fundamental parts of speech and serve as the subject or object in a sentence.</p>
+                <div class="meitei-mayek">
+                    <h4>ꯅꯥꯎꯟ ꯀꯔꯤꯅꯣ?</h4>
+                    <div class="epao-mayek">
+                        <p>ꯅꯥꯎꯟ ꯑꯁꯤ ꯃꯤ, ꯂꯝ, ꯄꯣꯠ, ꯅꯠꯇ꯭ꯔꯒ ꯋꯥꯍꯩꯒꯤ ꯃꯃꯤꯡ ꯈꯪꯅꯕꯥ ꯋꯥꯍꯩꯅꯤ꯫ ꯅꯥꯎꯟꯁꯤꯡ ꯑꯁꯤ ꯋꯥꯍꯩꯒꯤ ꯈ꯭ꯋꯥꯏꯗꯒꯤ ꯃꯔꯨꯑꯣꯏꯕꯥ ꯑꯣꯏꯕꯥ ꯄꯔꯠꯁꯤꯡꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯑꯃꯅꯥ ꯑꯣꯏꯈꯤ꯫</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="noun-types">
+                <!-- Common Noun -->
+                <div class="type-card">
+                    <h3><span>1</span> Common Noun</h3>
+                    <div class="definition">
+                        A common noun is a general name for a person, place, or thing. It is not capitalized unless it begins a sentence.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> teacher, city, book, river
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯑꯔꯤꯕꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯑꯔꯤꯕꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯃꯤ, ꯂꯝ, ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯀꯤ ꯑꯔꯤꯕꯥ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯇꯣꯝꯕ, ꯂꯝꯈꯥꯢ, ꯂꯥꯏꯔꯤꯛ, ꯇꯨꯔꯦꯜ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proper Noun -->
+                <div class="type-card">
+                    <h3><span>2</span> Proper Noun</h3>
+                    <div class="definition">
+                        A proper noun is the specific name of a particular person, place, or thing. It always begins with a capital letter.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> John, London, The Bible, Amazon River
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯃꯅꯨꯡꯒꯤ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯃꯅꯨꯡꯒꯤ ꯅꯥꯎꯟ ꯑꯁꯤ ꯃꯤ, ꯂꯝ, ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯀꯤ ꯃꯅꯨꯡꯒꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯆꯍꯤꯒꯤ ꯃꯃꯥ, ꯏꯝꯐꯥꯜ, ꯄꯤꯕꯜ, ꯑꯃꯖꯣꯟ ꯇꯨꯔꯦꯜ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Concrete Noun -->
+                <div class="type-card">
+                    <h3><span>3</span> Concrete Noun</h3>
+                    <div class="definition">
+                        A concrete noun names something that can be perceived through the five senses (sight, hearing, smell, taste, touch).
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> table, music, perfume, chocolate, silk
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯁꯖꯤꯛꯄꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯁꯖꯤꯛꯄꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯃꯁꯤꯕꯥ ꯑꯍꯥꯟꯕꯥ ꯃꯥꯏꯀꯩ ꯵ꯒꯤ ꯃꯇꯝꯗꯥ ꯎꯕꯥ ꯐꯪꯕꯥ ꯄꯣꯠꯀꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯇꯦꯕꯜ, ꯅꯣꯡꯊꯦꯜ, ꯁꯔꯨꯛ, ꯆꯥꯀꯣꯜꯌꯥꯠ, ꯁꯤꯜꯛ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Abstract Noun -->
+                <div class="type-card">
+                    <h3><span>4</span> Abstract Noun</h3>
+                    <div class="definition">
+                        An abstract noun names an idea, quality, or state that cannot be perceived through the five senses.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> love, happiness, freedom, wisdom, time
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯅꯥꯀꯟꯕꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯅꯥꯀꯟꯕꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯑꯍꯥꯟꯕꯥ ꯃꯥꯏꯀꯩ ꯵ꯒꯤ ꯃꯇꯝꯗꯥ ꯎꯕꯥ ꯐꯪꯗꯕꯥ ꯋꯥꯍꯟꯊꯣꯛ, ꯁꯖꯤꯛꯄꯥ, ꯅꯠꯇ꯭ꯔꯒ ꯊꯕꯛꯀꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯅꯨꯡꯁꯤ, ꯊꯥꯖꯕ, ꯐ꯭ꯔꯤꯗꯝ, ꯁꯪꯁꯀꯥꯔ, ꯃꯇꯝ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Countable Noun -->
+                <div class="type-card">
+                    <h3><span>5</span> Countable Noun</h3>
+                    <div class="definition">
+                        A countable noun refers to things that can be counted. They have both singular and plural forms.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> book/books, child/children, tree/trees
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯁꯤꯖꯤꯟꯅꯕꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯁꯤꯖꯤꯟꯅꯕꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯁꯤꯖꯤꯟꯅꯕꯥ ꯌꯥꯕꯥ ꯄꯣꯠꯀꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯂꯥꯏꯔꯤꯛ/ꯂꯥꯏꯔꯤꯛꯁꯤꯡ, ꯃꯆꯥ/ꯃꯆꯥꯁꯤꯡ, ꯎꯍꯩ/ꯎꯍꯩꯁꯤꯡ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Uncountable Noun -->
+                <div class="type-card">
+                    <h3><span>6</span> Uncountable Noun</h3>
+                    <div class="definition">
+                        An uncountable noun refers to things that cannot be counted. They usually do not have a plural form.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> water, rice, information, advice
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯁꯤꯖꯤꯟꯅꯗꯕꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯁꯤꯖꯤꯟꯅꯗꯕꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯁꯤꯖꯤꯟꯅꯕꯥ ꯌꯥꯗꯕꯥ ꯄꯣꯠꯀꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯏꯁꯤꯡ, ꯆꯥ, ꯋꯥꯍꯩꯄꯔꯦꯡ, ꯍꯪꯅꯕ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collective Noun -->
+                <div class="type-card">
+                    <h3><span>7</span> Collective Noun</h3>
+                    <div class="definition">
+                        A collective noun names a group of people, animals, or things considered as one unit.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> team, family, flock, class
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯂꯩꯕꯥꯛꯀꯤ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯂꯩꯕꯥꯛꯀꯤ ꯅꯥꯎꯟ ꯑꯁꯤ ꯃꯤ, ꯁꯥ, ꯅꯠꯇ꯭ꯔꯒ ꯄꯣꯠꯀꯤ ꯂꯩꯕꯥꯛꯀꯤ ꯃꯃꯤꯡꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯇꯤꯝ, ꯑꯄꯥꯝꯕꯥ, ꯁꯥꯒꯤ ꯂꯩꯕꯥꯛ, ꯀ꯭ꯂꯥꯁ</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Compound Noun -->
+                <div class="type-card">
+                    <h3><span>8</span> Compound Noun</h3>
+                    <div class="definition">
+                        A compound noun is made up of two or more words that function as a single noun.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> toothpaste, swimming pool, mother-in-law
+                    </div>
+                    <div class="meitei-mayek">
+                        <h4>ꯂꯥꯛꯄꯥ ꯅꯥꯎꯟ</h4>
+                        <div class="epao-mayek">
+                            <p>ꯂꯥꯛꯄꯥ ꯅꯥꯎꯟ ꯑꯁꯤ ꯋꯥꯍꯩ ꯲ ꯅꯠꯇ꯭ꯔꯒ ꯍꯦꯟꯅꯥ ꯂꯩꯕꯥꯅꯥ ꯁꯔꯨꯛꯇꯥ ꯊꯕꯛ ꯇꯧꯕꯥ ꯅꯥꯎꯟꯅꯤ꯫</p>
+                            <p><strong>ꯈꯨꯗꯝ:</strong> ꯍꯃꯨꯒꯤ ꯇꯣꯝꯕ, ꯏꯁꯤꯡ ꯇꯨꯂꯨꯞ, ꯅꯣꯡꯃꯥꯏꯖꯥ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="intro">
+                <h2>Noun Functions in Sentences</h2>
+                <p>Nouns can serve different functions in a sentence. Understanding these roles helps in constructing grammatically correct sentences.</p>
+                <div class="meitei-mayek">
+                    <h4>ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯅꯥꯎꯟꯒꯤ ꯊꯕꯛꯁꯤꯡ</h4>
+                    <div class="epao-mayek">
+                        <p>ꯅꯥꯎꯟꯁꯤꯡꯅꯥ ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯃꯔꯤ ꯂꯩꯅꯕꯥ ꯊꯕꯛ ꯀꯌꯥꯅꯥ ꯇꯧꯏ꯫</p>
+                    </div>
+                </div>
+            </div>
+            
+            <table class="noun-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Subject</td>
+                        <td>The noun that performs the action of the verb</td>
+                        <td><strong>Teachers</strong> educate students.</td>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td>The noun that receives the action of the verb</td>
+                        <td>Students respect their <strong>teachers</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Indirect Object</td>
+                        <td>The noun that indicates to/for whom the action is done</td>
+                        <td>She gave her <strong>friend</strong> a gift.</td>
+                    </tr>
+                    <tr>
+                        <td>Object of Preposition</td>
+                        <td>The noun that follows a preposition</td>
+                        <td>The book is on the <strong>table</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Predicate Noun</td>
+                        <td>The noun that follows a linking verb and renames the subject</td>
+                        <td>My father is a <strong>doctor</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="test-section">
+                <h2>Test Your Knowledge</h2>
+                <p>Now that you've learned about nouns, would you like to test your understanding with a short quiz?</p>
+                <div class="options">
+                    <button class="option-btn yes-btn" onclick="takeQuiz()">Yes, Take Quiz</button>
+                    <button class="option-btn no-btn" onclick="goBack()">No, Return to Chat</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>English Grammar Learning System &copy; 2023 | Noun Chapter</p>
+        </div>
+    </div>
+
+    <script>
+        function takeQuiz() {
+            // In a real implementation, this would redirect to the quiz page
+            alert("Redirecting to Noun Quiz...");
+            window.location.href = "nounquiz.html";
+        }
+        
+        function goBack() {
+            // In a real implementation, this would return to the chatbot
+            alert("Returning to the main chat...");
+            window.location.href = "grammar-chatbot.html";
+        }
+    </script>
+</body>
+</html>
