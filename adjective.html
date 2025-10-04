@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjective - English Grammar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .intro h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .meitei-mayek {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #fdbb2d;
+            font-family: 'Nirmala UI', sans-serif;
+        }
+        
+        .meitei-mayek h4 {
+            color: #b21f1f;
+            margin-bottom: 8px;
+        }
+        
+        .epao-mayek {
+            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .adjective-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #1a2a6c;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .type-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .type-card h3 span {
+            background: #1a2a6c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .definition {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #b21f1f;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .test-section {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .test-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .no-btn:hover {
+            background: #da190b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
+            <h1>Adjective</h1>
+            <p>Describing Words in English Grammar</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>What is an Adjective?</h2>
+                <p>An adjective is a word that describes or modifies a noun or pronoun. It gives more information about the quality, quantity, size, color, shape, or other characteristics of the noun.</p>
+                <div class="meitei-mayek">
+                    <h4>ꯑꯦꯗꯤꯖꯦꯚ ꯀꯔꯤꯅꯣ?</h4>
+                    <div class="epao-mayek">
+                        <p>ꯑꯦꯗꯤꯖꯦꯚ ꯑꯁꯤ ꯅꯥꯎꯟ ꯅꯁꯤꯟꯅꯕꯥ ꯃꯔꯨꯑꯣꯏꯕꯥ ꯋꯥꯍꯩꯗꯒꯤ ꯈꯨꯔꯥꯢ ꯇꯧꯏ꯫ ꯑꯦꯗꯤꯖꯦꯚ ꯑꯁꯤ ꯄꯣꯠꯀꯤ ꯑꯃꯅꯥ ꯂꯩꯅꯕꯥ ꯍꯥꯟꯗꯥ ꯃꯤꯗꯥ ꯃꯃꯤꯡ ꯄꯨꯝꯁꯤꯡꯒꯤ ꯃꯤꯡꯗꯥ ꯇꯧꯏ꯫</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adjective-types">
+                <div class="type-card">
+                    <h3><span>1</span> Descriptive Adjective</h3>
+                    <div class="definition">
+                        Describes the quality or kind of a person or thing.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> beautiful girl, tall tree, red flower
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>2</span> Quantitative Adjective</h3>
+                    <div class="definition">
+                        Shows the quantity of a thing or how much/many.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> some water, few books, many students
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>3</span> Demonstrative Adjective</h3>
+                    <div class="definition">
+                        Points out which person or thing is meant.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> this pen, that house, those cars
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>4</span> Possessive Adjective</h3>
+                    <div class="definition">
+                        Shows possession or ownership.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> my book, their school, his car
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>5</span> Interrogative Adjective</h3>
+                    <div class="definition">
+                        Used with nouns to ask questions.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> which book, what color, whose bag
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>6</span> Proper Adjective</h3>
+                    <div class="definition">
+                        Formed from proper nouns and usually capitalized.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> Indian culture, Shakespearean play
+                    </div>
+                </div>
+                <div class="type-card">
+                    <h3><span>7</span> Numeral Adjective</h3>
+                    <div class="definition">
+                        Indicates number, order, or position.
+                    </div>
+                    <div class="example">
+                        <strong>Examples:</strong> three dogs, first prize, second chance
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro">
+                <h2>Adjectives in Sentences</h2>
+                <p>Adjectives usually come before a noun or after a linking verb to describe the noun or pronoun in the sentence.</p>
+            </div>
+
+            <table class="noun-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Before Noun</td>
+                        <td>Placed directly before the noun it describes</td>
+                        <td>She has a <strong>beautiful</strong> dress.</td>
+                    </tr>
+                    <tr>
+                        <td>After Linking Verb</td>
+                        <td>Placed after verbs like ‘is’, ‘seems’, or ‘looks’</td>
+                        <td>The sky is <strong>blue</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Comparative Form</td>
+                        <td>Used to compare two nouns or pronouns</td>
+                        <td>This car is <strong>faster</strong> than that one.</td>
+                    </tr>
+                    <tr>
+                        <td>Superlative Form</td>
+                        <td>Used to show the highest degree of quality</td>
+                        <td>He is the <strong>tallest</strong> boy in the class.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="test-section">
+                <h2>Test Your Knowledge</h2>
+                <p>Now that you've learned about adjectives, would you like to test your understanding with a short quiz?</p>
+                <div class="options">
+                    <button class="option-btn yes-btn" onclick="takeQuiz()">Yes, Take Quiz</button>
+                    <button class="option-btn no-btn" onclick="goBack()">No, Return to Chat</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>English Grammar Learning System &copy; 2023 | Adjective Chapter</p>
+        </div>
+    </div>
+
+    <script>
+        function takeQuiz() {
+            alert("Redirecting to Adjective Quiz...");
+            window.location.href = "adjectivequiz.html";
+        }
+        
+        function goBack() {
+            alert("Returning to the main chat...");
+            window.location.href = "grammar-chatbot.html";
+        }
+    </script>
+</body>
+</html>
