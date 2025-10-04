@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjective Quiz</title>
+<style>
+    body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        padding: 20px;
+        margin: 0;
+    }
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        background: rgba(255,255,255,0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    h1 {
+        text-align: center;
+        color: #1a2a6c;
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    p {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    .question {
+        margin-bottom: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .question h3 {
+        margin-bottom: 10px;
+        color: #1a2a6c;
+    }
+    label {
+        display: block;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+    label:hover {
+        background: #fdbb2d33;
+    }
+    button {
+        display: inline-block;
+        padding: 12px 25px;
+        font-size: 18px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .submit-btn {
+        background: #4CAF50;
+        color: white;
+    }
+    .submit-btn:hover {
+        background: #45a049;
+    }
+    .retry-btn {
+        background: #b21f1f;
+        color: white;
+    }
+    .retry-btn:hover {
+        background: #a01919;
+    }
+    .back-btn {
+        background: #1a2a6c;
+        color: white;
+    }
+    .back-btn:hover {
+        background: #142052;
+    }
+    #result {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 25px;
+        color: #b21f1f;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Adjective Quiz</h1>
+    <p>Choose the correct answer for each question. Total questions: 40</p>
+
+    <form id="quizForm">
+        <!-- 40 Questions -->
+        <div class="question"><h3>1. Which word is an adjective in this sentence? “She wore a red dress.”</h3>
+            <label><input type="radio" name="q1" value="red"> red</label>
+            <label><input type="radio" name="q1" value="dress"> dress</label>
+            <label><input type="radio" name="q1" value="wore"> wore</label>
+        </div>
+
+        <div class="question"><h3>2. Choose the adjective: “The tall man is my uncle.”</h3>
+            <label><input type="radio" name="q2" value="tall"> tall</label>
+            <label><input type="radio" name="q2" value="uncle"> uncle</label>
+            <label><input type="radio" name="q2" value="is"> is</label>
+        </div>
+
+        <div class="question"><h3>3. What does the adjective describe in “a happy child”?</h3>
+            <label><input type="radio" name="q3" value="child"> child</label>
+            <label><input type="radio" name="q3" value="happy"> happy</label>
+            <label><input type="radio" name="q3" value="a"> a</label>
+        </div>
+
+        <div class="question"><h3>4. Find the adjective: “He lives in a small village.”</h3>
+            <label><input type="radio" name="q4" value="small"> small</label>
+            <label><input type="radio" name="q4" value="village"> village</label>
+            <label><input type="radio" name="q4" value="lives"> lives</label>
+        </div>
+
+        <div class="question"><h3>5. Which sentence contains a comparative adjective?</h3>
+            <label><input type="radio" name="q5" value="She is taller than me."> She is taller than me.</label>
+            <label><input type="radio" name="q5" value="She is tall."> She is tall.</label>
+            <label><input type="radio" name="q5" value="She was running fast."> She was running fast.</label>
+        </div>
+
+        <div class="question"><h3>6. Identify the adjective: “It was a sunny day.”</h3>
+            <label><input type="radio" name="q6" value="sunny"> sunny</label>
+            <label><input type="radio" name="q6" value="day"> day</label>
+            <label><input type="radio" name="q6" value="was"> was</label>
+        </div>
+
+        <div class="question"><h3>7. What kind of adjective is “many” in “many apples”?</h3>
+            <label><input type="radio" name="q7" value="quantitative"> Quantitative</label>
+            <label><input type="radio" name="q7" value="descriptive"> Descriptive</label>
+            <label><input type="radio" name="q7" value="possessive"> Possessive</label>
+        </div>
+
+        <div class="question"><h3>8. Choose the superlative adjective: “Mount Everest is the _____ mountain.”</h3>
+            <label><input type="radio" name="q8" value="highest"> highest</label>
+            <label><input type="radio" name="q8" value="high"> high</label>
+            <label><input type="radio" name="q8" value="higher"> higher</label>
+        </div>
+
+        <div class="question"><h3>9. Which adjective shows possession?</h3>
+            <label><input type="radio" name="q9" value="my"> my</label>
+            <label><input type="radio" name="q9" value="tall"> tall</label>
+            <label><input type="radio" name="q9" value="red"> red</label>
+        </div>
+
+        <div class="question"><h3>10. What is the adjective in “The sky is blue.”?</h3>
+            <label><input type="radio" name="q10" value="blue"> blue</label>
+            <label><input type="radio" name="q10" value="sky"> sky</label>
+            <label><input type="radio" name="q10" value="is"> is</label>
+        </div>
+
+        <div class="question"><h3>11. In “That boy runs fast,” what is the adjective?</h3>
+            <label><input type="radio" name="q11" value="that"> that</label>
+            <label><input type="radio" name="q11" value="boy"> boy</label>
+            <label><input type="radio" name="q11" value="runs"> runs</label>
+        </div>
+
+        <div class="question"><h3>12. “Which pen is yours?” — what type of adjective is “Which”?</h3>
+            <label><input type="radio" name="q12" value="interrogative"> Interrogative</label>
+            <label><input type="radio" name="q12" value="demonstrative"> Demonstrative</label>
+            <label><input type="radio" name="q12" value="possessive"> Possessive</label>
+        </div>
+
+        <div class="question"><h3>13. “American culture” — ‘American’ is a ______ adjective.</h3>
+            <label><input type="radio" name="q13" value="proper"> Proper</label>
+            <label><input type="radio" name="q13" value="quantitative"> Quantitative</label>
+            <label><input type="radio" name="q13" value="numeral"> Numeral</label>
+        </div>
+
+        <div class="question"><h3>14. Choose the correct comparative form: “This book is _____ than that one.”</h3>
+            <label><input type="radio" name="q14" value="better"> better</label>
+            <label><input type="radio" name="q14" value="good"> good</label>
+            <label><input type="radio" name="q14" value="best"> best</label>
+        </div>
+
+        <div class="question"><h3>15. Which word is not an adjective?</h3>
+            <label><input type="radio" name="q15" value="happy"> happy</label>
+            <label><input type="radio" name="q15" value="slowly"> slowly</label>
+            <label><input type="radio" name="q15" value="tall"> tall</label>
+        </div>
+
+        <div class="question"><h3>16. Identify the adjective: “She has three dogs.”</h3>
+            <label><input type="radio" name="q16" value="three"> three</label>
+            <label><input type="radio" name="q16" value="dogs"> dogs</label>
+            <label><input type="radio" name="q16" value="has"> has</label>
+        </div>
+
+        <div class="question"><h3>17. “Those apples are sweet.” — “Those” is a ______ adjective.</h3>
+            <label><input type="radio" name="q17" value="demonstrative"> Demonstrative</label>
+            <label><input type="radio" name="q17" value="quantitative"> Quantitative</label>
+            <label><input type="radio" name="q17" value="descriptive"> Descriptive</label>
+        </div>
+
+        <div class="question"><h3>18. Find the descriptive adjective: “He bought a black car.”</h3>
+            <label><input type="radio" name="q18" value="black"> black</label>
+            <label><input type="radio" name="q18" value="car"> car</label>
+            <label><input type="radio" name="q18" value="bought"> bought</label>
+        </div>
+
+        <div class="question"><h3>19. Choose the superlative form: “She is the _____ girl in the class.”</h3>
+            <label><input type="radio" name="q19" value="prettiest"> prettiest</label>
+            <label><input type="radio" name="q19" value="pretty"> pretty</label>
+            <label><input type="radio" name="q19" value="prettier"> prettier</label>
+        </div>
+
+        <div class="question"><h3>20. “Few people came to the meeting.” — “Few” is what type of adjective?</h3>
+            <label><input type="radio" name="q20" value="quantitative"> Quantitative</label>
+            <label><input type="radio" name="q20" value="numeral"> Numeral</label>
+            <label><input type="radio" name="q20" value="possessive"> Possessive</label>
+        </div>
+
+        <div class="question"><h3>21. Which adjective shows order?</h3>
+            <label><input type="radio" name="q21" value="first"> first</label>
+            <label><input type="radio" name="q21" value="big"> big</label>
+            <label><input type="radio" name="q21" value="blue"> blue</label>
+        </div>
+
+        <div class="question"><h3>22. “This house is mine.” — “This” is a ______ adjective.</h3>
+            <label><input type="radio" name="q22" value="demonstrative"> Demonstrative</label>
+            <label><input type="radio" name="q22" value="interrogative"> Interrogative</label>
+            <label><input type="radio" name="q22" value="possessive"> Possessive</label>
+        </div>
+
+        <div class="question"><h3>23. Which sentence uses an adjective correctly?</h3>
+            <label><input type="radio" name="q23" value="The baby is cute."> The baby is cute.</label>
+            <label><input type="radio" name="q23" value="The baby cute is."> The baby cute is.</label>
+            <label><input type="radio" name="q23" value="Cute the baby."> Cute the baby.</label>
+        </div>
+
+        <div class="question"><h3>24. What is the adjective in “The road is long.”?</h3>
+            <label><input type="radio" name="q24" value="long"> long</label>
+            <label><input type="radio" name="q24" value="road"> road</label>
+            <label><input type="radio" name="q24" value="is"> is</label>
+        </div>
+
+        <div class="question"><h3>25. “My mother cooked delicious food.” — Identify the adjective.</h3>
+            <label><input type="radio" name="q25" value="delicious"> delicious</label>
+            <label><input type="radio" name="q25" value="cooked"> cooked</label>
+            <label><input type="radio" name="q25" value="food"> food</label>
+        </div>
+
+        <div class="question"><h3>26. Which of the following is NOT an adjective?</h3>
+            <label><input type="radio" name="q26" value="beautiful"> beautiful</label>
+            <label><input type="radio" name="q26" value="quickly"> quickly</label>
+            <label><input type="radio" name="q26" value="angry"> angry</label>
+        </div>
+
+        <div class="question"><h3>27. Choose the adjective that describes color.</h3>
+            <label><input type="radio" name="q27" value="green"> green</label>
+            <label><input type="radio" name="q27" value="five"> five</label>
+            <label><input type="radio" name="q27" value="mine"> mine</label>
+        </div>
+
+        <div class="question"><h3>28. “An honest man” — ‘honest’ is a ______ adjective.</h3>
+            <label><input type="radio" name="q28" value="descriptive"> Descriptive</label>
+            <label><input type="radio" name="q28" value="quantitative"> Quantitative</label>
+            <label><input type="radio" name="q28" value="numeral"> Numeral</label>
+        </div>
+
+        <div class="question"><h3>29. Which is the correct order of adjectives? (“big, red, ball”)</h3>
+            <label><input type="radio" name="q29" value="big red ball"> big red ball</label>
+            <label><input type="radio" name="q29" value="red big ball"> red big ball</label>
+            <label><input type="radio" name="q29" value="ball big red"> ball big red</label>
+        </div>
+
+        <div class="question"><h3>30. “Her handwriting is neat.” — What is the adjective?</h3>
+            <label><input type="radio" name="q30" value="neat"> neat</label>
+            <label><input type="radio" name="q30" value="handwriting"> handwriting</label>
+            <label><input type="radio" name="q30" value="is"> is</label>
+        </div>
+
+        <div class="question"><h3>31. “Whose book is this?” — “Whose” is a ______ adjective.</h3>
+            <label><input type="radio" name="q31" value="interrogative"> Interrogative</label>
+            <label><input type="radio" name="q31" value="demonstrative"> Demonstrative</label>
+            <label><input type="radio" name="q31" value="possessive"> Possessive</label>
+        </div>
+
+        <div class="question"><h3>32. “Her car is expensive.” — “Expensive” describes the ______.</h3>
+            <label><input type="radio" name="q32" value="car"> car</label>
+            <label><input type="radio" name="q32" value="her"> her</label>
+            <label><input type="radio" name="q32" value="is"> is</label>
+        </div>
+
+        <div class="question"><h3>33. Which adjective describes feeling?</h3>
+            <label><input type="radio" name="q33" value="angry"> angry</label>
+            <label><input type="radio" name="q33" value="three"> three</label>
+            <label><input type="radio" name="q33" value="wooden"> wooden</lab
