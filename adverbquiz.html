@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adverb Quiz - English Grammar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f5f6fa;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2f3640;
+      margin-bottom: 20px;
+    }
+    .quiz-container {
+      max-width: 900px;
+      background: #fff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    button {
+      background: #273c75;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #40739e;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Adverb Quiz</h1>
+
+  <div class="quiz-container" id="quiz">
+    <!-- Questions will be generated here -->
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const quizData = [
+      { q: "Adverbs usually modify:", a: "Verbs" },
+      { q: "In the sentence 'She runs quickly', the word 'quickly' is an:", a: "Adverb" },
+      { q: "Which of these words is an adverb?", a: "Slowly" },
+      { q: "Adverbs often end with:", a: "ly" },
+      { q: "Which sentence contains an adverb?", a: "He spoke softly." },
+      { q: "Adverbs answer the question:", a: "How" },
+      { q: "In 'He came late', 'late' tells us:", a: "When" },
+      { q: "In 'She works hard', 'hard' tells us:", a: "How" },
+      { q: "Find the adverb: 'He runs very fast.'", a: "Very" },
+      { q: "‘Now’ is an adverb of:", a: "Time" },
+      { q: "‘Here’ is an adverb of:", a: "Place" },
+      { q: "‘Always’ is an adverb of:", a: "Frequency" },
+      { q: "‘Carefully’ is an adverb of:", a: "Manner" },
+      { q: "‘Almost’ is an adverb of:", a: "Degree" },
+      { q: "Which adverb shows place?", a: "Outside" },
+      { q: "In 'He speaks politely', 'politely' modifies:", a: "Speaks" },
+      { q: "Adverbs can modify:", a: "Verbs, adjectives or other adverbs" },
+      { q: "‘Too’ is an adverb of:", a: "Degree" },
+      { q: "‘Never’ belongs to which type of adverb?", a: "Frequency" },
+      { q: "‘Everywhere’ is an adverb of:", a: "Place" },
+      { q: "‘Yesterday’ is an adverb of:", a: "Time" },
+      { q: "‘Well’ can be used as:", a: "Adverb of manner" },
+      { q: "‘Quite’ is an adverb of:", a: "Degree" },
+      { q: "‘Then’ is an adverb of:", a: "Time" },
+      { q: "‘Seldom’ is an adverb of:", a: "Frequency" },
+      { q: "‘Near’ in 'Come near' is an adverb of:", a: "Place" },
+      { q: "‘Very’ modifies:", a: "Adjectives or adverbs" },
+      { q: "‘Hardly’ means:", a: "Almost not" },
+      { q: "‘Rather’ is an adverb of:", a: "Degree" },
+      { q: "‘Always’ means:", a: "At all times" },
+      { q: "‘Soon’ tells us:", a: "When" },
+      { q: "‘Upstairs’ is an adverb of:", a: "Place" },
+      { q: "‘Gently’ is an adverb of:", a: "Manner" },
+      { q: "‘Sometimes’ is an adverb of:", a: "Frequency" },
+      { q: "‘Almost’ modifies:", a: "Adjectives or verbs" },
+      { q: "‘Often’ is used to show:", a: "Frequency" },
+      { q: "‘Downstairs’ is an adverb of:", a: "Place" },
+      { q: "‘Soon’ is an adverb of:", a: "Time" },
+      { q: "‘Badly’ tells:", a: "How" },
+      { q: "‘Always’ and ‘never’ are adverbs of:", a: "Frequency" }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    let userAnswers = [];
+
+    quizData.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <div class='question'>${index + 1}. ${item.q}</div>
+        <div class='options'>
+          <input type='text' id='answer${index}' placeholder='Type your answer here'>
+        </div>
+      `;
+      quizContainer.appendChild(div);
+    });
+
+    const button = document.createElement('button');
+    button.textContent = 'Submit Answers';
+    quizContainer.appendChild(button);
+
+    button.onclick = function() {
+      let score = 0;
+      quizData.forEach((item, index) => {
+        const ans = document.getElementById('answer'+index).value.trim().toLowerCase();
+        if(ans === item.a.toLowerCase()) score++;
+      });
+      document.getElementById('result').innerHTML = `You got ${score} out of ${quizData.length} correct!`;
+    };
+  </script>
+
+</body>
+</html>
