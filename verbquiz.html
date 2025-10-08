@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verb Quiz - English Grammar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f5f6fa;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2f3640;
+      margin-bottom: 20px;
+    }
+    .quiz-container {
+      max-width: 900px;
+      background: #fff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    button {
+      background: #273c75;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #40739e;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Verb Quiz</h1>
+
+  <div class="quiz-container" id="quiz">
+    <!-- Questions will be generated here -->
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const quizData = [
+      { q: "A verb shows:", a: "Action" },
+      { q: "The main verb in 'He is running' is:", a: "Running" },
+      { q: "‘Am’, ‘is’, and ‘are’ are forms of:", a: "Be" },
+      { q: "‘Go’, ‘see’, ‘write’ are examples of:", a: "Action verbs" },
+      { q: "‘Can’, ‘may’, and ‘must’ are:", a: "Modal verbs" },
+      { q: "A helping verb is also called an:", a: "Auxiliary verb" },
+      { q: "‘Has’, ‘have’, and ‘had’ are used to show:", a: "Possession" },
+      { q: "In 'She sings beautifully', 'sings' is the:", a: "Verb" },
+      { q: "Verbs that need an object are called:", a: "Transitive verbs" },
+      { q: "Verbs that do not need an object are called:", a: "Intransitive verbs" },
+      { q: "‘Do’, ‘does’, and ‘did’ are forms of:", a: "Do" },
+      { q: "The base form of ‘went’ is:", a: "Go" },
+      { q: "‘Written’ is the ______ form of ‘write’.", a: "Past participle" },
+      { q: "‘Eating’ is the ______ form of ‘eat’.", a: "Present participle" },
+      { q: "The verb in ‘He will play football’ is:", a: "Play" },
+      { q: "‘Has been reading’ is in ______ tense.", a: "Present perfect continuous" },
+      { q: "‘Was reading’ is in ______ tense.", a: "Past continuous" },
+      { q: "‘Will be playing’ is in ______ tense.", a: "Future continuous" },
+      { q: "‘Was eaten’ is in ______ voice.", a: "Passive" },
+      { q: "‘Eat’ is in ______ voice.", a: "Active" },
+      { q: "A verb that connects the subject to more information is a:", a: "Linking verb" },
+      { q: "‘Is’ in ‘He is tall’ is a:", a: "Linking verb" },
+      { q: "‘Run’ is a ______ verb.", a: "Main" },
+      { q: "‘Could’ is a ______ verb.", a: "Modal" },
+      { q: "‘Has been’ is a ______ verb phrase.", a: "Helping" },
+      { q: "‘Arrived’ in ‘He arrived late’ is:", a: "Intransitive" },
+      { q: "‘Kicked’ in ‘He kicked the ball’ is:", a: "Transitive" },
+      { q: "‘Go’, ‘went’, ‘gone’ are forms of the same:", a: "Verb" },
+      { q: "‘Be’, ‘have’, and ‘do’ can act as:", a: "Helping verbs" },
+      { q: "‘Will’ expresses:", a: "Future" },
+      { q: "‘Should’ expresses:", a: "Advice or duty" },
+      { q: "‘Must’ expresses:", a: "Obligation" },
+      { q: "‘May’ expresses:", a: "Permission" },
+      { q: "‘Can’ expresses:", a: "Ability" },
+      { q: "‘Might’ expresses:", a: "Possibility" },
+      { q: "‘Had gone’ is in ______ tense.", a: "Past perfect" },
+      { q: "‘Has played’ is in ______ tense.", a: "Present perfect" },
+      { q: "‘Will have finished’ is in ______ tense.", a: "Future perfect" },
+      { q: "‘Crying’ is a ______ verb form.", a: "Present participle" },
+      { q: "‘To dance’ is an example of:", a: "Infinitive" }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    let userAnswers = [];
+
+    quizData.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <div class='question'>${index + 1}. ${item.q}</div>
+        <div class='options'>
+          <input type='text' id='answer${index}' placeholder='Type your answer here'>
+        </div>
+      `;
+      quizContainer.appendChild(div);
+    });
+
+    const button = document.createElement('button');
+    button.textContent = 'Submit Answers';
+    quizContainer.appendChild(button);
+
+    button.onclick = function() {
+      let score = 0;
+      quizData.forEach((item, index) => {
+        const ans = document.getElementById('answer'+index).value.trim().toLowerCase();
+        if(ans === item.a.toLowerCase()) score++;
+      });
+      document.getElementById('result').innerHTML = `You got ${score} out of ${quizData.length} correct!`;
+    };
+  </script>
+
+</body>
+</html>
