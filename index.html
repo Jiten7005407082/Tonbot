@@ -1,326 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Grammar Chatbot</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(to right, #4a00e0, #8e2de2);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            opacity: 0.9;
-        }
-        
-        .chat-container {
-            height: 400px;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 12px 18px;
-            border-radius: 18px;
-            line-height: 1.5;
-            position: relative;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .bot-message {
-            background-color: #f0f2f5;
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .user-message {
-            background-color: #4a00e0;
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .option-btn {
-            background-color: #e9ecef;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-        
-        .option-btn:hover {
-            background-color: #4a00e0;
-            color: white;
-        }
-        
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-        
-        .chapter-btn {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 12px 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-        }
-        
-        .chapter-btn:hover {
-            background-color: #4a00e0;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .input-area {
-            padding: 20px;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .input-area input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            outline: none;
-            font-size: 16px;
-        }
-        
-        .input-area button {
-            background-color: #4a00e0;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .input-area button:hover {
-            background-color: #3800a8;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
-            }
-            
-            .chapter-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .message {
-                max-width: 90%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Learning Bot</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0079ff, #00d4ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 430px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+  }
+
+  button {
+    background: #ffb400;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #ffc94d;
+  }
+
+  select, input {
+    background: #fff;
+    color: #000;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+</style>
+
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>English Grammar Assistant</h1>
-            <p>Your personal guide to mastering English grammar</p>
-        </div>
-        
-        <div class="chat-container" id="chatContainer">
-            <div class="message bot-message">
-                Hello! Welcome to the English Grammar Learning Assistant. What's your name?
-            </div>
-        </div>
-        
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="Type your message here...">
-            <button id="sendButton">Send</button>
-        </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatContainer = document.getElementById('chatContainer');
-            const userInput = document.getElementById('userInput');
-            const sendButton = document.getElementById('sendButton');
-            
-            let userName = '';
-            let currentStep = 'getName';
-            
-            // Function to add a message to the chat
-            function addMessage(message, isUser = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-                messageDiv.innerHTML = message;
-                chatContainer.appendChild(messageDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            
-            // Function to add options to the chat
-            function addOptions(options) {
-                const optionsDiv = document.createElement('div');
-                optionsDiv.className = 'options';
-                
-                options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.className = 'option-btn';
-                    button.textContent = option.text;
-                    button.onclick = option.action;
-                    optionsDiv.appendChild(button);
-                });
-                
-                chatContainer.appendChild(optionsDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            
-            // Function to handle user input
-            function handleUserInput() {
-                const input = userInput.value.trim();
-                if (!input) return;
-                
-                addMessage(input, true);
-                userInput.value = '';
-                
-                if (currentStep === 'getName') {
-                    userName = input;
-                    currentStep = 'askToLearn';
-                    setTimeout(() => {
-                        addMessage(`Nice to meet you, ${userName}! Would you like to learn English grammar with me?`);
-                        addOptions([
-                            {
-                                text: 'Yes',
-                                action: function() {
-                                    addMessage('Yes', true);
-                                    showChapterSelection();
-                                }
-                            },
-                            {
-                                text: 'No',
-                                action: function() {
-                                    addMessage('No', true);
-                                    addMessage("That's okay. Feel free to come back anytime you want to improve your English grammar skills. Have a great day!");
-                                }
-                            }
-                        ]);
-                    }, 1000);
-                }
-            }
-            
-            // Function to show chapter selection
-            function showChapterSelection() {
-                setTimeout(() => {
-                    addMessage("Great! Now choose a chapter you'd like to learn:");
-                    
-                    const chapters = [
-                        { name: 'Parts of Speech', file: 'partsofspeech.html' },
-                        { name: 'Noun', file: 'noun.html' },
-                        { name: 'Number', file: 'number.html' },
-                        { name: 'Gender', file: 'gender.html' },
-                        { name: 'Person', file: 'person.html' },
-                        { name: 'Degree', file: 'degree.html' },
-                        { name: 'Pronoun', file: 'pronoun.html' },
-                        { name: 'Adjective', file: 'adjective.html' },
-                        { name: 'Verb', file: 'verb.html' },
-                        { name: 'Adverb', file: 'adverb.html' },
-                        { name: 'Preposition', file: 'preposition.html' },
-                        { name: 'Conjunction', file: 'conjunction.html' },
-                        { name: 'Interjection', file: 'interjection.html' },
-                        { name: 'Sentence', file: 'sentence.html' },
-                        { name: 'Kinds of Sentences', file: 'kindsofsentences.html' },
-                        { name: 'Transformation of Sentences', file: 'transformationofsentences.html' },
-                        { name: 'Tense', file: 'tense.html' },
-                        { name: 'Voice', file: 'voice.html' },
-                        { name: 'Narration', file: 'narration.html' }
-                    ];
-                    
-                    const gridDiv = document.createElement('div');
-                    gridDiv.className = 'chapter-grid';
-                    
-                    chapters.forEach(chapter => {
-                        const chapterBtn = document.createElement('a');
-                        chapterBtn.className = 'chapter-btn';
-                        chapterBtn.textContent = chapter.name;
-                        chapterBtn.href = chapter.file;
-                        chapterBtn.target = '_blank';
-                        gridDiv.appendChild(chapterBtn);
-                    });
-                    
-                    chatContainer.appendChild(gridDiv);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                }, 1000);
-            }
-            
-            // Event listeners
-            sendButton.addEventListener('click', handleUserInput);
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleUserInput();
-                }
-            });
-        });
-    </script>
+<div class="card">
+  <h2>Hi 👋 I'm your<br>English Learning Bot!</h2>
+  <p>What is your name?</p>
+
+  <input type="text" id="username" placeholder="Enter your name">
+
+  <div id="chapter-section" class="hidden">
+    <p>Nice to meet you <span id="display-name"></span>!  
+       Select a chapter:</p>
+
+    <select id="chapterSelect">
+      <option value="">-- Choose a Chapter --</option>
+      <option value="partsofspeech.html">Parts of Speech</option>
+      <option value="noun.html">Nouns</option>
+      <option value="pronoun.html">Pronouns</option>
+      <option value="verb.html">Verbs</option>
+      <option value="adjective.html">Adjectives</option>
+      <option value="adverb.html">Adverbs</option>
+      <option value="preposition.html">Prepositions</option>
+      <option value="articles.html">Articles (a, an, the)</option>
+    </select>
+
+    <button onclick="goToChapter()">Go</button>
+  </div>
+
+  <button id="startBtn" onclick="askName()">Continue</button>
+
+</div>
+
+
+<script>
+function askName() {
+  const name = document.getElementById("username").value.trim();
+
+  if (name === "") {
+    alert("Please enter your name 😊");
+    return;
+  }
+
+  document.getElementById("display-name").textContent = name;
+  document.getElementById("chapter-section").classList.remove("hidden");
+  document.getElementById("startBtn").classList.add("hidden");
+}
+
+function goToChapter() {
+  const selected = document.getElementById("chapterSelect").value;
+  if (!selected) {
+    alert("Please select a chapter");
+    return;
+  }
+  window.location.href = selected;
+}
+</script>
+
 </body>
 </html>
