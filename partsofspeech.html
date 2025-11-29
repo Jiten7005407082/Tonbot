@@ -1,446 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parts of Speech - English Grammar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-3px);
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .intro h2 {
-            color: #1a2a6c;
-            margin-bottom: 15px;
-            font-size: 28px;
-        }
-        
-        .intro p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .parts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .part-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #1a2a6c;
-        }
-        
-        .part-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .part-card h3 {
-            color: #1a2a6c;
-            margin-bottom: 15px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .part-card h3 span {
-            background: #1a2a6c;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-        
-        .definition {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .example {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #b21f1f;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-        
-        .meitei-mayek {
-            background: #fff8e1;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #fdbb2d;
-            font-family: 'Nirmala UI', sans-serif;
-        }
-        
-        .meitei-mayek h4 {
-            color: #b21f1f;
-            margin-bottom: 8px;
-        }
-        
-        .epao-mayek {
-            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        
-        .test-section {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .test-section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        
-        .test-section p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-        
-        .options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .option-btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 150px;
-        }
-        
-        .yes-btn {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .yes-btn:hover {
-            background: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .no-btn {
-            background: #f44336;
-            color: white;
-        }
-        
-        .no-btn:hover {
-            background: #da190b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-        }
-        
-        @media (max-width: 768px) {
-            .parts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 28px;
-            }
-            
-            .options {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .option-btn {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parts of Speech</title>
+  <style>
+    :root {
+      --bg: #0a1e44; /* Deep Blue */
+      --card: #ffffff;
+      --accent: #00b2ff;
+      --muted: #cdd6e6;
+      --mono: #f8f9fc;
+    }
+    body {
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      margin: 0;
+      background: radial-gradient(circle at top, #143463, #0a1e44);
+      color: var(--mono);
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    h1 {
+      margin: .2rem 0;
+      font-size: 2.3rem;
+      color: #00e0ff;
+      text-align: center;
+    }
+    p.lead {
+      color: var(--muted);
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.14);
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      margin-top: 1rem;
+      backdrop-filter: blur(10px);
+    }
+    .quiz-link {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      background: var(--accent);
+      color: #002a3a;
+      padding: .55rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.2s ease-in-out;
+    }
+    .quiz-link:hover {
+      background: #00d4ff;
+      transform: translateY(-3px);
+    }
+    footer {
+      text-align: center;
+      margin: 2rem;
+      color: #91a4c7;
+    }
+    audio {
+      width: 100%;
+      margin: 1rem 0;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
-            <h1>Parts of Speech</h1>
-            <p>Understanding the Building Blocks of English Language</p>
-        </div>
-        
-        <div class="content">
-            <div class="intro">
-                <h2>What are Parts of Speech?</h2>
-                <p>Parts of speech are the categories to which words are assigned based on their syntactic functions and semantic roles in a sentence. English has eight primary parts of speech that help us understand how words function in different contexts.</p>
-            <div class="meitei-mayek">
-                        <h4>Wahanthok (ꯋꯥꯍꯩ ꯄꯔꯦꯡ ꯑꯃꯒꯤ ꯃꯅꯨꯡꯗ ꯃꯈꯣꯏꯅꯥ ꯇꯧꯔꯤꯕ ꯃꯥꯅꯗꯕꯥ ꯊꯕꯛꯀꯤ ꯃꯇꯨꯡ ꯏꯟꯅꯥ ꯋꯥꯍꯩꯁꯤꯡꯕꯨ ꯃꯈꯜ ꯅꯤꯄꯥꯟ ꯊꯣꯛꯅꯥ ꯈꯥꯏꯗꯣꯛꯢ ꯃꯈꯣꯏꯕꯨ ꯄꯥꯔꯠ ꯑꯣꯐ ꯁꯄꯤꯁ ꯀꯧꯏ)</h4></div>
-            
-            <div class="parts-grid">
-                <!-- Noun -->
-                <div class="part-card">
-                    <h3><span>1</span> Noun</h3>
-                    <div class="definition">
-                        A noun is a word that names a person, place, thing, or idea.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> teacher, school, book, happiness
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>Meitei Mayek (ꯃꯩꯇꯩꯂꯣꯟ)</h4>
-                        <div class="epao-mayek">
-                            <p>ꯅꯥꯎꯟ (Noun) - ꯄꯣꯠ , ꯃꯤ ,ꯁꯥ ,ꯂꯝ ꯅꯥ ꯆꯤꯡꯕꯒꯤ ꯃꯃꯤꯡ ꯈꯪꯅꯕꯥ ꯋꯥꯍꯩꯕꯨ ꯅꯥꯎꯟ ꯀꯧꯏ꯫</p>
-                            <p><strong>ꯈꯨꯗꯝ: ꯇꯣꯝ_ꯕꯥ, ꯏꯝꯐꯥꯜ, ꯂꯥꯏꯔꯤꯛ</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pronoun -->
-                <div class="part-card">
-                    <h3><span>2</span> Pronoun</h3>
-                    <div class="definition">
-                        A pronoun is a word that takes the place of a noun to avoid repetition.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> he, she, it, they, we, you
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>Meitei Mayek (ꯅꯥꯎꯟꯒꯤ ꯃꯍꯨꯠ ꯁꯤꯟꯗꯨꯟ ꯁꯤꯖꯤꯟꯅꯕ ꯋꯥꯍꯩꯕꯨ ꯄ_ꯔꯣꯅꯣꯎꯟ ꯀꯧꯏ)</h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ: ꯃꯍꯥꯛ, ꯃꯈꯣꯏ, ꯑꯩꯈꯣꯢ, ꯅꯈꯣꯏ</p>
-                         
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Verb -->
-                <div class="part-card">
-                    <h3><span>3</span> Verb</h3>
-                    <div class="definition">
-                        A verb expresses an action, occurrence, or state of being.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> run, think, is, have, become
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯊꯕꯛ ꯇꯧꯕꯒꯤ ꯃꯑꯣꯡ ꯈꯪꯅꯕ ꯋꯥꯍꯩꯕꯨ ꯚꯥꯕ ꯀꯧꯏ</h4>
-                        <div class="epao-mayek">
-                           
-                            <p>ꯈꯨꯗꯝ : ꯆꯠꯄꯥ, ꯆꯥꯕꯥ, ꯐꯝꯕꯥ </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Adjective -->
-                <div class="part-card">
-                    <h3><span>4</span> Adjective</h3>
-                    <div class="definition">
-                        An adjective describes or modifies a noun or pronoun.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> beautiful, tall, smart, five
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯅꯥꯎꯟ ꯅꯇ_ꯔꯥꯒ ꯄ_ꯔꯣꯅꯥꯎꯟ  ꯑꯥꯃꯒꯤ ꯃꯒꯨꯟ ꯐꯣꯡꯗꯣꯛꯄꯥ ꯋꯥꯍꯩꯕꯨ ꯑꯦꯗꯖꯦꯛꯇꯤꯚ ꯀꯧꯏ</h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ : ꯐꯥꯖꯕ , ꯑꯋꯥꯡꯕ , ꯑꯄꯤꯛꯄ</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Adverb -->
-                <div class="part-card">
-                    <h3><span>5</span> Adverb</h3>
-                    <div class="definition">
-                        An adverb describes or modifies a verb,or another adverb.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> quickly, very, well, yesterday
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯅꯊꯣꯛ: ꯚꯥꯔꯕ ꯑꯃꯒꯤ ꯃꯑꯣꯡ ꯃꯇꯧ ꯁꯦꯃꯗꯣꯛꯄꯥ ꯅꯇ_ꯔꯥꯒ ꯆꯥꯡ ꯇꯥꯀꯄꯥ ꯋꯥꯍꯩꯕꯨ ꯑꯦꯗꯚꯥꯕ ꯀꯧꯏ</h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ : ꯌꯥꯡꯅꯥ , ꯊꯨꯅꯥ , ꯐꯥꯖꯅꯥ </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Preposition -->
-                <div class="part-card">
-                    <h3><span>6</span> Preposition</h3>
-                    <div class="definition">
-                        A preposition shows the relationship between a noun/pronoun and other words in a sentence.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> in, on, at, with, between
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯟꯊꯣꯛ: ꯄ_ꯔꯤꯄꯣꯖꯤꯁꯟ ꯑꯃꯅꯥ ꯅꯥꯎꯟ  ꯑꯃꯕꯨ ꯑꯇꯣꯞꯄꯥ ꯋꯥꯍꯩꯁꯤꯡꯒꯥ ꯃꯔꯤ ꯂꯩꯅꯍꯜꯂꯤ</h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ: ꯃꯊꯛꯇꯥ , ꯃꯈꯥꯗ  , ꯅꯥꯀꯟꯗꯥ </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Conjunction -->
-                <div class="part-card">
-                    <h3><span>7</span> Conjunction</h3>
-                    <div class="definition">
-                        A conjunction connects words, sentences, or clauses.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> and, but, or, because, although
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯀꯟꯖꯪꯁꯟ ꯑꯃꯅꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡ ꯑꯃꯒꯥ ꯑꯃꯒꯥ ꯇꯥꯏꯁꯤꯟꯅꯩ </h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ : ꯑꯗꯨꯒꯥ , ꯑꯗꯨꯕꯨ, ꯑꯃꯔꯣꯝꯗ , ꯑꯗꯨꯝ ꯑꯣꯏꯅꯃꯛ</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Interjection -->
-                <div class="part-card">
-                    <h3><span>8</span> Interjection</h3>
-                    <div class="definition">
-                        An interjection expresses strong emotion or surprise and stands alone.
-                    </div>
-                    <div class="example">
-                        <strong>Examples:</strong> Wow! Ouch! Hey! Oh no!
-                    </div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯟꯊꯣꯛ : ꯏꯟꯇꯦꯔꯖꯦꯛꯁꯟ  ꯑꯃꯅꯥ ꯊꯥꯖꯗꯕꯥ ꯑꯉꯛꯄꯥ ꯐꯣꯡꯗꯣꯛꯏ</h4>
-                        <div class="epao-mayek">
-                            <p>ꯈꯨꯗꯝ : ꯑꯣ ꯑꯋꯥꯕꯅꯤ , ꯍꯥ ꯀꯔꯤ , ꯀꯔꯤꯅꯣ ꯍꯥꯏꯔꯤꯁꯤꯕꯣ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="test-section">
-                <h2>Test Your Knowledge</h2>
-                <p>Now that you've learned about the eight parts of speech, would you like to test your understanding with a short quiz?</p>
-                <div class="options">
-                    <button class="option-btn yes-btn" onclick="takeQuiz()">Yes, Take Quiz</button>
-                    <button class="option-btn no-btn" onclick="goBack()">No, Return to Chat</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>English Grammar Learning System &copy; 2023 | Parts of Speech Module</p>
-        </div>
-    </div>
 
-    <script>
-        function takeQuiz() {
-            // In a real implementation, this would redirect to the quiz page
-            alert("Redirecting to Parts of Speech Quiz...");
-            window.location.href = "partsofspeechquiz.html";
-        }
-        
-        function goBack() {
-            // In a real implementation, this would return to the chatbot
-            alert("Returning to the main chat...");
-            window.location.href = "grammar-chatbot.html";
-        }
-    </script>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Parts of Speech</h1>
+      <p class="lead">Learn the basic grammar categories used in English.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <h2>📌 What are Parts of Speech?</h2>
+      <p>Parts of speech are categories that describe the role a word plays in a sentence.</p>
+      <p>Or words are divided into eight kinds according to the different roles in a sentence. They are called parts of speech.</p>
+
+      <!-- Audio Player Section  -->
+      <audio controls>
+        <source src="partsofspeech.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <p><strong>Main Types:</strong> Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction, Interjection</p>
+
+      <!-- Quiz Link -->
+      <a class="quiz-link" href="partsofspeechquiz.html">🎯 Test Your Knowledge</a>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 English Grammar Learning | All Rights Reserved
+  </footer>
+
 </body>
 </html>
