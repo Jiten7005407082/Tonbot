@@ -6,12 +6,13 @@
   <title>Parts of Speech</title>
   <style>
     :root {
-      --bg: #0a1e44; /* Deep Blue */
+      --bg: #0a1e44; /* Deep Blue Background */
       --card: #ffffff;
       --accent: #00b2ff;
       --muted: #cdd6e6;
       --mono: #f8f9fc;
     }
+
     body {
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
       margin: 0;
@@ -19,28 +20,33 @@
       color: var(--mono);
       line-height: 1.6;
     }
+
     header {
       background: rgba(255,255,255,0.05);
       padding: 2rem 1rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 1rem;
     }
+
     h1 {
       margin: .2rem 0;
       font-size: 2.3rem;
       color: #00e0ff;
       text-align: center;
     }
+
     p.lead {
       color: var(--muted);
       margin-top: 0;
       text-align: center;
       font-size: 1.1rem;
     }
+
     .card {
       background: rgba(255,255,255,0.14);
       padding: 1rem 1.2rem;
@@ -49,6 +55,7 @@
       margin-top: 1rem;
       backdrop-filter: blur(10px);
     }
+
     .quiz-link {
       display: inline-block;
       margin-top: 1rem;
@@ -60,19 +67,27 @@
       font-weight: bold;
       transition: 0.2s ease-in-out;
     }
+
     .quiz-link:hover {
       background: #00d4ff;
       transform: translateY(-3px);
     }
+
     footer {
       text-align: center;
       margin: 2rem;
       color: #91a4c7;
     }
+
     audio {
       width: 100%;
       margin: 1rem 0;
       border-radius: 10px;
+    }
+
+    h2 {
+      color: #00b2ff;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
@@ -91,11 +106,11 @@
     <section class="card">
       <h2>📌 What are Parts of Speech?</h2>
       <p>Parts of speech are categories that describe the role a word plays in a sentence.</p>
-      <p>Or words are divided into eight kinds according to the different roles in a sentence. They are called parts of speech.</p>
+      <p>Words are divided into eight kinds according to the different roles in a sentence. They are called parts of speech.</p>
 
-      <!-- Audio Player Section  -->
+      <!-- Audio Player Section -->
       <audio controls>
-        <source src="partsofspeech.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/Jiten7005407082/Tonbot/main/foldername/audio1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
 
