@@ -1,144 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Parts of Speech</title>
+  <meta charset="UTF-8">
+  <title>Video Start on Click</title>
 
   <style>
-    :root {
-      --accent: #00b2ff;
-      --muted: #cdd6e6;
-      --mono: #f8f9fc;
-    }
-
     body {
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-      margin: 0;
-      background: radial-gradient(circle at top, #143463, #0a1e44);
-      color: var(--mono);
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 2rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background-color: #0a1e44;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding-top: 40px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 1rem;
+    video {
+      width: 75%;
+      max-width: 720px;
+      border-radius: 10px;
+      display: block;
+      margin: 20px auto;
     }
 
-    h1 {
-      color: #00e0ff;
-      margin-bottom: 0.3rem;
+    #video2 {
+      display: none;
     }
 
-    p.lead {
-      color: var(--muted);
-    }
-
-    .card {
-      background: rgba(255,255,255,0.14);
-      padding: 1.2rem;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-    }
-
-    iframe {
-      width: 100%;
-      height: 480px;
-      border-radius: 12px;
-      border: none;
-      margin-top: 1rem;
-    }
-
-    h2.clickable {
+    .play-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00b2ff;
       cursor: pointer;
-      color: #00e0ff;
+      margin-top: 20px;
+    }
+
+    .play-text:hover {
+      text-decoration: underline;
     }
 
     .quiz-link {
-      display: inline-block;
-      margin-top: 1rem;
-      background: var(--accent);
-      color: #002a3a;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
+      margin-top: 40px;
+      font-size: 24px;
       font-weight: bold;
+      color: #ffcc00;
+      display: block;
     }
 
-    footer {
-      text-align: center;
-      margin: 2rem;
-      color: #91a4c7;
+    .quiz-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Parts of Speech</h1>
-  <p class="lead">Learn the basic grammar categories used in English.</p>
-</header>
+  <h2>Video Lesson</h2>
 
-<main class="container">
+  <!-- PLAY BUTTON ABOVE VIDEO -->
+  <div class="play-text" onclick="playFirstVideo()">PLAY VIDEO</div>
 
-  <!-- English Video -->
-   <section class="card">
-    <h2>Video Lesson (English)</h2>
+  <!-- VIDEO 1: loaded but NOT autoplay -->
+  <video id="video1" controls preload="auto">
+    <source src="partsofspeechs.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-   <iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/NeGl0wOGXXQ"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
+  <!-- SECOND VIDEO BUTTON -->
+  <div class="play-text" id="nextBtn" onclick="playSecondVideo()" style="display:none;">
+    WANT MANIPURI LECTURE
+  </div>
 
-  <!-- Manipuri Video -->
-  <section class="card">
-    <h2 class="clickable" onclick="loadManipuriVideo()">▶ Video Lesson (Manipuri)<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="youtube-button" target="_blank"></h2>
-    <div id="https://youtu.be/NeGl0wOGXXQ"></div>
- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="youtube-button" target="_blank">
-    <a class="quiz-link" href="partsofspeechquiz.html">
-      Test Your Knowledge
-    </a>
-  </section>
+  <!-- VIDEO 2 -->
+  <video id="video2" controls preload="auto">
+    <source src="partsofspeech.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-</main>
+  <!-- Quiz link at the bottom -->
+  <a class="quiz-link" href="partsofspeechquiz.html">Test your Knowledge</a>
 
-<footer>
-  © 2025 English Grammar Learning | All Rights Reserved
-</footer>
+  <script>
+    function playFirstVideo() {
+      const video1 = document.getElementById("video1");
+      const nextBtn = document.getElementById("nextBtn");
 
-<script>
-  function loadManipuriVideo() {
-    const container = document.getElementById("manipuri-video");
+      // Play the first video with sound
+      video1.muted = false;
+      video1.volume = 1.0;
+      video1.play();
 
-    if (container.innerHTML === "") {
-      container.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_MANIPURI_VIDEO_ID?autoplay=1"
-          allow="autoplay; encrypted-media"
-          allowfullscreen>
-        </iframe>
-      src="https://www.youtube.com/embed/NeGl0wOGXXQ"
+      // Show the second video button
+      nextBtn.style.display = "block";
     }
-  }
-</script>
+
+    function playSecondVideo() {
+      const video1 = document.getElementById("video1");
+      const video2 = document.getElementById("video2");
+
+      video1.pause();
+      video1.style.display = "none";
+
+      video2.style.display = "block";
+      video2.muted = false;
+      video2.volume = 1.0;
+      video2.play();
+    }
+  </script>
 
 </body>
 </html>
-
-
-
-
