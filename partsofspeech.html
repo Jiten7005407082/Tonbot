@@ -98,9 +98,16 @@
   allowfullscreen>
 </iframe>
 
-  </section>
-
-  <meta charset="UTF-8">
+  </section><iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/NeGl0wOGXXQ"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+ <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Click-to-View Video</title>
   <style>
@@ -121,40 +128,7 @@
 </head>
 <body>
 
-<h2>Parts of Speech - Video Lesson</h2>
 
-<p>
-  Click here to see the video: 
-  <span class="click-text" onclick="showVideo()">See it</span>
-</p>
-
-<div id="video-container"></div>
-
-<script>
-  function showVideo() {
-    const container = document.getElementById('video-container');
-
-    // Prevent adding multiple iframes
-    if (container.innerHTML === "") {
-      container.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/NeGl0wOGXXQ"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      `;
-    }
-  }
-</script>
-
-
-    <a class="quiz-link" href="partsofspeechquiz.html">
-      Test Your Knowledge
-    </a>
-  </section>
-
-</main>
 
 <footer>
   © 2025 English Grammar Learning | All Rights Reserved
@@ -162,6 +136,7 @@
 
 </body>
 </html>
+
 
 
 
