@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Parts of Speech</title>
+
   <style>
     :root {
-      --bg: #0a1e44; /* Deep Blue */
-      --card: #ffffff;
       --accent: #00b2ff;
       --muted: #cdd6e6;
       --mono: #f8f9fc;
     }
+
     body {
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
       margin: 0;
@@ -19,109 +19,99 @@
       color: var(--mono);
       line-height: 1.6;
     }
+
     header {
-      background: rgba(255,255,255,0.05);
       padding: 2rem 1rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
     }
+
     .container {
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
       padding: 1rem;
     }
+
     h1 {
-      margin: .2rem 0;
-      font-size: 2.3rem;
       color: #00e0ff;
-      text-align: center;
+      margin-bottom: 0.3rem;
     }
+
     p.lead {
       color: var(--muted);
-      margin-top: 0;
-      text-align: center;
-      font-size: 1.1rem;
     }
+
     .card {
       background: rgba(255,255,255,0.14);
-      padding: 1rem 1.2rem;
+      padding: 1.2rem;
       border-radius: 12px;
+      margin-top: 1.5rem;
       box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-      margin-top: 1rem;
-      backdrop-filter: blur(10px);
     }
+
+    iframe {
+      width: 100%;
+      height: 480px;
+      border-radius: 12px;
+      border: none;
+      margin-top: 1rem;
+    }
+
     .quiz-link {
       display: inline-block;
       margin-top: 1rem;
-      text-decoration: none;
       background: var(--accent);
       color: #002a3a;
-      padding: .55rem 1.2rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 6px;
+      text-decoration: none;
       font-weight: bold;
-      transition: 0.2s ease-in-out;
     }
-    .quiz-link:hover {
-      background: #00d4ff;
-      transform: translateY(-3px);
-    }
+
     footer {
       text-align: center;
       margin: 2rem;
       color: #91a4c7;
-    }
-    audio, video {
-      width: 100%;
-      margin: 1rem 0;
-      border-radius: 12px;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container">
-      <h1>Parts of Speech</h1>
-      <p class="lead">Learn the basic grammar categories used in English.</p>
-    </div>
-  </header>
+<header>
+  <h1>Parts of Speech</h1>
+  <p class="lead">Learn the basic grammar categories used in English.</p>
+</header>
 
-  
+<main class="container">
 
-      <!-- Video Player Section -->
-      <video controls>
-        <source src="https://drive.google.com/file/d/1cCvw1ltvyQCHqHQdF2kXzgtE90zXhLXB/view?usp=sharing" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+  <section class="card">
+    <h2>Video Lesson (English)</h2>
 
-      <p><strong>Main Types:</strong> IF YOU WANT IN MANIPURI</p>
- </header>
+    <iframe
+      src="https://drive.google.com/file/d/1cCvw1ltvyQCHqHQdF2kXzgtE90zXhLXB/preview"
+      allow="autoplay">
+    </iframe>
+  </section>
 
-  
+  <section class="card">
+    <h2>Video Lesson (Manipuri)</h2>
 
-      <!-- Video Player Section -->
-      <video controls>
-        <source src="https://drive.google.com/file/d/1cCvw1ltvyQCHqHQdF2kXzgtE90zXhLXB/view?usp=sharing" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <iframe
+      src="https://drive.google.com/file/d/1cCvw1ltvyQCHqHQdF2kXzgtE90zXhLXB/preview"
+      allow="autoplay">
+    </iframe>
 
-      <!-- Quiz Link -->
-      <a class="quiz-link" href="partsofspeechquiz.html">🎯 Test Your Knowledge</a>
-    </section>
+    <a class="quiz-link" href="partsofspeechquiz.html">
+      Test Your Knowledge
+    </a>
+  </section>
 
-  </main>
+</main>
 
-  <footer>
-    © 2025 English Grammar Learning | All Rights Reserved
-  </footer>
+<footer>
+  © 2025 English Grammar Learning | All Rights Reserved
+</footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
