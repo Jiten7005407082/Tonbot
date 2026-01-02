@@ -1,149 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Parts of Speech</title>
+<meta charset="UTF-8">
+<title>Parts of Speech</title>
 
-  <style>
-    body {
-      background-color: #0a1e44;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      padding: 30px;
-      line-height: 1.7;
-    }
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
 
-    h1, h2 {
-      color: #00b2ff;
-      text-align: center;
-    }
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
-    .section {
-      max-width: 900px;
-      margin: 30px auto;
-      background-color: #112b5f;
-      padding: 25px;
-      border-radius: 10px;
-    }
+.section {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-    .example {
-      color: #ffcc00;
-      margin-left: 20px;
-    }
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 260px;
+  transition: 0.3s;
+}
 
-    .quiz-link {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #ffcc00;
-      text-decoration: none;
-    }
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
 
-    .quiz-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+.read-btn:hover {
+  background-color: #ffc94d;
+}
+
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #fff;
+}
+
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
+
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
 </head>
 <body>
 
-  <h1>Parts of Speech</h1>
+<h1>Parts of Speech</h1>
 
-  <div class="section">
-    <h2>What is Parts of Speech?</h2>
-    <p>
-      Parts of Speech are categories of words based on their function in a sentence.
-      Every word in English belongs to a particular part of speech.
-    </p>
-  </div>
+<div class="section">
+  <p id="englishLecture">
+    In English, words are divided into eight classes according to the work they do in a sentence.
+    These classes are called <strong>Parts of Speech</strong>.
+    <br><br>
+    A <strong>Noun</strong> is the name of a person, place, animal, thing, or idea.
+    <br>
+    A <strong>Pronoun</strong> replaces a noun.
+    <br>
+    A <strong>Verb</strong> shows action or state.
+    <br>
+    An <strong>Adjective</strong> describes a noun or pronoun.
+    <br>
+    An <strong>Adverb</strong> modifies a verb, adjective, or another adverb.
+    <br>
+    A <strong>Preposition</strong> shows the relationship between words.
+    <br>
+    A <strong>Conjunction</strong> joins words or sentences.
+    <br>
+    An <strong>Interjection</strong> expresses strong emotion.
+  </p>
 
-  <div class="section">
-    <h2>1. Noun</h2>
-    <p>
-      A noun is the name of a person, place, animal, thing, or idea.
-    </p>
-    <p class="example">
-      Example: boy, India, dog, book, honesty
-    </p>
-  </div>
+  <button class="read-btn" onclick="readEnglish()">
+    Read English Lecture
+  </button>
+</div>
 
-  <div class="section">
-    <h2>2. Pronoun</h2>
-    <p>
-      A pronoun is a word used in place of a noun.
-    </p>
-    <p class="example">
-      Example: he, she, it, they, we
-    </p>
-  </div>
+<div class="section translation" id="hindiLecture">
+  <p>
+    अंग्रेज़ी में शब्दों को उनके प्रयोग के आधार पर आठ वर्गों में बाँटा जाता है।
+    इन्हें <strong>Parts of Speech</strong> कहा जाता है।
+    <br><br>
+    <strong>Noun</strong> किसी व्यक्ति, स्थान, जानवर या वस्तु का नाम होता है।
+    <br>
+    <strong>Pronoun</strong> संज्ञा की जगह प्रयोग होता है।
+    <br>
+    <strong>Verb</strong> क्रिया या अवस्था दर्शाता है।
+    <br>
+    <strong>Adjective</strong> संज्ञा या सर्वनाम का वर्णन करता है।
+    <br>
+    <strong>Adverb</strong> क्रिया या विशेषण को बदलता है।
+    <br>
+    <strong>Preposition</strong> संबंध दर्शाता है।
+    <br>
+    <strong>Conjunction</strong> शब्दों को जोड़ता है।
+    <br>
+    <strong>Interjection</strong> भावना व्यक्त करता है।
+  </p>
+</div>
 
-  <div class="section">
-    <h2>3. Verb</h2>
-    <p>
-      A verb shows an action, state, or occurrence.
-    </p>
-    <p class="example">
-      Example: run, eat, is, write, play
-    </p>
-  </div>
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
 
-  <div class="section">
-    <h2>4. Adjective</h2>
-    <p>
-      An adjective describes or qualifies a noun or pronoun.
-    </p>
-    <p class="example">
-      Example: beautiful, tall, red, honest
-    </p>
-  </div>
+<!-- ✅ WORKING QUIZ BUTTON -->
+<button class="quiz-btn" onclick="location.href='psq.html'">
+  Test Your Knowledge
+</button>
 
-  <div class="section">
-    <h2>5. Adverb</h2>
-    <p>
-      An adverb modifies a verb, adjective, or another adverb.
-    </p>
-    <p class="example">
-      Example: quickly, very, well, yesterday
-    </p>
-  </div>
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
 
-  <div class="section">
-    <h2>6. Preposition</h2>
-    <p>
-      A preposition shows the relationship between a noun or pronoun and another word.
-    </p>
-    <p class="example">
-      Example: in, on, under, between, at
-    </p>
-  </div>
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
 
-  <div class="section">
-    <h2>7. Conjunction</h2>
-    <p>
-      A conjunction joins words, phrases, or sentences.
-    </p>
-    <p class="example">
-      Example: and, but, or, because
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>8. Interjection</h2>
-    <p>
-      An interjection expresses sudden feelings or emotions.
-    </p>
-    <p class="example">
-      Example: oh!, wow!, alas!, hurrah!
-    </p>
-  </div>
- <!-- Quiz link -->
-  <a class="quiz-link" href="partsofspeechquiz.html">Test your Knowledge</a>
-
-  <a class="quiz-link" href="partsofspeechquiz.html">
-    Test Your Knowledge
-  </a>
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
 
 </body>
 </html>
-
