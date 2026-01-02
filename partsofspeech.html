@@ -128,11 +128,17 @@ button {
   हिंदी में पढ़ें
 </button>
 
-<!-- ✅ WORKING QUIZ BUTTON -->
-<button class="quiz-btn" onclick="location.href='partsofspeechquiz.html'">
-  Test Your Knowledge
-</button>
+}
 
+// OK button to go to chapter
+function showOkButton(){
+  const chatBox=document.getElementById("chatBox");
+  const okBtn=document.createElement("button");
+  okBtn.textContent="OK";
+  okBtn.onclick=()=>{ window.location.href="partsofspeech.html"; };
+  chatBox.appendChild(okBtn);
+  chatBox.scrollTop=chatBox.scrollHeight;
+}
 <script>
 function speak(text, lang) {
   if ('speechSynthesis' in window) {
@@ -158,4 +164,5 @@ function readHindi() {
 
 </body>
 </html>
+
 
