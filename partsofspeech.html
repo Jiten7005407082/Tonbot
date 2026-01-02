@@ -127,18 +127,11 @@ button {
 <button class="read-btn" onclick="readHindi()">
   हिंदी में पढ़ें
 </button>
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
 
-}
 
-//Test my knoladge button to go to chapter
-function showOkButton(){
-  const chatBox=document.getElementById("chatBox");
-  const okBtn=document.createElement("button");
-  okBtn.textContent="OK";
-  okBtn.onclick=()=>{ window.location.href="partsofspeech.html"; };
-  chatBox.appendChild(okBtn);
-  chatBox.scrollTop=chatBox.scrollHeight;
-}
 <script>
 function speak(text, lang) {
   if ('speechSynthesis' in window) {
@@ -164,6 +157,7 @@ function readHindi() {
 
 </body>
 </html>
+
 
 
 
