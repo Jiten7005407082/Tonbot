@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Chatbot Quiz</title>
+<title>Chatbot Quiz with Audio</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -102,12 +102,20 @@ let score = 0;
 const messages = document.getElementById("messages");
 const scoreDisplay = document.getElementById("score");
 
+function speak(text) {
+    if (!window.speechSynthesis) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-US";
+    window.speechSynthesis.speak(utter);
+}
+
 function addMessage(text, sender="bot") {
     const div = document.createElement("div");
     div.className = "message " + sender;
     div.innerHTML = text;
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
+    if(sender === "bot") speak(text.replace(/<[^>]*>/g, "")); // remove HTML tags for speech
 }
 
 function showQuestion() {
@@ -131,32 +139,28 @@ function attachOptionListeners() {
             const selected = this.getAttribute("data-key");
             const correct = questions[currentQuestion].answer;
 
-            // Highlight selected
             if (selected === correct) {
                 this.classList.add("correct");
                 addMessage("Correct!", "bot");
                 score++;
             } else {
                 this.classList.add("incorrect");
-                // Highlight correct
                 document.querySelector(`.option[data-key='${correct}']`)?.classList.add("correct");
                 addMessage(`Incorrect! Correct answer is ${correct.toUpperCase()}: ${questions[currentQuestion].options[correct]}`, "bot");
             }
             scoreDisplay.textContent = `Score: ${score}`;
-            // Disable further clicks
             document.querySelectorAll(".option").forEach(opt => opt.style.pointerEvents = "none");
 
-            // Move to next question after delay
             setTimeout(() => {
                 currentQuestion++;
                 showQuestion();
-            }, 1500);
+            }, 2000);
         });
     });
 }
 
 // Start the quiz
-addMessage("Hello! Let's start the quiz. Select the correct answer for each question.");
+addMessage("Hello! Let's start the quiz. I will read each question and you select the answer.");
 setTimeout(showQuestion, 1000);
 </script>
 
