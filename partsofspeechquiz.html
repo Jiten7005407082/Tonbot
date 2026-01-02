@@ -1,1153 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parts of Speech Quiz - English Grammar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-3px);
-        }
-        
-        .quiz-info {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 30px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-        }
-        
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .info-label {
-            font-size: 14px;
-            color: #6c757d;
-        }
-        
-        .info-value {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1a2a6c;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #e9ecef;
-            margin: 0 30px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(to right, #4CAF50, #45a049);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .question-container {
-            margin-bottom: 30px;
-            display: none;
-        }
-        
-        .question-container.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .question-number {
-            font-size: 18px;
-            color: #6c757d;
-            margin-bottom: 10px;
-        }
-        
-        .question-text {
-            font-size: 22px;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            color: #1a2a6c;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .option {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        
-        .option:hover {
-            border-color: #1a2a6c;
-            background: #f8f9fa;
-        }
-        
-        .option.selected {
-            border-color: #4CAF50;
-            background: #e8f5e9;
-        }
-        
-        .option.correct {
-            border-color: #4CAF50;
-            background: #e8f5e9;
-        }
-        
-        .option.incorrect {
-            border-color: #f44336;
-            background: #ffebee;
-        }
-        
-        .option-label {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            color: #6c757d;
-        }
-        
-        .option.selected .option-label {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .option.correct .option-label {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .option.incorrect .option-label {
-            background: #f44336;
-            color: white;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .nav-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #1a2a6c;
-            color: white;
-        }
-        
-        .nav-btn:hover:not(:disabled) {
-            background: #0d1b4d;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-btn:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
-        
-        .submit-btn {
-            background: #4CAF50;
-        }
-        
-        .submit-btn:hover:not(:disabled) {
-            background: #45a049;
-        }
-        
-        .result-container {
-            text-align: center;
-            padding: 40px 20px;
-            display: none;
-        }
-        
-        .result-container.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .result-title {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #1a2a6c;
-        }
-        
-        .score {
-            font-size: 72px;
-            font-weight: bold;
-            color: #4CAF50;
-            margin: 20px 0;
-        }
-        
-        .score-text {
-            font-size: 24px;
-            margin-bottom: 30px;
-            color: #6c757d;
-        }
-        
-        .result-message {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        
-        .restart-btn {
-            padding: 15px 30px;
-            background: #1a2a6c;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-        
-        .restart-btn:hover {
-            background: #0d1b4d;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 28px;
-            }
-            
-            .question-text {
-                font-size: 20px;
-            }
-            
-            .quiz-info {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-            
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-btn {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Chatbot Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    #chatbox {
+        width: 400px;
+        max-width: 90%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    #messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+    }
+    .message {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 80%;
+        clear: both;
+    }
+    .bot {
+        background-color: #e1f5fe;
+        float: left;
+    }
+    .user {
+        background-color: #c8e6c9;
+        float: right;
+    }
+    .option {
+        display: block;
+        padding: 8px;
+        margin: 5px 0;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .correct {
+        background-color: #a5d6a7 !important;
+    }
+    .incorrect {
+        background-color: #ef9a9a !important;
+    }
+    #score {
+        padding: 10px;
+        background-color: #eee;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="goBack()">← Back to Lesson</button>
-            <h1>Parts of Speech Quiz</h1>
-            <p>Test your knowledge of English grammar</p>
-        </div>
-        
-        <div class="quiz-info">
-            <div class="info-item">
-                <span class="info-label">Questions</span>
-                <span class="info-value" id="current-question">1</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Score</span>
-                <span class="info-value" id="score">0</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Time</span>
-                <span class="info-value" id="timer">10:00</span>
-            </div>
-        </div>
-        
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-        
-        <div class="content">
-            <!-- Question 1 -->
-            <div class="question-container active" id="question-1">
-                <div class="question-number">Question 1 of 20</div>
-                <div class="question-text">What part of speech is the word "quickly" in the sentence: "She ran quickly to catch the bus."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Adjective</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Verb</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Noun</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="next-btn-1">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 2 -->
-            <div class="question-container" id="question-2">
-                <div class="question-number">Question 2 of 20</div>
-                <div class="question-text">Identify the pronoun in this sentence: "They went to the store by themselves."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">went</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">store</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">They</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">by</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-2">Previous</button>
-                    <button class="nav-btn" id="next-btn-2">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 3 -->
-            <div class="question-container" id="question-3">
-                <div class="question-number">Question 3 of 20</div>
-                <div class="question-text">Which word is a conjunction in the sentence: "I wanted to go, but I was too tired."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">wanted</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">go</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">but</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">tired</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-3">Previous</button>
-                    <button class="nav-btn" id="next-btn-3">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 4 -->
-            <div class="question-container" id="question-4">
-                <div class="question-number">Question 4 of 20</div>
-                <div class="question-text">What part of speech is "beautiful" in the phrase: "a beautiful sunset"?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Noun</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Verb</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Adjective</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-4">Previous</button>
-                    <button class="nav-btn" id="next-btn-4">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 5 -->
-            <div class="question-container" id="question-5">
-                <div class="question-number">Question 5 of 20</div>
-                <div class="question-text">Identify the preposition in this sentence: "The book is on the table."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">book</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">is</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">on</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">table</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-5">Previous</button>
-                    <button class="nav-btn" id="next-btn-5">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 6 -->
-            <div class="question-container" id="question-6">
-                <div class="question-number">Question 6 of 20</div>
-                <div class="question-text">Which word is an interjection in the sentence: "Wow! That was an amazing performance."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">That</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">amazing</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">performance</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Wow</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-6">Previous</button>
-                    <button class="nav-btn" id="next-btn-6">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 7 -->
-            <div class="question-container" id="question-7">
-                <div class="question-number">Question 7 of 20</div>
-                <div class="question-text">What part of speech is "running" in the sentence: "Running is good exercise."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Verb</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Adjective</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Noun</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-7">Previous</button>
-                    <button class="nav-btn" id="next-btn-7">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 8 -->
-            <div class="question-container" id="question-8">
-                <div class="question-number">Question 8 of 20</div>
-                <div class="question-text">Identify the adjective in this sentence: "The red car drove down the narrow street."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">car</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">drove</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">red</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">street</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-8">Previous</button>
-                    <button class="nav-btn" id="next-btn-8">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 9 -->
-            <div class="question-container" id="question-9">
-                <div class="question-number">Question 9 of 20</div>
-                <div class="question-text">Which word is a verb in the sentence: "She sings beautifully every morning."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">She</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">sings</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">beautifully</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">morning</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-9">Previous</button>
-                    <button class="nav-btn" id="next-btn-9">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 10 -->
-            <div class="question-container" id="question-10">
-                <div class="question-number">Question 10 of 20</div>
-                <div class="question-text">What part of speech is "happiness" in the sentence: "Happiness is a state of mind."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Adjective</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Verb</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Noun</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-10">Previous</button>
-                    <button class="nav-btn" id="next-btn-10">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 11 -->
-            <div class="question-container" id="question-11">
-                <div class="question-number">Question 11 of 20</div>
-                <div class="question-text">Identify the adverb in this sentence: "He spoke very softly during the meeting."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">He</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">spoke</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">very</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">meeting</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-11">Previous</button>
-                    <button class="nav-btn" id="next-btn-11">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 12 -->
-            <div class="question-container" id="question-12">
-                <div class="question-number">Question 12 of 20</div>
-                <div class="question-text">Which word is a preposition in the sentence: "The cat jumped over the fence."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">cat</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">jumped</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">over</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">fence</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-12">Previous</button>
-                    <button class="nav-btn" id="next-btn-12">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 13 -->
-            <div class="question-container" id="question-13">
-                <div class="question-number">Question 13 of 20</div>
-                <div class="question-text">What part of speech is "and" in the sentence: "John and Mary went to the park."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Preposition</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Conjunction</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Interjection</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-13">Previous</button>
-                    <button class="nav-btn" id="next-btn-13">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 14 -->
-            <div class="question-container" id="question-14">
-                <div class="question-number">Question 14 of 20</div>
-                <div class="question-text">Identify the noun in this sentence: "The teacher explained the lesson clearly."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">teacher</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">explained</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">lesson</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">clearly</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-14">Previous</button>
-                    <button class="nav-btn" id="next-btn-14">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 15 -->
-            <div class="question-container" id="question-15">
-                <div class="question-number">Question 15 of 20</div>
-                <div class="question-text">Which word is an adjective in the sentence: "The old man walked slowly with his cane."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">man</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">walked</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">old</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">slowly</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-15">Previous</button>
-                    <button class="nav-btn" id="next-btn-15">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 16 -->
-            <div class="question-container" id="question-16">
-                <div class="question-number">Question 16 of 20</div>
-                <div class="question-text">What part of speech is "ouch" in the sentence: "Ouch! That hurt!"?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Noun</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Verb</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Interjection</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-16">Previous</button>
-                    <button class="nav-btn" id="next-btn-16">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 17 -->
-            <div class="question-container" id="question-17">
-                <div class="question-number">Question 17 of 20</div>
-                <div class="question-text">Identify the pronoun in this sentence: "We are going to the concert together."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">are</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">going</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">We</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">concert</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-17">Previous</button>
-                    <button class="nav-btn" id="next-btn-17">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 18 -->
-            <div class="question-container" id="question-18">
-                <div class="question-number">Question 18 of 20</div>
-                <div class="question-text">Which word is a verb in the sentence: "The children play in the park every afternoon."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">children</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">play</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">park</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">afternoon</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-18">Previous</button>
-                    <button class="nav-btn" id="next-btn-18">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 19 -->
-            <div class="question-container" id="question-19">
-                <div class="question-number">Question 19 of 20</div>
-                <div class="question-text">What part of speech is "under" in the sentence: "The cat is hiding under the bed."?</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">Adverb</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">Adjective</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">Preposition</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">Conjunction</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-19">Previous</button>
-                    <button class="nav-btn" id="next-btn-19">Next Question</button>
-                </div>
-            </div>
-            
-            <!-- Question 20 -->
-            <div class="question-container" id="question-20">
-                <div class="question-number">Question 20 of 20</div>
-                <div class="question-text">Identify the conjunction in this sentence: "I will go if you come with me."</div>
-                <div class="options">
-                    <div class="option" data-value="a">
-                        <div class="option-label">A</div>
-                        <div class="option-text">I</div>
-                    </div>
-                    <div class="option" data-value="b">
-                        <div class="option-label">B</div>
-                        <div class="option-text">will</div>
-                    </div>
-                    <div class="option" data-value="c">
-                        <div class="option-label">C</div>
-                        <div class="option-text">if</div>
-                    </div>
-                    <div class="option" data-value="d">
-                        <div class="option-label">D</div>
-                        <div class="option-text">with</div>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <button class="nav-btn" id="prev-btn-20">Previous</button>
-                    <button class="nav-btn submit-btn" id="submit-btn">Submit Quiz</button>
-                </div>
-            </div>
-            
-            <!-- Results Section -->
-            <div class="result-container" id="result-container">
-                <h2 class="result-title">Quiz Completed!</h2>
-                <div class="score" id="final-score">0/20</div>
-                <div class="score-text" id="score-text">Your Score</div>
-                <div class="result-message" id="result-message">
-                    You've completed the Parts of Speech quiz. Review your results and consider revisiting any topics you found challenging.
-                </div>
-                <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
-                <button class="restart-btn" onclick="goBack()">Back to Lesson</button>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>English Grammar Learning System &copy; 2023 | Parts of Speech Quiz</p>
-        </div>
-    </div>
 
-    <script>
-        // Quiz data with correct answers
-        const correctAnswers = {
-            1: "a",  // Adverb
-            2: "c",  // They
-            3: "c",  // but
-            4: "c",  // Adjective
-            5: "c",  // on
-            6: "d",  // Wow
-            7: "c",  // Noun
-            8: "c",  // red
-            9: "b",  // sings
-            10: "c", // Noun
-            11: "c", // very
-            12: "c", // over
-            13: "b", // Conjunction
-            14: "a", // teacher
-            15: "c", // old
-            16: "c", // Interjection
-            17: "c", // We
-            18: "b", // play
-            19: "c", // Preposition
-            20: "c"  // if
-        };
-        
-        // User answers
-        const userAnswers = {};
-        let currentQuestion = 1;
-        let score = 0;
-        let timeLeft = 600; // 10 minutes in seconds
-        let timerInterval;
-        
-        // DOM elements
-        const progressBar = document.getElementById('progress');
-        const currentQuestionElement = document.getElementById('current-question');
-        const scoreElement = document.getElementById('score');
-        const timerElement = document.getElementById('timer');
-        const finalScoreElement = document.getElementById('final-score');
-        const scoreTextElement = document.getElementById('score-text');
-        const resultMessageElement = document.getElementById('result-message');
-        const resultContainer = document.getElementById('result-container');
-        
-        // Initialize the quiz
-        function initQuiz() {
-            updateProgressBar();
-            startTimer();
-            setupEventListeners();
-        }
-        
-        // Update progress bar
-        function updateProgressBar() {
-            const progress = (currentQuestion / 20) * 100;
-            progressBar.style.width = `${progress}%`;
-            currentQuestionElement.textContent = currentQuestion;
-        }
-        
-        // Start the timer
-        function startTimer() {
-            updateTimerDisplay();
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-            }, 1000);
-        }
-        
-        // Update timer display
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-        
-        // Setup event listeners for navigation
-        function setupEventListeners() {
-            // Next buttons
-            for (let i = 1; i <= 20; i++) {
-                const nextBtn = document.getElementById(`next-btn-${i}`);
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => navigateToQuestion(i + 1));
-                }
-                
-                const prevBtn = document.getElementById(`prev-btn-${i}`);
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => navigateToQuestion(i - 1));
-                }
-            }
-            
-            // Submit button
-            document.getElementById('submit-btn').addEventListener('click', submitQuiz);
-            
-            // Option selection
-            document.querySelectorAll('.option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const questionId = parseInt(this.closest('.question-container').id.split('-')[1]);
-                    const value = this.getAttribute('data-value');
-                    
-                    // Remove selected class from all options in this question
-                    this.closest('.options').querySelectorAll('.option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    
-                    // Store user's answer
-                    userAnswers[questionId] = value;
-                });
-            });
-        }
-        
-        // Navigate to a specific question
-        function navigateToQuestion(questionNumber) {
-            if (questionNumber < 1 || questionNumber > 20) return;
-            
-            // Hide current question
-            document.getElementById(`question-${currentQuestion}`).classList.remove('active');
-            
-            // Show new question
-            document.getElementById(`question-${questionNumber}`).classList.add('active');
-            
-            // Update current question
-            currentQuestion = questionNumber;
-            updateProgressBar();
-        }
-        
-        // Submit the quiz
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            
-            // Calculate score
-            score = 0;
-            for (let i = 1; i <= 20; i++) {
-                if (userAnswers[i] === correctAnswers[i]) {
-                    score++;
-                }
-            }
-            
-            // Update score display
-            scoreElement.textContent = score;
-            
-            // Show results
-            document.getElementById(`question-${currentQuestion}`).classList.remove('active');
-            resultContainer.classList.add('active');
-            
-            // Update final score
-            finalScoreElement.textContent = `${score}/20`;
-            
-            // Update score text and message based on performance
-            if (score >= 18) {
-                scoreTextElement.textContent = "Excellent!";
-                resultMessageElement.textContent = "You have an excellent understanding of parts of speech! Keep up the great work!";
-            } else if (score >= 15) {
-                scoreTextElement.textContent = "Good Job!";
-                resultMessageElement.textContent = "You have a good understanding of parts of speech. Review the questions you missed to improve further.";
-            } else if (score >= 10) {
-                scoreTextElement.textContent = "Not Bad!";
-                resultMessageElement.textContent = "You have a basic understanding of parts of speech. Consider reviewing the lesson to strengthen your knowledge.";
+<div id="chatbox">
+    <div id="messages"></div>
+    <div id="score">Score: 0</div>
+</div>
+
+<script>
+const questions = [
+    {q:"What part of speech is the word 'quickly' in 'She ran quickly to catch the bus'?", options:{a:"Adverb", b:"Adjective", c:"Verb", d:"Noun"}, answer:"a"},
+    {q:"Identify the verb in the sentence: 'He plays football every Sunday.'", options:{a:"He", b:"football", c:"plays", d:"Sunday"}, answer:"c"},
+    {q:"Choose the adjective: 'The beautiful garden was full of flowers.'", options:{a:"garden", b:"was", c:"beautiful", d:"flowers"}, answer:"c"},
+    {q:"Which word is a noun? 'The cat slept on the mat.'", options:{a:"slept", b:"on", c:"cat", d:"mat"}, answer:"c"},
+    {q:"Identify the pronoun in: 'She gave him a gift.'", options:{a:"gift", b:"gave", c:"She", d:"a"}, answer:"c"},
+    {q:"Which is a preposition in 'The book is on the table'?", options:{a:"book", b:"on", c:"is", d:"table"}, answer:"b"},
+    {q:"Select the conjunction: 'I wanted to go, but it rained.'", options:{a:"I", b:"to", c:"but", d:"it"}, answer:"c"},
+    {q:"Find the interjection: 'Wow! That was amazing.'", options:{a:"That", b:"amazing", c:"Wow", d:"was"}, answer:"c"},
+    {q:"Identify the article: 'An apple a day keeps the doctor away.'", options:{a:"apple", b:"An", c:"doctor", d:"away"}, answer:"b"},
+    {q:"What is the adverb in: 'He spoke softly to the child.'", options:{a:"spoke", b:"softly", c:"child", d:"to"}, answer:"b"},
+    {q:"Choose the adjective in: 'The sky is very blue today.'", options:{a:"sky", b:"very", c:"blue", d:"today"}, answer:"c"},
+    {q:"Which word is a noun? 'Happiness is the key to success.'", options:{a:"Happiness", b:"is", c:"to", d:"key"}, answer:"a"},
+    {q:"Find the pronoun: 'They went to the park together.'", options:{a:"went", b:"They", c:"park", d:"together"}, answer:"b"},
+    {q:"Select the preposition: 'The cat jumped over the wall.'", options:{a:"cat", b:"jumped", c:"over", d:"wall"}, answer:"c"},
+    {q:"Which is a conjunction: 'I like tea and coffee.'", options:{a:"like", b:"and", c:"coffee", d:"tea"}, answer:"b"},
+    {q:"Identify the interjection: 'Oh no! I forgot my keys.'", options:{a:"keys", b:"Oh no", c:"forgot", d:"my"}, answer:"b"},
+    {q:"What is the article: 'The dog barked loudly.'", options:{a:"dog", b:"barked", c:"The", d:"loudly"}, answer:"c"},
+    {q:"Find the adverb: 'She quickly finished her homework.'", options:{a:"quickly", b:"finished", c:"her", d:"homework"}, answer:"a"},
+    {q:"Choose the adjective: 'It was a bright sunny day.'", options:{a:"It", b:"bright", c:"day", d:"was"}, answer:"b"},
+    {q:"Which word is a noun? 'Music soothes the soul.'", options:{a:"soothes", b:"Music", c:"the", d:"soul"}, answer:"b"}
+];
+
+let currentQuestion = 0;
+let score = 0;
+const messages = document.getElementById("messages");
+const scoreDisplay = document.getElementById("score");
+
+function addMessage(text, sender="bot") {
+    const div = document.createElement("div");
+    div.className = "message " + sender;
+    div.innerHTML = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function showQuestion() {
+    if (currentQuestion >= questions.length) {
+        addMessage(`Quiz Finished! Your final score is ${score}/${questions.length}.`);
+        return;
+    }
+
+    const q = questions[currentQuestion];
+    let html = `<strong>Q${currentQuestion+1}:</strong> ${q.q}<br>`;
+    for (let key in q.options) {
+        html += `<span class="option" data-key="${key}">${key.toUpperCase()}: ${q.options[key]}</span>`;
+    }
+    addMessage(html);
+    attachOptionListeners();
+}
+
+function attachOptionListeners() {
+    document.querySelectorAll(".option").forEach(el => {
+        el.addEventListener("click", function() {
+            const selected = this.getAttribute("data-key");
+            const correct = questions[currentQuestion].answer;
+
+            // Highlight selected
+            if (selected === correct) {
+                this.classList.add("correct");
+                addMessage("Correct!", "bot");
+                score++;
             } else {
-                scoreTextElement.textContent = "Needs Improvement";
-                resultMessageElement.textContent = "You might want to review the parts of speech lesson again before retaking this quiz.";
+                this.classList.add("incorrect");
+                // Highlight correct
+                document.querySelector(`.option[data-key='${correct}']`)?.classList.add("correct");
+                addMessage(`Incorrect! Correct answer is ${correct.toUpperCase()}: ${questions[currentQuestion].options[correct]}`, "bot");
             }
-        }
-        
-        // Restart the quiz
-        function restartQuiz() {
-            // Reset variables
-            currentQuestion = 1;
-            score = 0;
-            timeLeft = 600;
-            
-            // Clear user answers
-            for (let i = 1; i <= 20; i++) {
-                delete userAnswers[i];
-            }
-            
-            // Reset UI
-            document.querySelectorAll('.option').forEach(option => {
-                option.classList.remove('selected', 'correct', 'incorrect');
-            });
-            
-            document.querySelectorAll('.question-container').forEach(container => {
-                container.classList.remove('active');
-            });
-            
-            document.getElementById('question-1').classList.add('active');
-            resultContainer.classList.remove('active');
-            
-            // Reset displays
-            updateProgressBar();
-            scoreElement.textContent = "0";
-            
-            // Restart timer
-            startTimer();
-        }
-        
-        // Go back to lesson
-        function goBack() {
-            // In a real implementation, this would return to the lesson page
-            alert("Returning to the Parts of Speech lesson...");
-            window.location.href = "partsofspeech.html";
-        }
-        
-        // Initialize the quiz when the page loads
-        document.addEventListener('DOMContentLoaded', initQuiz);
-    </script>
+            scoreDisplay.textContent = `Score: ${score}`;
+            // Disable further clicks
+            document.querySelectorAll(".option").forEach(opt => opt.style.pointerEvents = "none");
+
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 1500);
+        });
+    });
+}
+
+// Start the quiz
+addMessage("Hello! Let's start the quiz. Select the correct answer for each question.");
+setTimeout(showQuestion, 1000);
+</script>
+
 </body>
 </html>
