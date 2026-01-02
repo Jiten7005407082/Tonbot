@@ -127,31 +127,12 @@ button {
 <button class="read-btn" onclick="readHindi()">
   हिंदी में पढ़ें
 </button>
-<button class="read-btn" onclick="readHindi()">
-  हिंदी में पढ़ें
+
+<!-- ✅ WORKING QUIZ BUTTON -->
+<button class="quiz-btn" onclick="location.href='psq.html'">
+  Test Your Knowledge
 </button>
 
- if(isReady){
-    addMessage("Yes","user");
-    setTimeout(()=>{
-      addMessage("Ok, let us go to Chapter 1: Parts of Speech. Click OK to continue.");
-      showOkButton();
-    },300);
-  } else{
-    addMessage("No","user");
-    setTimeout(()=>addMessage("No worries! Come back when you're ready."),300);
-  }
-}
-
-// OK button to go to chapter
-function showOkButton(){
-  const chatBox=document.getElementById("chatBox");
-  const okBtn=document.createElement("button");
-  okBtn.textContent="OK";
-  okBtn.onclick=()=>{ window.location.href="partsofspeech.html"; };
-  chatBox.appendChild(okBtn);
-  chatBox.scrollTop=chatBox.scrollHeight;
-}
 <script>
 function speak(text, lang) {
   if ('speechSynthesis' in window) {
@@ -177,8 +158,3 @@ function readHindi() {
 
 </body>
 </html>
-
-
-
-
-
