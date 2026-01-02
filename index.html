@@ -3,127 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English Learning Bot</title>
+<title>English Learning Chatbot</title>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #0079ff, #00d4ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #fff;
-  }
+body {
+  margin:0; padding:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#0079ff,#00d4ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:#fff;
+}
 
-  .card {
-    background: rgba(255, 255, 255, 0.12);
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 430px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-    animation: fadeIn 0.6s ease-in-out;
-  }
+.chat-container {
+  background: rgba(255,255,255,0.12);
+  width:90%;
+  max-width:430px;
+  border-radius:15px;
+  padding:20px;
+  backdrop-filter: blur(8px);
+  display:flex;
+  flex-direction:column;
+  height:70vh;
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+.chat-box {
+  flex:1;
+  overflow-y:auto;
+  margin-bottom:10px;
+}
 
-  input, select, button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-  }
+.message {
+  margin:8px 0;
+  padding:10px 14px;
+  border-radius:12px;
+  max-width:80%;
+  animation: fadeIn 0.3s ease-in-out;
+}
 
-  button {
-    background: #ffb400;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: 0.3s;
-  }
+.bot { background: rgba(0,0,0,0.25); align-self:flex-start; }
+.user { background:#ffb400; color:#000; align-self:flex-end; }
 
-  button:hover {
-    background: #ffc94d;
-  }
+@keyframes fadeIn {
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-  select, input {
-    background: #fff;
-    color: #000;
-  }
+input, button {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+  border:none;
+  font-size:16px;
+}
 
-  .hidden {
-    display: none;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
+input { background:#fff; color:#000; }
+button { background:#ffb400; color:#000; font-weight:bold; cursor:pointer; transition:0.3s;}
+button:hover { background:#ffc94d;}
 </style>
-
 </head>
 <body>
 
-<div class="card">
-  <h2>Hi 👋 I'm your<br>English Learning Bot!</h2>
-  <p>What is your name?</p>
+<div class="chat-container">
+  <div class="chat-box" id="chatBox"></div>
 
-  <input type="text" id="username" placeholder="Enter your name">
-
-  <div id="chapter-section" class="hidden">
-    <p>Nice to meet you <span id="display-name"></span>!  
-       Select a chapter:</p>
-
-    <select id="chapterSelect">
-      <option value="">-- Choose a Chapter --</option>
-      <option value="partsofspeech.html">Parts of Speech</option>
-      <option value="noun.html">Nouns</option>
-      <option value="pronoun.html">Pronouns</option>
-      <option value="verb.html">Verbs</option>
-      <option value="adjective.html">Adjectives</option>
-      <option value="adverb.html">Adverbs</option>
-      <option value="preposition.html">Prepositions</option>
-      <option value="articles.html">Articles (a, an, the)</option>
-    </select>
-
-    <button onclick="goToChapter()">Go</button>
-  </div>
-
-  <button id="startBtn" onclick="askName()">Continue</button>
-
+  <input type="text" id="userInput" placeholder="Type your name..." onkeydown="if(event.key==='Enter'){submitName()}">
+  <button id="sendBtn" onclick="submitName()">Send</button>
 </div>
 
-
 <script>
-function askName() {
-  const name = document.getElementById("username").value.trim();
+let username = "";
+let stage = 0; // 0=name, 1=ready?, 2=go to chapter
 
-  if (name === "") {
-    alert("Please enter your name 😊");
-    return;
+function speak(text){
+  if('speechSynthesis' in window){
+    const utter=new SpeechSynthesisUtterance(text);
+    utter.lang='en-US'; utter.rate=1; utter.pitch=1;
+    speechSynthesis.speak(utter);
   }
-
-  document.getElementById("display-name").textContent = name;
-  document.getElementById("chapter-section").classList.remove("hidden");
-  document.getElementById("startBtn").classList.add("hidden");
 }
 
-function goToChapter() {
-  const selected = document.getElementById("chapterSelect").value;
-  if (!selected) {
-    alert("Please select a chapter");
-    return;
+function addMessage(content,sender="bot"){
+  const chatBox=document.getElementById("chatBox");
+  const msg=document.createElement("div");
+  msg.classList.add("message",sender);
+  msg.textContent=content;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop=chatBox.scrollHeight;
+  if(sender==="bot") speak(content);
+}
+
+// greet on page load
+window.onload = function(){
+  addMessage("Hi! I'm your English Learning Bot! What's your name?");
+};
+
+// submit name
+function submitName(){
+  const input=document.getElementById("userInput");
+  const name=input.value.trim();
+  if(!name) return alert("Please enter your name 😊");
+
+  username=name;
+  addMessage(name,"user");
+  input.value="";
+  input.placeholder="Type here...";
+
+  stage=1;
+  setTimeout(()=>{
+    addMessage(`Nice to meet you ${username}! Are you ready to learn English?`);
+    showYesNoButtons();
+  },300);
+}
+
+// show Yes/No buttons
+function showYesNoButtons(){
+  const chatBox=document.getElementById("chatBox");
+
+  const yesBtn=document.createElement("button");
+  yesBtn.textContent="Yes";
+  yesBtn.onclick=()=>readyResponse(true);
+
+  const noBtn=document.createElement("button");
+  noBtn.textContent="No";
+  noBtn.onclick=()=>readyResponse(false);
+
+  chatBox.appendChild(yesBtn);
+  chatBox.appendChild(noBtn);
+  chatBox.scrollTop=chatBox.scrollHeight;
+
+  document.getElementById("userInput").style.display="none";
+  document.getElementById("sendBtn").style.display="none";
+}
+
+// handle ready response
+function readyResponse(isReady){
+  const chatBox=document.getElementById("chatBox");
+  chatBox.querySelectorAll("button").forEach(b=>b.remove());
+
+  if(isReady){
+    addMessage("Yes","user");
+    setTimeout(()=>{
+      addMessage("Ok, let us go to Chapter 1: Parts of Speech. Click OK to continue.");
+      showOkButton();
+    },300);
+  } else{
+    addMessage("No","user");
+    setTimeout(()=>addMessage("No worries! Come back when you're ready."),300);
   }
-  window.location.href = selected;
+}
+
+// OK button to go to chapter
+function showOkButton(){
+  const chatBox=document.getElementById("chatBox");
+  const okBtn=document.createElement("button");
+  okBtn.textContent="OK";
+  okBtn.onclick=()=>{ window.location.href="partsofspeech.html"; };
+  chatBox.appendChild(okBtn);
+  chatBox.scrollTop=chatBox.scrollHeight;
 }
 </script>
 
