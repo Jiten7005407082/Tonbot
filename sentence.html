@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sentence and Its Kinds</title>
+
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.section {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 300px;
+  transition: 0.3s;
+}
+
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
+
+.read-btn:hover {
+  background-color: #ffc94d;
+}
+
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #ffffff;
+}
+
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
+
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Sentence and Its Kinds</h1>
+
+<div class="section">
+<p id="englishLecture">
+A <strong>Sentence</strong> is a group of words that makes complete sense.
+It expresses a complete thought and usually contains a subject and a verb.
+<br><br>
+
+<strong>Example:</strong><br>
+She is reading a book.
+<br><br>
+
+<strong>Kinds of Sentences:</strong>
+<br><br>
+
+<strong>1. Assertive (Declarative) Sentence:</strong><br>
+It states a fact or an opinion.<br>
+Example: The sun rises in the east.
+<br><br>
+
+<strong>2. Interrogative Sentence:</strong><br>
+It asks a question.<br>
+Example: Where are you going?
+<br><br>
+
+<strong>3. Imperative Sentence:</strong><br>
+It gives an order, request, or advice.<br>
+Example: Please close the door.
+<br><br>
+
+<strong>4. Exclamatory Sentence:</strong><br>
+It expresses strong feelings like joy, sorrow, or surprise.<br>
+Example: What a beautiful day!
+</p>
+
+<button class="read-btn" onclick="readEnglish()">
+Read English Lesson
+</button>
+</div>
+
+<div class="section translation" id="hindiLecture">
+<p>
+<strong>Sentence (वाक्य)</strong> शब्दों का वह समूह है जो पूरा अर्थ देता है।
+यह एक पूर्ण विचार व्यक्त करता है और इसमें सामान्यतः कर्ता और क्रिया होती है।
+<br><br>
+
+<strong>उदाहरण:</strong><br>
+वह किताब पढ़ रही है।
+<br><br>
+
+<strong>वाक्य के प्रकार:</strong>
+<br><br>
+
+<strong>1. Assertive / Declarative Sentence (कथनात्मक वाक्य):</strong><br>
+यह किसी तथ्य या कथन को बताता है।<br>
+उदाहरण: सूरज पूर्व से उगता है।
+<br><br>
+
+<strong>2. Interrogative Sentence (प्रश्नवाचक वाक्य):</strong><br>
+यह प्रश्न पूछता है।<br>
+उदाहरण: तुम कहाँ जा रहे हो?
+<br><br>
+
+<strong>3. Imperative Sentence (आज्ञावाचक वाक्य):</strong><br>
+यह आदेश, अनुरोध या सलाह देता है।<br>
+उदाहरण: कृपया दरवाज़ा बंद करो।
+<br><br>
+
+<strong>4. Exclamatory Sentence (विस्मयादिबोधक वाक्य):</strong><br>
+यह खुशी, दुख या आश्चर्य व्यक्त करता है।<br>
+उदाहरण: कितना सुंदर दिन है!
+</p>
+</div>
+
+<button class="read-btn" onclick="readHindi()">
+हिंदी में पढ़ें
+</button>
+
+<button class="quiz-btn" onclick="location.href='sentencequiz.html'">
+Test Your Knowledge
+</button>
+
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
+
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
+
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
+
+</body>
+</html>
