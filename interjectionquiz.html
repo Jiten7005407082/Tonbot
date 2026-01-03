@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interjection Quiz</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #ffffffee;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #0f2027;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.question {
+    background: #f3f3f3;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: #c8f7c5;
+}
+
+.wrong {
+    background-color: #f7c5c5;
+}
+
+#score {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #2c5364;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Interjection Quiz</h1>
+<p>Select the correct interjection. Score updates instantly.</p>
+
+<div class="question" data-answer="Wow">
+<h3>1. ___! That was an amazing performance.</h3>
+<label><input type="radio" name="q1" value="Wow"> Wow</label>
+<label><input type="radio" name="q1" value="Because"> Because</label>
+<label><input type="radio" name="q1" value="Slowly"> Slowly</label>
+</div>
+
+<div class="question" data-answer="Oh">
+<h3>2. ___! I didn’t know you were here.</h3>
+<label><input type="radio" name="q2" value="Oh"> Oh</label>
+<label><input type="radio" name="q2" value="But"> But</label>
+<label><input type="radio" name="q2" value="Under"> Under</label>
+</div>
+
+<div class="question" data-answer="Alas">
+<h3>3. ___! The brave soldier is no more.</h3>
+<label><input type="radio" name="q3" value="Alas"> Alas</label>
+<label><input type="radio" name="q3" value="Hey"> Hey</label>
+<label><input type="radio" name="q3" value="So"> So</label>
+</div>
+
+<div class="question" data-answer="Hurrah">
+<h3>4. ___! Our team has won the match.</h3>
+<label><input type="radio" name="q4" value="Hurrah"> Hurrah</label>
+<label><input type="radio" name="q4" value="Oops"> Oops</label>
+<label><input type="radio" name="q4" value="Although"> Although</label>
+</div>
+
+<div class="question" data-answer="Oops">
+<h3>5. ___! I dropped my phone.</h3>
+<label><input type="radio" name="q5" value="Oops"> Oops</label>
+<label><input type="radio" name="q5" value="Wow"> Wow</label>
+<label><input type="radio" name="q5" value="Since"> Since</label>
+</div>
+
+<div class="question" data-answer="Hey">
+<h3>6. ___! Stop talking.</h3>
+<label><input type="radio" name="q6" value="Hey"> Hey</label>
+<label><input type="radio" name="q6" value="Because"> Because</label>
+<label><input type="radio" name="q6" value="Across"> Across</label>
+</div>
+
+<div class="question" data-answer="Ah">
+<h3>7. ___! Now I understand the problem.</h3>
+<label><input type="radio" name="q7" value="Ah"> Ah</label>
+<label><input type="radio" name="q7" value="But"> But</label>
+<label><input type="radio" name="q7" value="Between"> Between</label>
+</div>
+
+<div class="question" data-answer="Bravo">
+<h3>8. ___! You did a great job.</h3>
+<label><input type="radio" name="q8" value="Bravo"> Bravo</label>
+<label><input type="radio" name="q8" value="Oops"> Oops</label>
+<label><input type="radio" name="q8" value="And"> And</label>
+</div>
+
+<div class="question" data-answer="Hush">
+<h3>9. ___! The baby is sleeping.</h3>
+<label><input type="radio" name="q9" value="Hush"> Hush</label>
+<label><input type="radio" name="q9" value="Wow"> Wow</label>
+<label><input type="radio" name="q9" value="Before"> Before</label>
+</div>
+
+<div class="question" data-answer="Oh no">
+<h3>10. ___! We are late for school.</h3>
+<label><input type="radio" name="q10" value="Oh no"> Oh no</label>
+<label><input type="radio" name="q10" value="Hurrah"> Hurrah</label>
+<label><input type="radio" name="q10" value="Under"> Under</label>
+</div>
+
+<div id="score">Score: 0 / 10</div>
+
+</div>
+
+<script>
+let score = 0;
+let total = document.querySelectorAll(".question").length;
+
+document.querySelectorAll("input[type=radio]").forEach(option => {
+    option.addEventListener("change", function () {
+        let question = this.closest(".question");
+        let correctAnswer = question.dataset.answer;
+
+        if (question.classList.contains("answered")) return;
+        question.classList.add("answered");
+
+        question.querySelectorAll("label").forEach(label => {
+            let input = label.querySelector("input");
+            if (input.value === correctAnswer) {
+                label.classList.add("correct");
+            }
+        });
+
+        if (this.value === correctAnswer) {
+            score++;
+        } else {
+            this.parentElement.classList.add("wrong");
+        }
+
+        document.getElementById("score").innerText =
+            `Score: ${score} / ${total}`;
+    });
+});
+</script>
+
+</body>
+</html>
