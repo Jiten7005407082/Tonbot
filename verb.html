@@ -1,407 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verb - English Grammar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Verb and Its Kinds</title>
 
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-        }
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
-        .header {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
+.section {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 260px;
+  transition: 0.3s;
+}
 
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
 
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
+.read-btn:hover {
+  background-color: #ffc94d;
+}
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-3px);
-        }
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #fff;
+}
 
-        .content {
-            padding: 30px;
-        }
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
 
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
+.next-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
 
-        .intro h2 {
-            color: #0f2027;
-            margin-bottom: 15px;
-            font-size: 28px;
-        }
+.next-btn:hover {
+  background-color: #66bb6a;
+}
 
-        .intro p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .verb-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .type-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #0f2027;
-        }
-
-        .type-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .type-card h3 {
-            color: #0f2027;
-            margin-bottom: 15px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-        }
-
-        .type-card h3 span {
-            background: #0f2027;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .definition {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .example {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #203a43;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .meitei-mayek {
-            background: #fff8e1;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #fdbb2d;
-            font-family: 'Nirmala UI', sans-serif;
-        }
-
-        .meitei-mayek h4 {
-            color: #b21f1f;
-            margin-bottom: 8px;
-        }
-
-        .epao-mayek {
-            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .verb-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .verb-table th {
-            background: #0f2027;
-            color: white;
-            padding: 15px;
-            text-align: left;
-        }
-
-        .verb-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .verb-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .verb-table tr:hover {
-            background: #e9ecef;
-        }
-
-        .test-section {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .test-section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-        .test-section p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .option-btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 150px;
-        }
-
-        .yes-btn {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .yes-btn:hover {
-            background: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .no-btn {
-            background: #f44336;
-            color: white;
-        }
-
-        .no-btn:hover {
-            background: #da190b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-        }
-
-        @media (max-width: 768px) {
-            .verb-types {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 28px;
-            }
-
-            .options {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .option-btn {
-                width: 100%;
-                max-width: 250px;
-            }
-
-            .verb-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-    </style>
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="goBack()">← Back to Chat</button>
-            <h1>Verb</h1>
-            <p>Understanding Action Words in English Grammar</p>
-        </div>
 
-        <div class="content">
-            <div class="intro">
-                <h2>What is a Verb?</h2>
-                <p>A verb is a word that shows an action, occurrence, or state of being. It tells us what the subject of a sentence does or is.</p>
-                <div class="meitei-mayek">
-                    <h4>ꯚꯔꯕ ꯀꯔꯤꯅꯣ?</h4>
-                    <div class="epao-mayek">
-                        <p>ꯚꯔꯕ ꯑꯁꯤ ꯍꯧꯕꯥ, ꯄꯥꯏꯁꯤꯟꯕꯥ ꯑꯣꯏꯕꯥ ꯁꯔꯨꯛꯁꯤꯡꯒꯤ ꯃꯃꯤꯡꯕꯨ ꯈꯪꯅꯩ꯫ ꯍꯧꯖꯨ꯫ ꯚꯔꯕ ꯑꯁꯤ ꯋꯥꯍꯩꯒꯤ ꯈ꯭ꯋꯥꯏꯗꯒꯤ ꯃꯔꯨꯑꯣꯏꯕꯥ ꯑꯣꯏꯕꯥ ꯁꯔꯨꯛꯁꯤꯡꯗ ꯍꯧꯗꯣꯛꯄꯤ꯫</p>
-                    </div>
-                </div>
-            </div>
+<h1>Verb and Its Kinds</h1>
 
-            <div class="verb-types">
-                <div class="type-card">
-                    <h3><span>1</span> Action Verb</h3>
-                    <div class="definition">An action verb shows what someone or something does.</div>
-                    <div class="example"><strong>Examples:</strong> run, eat, dance, write</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯍꯧꯕꯥ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯂꯥꯡ, ꯊꯧꯗꯣꯛ, ꯅꯣꯟ, ꯀꯤꯛ</p></div>
-                    </div>
-                </div>
+<div class="section">
+  <p id="englishLecture">
+    A <strong>Verb</strong> is a word that shows an action, state, or possession.
+    <br><br>
+    Example:
+    <br>
+    She <strong>runs</strong> fast.
+    <br><br>
+    Kinds of Verbs:
+    <br><br>
+    <strong>1. Main Verb:</strong> Shows the main action.
+    <br>
+    Example: eat, write, play
+    <br><br>
+    <strong>2. Auxiliary Verb:</strong> Helps the main verb.
+    <br>
+    Example: is, am, are, have, do
+    <br><br>
+    <strong>3. Transitive Verb:</strong> Requires an object.
+    <br>
+    Example: She reads a book.
+    <br><br>
+    <strong>4. Intransitive Verb:</strong> Does not require an object.
+    <br>
+    Example: He sleeps.
+    <br><br>
+    <strong>5. Linking Verb:</strong> Links the subject to a description.
+    <br>
+    Example: is, seem, become
+  </p>
 
-                <div class="type-card">
-                    <h3><span>2</span> Linking Verb</h3>
-                    <div class="definition">A linking verb connects the subject with information about it (state of being).</div>
-                    <div class="example"><strong>Examples:</strong> am, is, are, was, were</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯋꯥꯍꯩ ꯃꯥꯍꯅꯤ ꯂꯥꯡꯕꯥ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯑꯃ, ꯏꯁ, ꯑꯥꯔ</p></div>
-                    </div>
-                </div>
+  <button class="read-btn" onclick="readEnglish()">
+    Read English Lecture
+  </button>
+</div>
 
-                <div class="type-card">
-                    <h3><span>3</span> Auxiliary (Helping) Verb</h3>
-                    <div class="definition">Helping verbs are used with main verbs to form verb phrases and indicate tenses or moods.</div>
-                    <div class="example"><strong>Examples:</strong> have, has, had, will, can</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯄꯥꯎꯗꯣꯡꯒꯤ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯍꯥꯚ, ꯀꯦꯟ, ꯋꯤꯜ</p></div>
-                    </div>
-                </div>
+<div class="section translation" id="hindiLecture">
+  <p>
+    <strong>Verb (क्रिया)</strong> वह शब्द है जो किसी कार्य, अवस्था या अधिकार को दर्शाता है।
+    <br><br>
+    उदाहरण:
+    <br>
+    वह तेज़ <strong>दौड़ती</strong> है।
+    <br><br>
+    क्रिया के प्रकार:
+    <br><br>
+    <strong>1. Main Verb (मुख्य क्रिया):</strong>
+    <br>
+    उदाहरण: खाना, लिखना, खेलना
+    <br><br>
+    <strong>2. Auxiliary Verb (सहायक क्रिया):</strong>
+    <br>
+    उदाहरण: है, हूँ, हैं, था
+    <br><br>
+    <strong>3. Transitive Verb (सकर्मक क्रिया):</strong>
+    <br>
+    उदाहरण: वह किताब पढ़ती है।
+    <br><br>
+    <strong>4. Intransitive Verb (अकर्मक क्रिया):</strong>
+    <br>
+    उदाहरण: वह सोता है।
+    <br><br>
+    <strong>5. Linking Verb (संबंधबोधक क्रिया):</strong>
+    <br>
+    उदाहरण: है, बनना, लगना
+  </p>
+</div>
 
-                <div class="type-card">
-                    <h3><span>4</span> Transitive Verb</h3>
-                    <div class="definition">A transitive verb takes a direct object that receives the action.</div>
-                    <div class="example"><strong>Examples:</strong> read a book, kick the ball</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯇ꯭ꯔꯦꯟꯁꯤꯇ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯀꯤꯛ ꯑꯃ ꯅꯨꯡꯃꯥꯔꯤꯛ</p></div>
-                    </div>
-                </div>
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
 
-                <div class="type-card">
-                    <h3><span>5</span> Intransitive Verb</h3>
-                    <div class="definition">An intransitive verb does not take a direct object.</div>
-                    <div class="example"><strong>Examples:</strong> sleep, go, arrive, sit</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯏꯟꯇ꯭ꯔꯦꯟꯁꯤꯇ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯊꯥꯛ, ꯃꯤꯠ, ꯑꯍꯣꯡ</p></div>
-                    </div>
-                </div>
+<button class="quiz-btn" onclick="location.href='verbquiz.html'">
+  Test Your Knowledge
+</button>
 
-                <div class="type-card">
-                    <h3><span>6</span> Modal Verb</h3>
-                    <div class="definition">A modal verb expresses ability, permission, necessity, or possibility.</div>
-                    <div class="example"><strong>Examples:</strong> can, may, must, should</div>
-                    <div class="meitei-mayek">
-                        <h4>ꯃꯣꯗꯥꯜ ꯚꯔꯕ</h4>
-                        <div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯀꯦꯟ, ꯃꯦꯜ, ꯁ꯭ꯍꯨꯗ</p></div>
-                    </div>
-                </div>
-            </div>
+<!-- NEXT LESSON -->
+<button class="next-btn" onclick="location.href='adverb.html'">
+  Go to the Next Lesson
+</button>
 
-            <div class="intro">
-                <h2>Verb Functions in Sentences</h2>
-                <p>Verbs tell us what the subject is doing, when it happens, and the state of being in a sentence.</p>
-                <div class="meitei-mayek">
-                    <h4>ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯚꯔꯕꯒꯤ ꯊꯕꯛꯁꯤꯡ</h4>
-                    <div class="epao-mayek"><p>ꯚꯔꯕ ꯑꯁꯤ ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯍꯧꯕꯥ ꯁꯔꯨꯛꯁꯤꯡꯗ ꯑꯃꯁꯤ ꯃꯇꯝ ꯊꯥꯔꯒꯠꯄꯥ ꯇꯧꯏ꯫</p></div>
-                </div>
-            </div>
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
 
-            <table class="verb-table">
-                <thead>
-                    <tr>
-                        <th>Function</th>
-                        <th>Description</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Main Verb</td>
-                        <td>Shows the main action or state of being</td>
-                        <td>She <strong>runs</strong> fast.</td>
-                    </tr>
-                    <tr>
-                        <td>Helping Verb</td>
-                        <td>Helps the main verb form tenses or questions</td>
-                        <td>She <strong>is running</strong> now.</td>
-                    </tr>
-                    <tr>
-                        <td>Linking Verb</td>
-                        <
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
+
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
+
+</body>
+</html>
