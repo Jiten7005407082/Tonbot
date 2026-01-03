@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preposition Quiz</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #ffffffee;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #203a43;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.question {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: #c8f7c5;
+}
+
+.wrong {
+    background-color: #f7c5c5;
+}
+
+#score {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #203a43;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Preposition Quiz</h1>
+<p>Select the correct answer. Score updates instantly.</p>
+
+<div class="question" data-answer="on">
+<h3>1. The book is ___ the table.</h3>
+<label><input type="radio" name="q1" value="on"> on</label>
+<label><input type="radio" name="q1" value="in"> in</label>
+<label><input type="radio" name="q1" value="at"> at</label>
+</div>
+
+<div class="question" data-answer="under">
+<h3>2. The cat is hiding ___ the bed.</h3>
+<label><input type="radio" name="q2" value="over"> over</label>
+<label><input type="radio" name="q2" value="under"> under</label>
+<label><input type="radio" name="q2" value="between"> between</label>
+</div>
+
+<div class="question" data-answer="in">
+<h3>3. She lives ___ Delhi.</h3>
+<label><input type="radio" name="q3" value="on"> on</label>
+<label><input type="radio" name="q3" value="at"> at</label>
+<label><input type="radio" name="q3" value="in"> in</label>
+</div>
+
+<div class="question" data-answer="at">
+<h3>4. He arrived ___ the station early.</h3>
+<label><input type="radio" name="q4" value="in"> in</label>
+<label><input type="radio" name="q4" value="on"> on</label>
+<label><input type="radio" name="q4" value="at"> at</label>
+</div>
+
+<div class="question" data-answer="between">
+<h3>5. The ball is ___ the two boxes.</h3>
+<label><input type="radio" name="q5" value="among"> among</label>
+<label><input type="radio" name="q5" value="between"> between</label>
+<label><input type="radio" name="q5" value="over"> over</label>
+</div>
+
+<div class="question" data-answer="before">
+<h3>6. Finish your homework ___ dinner.</h3>
+<label><input type="radio" name="q6" value="after"> after</label>
+<label><input type="radio" name="q6" value="before"> before</label>
+<label><input type="radio" name="q6" value="during"> during</label>
+</div>
+
+<div class="question" data-answer="by">
+<h3>7. The letter was written ___ her.</h3>
+<label><input type="radio" name="q7" value="with"> with</label>
+<label><input type="radio" name="q7" value="by"> by</label>
+<label><input type="radio" name="q7" value="from"> from</label>
+</div>
+
+<div class="question" data-answer="into">
+<h3>8. The boy jumped ___ the river.</h3>
+<label><input type="radio" name="q8" value="onto"> onto</label>
+<label><input type="radio" name="q8" value="in"> in</label>
+<label><input type="radio" name="q8" value="into"> into</label>
+</div>
+
+<div class="question" data-answer="for">
+<h3>9. This gift is ___ you.</h3>
+<label><input type="radio" name="q9" value="to"> to</label>
+<label><input type="radio" name="q9" value="for"> for</label>
+<label><input type="radio" name="q9" value="with"> with</label>
+</div>
+
+<div class="question" data-answer="through">
+<h3>10. The train passed ___ the tunnel.</h3>
+<label><input type="radio" name="q10" value="across"> across</label>
+<label><input type="radio" name="q10" value="through"> through</label>
+<label><input type="radio" name="q10" value="along"> along</label>
+</div>
+
+<div id="score">Score: 0 / 10</div>
+
+</div>
+
+<script>
+let score = 0;
+let total = document.querySelectorAll(".question").length;
+
+document.querySelectorAll("input[type=radio]").forEach(option => {
+    option.addEventListener("change", function () {
+        let question = this.closest(".question");
+        let correctAnswer = question.dataset.answer;
+
+        if (question.classList.contains("answered")) return;
+        question.classList.add("answered");
+
+        question.querySelectorAll("label").forEach(label => {
+            let input = label.querySelector("input");
+            if (input.value === correctAnswer) {
+                label.classList.add("correct");
+            }
+        });
+
+        if (this.value === correctAnswer) {
+            score++;
+        } else {
+            this.parentElement.classList.add("wrong");
+        }
+
+        document.getElementById("score").innerText =
+            `Score: ${score} / ${total}`;
+    });
+});
+</script>
+
+</body>
+</html>
