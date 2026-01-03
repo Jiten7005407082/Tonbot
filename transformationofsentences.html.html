@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transformation of Sentences</title>
+
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.section {
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 320px;
+  transition: 0.3s;
+}
+
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
+
+.read-btn:hover {
+  background-color: #ffc94d;
+}
+
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #ffffff;
+}
+
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
+
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Transformation of Sentences</h1>
+
+<div class="section">
+<p id="englishLecture">
+<strong>Transformation of Sentences</strong> is the process of changing the form of a sentence without changing its meaning.  
+<br><br>
+It helps in improving writing and speaking skills.
+<br><br>
+
+<strong>Rules for Transformation:</strong><br><br>
+
+<strong>1. Assertive to Interrogative:</strong><br>
+- Use auxiliary verbs (do/does/did) for questions.  
+- Example: She plays football. → Does she play football?
+<br><br>
+
+<strong>2. Assertive to Negative:</strong><br>
+- Add "not" after the auxiliary verb or use "does not/did not" if no auxiliary is present.  
+- Example: He goes to school. → He does not go to school.
+<br><br>
+
+<strong>3. Interrogative to Assertive:</strong><br>
+- Remove the auxiliary verb and change the word order.  
+- Example: Is he coming? → He is coming.
+<br><br>
+
+<strong>4. Affirmative to Exclamatory:</strong><br>
+- Use words like "What" or "How" to show emotion.  
+- Example: She is beautiful. → What a beautiful girl she is!
+<br><br>
+
+<strong>5. Positive to Comparative:</strong><br>
+- Compare two nouns using "than".  
+- Example: This book is interesting. → This book is more interesting than that one.
+<br><br>
+
+<strong>6. Change of Voice:</strong><br>
+- Active voice ↔ Passive voice.  
+- Example (Active): She writes a letter.  
+- Example (Passive): A letter is written by her.
+</p>
+
+<button class="read-btn" onclick="readEnglish()">
+Read English Lesson
+</button>
+</div>
+
+<div class="section translation" id="hindiLecture">
+<p>
+<strong>वाक्य रूपांतरण (Transformation of Sentences)</strong> वाक्य को इस तरह बदलना कि अर्थ न बदले।  
+<br><br>
+यह लेखन और बोलने के कौशल को सुधारने में मदद करता है।
+<br><br>
+
+<strong>रूपांतरण के नियम:</strong><br><br>
+
+<strong>1. कथनात्मक → प्रश्नवाचक:</strong><br>
+- प्रश्न बनाने के लिए सहायक क्रियाओं (do/does/did) का प्रयोग करें।  
+- उदाहरण: वह फुटबॉल खेलती है। → क्या वह फुटबॉल खेलती है?
+<br><br>
+
+<strong>2. कथनात्मक → नकारात्मक:</strong><br>
+- सहायक क्रिया के बाद "not" जोड़ें। यदि कोई सहायक क्रिया नहीं है, तो "does not/did not" का प्रयोग करें।  
+- उदाहरण: वह स्कूल जाता है। → वह स्कूल नहीं जाता है।
+<br><br>
+
+<strong>3. प्रश्नवाचक → कथनात्मक:</strong><br>
+- सहायक क्रिया हटा दें और शब्द क्रम बदलें।  
+- उदाहरण: क्या वह आ रहा है? → वह आ रहा है।
+<br><br>
+
+<strong>4. सकरात्मक → विस्मयादिबोधक:</strong><br>
+- भावना दिखाने के लिए "क्या/कितना" जैसे शब्दों का प्रयोग करें।  
+- उदाहरण: वह सुंदर है। → कितनी सुंदर लड़की है वह!
+<br><br>
+
+<strong>5. सकारात्मक → तुलनात्मक:</strong><br>
+- दो संज्ञाओं की तुलना के लिए "से" या "than" का प्रयोग करें।  
+- उदाहरण: यह किताब रोचक है। → यह किताब उस किताब से अधिक रोचक है।
+<br><br>
+
+<strong>6. वॉइस परिवर्तन:</strong><br>
+- सक्रिय ↔ निष्क्रिय वॉइस  
+- उदाहरण (सक्रिय): वह पत्र लिखती है।  
+- उदाहरण (निष्क्रिय): पत्र उसके द्वारा लिखा जाता है।
+</p>
+</div>
+
+<button class="read-btn" onclick="readHindi()">
+हिंदी में पढ़ें
+</button>
+
+<button class="quiz-btn" onclick="location.href='transformationquiz.html'">
+Test Your Knowledge
+</button>
+
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
+
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
+
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
+
+</body>
+</html>
