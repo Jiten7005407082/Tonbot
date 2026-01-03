@@ -1,368 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adverb - English Grammar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Adverb and Its Kinds</title>
 
-        body {
-            background: linear-gradient(135deg, #42275a, #734b6d);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-        }
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
-        .header {
-            background: linear-gradient(to right, #42275a, #734b6d);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
+.section {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 260px;
+  transition: 0.3s;
+}
 
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
 
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
+.read-btn:hover {
+  background-color: #ffc94d;
+}
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-3px);
-        }
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #fff;
+}
 
-        .content {
-            padding: 30px;
-        }
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
 
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
+.next-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
 
-        .intro h2 {
-            color: #42275a;
-            margin-bottom: 15px;
-            font-size: 28px;
-        }
+.next-btn:hover {
+  background-color: #66bb6a;
+}
 
-        .intro p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .adverb-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .type-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #42275a;
-        }
-
-        .type-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .type-card h3 {
-            color: #42275a;
-            margin-bottom: 15px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-        }
-
-        .type-card h3 span {
-            background: #42275a;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .definition {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .example {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #734b6d;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .meitei-mayek {
-            background: #fff8e1;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #fdbb2d;
-        }
-
-        .meitei-mayek h4 {
-            color: #b21f1f;
-            margin-bottom: 8px;
-        }
-
-        .epao-mayek {
-            font-family: 'Nirmala UI', 'Noto Sans Meetei Mayek', sans-serif;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .adverb-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .adverb-table th {
-            background: #42275a;
-            color: white;
-            padding: 15px;
-            text-align: left;
-        }
-
-        .adverb-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .adverb-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .test-section {
-            background: linear-gradient(to right, #42275a, #734b6d);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .test-section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-        .options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .option-btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 150px;
-        }
-
-        .yes-btn {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .yes-btn:hover {
-            background: #45a049;
-            transform: translateY(-3px);
-        }
-
-        .no-btn {
-            background: #f44336;
-            color: white;
-        }
-
-        .no-btn:hover {
-            background: #da190b;
-            transform: translateY(-3px);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-        }
-    </style>
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <h1>Adverb</h1>
-            <p>Describing how, when, where, and to what extent actions happen</p>
-        </div>
 
-        <div class="content">
-            <div class="intro">
-                <h2>What is an Adverb?</h2>
-                <p>An adverb is a word that modifies a verb, adjective, or another adverb. It tells us how, when, where, or how often something happens.</p>
-                <div class="meitei-mayek">
-                    <h4>ꯑꯗꯚꯔꯕ ꯀꯔꯤꯅꯣ?</h4>
-                    <div class="epao-mayek">
-                        <p>ꯑꯗꯚꯔꯕ ꯑꯁꯤ ꯚꯔꯕꯗ ꯍꯧꯕꯥ ꯁꯔꯨꯛꯁꯤꯡꯗ ꯍꯧꯅꯥ ꯍꯧꯅꯕꯥ, ꯑꯃꯁꯤꯒꯤ ꯃꯇꯝ, ꯑꯍꯣꯡ ꯑꯃ ꯑꯇꯣꯡ ꯃꯥꯡꯕꯥ ꯁꯔꯨꯛꯁꯤꯡ ꯈꯪꯅꯩ꯫</p>
-                    </div>
-                </div>
-            </div>
+<h1>Adverb and Its Kinds</h1>
 
-            <div class="adverb-types">
-                <div class="type-card">
-                    <h3><span>1</span> Adverb of Manner</h3>
-                    <div class="definition">Tells how something happens or is done.</div>
-                    <div class="example"><strong>Examples:</strong> quickly, slowly, neatly</div>
-                    <div class="meitei-mayek"><h4>ꯍꯧꯅꯥ ꯑꯗꯚꯔꯕ</h4><div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯅꯩꯇꯨꯛꯅꯥ, ꯊꯧꯅꯥ</p></div></div>
-                </div>
+<div class="section">
+  <p id="englishLecture">
+    An <strong>Adverb</strong> is a word that modifies a verb, an adjective, or another adverb.
+    <br><br>
+    Example:
+    <br>
+    She sings <strong>sweetly</strong>.
+    <br><br>
+    Kinds of Adverbs:
+    <br><br>
+    <strong>1. Adverb of Manner:</strong> Shows how an action is done.
+    <br>
+    Example: slowly, carefully, well
+    <br><br>
+    <strong>2. Adverb of Place:</strong> Shows where an action is done.
+    <br>
+    Example: here, there, everywhere
+    <br><br>
+    <strong>3. Adverb of Time:</strong> Shows when an action is done.
+    <br>
+    Example: now, today, yesterday
+    <br><br>
+    <strong>4. Adverb of Frequency:</strong> Shows how often.
+    <br>
+    Example: always, often, never
+    <br><br>
+    <strong>5. Adverb of Degree:</strong> Shows how much or to what extent.
+    <br>
+    Example: very, too, quite
+  </p>
 
-                <div class="type-card">
-                    <h3><span>2</span> Adverb of Time</h3>
-                    <div class="definition">Tells when an action happens.</div>
-                    <div class="example"><strong>Examples:</strong> now, yesterday, soon</div>
-                    <div class="meitei-mayek"><h4>ꯃꯇꯝꯗꯥ ꯑꯗꯚꯔꯕ</h4><div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯃꯇꯥꯡꯅꯥ, ꯑꯍꯣꯡꯗꯣꯛ</p></div></div>
-                </div>
+  <button class="read-btn" onclick="readEnglish()">
+    Read English Lecture
+  </button>
+</div>
 
-                <div class="type-card">
-                    <h3><span>3</span> Adverb of Place</h3>
-                    <div class="definition">Tells where an action happens.</div>
-                    <div class="example"><strong>Examples:</strong> here, there, outside</div>
-                    <div class="meitei-mayek"><h4>ꯃꯥꯍꯟꯗꯥ ꯑꯗꯚꯔꯕ</h4><div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯍꯧꯔꯤ, ꯊꯥꯔꯤ</p></div></div>
-                </div>
+<div class="section translation" id="hindiLecture">
+  <p>
+    <strong>Adverb (क्रिया विशेषण)</strong> वह शब्द है जो क्रिया, विशेषण या किसी अन्य क्रिया विशेषण की विशेषता बताता है।
+    <br><br>
+    उदाहरण:
+    <br>
+    वह मधुर <strong>ढंग से</strong> गाती है।
+    <br><br>
+    क्रिया विशेषण के प्रकार:
+    <br><br>
+    <strong>1. Adverb of Manner (रीतिवाचक क्रिया विशेषण):</strong>
+    <br>
+    उदाहरण: धीरे, सावधानी से, अच्छी तरह
+    <br><br>
+    <strong>2. Adverb of Place (स्थानवाचक क्रिया विशेषण):</strong>
+    <br>
+    उदाहरण: यहाँ, वहाँ, कहीं
+    <br><br>
+    <strong>3. Adverb of Time (कालवाचक क्रिया विशेषण):</strong>
+    <br>
+    उदाहरण: आज, कल, अभी
+    <br><br>
+    <strong>4. Adverb of Frequency (आवृत्तिवाचक क्रिया विशेषण):</strong>
+    <br>
+    उदाहरण: हमेशा, कभी-कभी, कभी नहीं
+    <br><br>
+    <strong>5. Adverb of Degree (परिमाणवाचक क्रिया विशेषण):</strong>
+    <br>
+    उदाहरण: बहुत, अधिक, काफी
+  </p>
+</div>
 
-                <div class="type-card">
-                    <h3><span>4</span> Adverb of Frequency</h3>
-                    <div class="definition">Tells how often an action happens.</div>
-                    <div class="example"><strong>Examples:</strong> always, sometimes, never</div>
-                    <div class="meitei-mayek"><h4>ꯃꯊꯧꯕꯥ ꯑꯗꯚꯔꯕ</h4><div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯍꯧꯗꯣꯛꯄꯤ, ꯃꯃꯤꯡꯁꯤꯡ</p></div></div>
-                </div>
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
 
-                <div class="type-card">
-                    <h3><span>5</span> Adverb of Degree</h3>
-                    <div class="definition">Tells the intensity or extent of an action.</div>
-                    <div class="example"><strong>Examples:</strong> very, too, enough</div>
-                    <div class="meitei-mayek"><h4>ꯃꯥꯡꯅꯥ ꯑꯗꯚꯔꯕ</h4><div class="epao-mayek"><p>ꯈꯨꯗꯝ: ꯃꯥꯡꯅꯥ, ꯋꯤꯡꯅꯥ</p></div></div>
-                </div>
-            </div>
+<button class="quiz-btn" onclick="location.href='adverbquiz.html'">
+  Test Your Knowledge
+</button>
 
-            <div class="intro">
-                <h2>Adverb Functions in Sentences</h2>
-                <p>Adverbs describe verbs, adjectives, or other adverbs by giving more detail about how, when, where, or to what degree something happens.</p>
-                <div class="meitei-mayek">
-                    <h4>ꯋꯥꯍꯩꯄꯔꯦꯡꯗꯥ ꯑꯗꯚꯔꯕꯒꯤ ꯊꯕꯛꯁꯤꯡ</h4>
-                    <div class="epao-mayek"><p>ꯑꯗꯚꯔꯕ ꯑꯁꯤ ꯚꯔꯕ, ꯑꯦꯗꯖꯤꯛꯁꯤꯟ ꯑꯃ ꯑꯗꯚꯔꯕꯗ ꯍꯧꯕꯥ ꯁꯔꯨꯛꯁꯤꯡꯗ ꯑꯃꯁꯤꯒꯤ ꯃꯇꯝ ꯍꯧꯒꯠꯄꯥ ꯑꯃꯁꯤꯒꯤ ꯍꯧꯅꯥ ꯍꯧꯅꯕꯥ ꯇꯧꯏ꯫</p></div>
-                </div>
-            </div>
+<!-- NEXT LESSON -->
+<button class="next-btn" onclick="location.href='preposition.html'">
+  Go to the Next Lesson
+</button>
 
-            <table class="adverb-table">
-                <thead>
-                    <tr>
-                        <th>Function</th>
-                        <th>Description</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Modify Verb</td>
-                        <td>Describes how an action happens</td>
-                        <td>She runs <strong>quickly</strong>.</td>
-                    </tr>
-                    <tr>
-                        <td>Modify Adjective</td>
-                        <td>Intensifies or limits an adjective</td>
-                        <td>He is <strong>very</strong> tall.</td>
-                    </tr>
-                    <tr>
-                        <td>Modify Another Adverb</td>
-                        <td>Changes the meaning of another adverb</td>
-                        <td>He works <strong>too</strong> slowly.</td>
-                    </tr>
-                </tbody>
-            </table>
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
 
-            <div class="test-section">
-                <h2>Want to Test Your Knowledge?</h2>
-                <p>Take a short quiz to check how well you understand adverbs!</p>
-                <div class="options">
-                    <button class="yes-btn" onclick="location.href='adverbquiz.html'">Start Quiz</button>
-                    <button class="no-btn" onclick="goBack()">Go Back</button>
-                </div>
-            </div>
-        </div>
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
 
-        <div class="footer">
-            © 2025 English Grammar by Thongam Jiten Singh | Designed for Learners
-        </div>
-    </div>
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>
