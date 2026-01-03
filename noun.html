@@ -1,106 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Two YouTube Videos with Play Buttons</title>
+<meta charset="UTF-8">
+<title>Noun and Its Kinds</title>
 
-  <style>
-    body {
-      background-color: #0a1e44;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 40px;
-    }
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
 
-    iframe {
-      width: 85%;
-      max-width: 750px;
-      height: 425px;
-      border: none;
-      display: none;
-      margin: 20px auto;
-    }
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
-    .play-text {
-      font-size: 28px;
-      font-weight: bold;
-      color: #00b2ff;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+.section {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-    .play-text:hover {
-      text-decoration: underline;
-    }
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 260px;
+  transition: 0.3s;
+}
 
-    .quiz-link {
-      margin-top: 40px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #ffcc00;
-      display: block;
-    }
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
 
-    .quiz-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+.read-btn:hover {
+  background-color: #ffc94d;
+}
+
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #fff;
+}
+
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
+
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
 </head>
 <body>
 
-  <h2>Video Lesson</h2>
+<h1>Noun and Its Kinds</h1>
 
-  <!-- PLAY BUTTON ABOVE FIRST VIDEO -->
-  <div class="play-text" onclick="playFirstVideo()">START CLASS</div>
+<div class="section">
+  <p id="englishLecture">
+    A <strong>Noun</strong> is the name of a person, place, animal, thing, or idea.
+    <br><br>
+    There are several kinds of nouns:
+    <br><br>
+    <strong>1. Proper Noun:</strong> It is the name of a particular person or place.
+    <br>
+    Example: Ram, India, Delhi
+    <br><br>
+    <strong>2. Common Noun:</strong> It is the name of a general person, place, or thing.
+    <br>
+    Example: boy, city, river
+    <br><br>
+    <strong>3. Collective Noun:</strong> It names a group of people, animals, or things.
+    <br>
+    Example: team, herd, class
+    <br><br>
+    <strong>4. Material Noun:</strong> It refers to substances from which things are made.
+    <br>
+    Example: gold, water, wood
+    <br><br>
+    <strong>5. Abstract Noun:</strong> It names a quality, state, or idea that cannot be seen or touched.
+    <br>
+    Example: honesty, bravery, happiness
+  </p>
 
-  <!-- VIDEO 1 -->
-  <iframe id="video1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <button class="read-btn" onclick="readEnglish()">
+    Read English Lecture
+  </button>
+</div>
 
-  <!-- PLAY BUTTON FOR SECOND VIDEO -->
-  <div class="play-text" id="nextBtn" onclick="playSecondVideo()" style="display:none;">
-    WANT MANIPURI LECTURE
-  </div>
+<div class="section translation" id="hindiLecture">
+  <p>
+    <strong>Noun (संज्ञा)</strong> किसी व्यक्ति, स्थान, जानवर, वस्तु या भाव के नाम को कहते हैं।
+    <br><br>
+    संज्ञा के मुख्य प्रकार इस प्रकार हैं:
+    <br><br>
+    <strong>1. Proper Noun (व्यक्तिवाचक संज्ञा):</strong>
+    किसी विशेष व्यक्ति या स्थान का नाम।
+    <br>
+    उदाहरण: राम, भारत, दिल्ली
+    <br><br>
+    <strong>2. Common Noun (जातिवाचक संज्ञा):</strong>
+    किसी सामान्य व्यक्ति, स्थान या वस्तु का नाम।
+    <br>
+    उदाहरण: लड़का, शहर, नदी
+    <br><br>
+    <strong>3. Collective Noun (समूहवाचक संज्ञा):</strong>
+    किसी समूह का नाम।
+    <br>
+    उदाहरण: टीम, झुंड, कक्षा
+    <br><br>
+    <strong>4. Material Noun (द्रव्यवाचक संज्ञा):</strong>
+    वह पदार्थ जिससे वस्तुएँ बनती हैं।
+    <br>
+    उदाहरण: सोना, पानी, लकड़ी
+    <br><br>
+    <strong>5. Abstract Noun (भाववाचक संज्ञा):</strong>
+    जो भावना या गुण को दर्शाए।
+    <br>
+    उदाहरण: ईमानदारी, बहादुरी, खुशी
+  </p>
+</div>
 
-  <!-- VIDEO 2 -->
-  <iframe id="video2" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
 
-  <!-- Quiz link -->
-  <a class="quiz-link" href="partsofspeechquiz.html">Test your Knowledge</a>
+<button class="quiz-btn" onclick="location.href='nounquiz.html'">
+  Test Your Knowledge
+</button>
 
-  <script>
-    // Replace these with your actual YouTube video IDs
-    const firstVideoID = "TRfPQ_R5j1Q";  // Example first video
-    const secondVideoID = "TRfPQ_R5j1Q";  // Replace with your second video ID
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
 
-    function playFirstVideo() {
-      const v1 = document.getElementById("video1");
-      const nextBtn = document.getElementById("nextBtn");
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
 
-      v1.src = `https://www.youtube.com/embed/${firstVideoID}?autoplay=1`;
-      v1.style.display = "block";
-
-      // Show button for second video
-      nextBtn.style.display = "block";
-    }
-
-    function playSecondVideo() {
-      const v1 = document.getElementById("video1");
-      const v2 = document.getElementById("video2");
-
-      // Hide first video
-      v1.style.display = "none";
-
-      // Load and play second video
-      v2.src = `https://www.youtube.com/embed/${secondVideoID}?autoplay=1`;
-      v2.style.display = "block";
-    }
-  </script>
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
 
 </body>
 </html>
-
-
-
-
-
