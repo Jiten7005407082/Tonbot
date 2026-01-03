@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Preposition and Its Use</title>
+
+<style>
+body {
+  background-color: #0a1e44;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+h1 {
+  color: #00b2ff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.section {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #112b5f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 28px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 260px;
+  transition: 0.3s;
+}
+
+.read-btn {
+  background-color: #ffb400;
+  color: #000;
+}
+
+.read-btn:hover {
+  background-color: #ffc94d;
+}
+
+.quiz-btn {
+  background-color: #00b2ff;
+  color: #fff;
+}
+
+.quiz-btn:hover {
+  background-color: #33c0ff;
+}
+
+.next-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.next-btn:hover {
+  background-color: #66bb6a;
+}
+
+.translation {
+  background-color: #224080;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #ffff66;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<h1>Preposition</h1>
+
+<div class="section">
+  <p id="englishLecture">
+    A <strong>Preposition</strong> is a word placed before a noun or pronoun to show its relationship with another word in the sentence.
+    <br><br>
+    Example:
+    <br>
+    The book is <strong>on</strong> the table.
+    <br><br>
+    Common Prepositions:
+    <br><br>
+    <strong>1. Preposition of Place:</strong>
+    <br>
+    Example: in, on, under, behind
+    <br><br>
+    <strong>2. Preposition of Time:</strong>
+    <br>
+    Example: at, on, in, during
+    <br><br>
+    <strong>3. Preposition of Direction:</strong>
+    <br>
+    Example: to, into, towards
+    <br><br>
+    <strong>4. Preposition of Agent:</strong>
+    <br>
+    Example: by
+    <br><br>
+    <strong>5. Preposition of Instrument:</strong>
+    <br>
+    Example: with, by
+  </p>
+
+  <button class="read-btn" onclick="readEnglish()">
+    Read English Lecture
+  </button>
+</div>
+
+<div class="section translation" id="hindiLecture">
+  <p>
+    <strong>Preposition (संबंधबोधक)</strong> वह शब्द है जो संज्ञा या सर्वनाम का संबंध वाक्य के अन्य शब्दों से बताता है।
+    <br><br>
+    उदाहरण:
+    <br>
+    किताब मेज <strong>पर</strong> है।
+    <br><br>
+    संबंधबोधक के प्रकार:
+    <br><br>
+    <strong>1. Preposition of Place (स्थानवाचक संबंधबोधक):</strong>
+    <br>
+    उदाहरण: में, पर, नीचे, पीछे
+    <br><br>
+    <strong>2. Preposition of Time (कालवाचक संबंधबोधक):</strong>
+    <br>
+    उदाहरण: पर, में, के दौरान
+    <br><br>
+    <strong>3. Preposition of Direction (दिशावाचक संबंधबोधक):</strong>
+    <br>
+    उदाहरण: की ओर, में
+    <br><br>
+    <strong>4. Preposition of Agent (कर्ता संबंधबोधक):</strong>
+    <br>
+    उदाहरण: द्वारा
+    <br><br>
+    <strong>5. Preposition of Instrument (साधन संबंधबोधक):</strong>
+    <br>
+    उदाहरण: से, द्वारा
+  </p>
+</div>
+
+<button class="read-btn" onclick="readHindi()">
+  हिंदी में पढ़ें
+</button>
+
+<button class="quiz-btn" onclick="location.href='prepositionquiz.html'">
+  Test Your Knowledge
+</button>
+
+<!-- NEXT LESSON -->
+<button class="next-btn" onclick="location.href='conjunction.html'">
+  Go to the Next Lesson
+</button>
+
+<script>
+function speak(text, lang) {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.rate = 1;
+    utter.pitch = 1;
+    speechSynthesis.speak(utter);
+  }
+}
+
+function readEnglish() {
+  speak(document.getElementById("englishLecture").innerText, "en-US");
+}
+
+function readHindi() {
+  const h = document.getElementById("hindiLecture");
+  h.style.display = "block";
+  speak(h.innerText, "hi-IN");
+}
+</script>
+
+</body>
+</html>
