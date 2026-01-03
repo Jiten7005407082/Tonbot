@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conjunction Quiz</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #232526, #414345);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #ffffffee;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #232526;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.question {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: #c8f7c5;
+}
+
+.wrong {
+    background-color: #f7c5c5;
+}
+
+#score {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #232526;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Conjunction Quiz</h1>
+<p>Choose the correct conjunction. Score updates instantly.</p>
+
+<div class="question" data-answer="and">
+<h3>1. I bought apples ___ oranges.</h3>
+<label><input type="radio" name="q1" value="and"> and</label>
+<label><input type="radio" name="q1" value="but"> but</label>
+<label><input type="radio" name="q1" value="because"> because</label>
+</div>
+
+<div class="question" data-answer="but">
+<h3>2. He is poor ___ honest.</h3>
+<label><input type="radio" name="q2" value="and"> and</label>
+<label><input type="radio" name="q2" value="but"> but</label>
+<label><input type="radio" name="q2" value="so"> so</label>
+</div>
+
+<div class="question" data-answer="because">
+<h3>3. She was absent ___ she was ill.</h3>
+<label><input type="radio" name="q3" value="but"> but</label>
+<label><input type="radio" name="q3" value="because"> because</label>
+<label><input type="radio" name="q3" value="and"> and</label>
+</div>
+
+<div class="question" data-answer="or">
+<h3>4. Hurry up ___ you will miss the bus.</h3>
+<label><input type="radio" name="q4" value="and"> and</label>
+<label><input type="radio" name="q4" value="or"> or</label>
+<label><input type="radio" name="q4" value="but"> but</label>
+</div>
+
+<div class="question" data-answer="so">
+<h3>5. It was raining, ___ we stayed indoors.</h3>
+<label><input type="radio" name="q5" value="but"> but</label>
+<label><input type="radio" name="q5" value="so"> so</label>
+<label><input type="radio" name="q5" value="or"> or</label>
+</div>
+
+<div class="question" data-answer="although">
+<h3>6. ___ he is rich, he is unhappy.</h3>
+<label><input type="radio" name="q6" value="because"> because</label>
+<label><input type="radio" name="q6" value="although"> although</label>
+<label><input type="radio" name="q6" value="so"> so</label>
+</div>
+
+<div class="question" data-answer="if">
+<h3>7. I will help you ___ you ask me.</h3>
+<label><input type="radio" name="q7" value="unless"> unless</label>
+<label><input type="radio" name="q7" value="if"> if</label>
+<label><input type="radio" name="q7" value="because"> because</label>
+</div>
+
+<div class="question" data-answer="while">
+<h3>8. She was cooking ___ I was studying.</h3>
+<label><input type="radio" name="q8" value="because"> because</label>
+<label><input type="radio" name="q8" value="while"> while</label>
+<label><input type="radio" name="q8" value="but"> but</label>
+</div>
+
+<div class="question" data-answer="unless">
+<h3>9. You will fail ___ you work hard.</h3>
+<label><input type="radio" name="q9" value="unless"> unless</label>
+<label><input type="radio" name="q9" value="because"> because</label>
+<label><input type="radio" name="q9" value="so"> so</label>
+</div>
+
+<div class="question" data-answer="nor">
+<h3>10. He neither called ___ texted me.</h3>
+<label><input type="radio" name="q10" value="or"> or</label>
+<label><input type="radio" name="q10" value="nor"> nor</label>
+<label><input type="radio" name="q10" value="and"> and</label>
+</div>
+
+<div id="score">Score: 0 / 10</div>
+
+</div>
+
+<script>
+let score = 0;
+let total = document.querySelectorAll(".question").length;
+
+document.querySelectorAll("input[type=radio]").forEach(option => {
+    option.addEventListener("change", function () {
+        let question = this.closest(".question");
+        let correctAnswer = question.dataset.answer;
+
+        if (question.classList.contains("answered")) return;
+        question.classList.add("answered");
+
+        question.querySelectorAll("label").forEach(label => {
+            let input = label.querySelector("input");
+            if (input.value === correctAnswer) {
+                label.classList.add("correct");
+            }
+        });
+
+        if (this.value === correctAnswer) {
+            score++;
+        } else {
+            this.parentElement.classList.add("wrong");
+        }
+
+        document.getElementById("score").innerText =
+            `Score: ${score} / ${total}`;
+    });
+});
+</script>
+
+</body>
+</html>
