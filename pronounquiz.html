@@ -3,90 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pronoun Quiz</title>
+<title>Instant Quiz</title>
 
 <style>
 body {
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-  font-family: 'Segoe UI', sans-serif;
-  padding: 20px;
-  margin: 0;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
 .container {
-  max-width: 1000px;
-  margin: auto;
-  background: rgba(255,255,255,0.95);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 900px;
+    margin: auto;
+    background: #ffffffee;
+    padding: 30px;
+    border-radius: 15px;
 }
 
 h1 {
-  text-align: center;
-  color: #1a2a6c;
-  font-size: 36px;
-}
-
-p {
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 30px;
+    text-align: center;
+    color: #1a2a6c;
 }
 
 .question {
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.question h3 {
-  color: #1a2a6c;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 label {
-  display: block;
-  padding: 6px 10px;
-  cursor: pointer;
-  border-radius: 5px;
+    display: block;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-label:hover {
-  background: #fdbb2d33;
+.correct {
+    background-color: #c8f7c5;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  margin: 10px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
+.wrong {
+    background-color: #f7c5c5;
 }
 
-.submit-btn {
-  background: #4CAF50;
-  color: white;
-}
-
-.retry-btn {
-  background: #b21f1f;
-  color: white;
-}
-
-.back-btn {
-  background: #1a2a6c;
-  color: white;
-}
-
-#result {
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 25px;
-  color: #b21f1f;
+#score {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #b21f1f;
 }
 </style>
 </head>
@@ -94,180 +61,66 @@ button {
 <body>
 
 <div class="container">
-<h1>Pronoun Quiz</h1>
-<p>Choose the correct answer. Total Questions: 20</p>
+<h1>Adjective Quiz</h1>
 
-<form id="quizForm">
+<div id="quiz">
 
-<div class="question">
-<h3>1. Identify the pronoun: “He is my best friend.”</h3>
-<label><input type="radio" name="q1" value="He"> He</label>
-<label><input type="radio" name="q1" value="friend"> friend</label>
-<label><input type="radio" name="q1" value="best"> best</label>
+<div class="question" data-answer="red">
+<h3>1. Which word is an adjective in “She wore a red dress”?</h3>
+<label><input type="radio" name="q1" value="red"> red</label>
+<label><input type="radio" name="q1" value="dress"> dress</label>
+<label><input type="radio" name="q1" value="wore"> wore</label>
 </div>
 
-<div class="question">
-<h3>2. Which is a personal pronoun?</h3>
-<label><input type="radio" name="q2" value="She"> She</label>
-<label><input type="radio" name="q2" value="Beautiful"> Beautiful</label>
-<label><input type="radio" name="q2" value="Running"> Running</label>
+<div class="question" data-answer="tall">
+<h3>2. Choose the adjective: “The tall man is here.”</h3>
+<label><input type="radio" name="q2" value="man"> man</label>
+<label><input type="radio" name="q2" value="tall"> tall</label>
+<label><input type="radio" name="q2" value="is"> is</label>
 </div>
 
-<div class="question">
-<h3>3. “This is my pen.” — ‘my’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q3" value="possessive"> Possessive</label>
-<label><input type="radio" name="q3" value="relative"> Relative</label>
-<label><input type="radio" name="q3" value="reflexive"> Reflexive</label>
+<div class="question" data-answer="highest">
+<h3>3. Mount Everest is the _____ mountain.</h3>
+<label><input type="radio" name="q3" value="high"> high</label>
+<label><input type="radio" name="q3" value="higher"> higher</label>
+<label><input type="radio" name="q3" value="highest"> highest</label>
 </div>
 
-<div class="question">
-<h3>4. Choose the reflexive pronoun.</h3>
-<label><input type="radio" name="q4" value="himself"> himself</label>
-<label><input type="radio" name="q4" value="him"> him</label>
-<label><input type="radio" name="q4" value="his"> his</label>
 </div>
 
-<div class="question">
-<h3>5. Which sentence uses a pronoun correctly?</h3>
-<label><input type="radio" name="q5" value="She is my sister."> She is my sister.</label>
-<label><input type="radio" name="q5" value="Her is my sister."> Her is my sister.</label>
-<label><input type="radio" name="q5" value="Hers my sister."> Hers my sister.</label>
-</div>
-
-<div class="question">
-<h3>6. Identify the demonstrative pronoun.</h3>
-<label><input type="radio" name="q6" value="this"> this</label>
-<label><input type="radio" name="q6" value="they"> they</label>
-<label><input type="radio" name="q6" value="who"> who</label>
-</div>
-
-<div class="question">
-<h3>7. “Someone is knocking at the door.” — ‘Someone’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q7" value="indefinite"> Indefinite</label>
-<label><input type="radio" name="q7" value="relative"> Relative</label>
-<label><input type="radio" name="q7" value="personal"> Personal</label>
-</div>
-
-<div class="question">
-<h3>8. Which pronoun is used to ask a question?</h3>
-<label><input type="radio" name="q8" value="who"> who</label>
-<label><input type="radio" name="q8" value="he"> he</label>
-<label><input type="radio" name="q8" value="this"> this</label>
-</div>
-
-<div class="question">
-<h3>9. Choose the correct possessive pronoun.</h3>
-<label><input type="radio" name="q9" value="mine"> mine</label>
-<label><input type="radio" name="q9" value="me"> me</label>
-<label><input type="radio" name="q9" value="I"> I</label>
-</div>
-
-<div class="question">
-<h3>10. “The boy who won the race is my brother.” — ‘who’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q10" value="relative"> Relative</label>
-<label><input type="radio" name="q10" value="personal"> Personal</label>
-<label><input type="radio" name="q10" value="reflexive"> Reflexive</label>
-</div>
-
-<div class="question">
-<h3>11. Identify the object pronoun.</h3>
-<label><input type="radio" name="q11" value="him"> him</label>
-<label><input type="radio" name="q11" value="he"> he</label>
-<label><input type="radio" name="q11" value="his"> his</label>
-</div>
-
-<div class="question">
-<h3>12. “They enjoyed themselves.” — ‘themselves’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q12" value="reflexive"> Reflexive</label>
-<label><input type="radio" name="q12" value="demonstrative"> Demonstrative</label>
-<label><input type="radio" name="q12" value="indefinite"> Indefinite</label>
-</div>
-
-<div class="question">
-<h3>13. Which pronoun replaces a noun?</h3>
-<label><input type="radio" name="q13" value="he"> he</label>
-<label><input type="radio" name="q13" value="beautiful"> beautiful</label>
-<label><input type="radio" name="q13" value="quickly"> quickly</label>
-</div>
-
-<div class="question">
-<h3>14. Choose the correct sentence.</h3>
-<label><input type="radio" name="q14" value="It is mine."> It is mine.</label>
-<label><input type="radio" name="q14" value="It mine is."> It mine is.</label>
-<label><input type="radio" name="q14" value="Mine it is."> Mine it is.</label>
-</div>
-
-<div class="question">
-<h3>15. “Each of the students was present.” — ‘Each’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q15" value="indefinite"> Indefinite</label>
-<label><input type="radio" name="q15" value="relative"> Relative</label>
-<label><input type="radio" name="q15" value="personal"> Personal</label>
-</div>
-
-<div class="question">
-<h3>16. Which is a plural pronoun?</h3>
-<label><input type="radio" name="q16" value="they"> they</label>
-<label><input type="radio" name="q16" value="he"> he</label>
-<label><input type="radio" name="q16" value="it"> it</label>
-</div>
-
-<div class="question">
-<h3>17. Identify the interrogative pronoun.</h3>
-<label><input type="radio" name="q17" value="what"> what</label>
-<label><input type="radio" name="q17" value="that"> that</label>
-<label><input type="radio" name="q17" value="she"> she</label>
-</div>
-
-<div class="question">
-<h3>18. Which pronoun shows ownership?</h3>
-<label><input type="radio" name="q18" value="hers"> hers</label>
-<label><input type="radio" name="q18" value="her"> her</label>
-<label><input type="radio" name="q18" value="she"> she</label>
-</div>
-
-<div class="question">
-<h3>19. “Nobody was absent.” — ‘Nobody’ is a _____ pronoun.</h3>
-<label><input type="radio" name="q19" value="indefinite"> Indefinite</label>
-<label><input type="radio" name="q19" value="reflexive"> Reflexive</label>
-<label><input type="radio" name="q19" value="relative"> Relative</label>
-</div>
-
-<div class="question">
-<h3>20. Which pronoun is used for non-living things?</h3>
-<label><input type="radio" name="q20" value="it"> it</label>
-<label><input type="radio" name="q20" value="who"> who</label>
-<label><input type="radio" name="q20" value="she"> she</label>
-</div>
-
-</form>
-
-<div style="text-align:center;">
-<button class="submit-btn" onclick="checkQuiz()">Submit</button>
-<button class="retry-btn" onclick="location.reload()">Retry</button>
-<button class="back-btn" onclick="location.href='pronoun.html'">Back to Lesson</button>
-</div>
-
-<div id="result"></div>
+<div id="score">Score: 0 / 3</div>
 
 </div>
 
 <script>
-const answers = {
-q1:"He", q2:"She", q3:"possessive", q4:"himself", q5:"She is my sister.",
-q6:"this", q7:"indefinite", q8:"who", q9:"mine", q10:"relative",
-q11:"him", q12:"reflexive", q13:"he", q14:"It is mine.",
-q15:"indefinite", q16:"they", q17:"what", q18:"hers", q19:"indefinite", q20:"it"
-};
-
-function checkQuiz() {
 let score = 0;
-for (let q in answers) {
-  const selected = document.querySelector(`input[name="${q}"]:checked`);
-  if (selected && selected.value === answers[q]) score++;
-}
-document.getElementById("result").innerText =
-`Your Score: ${score} / 20`;
-}
+let total = document.querySelectorAll(".question").length;
+
+document.querySelectorAll("input[type=radio]").forEach(option => {
+    option.addEventListener("change", function () {
+        let question = this.closest(".question");
+        let correctAnswer = question.dataset.answer;
+
+        if (question.classList.contains("answered")) return;
+        question.classList.add("answered");
+
+        question.querySelectorAll("label").forEach(label => {
+            let input = label.querySelector("input");
+            if (input.value === correctAnswer) {
+                label.classList.add("correct");
+            }
+        });
+
+        if (this.value === correctAnswer) {
+            score++;
+        } else {
+            this.parentElement.classList.add("wrong");
+        }
+
+        document.getElementById("score").innerText =
+            `Score: ${score} / ${total}`;
+    });
+});
 </script>
 
 </body>
